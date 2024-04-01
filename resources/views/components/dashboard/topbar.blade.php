@@ -1,0 +1,71 @@
+<!-- Topbar Start -->
+<header class="app-header flex items-center px-5 gap-4>
+
+    <!-- Brand Logo -->
+    <a href="index.html" class="logo-box">
+        <img src="{{ asset('assets/lunoz/images/logo-sm.png') }}" class="h-6" alt="Small logo">
+    </a>
+
+    <!-- Sidenav Menu Toggle Button -->
+    <button id="button-toggle-menu" class="nav-link p-2 waves-effect me-auto">
+        <span class="sr-only">Menu Toggle Button</span>
+        <span class="flex items-center justify-center h-6 w-6">
+            <i class="ph ph-list text-2xl"></i>
+        </span>
+    </button>
+
+    <!-- Topbar Search -->
+    <div class="md:flex hidden items-center relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <i class="ph ph-magnifying-glass text-base"></i>
+        </div>
+        <input type="search"
+            class="form-input px-8 rounded-full  bg-gray-500/10 border-transparent focus:border-transparent"
+            placeholder="Search...">
+        <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
+            <i class="ph ph-microphone text-base hover:text-black"></i>
+        </button>
+    </div>
+
+    <!-- Fullscreen Toggle Button -->
+    <div class="md:flex hidden">
+        <button data-toggle="fullscreen" type="button" class="nav-link p-2 waves-effect">
+            <span class="sr-only">Fullscreen Mode</span>
+            <span class="flex items-center justify-center h-6 w-6">
+                <i class="ph ph-arrows-out text-2xl"></i>
+            </span>
+        </button>
+    </div>
+
+    <!-- Profile Dropdown Button -->
+    <div class="relative">
+        <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
+            class="nav-link flex items-center gap-2.5 waves-effect p-2">
+            <img src="{{ asset('assets/lunoz/images/users/avatar-6.jpg') }}" alt="user-image"
+                class="rounded-full h-8 w-8">
+            <span class="md:flex items-center hidden">
+                <span class="font-medium text-base">Jamie D.</span>
+                <i class='ph ph-chevron-down'></i>
+            </span>
+        </button>
+        <div
+            class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2">
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+                Inbox
+            </a>
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+                Profile
+            </a>
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+                Settings
+            </a>
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+                Lock Account
+            </a>
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+                Log Out
+            </a>
+        </div>
+    </div>
+</header>
+<!-- Topbar End -->

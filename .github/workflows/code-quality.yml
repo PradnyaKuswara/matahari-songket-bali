@@ -2,9 +2,9 @@ name: "code quality tests"
 
 on:
   push:
-    branches: [ "develop"]
+    branches: ["develop"]
   pull_request:
-    branches: [ "develop"]
+    branches: ["develop"]
 
 jobs:
   code-quality-tests:
@@ -12,26 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
 
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - name: Install Dependencies
-      run:  composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
 
-    - name: Generate key
-      run: php artisan key:generate
+      - name: Generate key
+        run: php artisan key:generate
 
-    - name: Clear Config and Cache
-      run: php artisan cache:clear && php artisan config:clear
+      - name: Clear Config and Cache
+        run: php artisan cache:clear && php artisan config:clear
 
-    - name: Directory Permissions
-      run: chmod -R 755 storage bootstrap/cache
+      - name: Directory Permissions
+        run: chmod -R 755 storage bootstrap/cache
 
-    - name: Larastan
-      run: ./vendor/bin/phpstan analyse --xdebug
+      - name: Larastan
+        run: ./vendor/bin/phpstan analyse --xdebug

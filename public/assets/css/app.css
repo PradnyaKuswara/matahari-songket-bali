@@ -7,8 +7,9 @@
 }
 
 body {
-    font-family: "Comfortaa", sans-serif;
+    font-family: "Raleway", sans-serif;
     background-color: #f4f4f4;
+    font-weight: 400;
 }
 
 .hero-bg-light {

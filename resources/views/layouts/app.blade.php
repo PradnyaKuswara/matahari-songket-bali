@@ -8,17 +8,22 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
+
     @stack('css')
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <title>@yield('page-title')</title>
 </head>
 
@@ -31,14 +36,10 @@
         @yield('content')
     </main>
 
-    <footer>
+    <x-footer></x-footer>
 
-    </footer>
-
-    <script src="{{ asset('assets/js/color-mode.js') }}"></script>
-    <script src="{{ asset('assets/js/navbar-swap.js') }}"></script>
-    <script src="{{ asset('assets/js/hero-swap.js') }}"></script>
-    @stack('script')
+    <script type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

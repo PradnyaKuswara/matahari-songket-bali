@@ -1,9 +1,9 @@
 @props(['title', 'description', 'image', 'badges', 'link'])
 
 <template x-if="card">
-    <a href="" class="hidden md:flex">
+    <a href="" class="hidden lg:flex">
         <div {{ $attributes->merge(['class' => 'card ']) }}>
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+            <figure><img src="{{ asset('assets/images/hero2.jpg') }}" alt="Shoes" />
             </figure>
             <div class="card-body ">
                 <div class="flex flex-col-reverse md:flex-row justify-between gap-2 lg:gap-2">
@@ -38,9 +38,9 @@
 </template>
 
 <template x-if="card">
-    <a href="" class="flex md:hidden">
+    <a href="" class="flex lg:hidden">
         <div class="card w-96 bg-base-100 shadow-xl   ">
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
+            <figure><img src="{{ asset('assets/images/hero2.jpg') }}" alt="Shoes" />
             </figure>
 
             <div class="p-4">

@@ -36,3 +36,7 @@ Route::get('/reset-password', function () {
 Route::get('products', function () {
     return view('pages.product');
 })->name('products');
+
+Route::get('product-detail', function () {
+    return view('pages.product-detail');
+})->name('product-detail');

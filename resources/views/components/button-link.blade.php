@@ -1,3 +1,5 @@
-{{-- @props(['link']) --}}
+@props(['title', 'description', 'image', 'badges', 'link' => 'javascript:void(0)'])
 
-<a {{ $attributes->merge(['class' => 'btn']) }}>{{ $slot }}</a>
+
+<a href="{{ $link }}"
+    {{ $attributes->merge(['class' => 'btn text-xs lg:text-base ', 'href' => '']) }}>{{ $slot }}</a>

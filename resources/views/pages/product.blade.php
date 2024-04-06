@@ -23,7 +23,7 @@
 @endpush
 
 @section('content')
-    <section class="min-h-screen xl:max-w-screen-xl lg:max-screen-lg xl:mx-auto lg:mx-4 pt-28 md:px-14 lg:px-0 pb-16">
+    <section class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 pt-28 md:px-14 lg:px-0 pb-16">
         <div class="flex flex-col gap-6">
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <h1 class="text-4xl font-bold animate-fade-right">For you</h1>
@@ -58,7 +58,7 @@
             </div>
 
             <div x-data="{ loading: false, card: false }" x-init="loading = false, card = true"
-                class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10 mx-4 lg:mx-0">
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10">
                 <x-product-card class="shadow-md "></x-product-card>
                 <x-product-card class="shadow-md "></x-product-card>
                 <x-product-card class="shadow-md "></x-product-card>

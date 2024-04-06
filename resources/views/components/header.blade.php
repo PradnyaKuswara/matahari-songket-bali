@@ -7,7 +7,7 @@
         </a>
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
             <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a>Product</a></li>
+            <li><a href="{{ route('products') }}">Product</a></li>
             <li><a>Whats News</a></li>
             <li><a>About us</a></li>
         </ul>
@@ -15,7 +15,7 @@
 
     <div class="flex-none gap-2 md:gap-2 ">
 
-        @if (auth()->check())
+        @if (!auth()->check())
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">

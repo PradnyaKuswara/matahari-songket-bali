@@ -196,16 +196,17 @@
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <h1 class="text-4xl font-bold">Newest product</h1>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 place-items-center gap-16">
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
-                <x-product-card class="w-80 bg-base-100 shadow-xl"></x-product-card>
+            <div x-data="{loading: false, card: false}" x-init="loading=true, card=true" class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 mx-4 lg:mx-0">
+                <x-product-card class="shadow-xl"></x-product-card>
+                <x-product-card class="shadow-xl"></x-product-card>
+                <x-product-card class="shadow-xl"></x-product-card>
+                <x-product-card class="shadow-xl"></x-product-card>
+                <x-product-card class="shadow-xl"></x-product-card>
+                <x-product-card class="shadow-xl"></x-product-card>
             </div>
+
             <div class="flex flex-col justify-center items-center">
-                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]">See another
+                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products') }}">See another
                     product</x-button-link>
             </div>
         </div>

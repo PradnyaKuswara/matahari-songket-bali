@@ -24,7 +24,7 @@
 @endpush
 
 @section('content')
-    <section class=" xl:max-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 md:mx-0 pt-28 md:px-14 lg:px-0 pb-16">
+    <section class=" xl:max-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 md:mx-0 pt-32 md:px-14 lg:px-0 pb-16">
         <div class="flex flex-col gap-6">
             <div class="grid lg:grid-cols-2 gap-8 place-items-center place-content-center">
                 <div class="flex flex-col gap-4 animate-fade-down lg:animate-fade-right ">
@@ -49,7 +49,8 @@
                     <h1 class="text-xl md:text-3xl font-bold font-mono">Rp.8000000</h1>
                     <div class="flex flex-col gap-2">
                         <h1 class="text-lg md:text-xl font-bold">Product Description</h1>
-                        <p class="text-sm md:text-base">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <p class="text-sm md:text-base">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
                             Lorem
                             Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
                             took
@@ -94,10 +95,10 @@
         <div class="flex flex-col gap-8 lg:gap-4">
             <div class="text-2xl md:text-4xl font-bold">You may like also</div>
             <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-                <x-product-card class="shadow-md"></x-product-card>
-                <x-product-card class="shadow-md"></x-product-card>
-                <x-product-card class="shadow-md"></x-product-card>
-                <x-product-card class="shadow-md"></x-product-card>
+                @for ($i = 0; $i < 4; $i++)
+                    <x-product-card class="shadow-md"></x-product-card>
+                @endfor
+
             </div>
         </div>
     </section>

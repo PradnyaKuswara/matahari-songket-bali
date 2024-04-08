@@ -40,3 +40,7 @@ Route::get('products', function () {
 Route::get('product-detail', function () {
     return view('pages.product-detail');
 })->name('product-detail');
+
+Route::get('whats-new', function () {
+    return view('pages.whats-new');
+})->name('whats-new');

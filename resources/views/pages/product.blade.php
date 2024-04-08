@@ -25,8 +25,9 @@
 @section('content')
     <section class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 pt-28 md:px-14 lg:px-0 pb-16">
         <div class="flex flex-col gap-6">
-            <div class="flex flex-col md:flex-row px-4 lg:px-0">
-                <h1 class="text-4xl font-bold animate-fade-right">For you</h1>
+            <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
+                class="flex flex-col md:flex-row px-4 lg:px-0">
+                <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">For you</h1>
             </div>
 
             <div class="flex flex-col-reverse lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-0">
@@ -58,23 +59,14 @@
             </div>
 
             <div x-data="{ loading: false, card: false }" x-init="loading = false, card = true"
-                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10">
-                <x-product-card class="shadow-md "></x-product-card>
-                <x-product-card class="shadow-md "></x-product-card>
-                <x-product-card class="shadow-md "></x-product-card>
-                <x-product-card class="shadow-md "></x-product-card>
-                <x-product-card class="shadow-md "></x-product-card>
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10 animate-fade-down">
+                @for ($i = 0; $i < 6; $i++)
+                    <x-product-card class="shadow-md "></x-product-card>
+                @endfor
                 <x-loading-card></x-loading-card>
 
             </div>
-            <div class="flex flex-row justify-center mt-8">
-                <div class="join">
-                    <input class="join-item btn btn-square" type="radio" name="options" aria-label="1" checked />
-                    <input class="join-item btn btn-square" type="radio" name="options" aria-label="2" />
-                    <input class="join-item btn btn-square" type="radio" name="options" aria-label="3" />
-                    <input class="join-item btn btn-square" type="radio" name="options" aria-label="4" />
-                </div>
-            </div>
+            <x-pagination></x-pagination>
         </div>
     </section>
 @endsection

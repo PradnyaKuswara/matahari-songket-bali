@@ -8,7 +8,7 @@
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
             <li><a href="{{ route('index') }}">Home</a></li>
             <li><a href="{{ route('products') }}">Product</a></li>
-            <li><a>Whats News</a></li>
+            <li><a href="{{ route('whats-new') }}">Whats News</a></li>
             <li><a>About us</a></li>
         </ul>
     </div>
@@ -64,7 +64,8 @@
             </div>
 
             <div>
-                <x-button-link href="{{ route('register') }}" class="btn btn-sm text-xs text-white bg-primary">Register</x-button-link>
+                <x-button-link href="{{ route('register') }}"
+                    class="btn btn-sm text-xs text-white bg-primary">Register</x-button-link>
             </div>
         @endif
 
@@ -79,7 +80,7 @@
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('products') }}">Product</a></li>
-                <li><a>Whats News</a></li>
+                <li><a href="{{ route('whats-new') }}">Whats News</a></li>
                 <li><a>About us</a></li>
             </ul>
         </div>

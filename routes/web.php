@@ -44,3 +44,7 @@ Route::get('product-detail', function () {
 Route::get('whats-new', function () {
     return view('pages.whats-new');
 })->name('whats-new');
+
+Route::get('whats-new-detail', function () {
+    return view('pages.whats-new-detail');
+})->name('whats-new-detail');

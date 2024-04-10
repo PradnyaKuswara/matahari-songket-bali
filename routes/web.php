@@ -48,3 +48,7 @@ Route::get('whats-new', function () {
 Route::get('whats-new-detail', function () {
     return view('pages.whats-new-detail');
 })->name('whats-new-detail');
+
+Route::get('about', function () {
+    return view('pages.about');
+})->name('about');

@@ -9,13 +9,13 @@
             <li><a href="{{ route('index') }}">Home</a></li>
             <li><a href="{{ route('products') }}">Product</a></li>
             <li><a href="{{ route('whats-new') }}">Whats News</a></li>
-            <li><a>About us</a></li>
+            <li><a href="{{ route('about') }}">About us</a></li>
         </ul>
     </div>
 
     <div class="flex-none gap-2 md:gap-2 ">
 
-        @if (!auth()->check())
+        @if (auth()->check())
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
@@ -60,11 +60,11 @@
             </div>
         @else
             <div>
-                <x-button-link href="{{ route('login') }}" class="btn btn-sm text-xs">Login</x-button-link>
+                <x-button-link link="{{ route('login') }}" class="btn btn-sm text-xs">Login</x-button-link>
             </div>
 
             <div>
-                <x-button-link href="{{ route('register') }}"
+                <x-button-link link="{{ route('register') }}"
                     class="btn btn-sm text-xs text-white bg-primary">Register</x-button-link>
             </div>
         @endif
@@ -81,7 +81,7 @@
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('products') }}">Product</a></li>
                 <li><a href="{{ route('whats-new') }}">Whats News</a></li>
-                <li><a>About us</a></li>
+                <li><a href="{{ route('about') }}">About us</a></li>
             </ul>
         </div>
     </div>

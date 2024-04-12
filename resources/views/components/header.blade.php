@@ -15,7 +15,7 @@
 
     <div class="flex-none gap-2 md:gap-2 ">
 
-        @if (auth()->check())
+        @if (!auth()->check())
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
@@ -33,7 +33,7 @@
                         <p class="" data-theme="">8 Items</p>
                         <span class="text-info">Subtotal: $999</span>
                         <div class="card-actions">
-                            <button class="btn btn-primary btn-block">View cart</button>
+                            <x-button-link link="{{ route('cart') }}" class="btn-primary btn-block">View Cart</x-button-link>
                         </div>
                     </div>
                 </div>

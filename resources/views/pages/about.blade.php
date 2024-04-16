@@ -48,7 +48,7 @@
         </div>
     </section>
 
-    <section class="max-w-screen-md lg:mx-auto mx-4 py-10 md:px-14 lg:px-0 lg:py-20 ">
+    <section class="max-w-screen-md lg:mx-auto mx-6 py-10 md:px-14 lg:px-0 lg:py-20 " id="contact-us">
         <div class="flex flex-col item-center justify-center gap-10">
             <div class="text-center">
                 <h1 class="text-4xl font-extrabold ">Drop Us a Line - We're Here to Help</h1>

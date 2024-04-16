@@ -38,7 +38,7 @@
                                 <h2 class="card-title font-bold">There are many variations of passages of Lorem Ipsum
                                     available
                                 </h2>
-                                <p class="text-sm">There are many variations of passages of Lorem Ipsum available. There are
+                                <p class="text-sm 2xl:w-8/12">There are many variations of passages of Lorem Ipsum available. There are
                                     many
                                     variations of passages
                                     of Lorem Ipsum available. There are many variations of passages of Lorem Ipsum

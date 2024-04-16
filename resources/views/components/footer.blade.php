@@ -1,10 +1,10 @@
 <footer class="footer footer-center bg-primary text-primary-content py-6 lg:px-36">
-    <nav class="grid grid-flow-col gap-4">
+    {{-- <nav class="grid grid-flow-col gap-4">
         <a href="{{ route('index') }}" class="link link-hover text-xs md:text-base">Home</a>
         <a href="{{ route('products') }}" class="link link-hover text-xs md:text-base">Product</a>
         <a href="{{ route('whats-new') }}" class="link link-hover text-xs md:text-base">Whats news</a>
         <a href="{{ route('about') }}" class="link link-hover text-xs md:text-base">About us</a>
-    </nav>
+    </nav> --}}
     <nav>
         <div class="grid grid-flow-col gap-6 text-primary-content">
             <a><i class="fas fa-brands fa-whatsapp fa-2x"></i></a>

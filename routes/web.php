@@ -52,3 +52,7 @@ Route::get('whats-new-detail', function () {
 Route::get('about', function () {
     return view('pages.about');
 })->name('about');
+
+Route::get('cart', function () {
+    return view('pages.cart');
+})->name('cart');

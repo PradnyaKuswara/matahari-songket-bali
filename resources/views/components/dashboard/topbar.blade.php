@@ -1,9 +1,9 @@
 <!-- Topbar Start -->
-<header class="app-header flex items-center px-5 gap-4>
+<header class="app-header flex items-center px-5 gap-4 no-print bg-white" id="navbar">
 
     <!-- Brand Logo -->
-    <a href="index.html" class="logo-box">
-        <img src="{{ asset('assets/lunoz/images/logo-sm.png') }}" class="h-6" alt="Small logo">
+    <a href="index.html">
+        <img src="{{ asset('assets/images/logo.png') }}" class="h-6" alt="Small logo">
     </a>
 
     <!-- Sidenav Menu Toggle Button -->
@@ -22,9 +22,6 @@
         <input type="search"
             class="form-input px-8 rounded-full  bg-gray-500/10 border-transparent focus:border-transparent"
             placeholder="Search...">
-        <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
-            <i class="ph ph-microphone text-base hover:text-black"></i>
-        </button>
     </div>
 
     <!-- Fullscreen Toggle Button -->
@@ -55,12 +52,6 @@
             </a>
             <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
                 Profile
-            </a>
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
-                Settings
-            </a>
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
-                Lock Account
             </a>
             <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
                 Log Out

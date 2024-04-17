@@ -7,6 +7,11 @@
 @section('content')
     <x-dashboard.page-title subtitle="Page" title="Main"></x-dashboard.page-title>
 
+    <form action="{{ route('send-mail-unpaid-invoice') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary">Send Mail</button>
+    </form>
+
     <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
         <div class="col-xl-3 col-md-6">
             <div class="card">

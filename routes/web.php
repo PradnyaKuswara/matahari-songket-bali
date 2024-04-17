@@ -60,3 +60,9 @@ Route::get('cart', function () {
 Route::get('checkout', function () {
     return view('pages.checkout');
 })->name('checkout');
+
+Route::get('mail-invoice', function () {
+    return view('mails.invoice-unpaid');
+})->name('mail-invoice');
+
+Route::post('send-mail-unpaid-invoice', 'App\Http\Controllers\MailController@sendUnpaidInvoice')->name('send-mail-unpaid-invoice');

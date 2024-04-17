@@ -1,4 +1,4 @@
-<footer class="footer footer-center bg-primary text-primary-content py-6 lg:px-36">
+<footer class="footer footer-center bg-primary text-primary-content py-6 lg:px-36 no-print">
     {{-- <nav class="grid grid-flow-col gap-4">
         <a href="{{ route('index') }}" class="link link-hover text-xs md:text-base">Home</a>
         <a href="{{ route('products') }}" class="link link-hover text-xs md:text-base">Product</a>
@@ -14,7 +14,7 @@
         </div>
     </nav>
 </footer>
-<footer class="footer px-4 lg:px-14 py-6 border-t bg-primary text-primary-content border-base-300">
+<footer class="footer px-4 lg:px-14 py-6 border-t bg-primary text-primary-content border-base-300 no-print">
     <aside class="items-center grid-flow-col">
         <img class="h-8" src="{{ asset('assets/images/logo2.png') }}" alt="logo">
         <p class="text-xs">Matahari Songket Bali  <br>Your Gateway to Authentic Balinese Songket Fabric since 1992</p>

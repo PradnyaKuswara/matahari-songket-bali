@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sidebar-color="light" data-topbar-color="dark" data-sidebar-view="">
+<html lang="en" data-sidebar-color="" data-topbar-color="" data-sidebar-view="">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/lunoz/images/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
 
     <!-- App css -->
     <link href="{{ asset('assets/lunoz/css/theme.min.css') }}" rel="stylesheet" type="text/css">
@@ -17,7 +16,9 @@
     <!-- Head Js -->
     <script src="{{ asset('assets/lunoz/js/head.js') }}"></script>
 
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @stack('css')
 </head>
 
 <body>
@@ -33,8 +34,9 @@
                 @yield('content')
             </main>
 
-            <x-dashboard.footer></x-dashboard.footer>
 
+
+            <x-dashboard.footer></x-dashboard.footer>
         </div>
         <!-- End Page content -->
 

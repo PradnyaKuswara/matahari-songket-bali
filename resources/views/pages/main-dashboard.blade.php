@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title subtitle="Menu" title="Dashboard"></x-dashboard.page-title>
+    <x-dashboard.page-title subtitle="Page" title="Main"></x-dashboard.page-title>
 
     <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
         <div class="col-xl-3 col-md-6">

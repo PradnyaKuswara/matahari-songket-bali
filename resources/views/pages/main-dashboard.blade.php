@@ -7,6 +7,30 @@
 @section('content')
     <x-dashboard.page-title subtitle="Page" title="Main"></x-dashboard.page-title>
 
+    <div class="flex gap-4">
+        <form action="{{ route('send-mail-unpaid-invoice') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-primary">Test Mail Invoice</button>
+        </form>
+
+        <form action="{{ route('send-mail-thank-purchase') }}" method="POST" class="mb-4">
+            @csrf
+            <button type="submit" class="btn btn-primary">Test Mail Thank Purchase</button>
+        </form>
+
+        <form action="{{ route('send-mail-shipped') }}" method="POST" class="mb-4">
+            @csrf
+            <button type="submit" class="btn btn-primary">Test Mail Shipped</button>
+        </form>
+
+        <form action="{{ route('send-mail-received-product') }}" method="POST" class="mb-4">
+            @csrf
+            <button type="submit" class="btn btn-primary">Test Mail Received Product</button>
+        </form>
+    </div>
+
+
+
     <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
         <div class="col-xl-3 col-md-6">
             <div class="card">

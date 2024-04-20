@@ -34,8 +34,6 @@
                 @yield('content')
             </main>
 
-
-
             <x-dashboard.footer></x-dashboard.footer>
         </div>
         <!-- End Page content -->

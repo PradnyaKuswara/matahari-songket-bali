@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class InvoiceUnpaidMail extends Mailable
+class ReceivedProductMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,7 +26,7 @@ class InvoiceUnpaidMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Reminder] Invoice # Your Product Transaction',
+            subject: '[Reminder] Order # has beeen recevied',
         );
     }
 
@@ -36,7 +36,7 @@ class InvoiceUnpaidMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.invoice-unpaid',
+            view: 'mails.received-product',
             with: ['content' => $this->content]
         );
     }

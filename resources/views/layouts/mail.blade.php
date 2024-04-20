@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/lunoz/images/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+
 
     <!-- App css -->
     <link href="{{ asset('assets/lunoz/css/theme.min.css') }}" rel="stylesheet" type="text/css">
@@ -24,21 +24,7 @@
     <div class="app-wrapper">
 
         <div class="app-content">
-
-            <div class="hero p-20 md:p-32"
-                style="background-image: url({{ asset('assets/images/hero2.jpg') }});">
-                <div class="hero-overlay bg-opacity-60"></div>
-                {{-- <div class="hero-content text-center text-neutral-content">
-                    <div class="max-w-md">
-                        <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-                        <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-                            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <button class="btn btn-primary">Get Started</button>
-                    </div>
-                </div> --}}
-            </div>
-
-            <main class="p-6">
+            <main>
                 @yield('content')
             </main>
 

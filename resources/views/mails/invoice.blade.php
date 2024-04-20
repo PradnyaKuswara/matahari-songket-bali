@@ -1,18 +1,23 @@
 @extends('layouts.mail')
 
 @section('title')
-    Invoice Unpaid
+    Invoice
 @endsection
 
 @section('content')
-    <div class="max-w-screen-md mx-auto">
+    <div class="hero p-20 md:p-32" style="background-image: url({{ asset('assets/images/hero2.jpg') }});">
+        <div class="hero-overlay bg-opacity-60"></div>
+    </div>
+
+    <div class="md:max-w-screen-md mx-auto p-6">
         <div class="flex flex-col">
             <h1 class="text-3xl font-extrabold">Reminder Invoice</h1>
-            <p class="text-xl">Halo </p>
-            <p class="text-lg">Reminder untuk invoice ... milikmu. Berikut detail invoice pembelian anda. </p>
+            <p class="text-xl mt-2">Hello </p>
+            <p class="text-lg">
+                Reminder for your invoice ... belonging to you. Here are the details of your purchase invoice. </p>
         </div>
 
-        <div class="card p-6 bg-white animate-fade mt-10">
+        <div class="card p-6 bg-white animate-fade mt-8">
             <div class="flex justify-between gap-4">
                 <div class="">
                     <img class="h-8 md:h-16" src="{{ asset('assets/images/logo.png') }}" alt="Logo">
@@ -168,7 +173,7 @@
                 <p class="text-gray-500">If you have any questions concerning this invoice, use the following contact
                     information:</p>
                 <div class="mt-2">
-                    <p class="block text-sm font-medium text-gray-800">example@site.com</p>
+                    <p class="block text-sm font-medium text-gray-800">mataharisongketbali@gmail.com</p>
                     <p class="block text-sm font-medium text-gray-800">+1 (062) 109-9222</p>
                 </div>
             </div>
@@ -179,11 +184,11 @@
         </div>
 
         <div class="flex flex-col mt-10">
-            <p class="md:text-xl">Pembayran akan jatuh tempo dalam hari kedepan maksimal tanggal .... Segera lakukan pembayaran
-                dengan mengakses menu dashboard anda atau klik bayar sekarang dibawah ini </p>
-            <a href="#" class="btn btn-primary mt-4 w-52 mx-auto">Bayar Sekarang</a>
-            <p class="text-center font-bold mt-4">Note: ini adalah email notifikasi sistem kami. Silahkan akses dashboard
-                area anda untuk terhubung dengan layanan anda. </p>
+            <p class="w-full md:text-lg">Payment will be due in the coming days, no later than [date]. Please make your payment by
+                accessing your dashboard menu or by clicking pay now below. </p>
+            <a href="#" class="btn btn-primary mt-4 w-52 mx-auto">Pay Now</a>
+            <p class="text-center font-bold mt-4">Note: This is a notification email from our system. Please access your
+                dashboard area to connect with your service </p>
         </div>
     </div>
 @endsection

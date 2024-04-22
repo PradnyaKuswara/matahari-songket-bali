@@ -2,7 +2,7 @@
 <header class="app-header flex items-center px-5 gap-4 no-print bg-white" id="navbar">
 
     <!-- Brand Logo -->
-    <a href="index.html">
+    <a href="javascript:void(0)">
         <img src="{{ asset('assets/images/logo.png') }}" class="h-6" alt="Small logo">
     </a>
 
@@ -13,16 +13,6 @@
             <i class="ph ph-list text-2xl"></i>
         </span>
     </button>
-
-    <!-- Topbar Search -->
-    <div class="md:flex hidden items-center relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <i class="ph ph-magnifying-glass text-base"></i>
-        </div>
-        <input type="search"
-            class="form-input px-8 rounded-full  bg-gray-500/10 border-transparent focus:border-transparent"
-            placeholder="Search...">
-    </div>
 
     <!-- Fullscreen Toggle Button -->
     <div class="md:flex hidden">
@@ -38,24 +28,26 @@
     <div class="relative">
         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
             class="nav-link flex items-center gap-2.5 waves-effect p-2">
-            <img src="{{ asset('assets/lunoz/images/users/avatar-6.jpg') }}" alt="user-image"
-                class="rounded-full h-8 w-8">
+            <img src="{{ auth()->user()->avatar ? '' : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}"
+                alt="user-image" class="rounded-full h-8 w-8">
             <span class="md:flex items-center hidden">
-                <span class="font-medium text-base">Jamie D.</span>
+                <span class="font-medium text-base">{{ auth()->user()->username }}</span>
                 <i class='ph ph-chevron-down'></i>
             </span>
         </button>
         <div
             class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2">
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
-                Inbox
-            </a>
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="{{ route('dashboard.profile.edit') }}">
                 Profile
             </a>
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="#">
-                Log Out
-            </a>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit"
+                    class="w-full flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100">
+                    Log Out
+                </button>
+            </form>
+
         </div>
     </div>
 </header>

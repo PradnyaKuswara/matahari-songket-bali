@@ -1,4 +1,5 @@
 import "./bootstrap";
+import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 import Typed from "typed.js";
 import Swiper from "swiper/bundle";
 import Alpine from "alpinejs";

@@ -12,17 +12,24 @@
                     <img class="h-20" src="{{ asset('assets/images/logo.png') }}" alt="">
                 </a>
 
-                <p class="text-base mb-5">Forgot your password? No problem. Just let us know your email address and we will email you a password
+                <p class="text-base mb-5">Forgot your password? No problem. Just let us know your email address and we will
+                    email you a password
                     reset link that will allow you to choose a new one.</p>
-                <form action="">
+                <form action="{{ route('password.email') }}" method="POST">
+                    @csrf
                     <div class="mb-4 w-full">
                         <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">
                             <div class="label">
                                 <span class="label-text">Email</span>
                             </div>
                         </label>
+
                         <input id="LoggingEmailAddress" class="input input-bordered w-full text-xs md:text-base"
                             type="email" name="email" placeholder="Enter your email">
+                        <div class="mt-1 font-medium text-sm text-green-600">{{ session('status') }}</div>
+                        @error('email')
+                            <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex justify-center mb-5">

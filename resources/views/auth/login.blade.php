@@ -12,7 +12,8 @@
                     <img class="h-20" src="{{ asset('assets/images/logo.png') }}" alt="">
                 </a>
 
-                <form action="">
+                <form action="{{ route('login.store') }}" method="POST">
+                    @csrf
                     <div class="mb-4 w-full">
                         <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">
                             <div class="label">
@@ -20,7 +21,10 @@
                             </div>
                         </label>
                         <input id="LoggingEmailAddress" class="input input-bordered w-full text-xs md:text-base"
-                            type="email" name="email" placeholder="Enter your email">
+                            type="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
+                        @error('email')
+                            <p class="mt-2 text-error text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4 w-full">
@@ -29,12 +33,17 @@
                                 <span class="label-text">Password</span>
                             </div>
 
-                            <input type="password" name="password" class="input input-bordered w-full text-xs md:text-base mb-1"
+                            <input type="password" name="password" value="{{ old('password') }}"
+                                class="input input-bordered w-full text-xs md:text-base mb-1"
                                 placeholder="Enter your password" />
+                            @error('password')
+                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
+                            @enderror
 
                             <div class="label">
                                 <span class="label-text-alt"></span>
-                                <span class="label-text-alt text-primary"><a href="{{ route('forgot-password') }}">Forgot password?</a></span>
+                                <span class="label-text-alt text-primary"><a href="{{ route('password.request') }}">Forgot
+                                        password?</a></span>
                             </div>
                         </label>
 
@@ -60,14 +69,14 @@
                 </div>
 
                 <div class="flex flex-col justify-center gap-4">
-                    <button class="btn bg-white">
+                    <a href="{{ route('socialite.redirect', 'google') }}" class="btn bg-white">
                         <i class=" fa-brands fa-google"></i>
                         Login with Google
-                    </button>
-                    <button class="btn bg-white">
+                    </a>
+                    {{-- <button class="btn bg-white">
                         <i class=" fa-brands fa-facebook"></i>
                         Login With Facebook
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </div>

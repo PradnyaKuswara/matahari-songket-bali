@@ -8,11 +8,15 @@
     <div class="card lg:card-side bg-base-100 shadow-xl">
         <div class="card-body">
             <div class="px-6 py-8">
-                <a href="{{ route('index') }}" class="flex justify-center mb-8">
+                <a href="javascript:void(0)" class="flex justify-center mb-8">
                     <img class="h-20" src="{{ asset('assets/images/logo.png') }}" alt="">
                 </a>
 
-                <form action="">
+                <form action="{{ route('password.store') }}" method="POST">
+                    @csrf
+                    <!-- Password Reset Token -->
+                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
                     <div class="mb-4 w-full">
                         <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">
                             <div class="label">
@@ -21,7 +25,12 @@
                             </div>
                         </label>
                         <input id="LoggingEmailAddress" class="input input-bordered w-full text-xs md:text-base"
-                            type="email" name="email" placeholder="Enter your email">
+                            type="email" name="email" value="{{ $request->email }}" placeholder="Enter your email"
+                            readonly>
+
+                        @error('email')
+                            <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4 w-full">
@@ -32,9 +41,13 @@
                         </label>
 
                         <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                            <input id="loggingPassword" type="password" class="grow" name="password" placeholder="Enter your password" />
+                            <input id="loggingPassword" type="password" class="grow" name="password"
+                                placeholder="Enter your password" />
                         </label>
 
+                        @error('password')
+                            <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                        @enderror
 
                     </div>
 
@@ -46,8 +59,13 @@
                         </label>
 
                         <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                            <input id="loggingRePassword" type="password" class="grow" name="password" placeholder="Enter your re password" />
+                            <input id="loggingRePassword" type="password" class="grow" name="password_confirmation"
+                                placeholder="Enter your re password" />
                         </label>
+
+                        @error('password_confirmation')
+                            <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex justify-center mb-5">
@@ -58,4 +76,3 @@
         </div>
     </div>
 @endsection
-

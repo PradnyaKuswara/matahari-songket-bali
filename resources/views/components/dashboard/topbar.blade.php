@@ -28,7 +28,7 @@
     <div class="relative">
         <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
             class="nav-link flex items-center gap-2.5 waves-effect p-2">
-            <img src="{{ auth()->user()->avatar ? '' : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}"
+            <img src="{{ auth()->user()->avatar ? auth()->user()->avatar() : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}"
                 alt="user-image" class="rounded-full h-8 w-8">
             <span class="md:flex items-center hidden">
                 <span class="font-medium text-base">{{ auth()->user()->username }}</span>

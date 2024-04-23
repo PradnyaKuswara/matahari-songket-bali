@@ -70,7 +70,7 @@
 
                 <div class="flex flex-col justify-center gap-4">
                     <a href="{{ route('socialite.redirect', 'google') }}" class="btn bg-white">
-                        <i class=" fa-brands fa-google"></i>
+                        <img src="{{ asset('assets/images/google.png') }}" width="35px" alt="">
                         Login with Google
                     </a>
                     {{-- <button class="btn bg-white">

@@ -84,6 +84,7 @@
     <!-- Dashboard Project Page js -->
     <script src="{{ asset('assets/lunoz/js/pages/dashboard.js') }}"></script>
 
+    @stack('scripts')
 </body>
 
 </html>

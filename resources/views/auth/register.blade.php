@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col lg:flex-row gap-4 mb-4">
+                    {{-- <div class="flex flex-col lg:flex-row gap-4 mb-4">
                         <div class=" w-full">
                             <label class="form-control w-full max-w-xs" for="LoggingGender">
                                 <div class="label">
@@ -78,7 +78,7 @@
                                 <p class="mt-2 text-error text-xs">{{ $message }}</p>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="flex flex-col lg:flex-row gap-4 mb-9">
                         <div class=" w-full">
@@ -134,7 +134,7 @@
 
                 <div class="flex flex-col justify-center gap-4">
                     <a href="{{ route('socialite.redirect', 'google') }}" class="btn bg-white">
-                        <i class=" fa-brands fa-google"></i>
+                        <img src="{{ asset('assets/images/google.png') }}" width="35px" alt="">
                         Start with Google
                     </a>
                     {{-- <button class="btn bg-white">

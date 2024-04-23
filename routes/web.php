@@ -52,7 +52,9 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
 
     Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
         Route::get('/', 'edit')->name('edit');
-        Route::put('/update', 'update')->name('update');
+        Route::patch('/update', 'update')->name('update');
+        Route::patch('/update-password', 'updatePassword')->name('update-password');
+        Route::patch('/update-address', 'updateAddress')->name('update-address');
         Route::delete('/delete', 'destroy')->name('destroy');
     });
 

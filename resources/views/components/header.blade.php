@@ -36,7 +36,7 @@
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
                         <img alt="Tailwind CSS Navbar component"
-                            src="{{ auth()->user()->avatar ? '' : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}" />
+                            src="{{ auth()->user()->avatar ? auth()->user()->avatar() : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}" />
                     </div>
                 </div>
                 <ul tabindex="0"

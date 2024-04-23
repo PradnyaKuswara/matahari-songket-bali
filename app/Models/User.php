@@ -15,6 +15,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const IMAGE_PATH = 'avatars';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'phone_number',
         'avatar',
+        'additional_information',
     ];
 
     /**

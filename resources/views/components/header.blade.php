@@ -7,15 +7,15 @@
         </a>
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
             <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a href="{{ route('products') }}">Product</a></li>
-            <li><a href="{{ route('whats-new') }}">Whats News</a></li>
+            <li><a href="{{ route('products.index') }}">Product</a></li>
+            <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
             <li><a href="{{ route('about') }}">About us</a></li>
         </ul>
     </div>
 
     <div class="flex-none gap-2 md:gap-2 ">
 
-        @if (!auth()->check())
+        @if (auth()->check())
             <div class="dropdown dropdown-end">
                 <a href="{{ route('cart') }}">
                     <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -36,19 +36,23 @@
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
                         <img alt="Tailwind CSS Navbar component"
-                            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            src="{{ auth()->user()->avatar ? auth()->user()->avatar() : 'https://eu.ui-avatars.com/api/?name=' . auth()->user()->username . '&size=150' }}" />
                     </div>
                 </div>
                 <ul tabindex="0"
                     class="menu menu-md dropdown-content mt-16 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Dashboard</a></li>
+                    <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                     <li>
-                        <a class="justify-between">
+                        <a href="{{ route('dashboard.profile.edit') }}" class="justify-between">
                             Profile
                             <span class="badge">New</span>
                         </a>
                     </li>
-                    <li><a>Logout</a></li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <li><button type="submit" class="w-full">Logout</button></li>
+                    </form>
+
                 </ul>
             </div>
         @else
@@ -72,24 +76,25 @@
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a href="{{ route('index') }}">Home</a></li>
-                <li><a href="{{ route('products') }}">Product</a></li>
-                <li><a href="{{ route('whats-new') }}">Whats News</a></li>
+                <li><a href="{{ route('products.index') }}">Product</a></li>
+                <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
                 <li><a href="{{ route('about') }}">About us</a></li>
 
-                @if (!auth()->check())
+                @if (auth()->check())
                     <div class="mt-4">
-                        <li><a>Dashboard</a></li>
+                        <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                         <li>
-                            <a class="justify-between">
+                            <a href="{{ route('dashboard.profile.edit') }}" class="justify-between">
                                 Profile
                                 <span class="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Logout</a></li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <li><button type="submit" class="w-full">Logout</button></li>
+                        </form>
                     </div>
                 @endif
-
-
             </ul>
         </div>
     </div>

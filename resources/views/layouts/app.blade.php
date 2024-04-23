@@ -32,6 +32,7 @@
     </header>
 
     <main>
+        <x-toaster-hub /> <!-- 👈 -->
         @yield('content')
     </main>
 

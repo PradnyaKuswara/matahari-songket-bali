@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <link rel="icon" type="image/png"  href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,7 @@
 </head>
 
 <body class=" lg:h-screen w-screen flex justify-center items-center">
+    <x-toaster-hub /> <!-- 👈 -->
     <div class="2xl:w-1/2 xl:w-7/12 lg:w-10/12 md:w-10/12 w-full">
         @yield('content')
     </div>

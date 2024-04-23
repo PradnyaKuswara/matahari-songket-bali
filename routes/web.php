@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WhatsNewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,45 +21,21 @@ use Illuminate\Support\Facades\Route;
 
 //main route
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('index');
+require __DIR__.'/auth.php';
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('detail', 'detail')->name('product.detail');
+});
 
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->name('forgot-password');
+Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('detail', 'detail')->name('detail');
+});
 
-Route::get('/reset-password', function () {
-    return view('auth.reset-password');
-})->name('reset-password');
-
-Route::get('products', function () {
-    return view('pages.product');
-})->name('products');
-
-Route::get('product-detail', function () {
-    return view('pages.product-detail');
-})->name('product-detail');
-
-Route::get('whats-new', function () {
-    return view('pages.whats-new');
-})->name('whats-new');
-
-Route::get('whats-new-detail', function () {
-    return view('pages.whats-new-detail');
-})->name('whats-new-detail');
-
-Route::get('about', function () {
-    return view('pages.about');
-})->name('about');
+Route::get('about', [AboutController::class, 'index'])->name('about');
 
 Route::get('cart', function () {
     return view('pages.cart');
@@ -63,27 +45,22 @@ Route::get('checkout', function () {
     return view('pages.checkout');
 })->name('checkout');
 
-//route testing view email
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
 
-Route::get('mail-invoice', function () {
-    return view('mails.invoice');
-})->name('mail-invoice');
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', 'edit')->name('edit');
+        Route::patch('/update', 'update')->name('update');
+        Route::patch('/update-password', 'updatePassword')->name('update-password');
+        Route::patch('/update-address', 'updateAddress')->name('update-address');
+        Route::delete('/delete', 'destroy')->name('destroy');
+    });
 
-Route::get('mail-purchase', function () {
-    return view('mails.purchase');
-})->name('mail-purchase');
+    Route::get('/invoice', function () {
+        return view('pages.customer.transaction-invoice');
+    })->name('invoice');
+});
 
-Route::get('mail-shipped', function () {
-    return view('mails.shipped');
-})->name('mail-shipped');
-
-Route::get('mail-accepted-product', function () {
-    return view('mails.received-product');
-})->name('mail-accepted-product');
-
-Route::get('mail-invoice-pdf', 'App\Http\Controllers\MailController@viewTemplatePdf')->name('mail-invoice-pdf');
-
-Route::post('send-mail-unpaid-invoice', 'App\Http\Controllers\MailController@sendInvoice')->name('send-mail-unpaid-invoice');
-Route::post('send-mail-thank-purchase', 'App\Http\Controllers\MailController@sendThankPurchase')->name('send-mail-thank-purchase');
-Route::post('send-mail-shipped', 'App\Http\Controllers\MailController@sendShipped')->name('send-mail-shipped');
-Route::post('send-mail-received-product', 'App\Http\Controllers\MailController@sendReceived')->name('send-mail-received-product');
+require __DIR__.'/mail-testing.php';

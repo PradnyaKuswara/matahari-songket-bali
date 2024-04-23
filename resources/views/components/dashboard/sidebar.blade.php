@@ -2,7 +2,7 @@
 <div class="app-menu bg-gradient-to-b text-white  from-blue-800 to-indigo-900  ">
 
     <!-- Brand Logo -->
-    <a href="index.html" class="logo-box mt-4">
+    <a href="javascript:void(0)" class="logo-box mt-4">
         <img src="{{ asset('assets/images/logo2.png') }}" class="h-12" alt="Light logo">
     </a>
 
@@ -12,7 +12,7 @@
             <li class="menu-title">Menu</li>
 
             <li class="menu-item">
-                <a href="index.html" class="hover:bg-primary hover:text-primary-content waves-effect">
+                <a href="{{ route('dashboard.index') }}" class="hover:bg-primary hover:text-primary-content waves-effect">
                     <span class="menu-icon"><i class="ph-duotone ph-house"></i></span>
                     <span class="menu-text font-extrabold"> Dashboard </span>
                     <span class="badge bg-accent rounded ms-auto text-white">01</span>

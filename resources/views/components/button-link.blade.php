@@ -2,4 +2,4 @@
 
 
 <a href="{{ $link }}"
-    {{ $attributes->merge(['class' => 'btn text-xs lg:text-base ', 'href' => '']) }}>{{ $slot }}</a>
+    {{ $attributes->merge(['class' => 'btn ', 'href' => '']) }}>{{ $slot }}</a>

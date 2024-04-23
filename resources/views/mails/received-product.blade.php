@@ -57,7 +57,7 @@
             <footer class="mt-8">
 
                 <p class="text-gray-500">
-                    This email was sent to <a href="#" class="text-blue-600 hover:underline dark:text-blue-400"
+                    This email was sent to <a href="#" class="text-blue-600 hover:underline"
                         target="_blank">contact@merakiui.com</a>.
                 </p>
 

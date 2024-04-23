@@ -206,7 +206,7 @@
             </div>
 
             <div class="flex flex-col justify-center items-center">
-                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products') }}">See another
+                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products.index') }}">See another
                     product</x-button-link>
             </div>
         </div>

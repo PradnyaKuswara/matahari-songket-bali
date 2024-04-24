@@ -10,16 +10,25 @@
     <button id="button-toggle-menu" class="nav-link p-2 waves-effect me-auto">
         <span class="sr-only">Menu Toggle Button</span>
         <span class="flex items-center justify-center h-6 w-6">
-            <i class="ph ph-list text-2xl"></i>
+            <span class="mdi mdi-reorder-horizontal text-xl text-gray-400"></span>
         </span>
     </button>
+
+    <div class="md:flex hidden items-center relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <span class="mdi mdi-magnify"></span>
+        </div>
+        <input type="search"
+            class="form-input px-8 rounded-md bg-gray-500/10 border-transparent focus:border-transparent"
+            placeholder="Search...">
+    </div>
 
     <!-- Fullscreen Toggle Button -->
     <div class="md:flex hidden">
         <button data-toggle="fullscreen" type="button" class="nav-link p-2 waves-effect">
             <span class="sr-only">Fullscreen Mode</span>
             <span class="flex items-center justify-center h-6 w-6">
-                <i class="ph ph-arrows-out text-2xl"></i>
+                <span class="mdi mdi-fullscreen text-3xl"></span>
             </span>
         </button>
     </div>
@@ -37,7 +46,8 @@
         </button>
         <div
             class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2">
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100" href="{{ route('dashboard.profile.edit') }}">
+            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100"
+                href="{{ route('dashboard.profile.edit') }}">
                 Profile
             </a>
             <form action="{{ route('logout') }}" method="POST">

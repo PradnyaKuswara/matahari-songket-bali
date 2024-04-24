@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.13.8",
+        "@mdi/font": "^7.4.47",
         "alpinejs": "^3.13.8",
         "swiper": "^11.1.0",
         "tailwindcss-animated": "^1.0.1",

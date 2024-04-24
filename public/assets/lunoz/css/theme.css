@@ -10,11 +10,11 @@ File: Main Css File
   --tw-body-font-family: "Baloo Paaji 2", cursive;
   --tw-body-bg: #fff;
   --tw-body-color: #64748b;
-  --tw-sidebar-width: 260px;
+  --tw-sidebar-width: 220px;
   --tw-topbar-height: 70px;
-  --tw-sidebar-item-padding-x: 15px;
+  --tw-sidebar-item-padding-x: 2px;
   --tw-sidebar-item-gap: 5px;
-  --tw-sidebar-link-padding-x: 15px;
+  --tw-sidebar-link-padding-x: 10px;
   --tw-sidebar-link-padding-y: 8px;
   --tw-sidebar-link-item-gap: 10px;
   --tw-sidebar-item-icon-size: 20px;
@@ -3612,10 +3612,10 @@ th.fc-day-header {
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;

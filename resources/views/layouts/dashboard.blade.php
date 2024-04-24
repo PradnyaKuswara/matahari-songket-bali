@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sidebar-color="" data-topbar-color="" data-sidebar-view="">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,7 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
 
     <!-- App css -->
-    <link href="{{ asset('assets/lunoz/css/theme.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/lunoz/css/icons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/lunoz/css/theme.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Head Js -->
     <script src="{{ asset('assets/lunoz/js/head.js') }}"></script>
@@ -32,7 +31,7 @@
 
             <x-dashboard.topbar></x-dashboard.topbar>
 
-            <main class="p-6">
+            <main class="p-6 bg-[#F1F5F9] min-h-screen">
 
                 @if (!auth()->user()->hasVerifiedEmail())
                     <div role="alert" class="alert alert-primary mb-4">

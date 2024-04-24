@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title subtitle="Page" title="Main"></x-dashboard.page-title>
+    <x-dashboard.page-title header="Main Dashboard" subtitle="Page" :linkSubTitle="route('dashboard.index')" title="Main" :linkTitle="route('dashboard.index')"></x-dashboard.page-title>
 
     <div class="flex gap-4">
         <form action="{{ route('send-mail-unpaid-invoice') }}" method="POST">

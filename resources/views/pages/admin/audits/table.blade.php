@@ -18,9 +18,9 @@
                 <td>{{ $audit->created_at }}</td>
                 <td>{{ $audit->updated_at }}</td>
                 <td>
-                    <button type="button" data-fc-type="modal"><span class="mdi mdi-note-outline text-black text-lg"></span></button>
-                    <x-dashboard.table-modal title="Information Log"
-                        :description="$audit"></x-dashboard.table-modal>
+                    <button type="button" data-fc-type="modal"><span
+                            class="mdi mdi-note-outline text-primary text-lg"></span></button>
+                    <x-dashboard.table-modal title="Information Log" :description="$audit"></x-dashboard.table-modal>
                 </td>
             </tr>
         @empty
@@ -30,3 +30,6 @@
         @endforelse
     </tbody>
 </table>
+<div class="mt-2">
+    {{ $audits->links('components.dashboard.pagination') }}
+</div>

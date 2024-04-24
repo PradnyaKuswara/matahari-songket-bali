@@ -53,17 +53,33 @@
             @endif
 
             @if (auth()->user()->role->name == 'admin')
+                <li class="menu-title">Data Master</li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.dashboard.items.categories.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/items/categories') ? 'bg-primary text-primary-content' : '' }}">
+                        <div
+                            class="rounded-sm px-2 py-[0.2rem] {{ request()->is('admin/dashboard/items/categories') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
+                            <span class="menu-icon">
+                                <span class="mdi mdi-account-multiple text-md"></span>
+                            </span>
+                        </div>
+
+                        <span class="menu-text font-extrabold"> Management Item Category </span>
+                    </a>
+                </li>
+
                 <li class="menu-title">Report</li>
                 <li class="menu-item">
-                    <a href="{{ route('dashboard.logs.index') }}"
-                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('dashboard/logs') ? 'bg-primary text-primary-content' : '' }}">
-                        <div class="rounded-sm px-2 py-[0.2rem] {{ request()->is('dashboard/logs') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
+                    <a href="{{ route('admin.dashboard.logs.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/logs') ? 'bg-primary text-primary-content' : '' }}">
+                        <div
+                            class="rounded-sm px-2 py-[0.2rem] {{ request()->is('admin/dashboard/logs') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
                             <span class="menu-icon">
                                 <span class="mdi mdi-history text-md"></span>
                             </span>
                         </div>
 
-                        <span class="menu-text font-extrabold"> Management Log </span>
+                        <span class="menu-text font-extrabold">History Log </span>
                     </a>
                 </li>
             @endif

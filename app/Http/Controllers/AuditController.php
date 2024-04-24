@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Audit;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class AuditController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $audits = Audit::query();
 

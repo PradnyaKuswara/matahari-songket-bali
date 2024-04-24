@@ -58,8 +58,6 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
         Route::delete('/delete', 'destroy')->name('destroy');
     });
 
-    require __DIR__.'/admin.php';
-
     Route::get('/invoice', function () {
         return view('pages.customer.transaction-invoice');
     })->name('invoice');

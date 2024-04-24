@@ -19,16 +19,6 @@ class SocialiteController extends Controller
     {
         $user = Socialite::driver($provider)->user();
 
-        // $newUser = User::firstOrCreate([
-        //     'google_id' => $user->getId(),
-        // ], [
-        //     'name' => $user->getName(),
-        //     'username' => $user->getNickname(),
-        //     'email' => $user->getEmail(),
-        //     'password' => rand(1, 1000),
-        //     'role_id' => Role::where('name', 'customer')->first()->id,
-        // ]);
-
         $newUser = User::where('google_id', $user->getId())->first();
 
         if (! $newUser) {

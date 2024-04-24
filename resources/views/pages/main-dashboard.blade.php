@@ -32,7 +32,7 @@
 
     <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card  shadow-lg bg-white">
                 <div class="p-5">
                     <i class="bx bx-layer float-right text-3xl text-muted"></i>
                     <h6 class="text-muted text-sm uppercase">Orders</h6>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <i class="bx bx-dollar-circle float-right text-3xl text-muted"></i>
                     <h6 class="text-muted text-sm uppercase">Revenue</h6>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <i class="bx bx-bx bx-analyse float-right text-3xl text-muted"></i>
                     <h6 class="text-muted text-sm uppercase">Average Price</h6>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <i class="bx bx-basket float-right text-3xl text-muted"></i>
                     <h6 class="text-muted text-sm uppercase">Product Sold</h6>
@@ -87,7 +87,7 @@
 
     <div class="grid lg:grid-cols-3 gap-6 mb-6">
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h4 class="card-title mb-4">Daily Sales</h4>
@@ -134,7 +134,7 @@
 
         <div class="col-xl-3 col-md-6">
 
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h4 class="card-title mb-4">Statistics</h4>
@@ -181,7 +181,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card">
+            <div class="card shadow-lg bg-white">
                 <div class="p-5">
                     <div class="flex justify-between items-center">
                         <h4 class="card-title mb-4">Total Revenue</h4>
@@ -229,7 +229,7 @@
 
     <div class="grid xl:grid-cols-2 gap-6">
 
-        <div class="card overflow-hidden">
+        <div class="card shadow-lg bg-white overflow-hidden">
             <div class="card-header flex justify-between items-center">
                 <h4 class="card-title">Recent Buyers</h4>
                 <a href="javascript:void(0);" class="btn btn-sm bg-light !text-sm text-gray-800 ">Export</a>
@@ -348,7 +348,7 @@
             </div>
         </div> <!-- end card-->
 
-        <div class="card overflow-hidden">
+        <div class="card shadow-lg bg-white overflow-hidden">
             <div class="card-header flex justify-between items-center">
                 <h4 class="card-title">Account Transactions</h4>
                 <a href="javascript:void(0);" class="btn btn-sm bg-light !text-sm text-gray-800 ">Export</a>

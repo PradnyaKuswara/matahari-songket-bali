@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Profile | Matahari Songket Bali
+    Profile User
 @endsection
 
 @section('content')
@@ -97,8 +97,8 @@
                             Update Password
                         </button>
 
-                        <x-dashboard.modal title="Update Password"
-                            description="Are you sure change your password?"></x-dashboard.modal>
+                        <x-dashboard.confirm-modal title="Update Password"
+                            description="Are you sure change your password?"></x-dashboard.confirm-modal>
                     </form>
                 </div>
             </div>
@@ -268,8 +268,8 @@
                             Update Profile
                         </button>
 
-                        <x-dashboard.modal title="Update Profile"
-                            description="Are you sure change your profile?"></x-dashboard.modal>
+                        <x-dashboard.confirm-modal title="Update Profile"
+                            description="Are you sure change your profile?"></x-dashboard.confirm-modal>
                     </form>
                 </div> <!-- end card body -->
             </div> <!-- end card -->
@@ -427,8 +427,8 @@
                             Update Address
                         </button>
 
-                        <x-dashboard.modal title="Update Address"
-                            description="Are you sure change your address?"></x-dashboard.modal>
+                        <x-dashboard.confirm-modal title="Update Address"
+                            description="Are you sure change your address?"></x-dashboard.confirm-modal>
                     </form>
                 </div>
             </div>

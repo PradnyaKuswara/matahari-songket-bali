@@ -1,5 +1,5 @@
 <!-- Sidenav Menu Start -->
-<div class="app-menu bg-gradient-to-b text-white  from-blue-800 to-indigo-900  ">
+<div class="app-menu bg-gradient-to-t text-white from-indigo-900 to-[#040849]  ">
 
     <!-- Brand Logo -->
     <a href="javascript:void(0)" class="logo-box mt-4">
@@ -12,144 +12,62 @@
             <li class="menu-title">Menu</li>
 
             <li class="menu-item">
-                <a href="{{ route('dashboard.index') }}" class="hover:bg-primary hover:text-primary-content waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-house"></i></span>
+                <a href="{{ route('dashboard.index') }}"
+                    class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                    <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                        <span class="menu-icon"><span class="mdi mdi-home text-md "></span></span>
+                    </div>
+
                     <span class="menu-text font-extrabold"> Dashboard </span>
                     <span class="badge bg-accent rounded ms-auto text-white">01</span>
                 </a>
             </li>
 
-            <li class="menu-title">Data Master</li>
+            @if (auth()->user()->role->name != 'customer' && auth()->user()->role->name != 'weaver')
+                <li class="menu-item">
+                    <a href="#" class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                        <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                            <span class="menu-icon"><span class="mdi mdi-view-agenda-outline text-md"></span></span>
+                        </div>
+                        <span class="menu-text font-extrabold"> Product </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="calendar.html" class="hover:bg-primary hover:text-primary-content waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-calendar"></i></span>
-                    <span class="menu-text font-extrabold"> Calendar </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="#" class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                        <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                            <span class="menu-icon"><span class="mdi mdi-order-bool-descending text-md"></span></span>
+                        </div>
+                        <span class="menu-text font-extrabold"> Order </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse"
-                    class="hover:bg-primary hover:text-primary-content menu-link waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-file"></i></span>
-                    <span class="menu-text font-extrabold"> Extra Pages </span>
-                    <span class="menu-arrow"></span>
-                </a>
+                <li class="menu-item">
+                    <a href="#" class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                        <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                            <span class="menu-icon"><span class="mdi mdi-invoice-list-outline text-md"></span></span>
+                        </div>
+                        <span class="menu-text font-extrabold"> Invoice </span>
+                    </a>
+                </li>
+            @endif
 
-                <ul class="sub-menu hidden">
-                    <li class="menu-item ">
-                        <a href="pages-starter.html" class="hover:bg-primary hover:text-primary-content">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text font-extrabold">Starter</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-invoice.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text font-extrabold">Invoice</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-maintenance.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text font-extrabold">Maintenance</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            @if (auth()->user()->role->name == 'admin')
+                <li class="menu-title">Report</li>
+                <li class="menu-item">
+                    <a href="{{ route('dashboard.logs.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('dashboard/logs') ? 'bg-primary text-primary-content' : '' }}">
+                        <div class="rounded-sm px-2 py-[0.2rem] {{ request()->is('dashboard/logs') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
+                            <span class="menu-icon">
+                                <span class="mdi mdi-history text-md"></span>
+                            </span>
+                        </div>
 
-            <li class="menu-title">Transaction</li>
-
-
-
-            <li class="menu-item">
-                <a href="calendar.html" class="hover:bg-primary hover:text-primary-content waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-calendar"></i></span>
-                    <span class="menu-text font-extrabold"> Calendar </span>
-                </a>
-            </li>
-
-            <li class="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse"
-                    class="hover:bg-primary hover:text-primary-content menu-link waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-file"></i></span>
-                    <span class="menu-text font-extrabold"> Extra Pages </span>
-                    <span class="menu-arrow"></span>
-                </a>
-
-                <ul class="sub-menu hidden">
-                    <li class="menu-item ">
-                        <a href="pages-starter.html" class="hover:bg-primary hover:text-primary-content">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Starter</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-invoice.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Invoice</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-maintenance.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Maintenance</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-            <li class="menu-title">Report</li>
-
-
-
-            <li class="menu-item">
-                <a href="calendar.html" class="hover:bg-primary hover:text-primary-content waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-calendar"></i></span>
-                    <span class="menu-text font-extrabold"> Calendar </span>
-                </a>
-            </li>
-
-
-
-            <li class="menu-item">
-                <a href="javascript:void(0)" data-fc-type="collapse"
-                    class="hover:bg-primary hover:text-primary-content menu-link waves-effect">
-                    <span class="menu-icon"><i class="ph-duotone ph-file"></i></span>
-                    <span class="menu-text font-extrabold"> Extra Pages </span>
-                    <span class="menu-arrow"></span>
-                </a>
-
-                <ul class="sub-menu hidden">
-                    <li class="menu-item ">
-                        <a href="pages-starter.html" class="hover:bg-primary hover:text-primary-content">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Starter</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pages-invoice.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Invoice</span>
-                        </a>
-                    </li>
-
-
-                    <li class="menu-item">
-                        <a href="pages-maintenance.html" class="">
-                            <span class="menu-dot"></span>
-                            <span class="menu-text">Maintenance</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-
+                        <span class="menu-text font-extrabold"> Management Log </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
-
-
 </div>
 <!-- Sidenav Menu End  -->

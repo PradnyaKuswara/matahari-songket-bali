@@ -41,13 +41,26 @@
                 </div>
                 <ul tabindex="0"
                     class="menu menu-md dropdown-content mt-16 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                    <li>
-                        <a href="{{ route('dashboard.profile.edit') }}" class="justify-between">
-                            Profile
-                            <span class="badge">New</span>
-                        </a>
-                    </li>
+                    @if (auth()->user()->role->name == 'admin')
+                        <li><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
+                        <li>
+                            <a href="{{ route('admin.dashboard.profile.edit') }}" class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->role->name == 'customer')
+                        <li><a href="{{ route('customer.dashboard.index') }}">Dashboard</a></li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                    @endif
+
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <li><button type="submit" class="w-full">Logout</button></li>
@@ -79,22 +92,33 @@
                 <li><a href="{{ route('products.index') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
                 <li><a href="{{ route('about') }}">About us</a></li>
-
-                @if (auth()->check())
-                    <div class="mt-4">
-                        <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+                <div class="mt-4">
+                    @if (auth()->check() && auth()->user()->role->name == 'admin')
+                        <li><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
                         <li>
-                            <a href="{{ route('dashboard.profile.edit') }}" class="justify-between">
+                            <a href="{{ route('admin.dashboard.profile.edit') }}" class="justify-between">
                                 Profile
                                 <span class="badge">New</span>
                             </a>
                         </li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <li><button type="submit" class="w-full">Logout</button></li>
-                        </form>
-                    </div>
-                @endif
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name == 'customer')
+                        <div class="mt-4">
+                            <li><a href="{{ route('customer.dashboard.index') }}">Dashboard</a></li>
+                            <li>
+                                <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
+                                    Profile
+                                    <span class="badge">New</span>
+                                </a>
+                            </li>
+                    @endif
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <li><button type="submit" class="w-full">Logout</button></li>
+                    </form>
+                </div>
             </ul>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddressUpdateRequest;
+use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -10,18 +11,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Masmerise\Toaster\Toaster;
 
 class ProfileController extends Controller
 {
+    protected $role;
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
-        return view('pages.customer.profile.edit', [
+        return view('pages.profile.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -54,23 +56,36 @@ class ProfileController extends Controller
 
         Toaster::success('Profile updated successfully!');
 
-        return Redirect::route('dashboard.profile.edit')->with('status', 'profile-updated');
+        if ($this->roleUser() == 'admin') {
+            return Redirect::route('admin.dashboard.profile.edit')->with('status', 'profile-updated');
+        }
+
+        if ($this->roleUser() == 'customer') {
+            return Redirect::route('admin.dashboard.profile.edit')->with('status', 'profile-updated');
+        }
+
+        return Redirect::route('dashboard.index')->with('status', 'profile-updated');
     }
 
     /**
      * Update the user's password.
      */
-    public function updatePassword(Request $request): RedirectResponse
+    public function updatePassword(PasswordUpdateRequest $request): RedirectResponse
     {
-        $request->validate([
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
 
         $request->user()->update($request->only('password'));
 
         Toaster::success('Password updated successfully!');
 
-        return Redirect::route('dashboard.profile.edit')->with('status', 'password-updated');
+        if ($this->roleUser() == 'admin') {
+            return Redirect::route('admin.dashboard.profile.edit')->with('status', 'password-updated');
+        }
+
+        if ($this->roleUser() == 'customer') {
+            return Redirect::route('customer.dashboard.profile.edit')->with('status', 'password-updated');
+        }
+
+        return Redirect::route('dashboard.index')->with('status', 'password-updated');
     }
 
     public function updateAddress(AddressUpdateRequest $request): RedirectResponse
@@ -79,7 +94,15 @@ class ProfileController extends Controller
 
         Toaster::success('Address updated successfully!');
 
-        return Redirect::route('dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
+        if ($this->roleUser() == 'admin') {
+            return Redirect::route('admin.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
+        }
+
+        if ($this->roleUser() == 'customer') {
+            return Redirect::route('customer.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
+        }
+
+        return Redirect::route('dashboard.index')->with('status', 'address-updated');
     }
 
     /**
@@ -101,5 +124,12 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function roleUser()
+    {
+        $role = auth()->user()->role->name ?? null;
+
+        return $role;
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
-class AddressUpdateRequest extends FormRequest
+class PasswordUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +23,12 @@ class AddressUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'city' => ['required', 'string', 'max:255'],
-            'province' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-            'postal_code' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'additional_information' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }
 
     protected function getRedirectUrl()
     {
-        return parent::getRedirectUrl().'#profile-address';
+        return parent::getRedirectUrl().'#profile-password';
     }
 }

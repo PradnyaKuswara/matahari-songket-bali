@@ -21,10 +21,8 @@ class ItemCategoryController extends Controller
 
     public function index(Request $request): View
     {
-        $itemCategories = $this->itemCategoryService->search($request, new ItemCategory, ['name']);
-
         return view('pages.admin.items.categories.index', [
-            'itemCategories' => $itemCategories,
+            'itemCategories' => $this->itemCategoryService->search($request, new ItemCategory, ['name']),
         ]);
     }
 

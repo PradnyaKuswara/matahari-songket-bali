@@ -11,17 +11,35 @@
         <ul class="menu" data-fc-type="accordion">
             <li class="menu-title">Menu</li>
 
-            <li class="menu-item">
-                <a href="{{ route('dashboard.index') }}"
-                    class="hover:bg-primary hover:text-primary-content waves-effect p-2">
-                    <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
-                        <span class="menu-icon"><span class="mdi mdi-home text-md "></span></span>
-                    </div>
+            @if (auth()->user()->role->name == 'admin')
+                <li class="menu-item">
+                    <a href="{{ route('admin.dashboard.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                        <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                            <span class="menu-icon"><span class="mdi mdi-home text-md "></span></span>
+                        </div>
 
-                    <span class="menu-text font-extrabold"> Dashboard </span>
-                    <span class="badge bg-accent rounded ms-auto text-white">01</span>
-                </a>
-            </li>
+                        <span class="menu-text font-extrabold"> Dashboard </span>
+                        <span class="badge bg-accent rounded ms-auto text-white">01</span>
+                    </a>
+                </li>
+            @endif
+
+            @if (auth()->user()->role->name == 'customer')
+                <li class="menu-item">
+                    <a href="{{ route('customer.dashboard.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2">
+                        <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
+                            <span class="menu-icon"><span class="mdi mdi-home text-md "></span></span>
+                        </div>
+
+                        <span class="menu-text font-extrabold"> Dashboard </span>
+                        <span class="badge bg-accent rounded ms-auto text-white">01</span>
+                    </a>
+                </li>
+            @endif
+
+
 
             @if (auth()->user()->role->name != 'customer' && auth()->user()->role->name != 'weaver')
                 <li class="menu-item">
@@ -56,7 +74,7 @@
                 <li class="menu-title">Data Master</li>
                 <li class="menu-item">
                     <a href="{{ route('admin.dashboard.items.categories.index') }}"
-                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/items/categories') ? 'bg-primary text-primary-content' : '' }}">
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/items/categories') || request()->is('admin/dashboard/items/categories/create') || request()->is('admin/dashboard/items/categories/edit/*') ? 'bg-primary text-primary-content' : '' }}">
                         <div
                             class="rounded-sm px-2 py-[0.2rem] {{ request()->is('admin/dashboard/items/categories') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
                             <span class="menu-icon">
@@ -65,6 +83,19 @@
                         </div>
 
                         <span class="menu-text font-extrabold"> Management Item Category </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.dashboard.products.categories.index') }}"
+                        class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/products/categories') || request()->is('admin/dashboard/products/categories/create') || request()->is('admin/dashboard/products/categories/edit/*') ? 'bg-primary text-primary-content' : '' }}">
+                        <div
+                            class="rounded-sm px-2 py-[0.2rem] {{ request()->is('admin/dashboard/products/categories') ? 'bg-indigo-800' : 'bg-[#292C64]' }}"">
+                            <span class="menu-icon">
+                                <span class="mdi mdi-account-multiple text-md"></span>
+                            </span>
+                        </div>
+
+                        <span class="menu-text font-extrabold"> Management Product Category </span>
                     </a>
                 </li>
 

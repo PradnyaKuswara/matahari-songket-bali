@@ -19,7 +19,7 @@
                                 <label class="form-control w-full max-w-xs" for="loggingName">
                                     <div class="label">
                                         <div>
-                                            <span class="label-text">Item Name</span>
+                                            <span class="label-text">Item Category Name</span>
                                             <span class="text-error">*</span>
                                         </div>
                                     </div>

@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Edit Item Category
+    Edit Product Category
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Edit Item Category" subtitle="Item Category" :linkSubTitle="route('admin.dashboard.items.categories.index')" title="Edit"
-        :linkTitle="route('admin.dashboard.items.categories.edit',$itemCategory->id)"></x-dashboard.page-title>
+    <x-dashboard.page-title header="Edit Product Category" subtitle="Product Category" :linkSubTitle="route('admin.dashboard.products.categories.index')" title="Edit"
+        :linkTitle="route('admin.dashboard.products.categories.edit',$productCategory->id)"></x-dashboard.page-title>
 
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12">
             <div class="card bg-white shadow-lg rounded-lg">
                 <div class="card-body">
-                    <form action="{{ route('admin.dashboard.items.categories.update', $itemCategory->id) }}" method="POST">
+                    <form action="{{ route('admin.dashboard.products.categories.update', $productCategory->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="flex gap-4 mb-4">
@@ -20,7 +20,7 @@
                                 <label class="form-control w-full max-w-xs" for="loggingName">
                                     <div class="label">
                                         <div>
-                                            <span class="label-text">Item Category Name</span>
+                                            <span class="label-text">Product Category Name</span>
                                             <span class="text-error">*</span>
                                         </div>
                                     </div>
@@ -28,7 +28,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="loggingName" type="text" class="form-input grow border-none outline-none "
-                                        name="name" value="{{ $itemCategory->name ?? old('name') }}" placeholder="Enter your item name"
+                                        name="name" value="{{ $productCategory->name ?? old('name') }}" placeholder="Enter your item name"
                                         minlength="1" maxlength="50" />
                                 </label>
 
@@ -42,7 +42,7 @@
                             Submit Form
                         </button>
 
-                        <x-dashboard.confirm-modal title="Edit Item Category"
+                        <x-dashboard.confirm-modal title="Edit Product Category"
                             description="Are you sure edit this data?"></x-dashboard.confirm-modal>
                     </form>
                 </div>

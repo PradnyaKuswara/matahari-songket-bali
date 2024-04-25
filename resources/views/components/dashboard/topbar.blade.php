@@ -46,10 +46,20 @@
         </button>
         <div
             class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-40 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2">
-            <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100"
-                href="{{ route('dashboard.profile.edit') }}">
-                Profile
-            </a>
+            @if (auth()->user()->role->name == 'admin')
+                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100"
+                    href="{{ route('admin.dashboard.profile.edit') }}">
+                    Profile
+                </a>
+            @endif
+
+            @if (auth()->user()->role->name == 'customer')
+                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100"
+                    href="{{ route('customer.dashboard.profile.edit') }}">
+                    Profile
+                </a>
+            @endif
+
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit"

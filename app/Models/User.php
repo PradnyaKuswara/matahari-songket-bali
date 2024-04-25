@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
@@ -63,18 +64,33 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function avatar()
+    public function avatar(): string
     {
         return Storage::url($this->avatar);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role->name === 'admin';
+    }
+
+    public function isCustomer(): bool
+    {
+        return $this->role->name === 'customer';
+    }
+
+    public function isSeller(): bool
+    {
+        return $this->role->name === 'seller';
     }
 }

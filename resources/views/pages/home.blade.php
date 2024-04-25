@@ -60,8 +60,8 @@
     </section>
 
     <section id="why-do-we-use-it" class="2xl:max-w-screen-xl lg:max-w-screen-lg mx-auto py-20">
-        <div class="flex flex-col lg:flex-row items-center gap-20 w-full">
-            <div class="w-8/12">
+        <div class="flex flex-col lg:flex-row items-center gap-20 w-full ">
+            <div class="w-10/12 md:w-8/12">
                 <div class="text-5xl font-bold mb-5">Why do we use it?</div>
                 <div class="text-base mt-8">It is a long established fact that a reader will be distracted by the
                     readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
@@ -77,7 +77,7 @@
                     <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                         class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
-                <div class="absolute -top-10 -right-40">
+                <div class="absolute -top-10 -right-10 flex justify-end">
                     <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                         class="w-1/2 rounded-lg shadow-2xl" />
                 </div>

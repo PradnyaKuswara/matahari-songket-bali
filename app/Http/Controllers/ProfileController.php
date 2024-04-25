@@ -16,8 +16,6 @@ use Masmerise\Toaster\Toaster;
 
 class ProfileController extends Controller
 {
-    protected $role;
-
     /**
      * Display the user's profile form.
      */
@@ -56,12 +54,12 @@ class ProfileController extends Controller
 
         Toaster::success('Profile updated successfully!');
 
-        if ($this->roleUser() == 'admin') {
+        if ($request->user()->isAdmin()) {
             return Redirect::route('admin.dashboard.profile.edit')->with('status', 'profile-updated');
         }
 
-        if ($this->roleUser() == 'customer') {
-            return Redirect::route('admin.dashboard.profile.edit')->with('status', 'profile-updated');
+        if ($request->user()->isCustomer()) {
+            return Redirect::route('customer.dashboard.profile.edit')->with('status', 'profile-updated');
         }
 
         return Redirect::route('dashboard.index')->with('status', 'profile-updated');
@@ -77,11 +75,11 @@ class ProfileController extends Controller
 
         Toaster::success('Password updated successfully!');
 
-        if ($this->roleUser() == 'admin') {
+        if ($request->user()->isAdmin()) {
             return Redirect::route('admin.dashboard.profile.edit')->with('status', 'password-updated');
         }
 
-        if ($this->roleUser() == 'customer') {
+        if ($request->user()->isCustomer()) {
             return Redirect::route('customer.dashboard.profile.edit')->with('status', 'password-updated');
         }
 
@@ -94,11 +92,11 @@ class ProfileController extends Controller
 
         Toaster::success('Address updated successfully!');
 
-        if ($this->roleUser() == 'admin') {
+        if ($request->user()->isAdmin()) {
             return Redirect::route('admin.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
         }
 
-        if ($this->roleUser() == 'customer') {
+        if ($request->user()->isCustomer()) {
             return Redirect::route('customer.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
         }
 
@@ -124,12 +122,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
-
-    public function roleUser()
-    {
-        $role = auth()->user()->role->name ?? null;
-
-        return $role;
     }
 }

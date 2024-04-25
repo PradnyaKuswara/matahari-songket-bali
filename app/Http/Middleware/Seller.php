@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Seller
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (! auth()->user()->isAdmin()) {
+            if (! auth()->user()->isSeller()) {
                 Toaster::error('Not found');
 
                 return redirect()->back();

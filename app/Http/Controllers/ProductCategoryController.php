@@ -19,7 +19,7 @@ class ProductCategoryController extends Controller
         $this->productCategoryService = $productCategoryService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('pages.admin.products.categories.index', [
             'productCategories' => $this->productCategoryService->search($request, new ProductCategory, ['name']),

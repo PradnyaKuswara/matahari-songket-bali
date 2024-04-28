@@ -23,19 +23,19 @@ class ProductCategoryService
         return $this->productCategoryInterface->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, $productCategory)
     {
-        return $this->productCategoryInterface->update($data, $id);
+        return $this->productCategoryInterface->update($data, $productCategory);
     }
 
-    public function delete($id)
+    public function delete($productCategory)
     {
-        return $this->productCategoryInterface->delete($id);
+        return $this->productCategoryInterface->delete($productCategory);
     }
 
-    public function find($id)
+    public function find($productCategory)
     {
-        return $this->productCategoryInterface->find($id);
+        return $this->productCategoryInterface->find($productCategory);
     }
 
     public function search($request, $model, $conditions)

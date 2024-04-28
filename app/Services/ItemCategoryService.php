@@ -23,19 +23,19 @@ class ItemCategoryService
         return $this->itemCategoryInterface->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, $itemCategory)
     {
-        return $this->itemCategoryInterface->update($data, $id);
+        return $this->itemCategoryInterface->update($data, $itemCategory);
     }
 
-    public function delete($id)
+    public function delete($itemCategory)
     {
-        return $this->itemCategoryInterface->delete($id);
+        return $this->itemCategoryInterface->delete($itemCategory);
     }
 
-    public function find($id)
+    public function find($itemCategory)
     {
-        return $this->itemCategoryInterface->find($id);
+        return $this->itemCategoryInterface->find($itemCategory);
     }
 
     public function search($request, $model, $conditions)

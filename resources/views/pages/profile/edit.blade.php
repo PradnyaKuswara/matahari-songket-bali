@@ -291,7 +291,7 @@
                 </div> <!-- end card body -->
             </div> <!-- end card -->
 
-            <div class="card w-full bg-white shadow-md rounded-sm mt-4" id="profile-address">
+            {{-- <div class="card w-full bg-white shadow-md rounded-sm mt-4" id="profile-address">
                 <div class="card-body">
                     @if (auth()->user()->role->name == 'admin')
                         <form action="{{ route('admin.dashboard.profile.update-address') }}" method="POST">
@@ -455,7 +455,7 @@
                         description="Are you sure change your address?"></x-dashboard.confirm-modal>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

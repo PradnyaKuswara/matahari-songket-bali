@@ -8,11 +8,11 @@ interface ProductCategoryInterface
 
     public function create(array $data);
 
-    public function update(array $data, $itemCategory);
+    public function update(array $data, $productCategory);
 
-    public function delete($itemCategory);
+    public function delete($productCategory);
 
-    public function find($itemCategory);
+    public function find($productCategory);
 
     public function search($request, $model, $conditions);
 }

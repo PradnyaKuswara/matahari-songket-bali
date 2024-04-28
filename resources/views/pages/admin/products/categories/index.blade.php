@@ -5,19 +5,19 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Management Product Category" subtitle="Product Category" :linkSubTitle="route('admin.dashboard.products.categories.index')" title="index"
+    <x-dashboard.page-title header="Management Product Category" subtitle="Product Category" :linkSubTitle="route('admin.dashboard.products.categories.index')" title="Index"
         :linkTitle="route('admin.dashboard.products.categories.index')"></x-dashboard.page-title>
 
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12">
             <div class="card bg-white shadow-lg rounded-lg text-center">
                 <div class="card-body">
-                    <div class="card-actions mb-4 items-center justify-between">
+                    <div class="card-actions mb-4 items-center w-full justify-between">
                         <a href="{{ route('admin.dashboard.products.categories.create') }}"
-                            class="btn btn-md bg-neutral text-white hover:text-black">+ Create Data</a>
-                        <label class="input input-bordered input-md  flex items-center gap-2">
-                            <input type="text" id="search" class="form-input grow border-none outline-none"
-                                placeholder="Search"
+                            class="btn btn-md bg-neutral w-full md:w-48 text-white hover:text-black">+ Create Data</a>
+                        <label class="input input-bordered input-md w-full md:w-80  flex items-center gap-2">
+                            <input type="text" id="search"
+                                class="form-input grow border-none outline-none " placeholder="Search by name"
                                 @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                             <span class="mdi mdi-magnify"></span>
                         </label>

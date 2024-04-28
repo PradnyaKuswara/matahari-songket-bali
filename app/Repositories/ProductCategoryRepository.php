@@ -25,19 +25,19 @@ class ProductCategoryRepository implements ProductCategoryInterface
         return ProductCategory::create($data);
     }
 
-    public function update(array $data, $itemCategory)
+    public function update(array $data, $productCategory)
     {
-        return $itemCategory->update($data);
+        return $productCategory->update($data);
     }
 
-    public function delete($itemCategory)
+    public function delete($productCategory)
     {
-        return $itemCategory->delete();
+        return $productCategory->delete();
     }
 
-    public function find($itemCategory)
+    public function find($productCategory)
     {
-        return $itemCategory;
+        return $productCategory;
     }
 
     public function search($request, $model, $conditions)

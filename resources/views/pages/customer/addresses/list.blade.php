@@ -90,7 +90,7 @@
                                     @method('DELETE')
                                     <button type="button" class="btn btn-error text-white btn-sm" data-fc-type="modal">
                                         Delete address</button>
-                                    <x-dashboard.confirm-modal title="Delte Address"
+                                    <x-dashboard.confirm-modal title="Delete Address"
                                         description="Are you sure delete this data?"></x-dashboard.confirm-modal>
                                 </form>
                             </div>

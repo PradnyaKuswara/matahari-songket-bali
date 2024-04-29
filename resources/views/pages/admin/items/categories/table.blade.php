@@ -24,7 +24,7 @@
                             @method('DELETE')
                             <button type="button" data-fc-type="modal">
                                 <span class="mdi mdi-trash-can-outline text-xl text-error"></span></button>
-                            <x-dashboard.confirm-modal title="Delte Item Category"
+                            <x-dashboard.confirm-modal title="Delete Item Category"
                                 description="Are you sure delete this data?"></x-dashboard.confirm-modal>
                         </form>
                     </div>

@@ -27,8 +27,8 @@ return new class extends Migration
             // $table->string('postal_code')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('avatar')->nullable();
             // $table->string('additional_information')->nullable();

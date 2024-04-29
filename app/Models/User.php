@@ -99,4 +99,9 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
     {
         return $this->role->name === 'seller';
     }
+
+    public function isWeaver(): bool
+    {
+        return $this->role->name === 'weaver';
+    }
 }

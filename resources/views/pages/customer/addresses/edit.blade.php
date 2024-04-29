@@ -160,7 +160,7 @@
                             Update Address
                         </button>
 
-                        <x-dashboard.confirm-modal title="Update Address"
+                        <x-dashboard.confirm-modal title="Edit Address"
                             description="Are you sure change your address?"></x-dashboard.confirm-modal>
                     </form>
                 </div>

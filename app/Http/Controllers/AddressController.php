@@ -42,6 +42,8 @@ class AddressController extends Controller
 
     public function edit(Address $address): View
     {
+        $this->authorize('customer-address', $address);
+
         return view('pages.customer.addresses.edit', [
             'address' => $this->addressService->find($address),
         ]);
@@ -49,6 +51,8 @@ class AddressController extends Controller
 
     public function update(AddressUpdateRequest $request, Address $address): RedirectResponse
     {
+        $this->authorize('customer-address', $address);
+
         $this->addressService->update($request->validated(), $address);
 
         Toaster::success('Address updated successfully');
@@ -58,6 +62,8 @@ class AddressController extends Controller
 
     public function updateStatus(Request $request, Address $address): RedirectResponse
     {
+        $this->authorize('customer-address', $address);
+
         $this->addressService->updateStatus($request->user(), $address);
 
         Toaster::success('Address status updated successfully');
@@ -67,6 +73,8 @@ class AddressController extends Controller
 
     public function destroy(Address $address): RedirectResponse
     {
+        $this->authorize('customer-address', $address);
+
         $this->addressService->delete($address);
 
         Toaster::success('Address deleted successfully');

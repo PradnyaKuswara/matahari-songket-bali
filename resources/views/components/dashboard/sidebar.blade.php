@@ -11,7 +11,7 @@
         <ul class="menu" data-fc-type="accordion">
             <li class="menu-title">Menu</li>
 
-            @if (auth()->user()->role->name == 'admin')
+            @if (auth()->user()->isAdmin())
                 <li class="menu-item">
                     <a href="{{ route('admin.dashboard.index') }}"
                         class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard') ? 'bg-primary text-primary-content' : '' }}">
@@ -26,7 +26,7 @@
                 </li>
             @endif
 
-            @if (auth()->user()->role->name == 'customer')
+            @if (auth()->user()->isCustomer())
                 <li class="menu-item">
                     <a href="{{ route('customer.dashboard.index') }}"
                         class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('customer/dashboard') ? 'bg-primary text-primary-content' : '' }}">
@@ -41,7 +41,7 @@
                 </li>
             @endif
 
-            @if (auth()->user()->role->name != 'customer' && auth()->user()->role->name != 'weaver')
+            @if (!auth()->user()->isCustomer() && !auth()->user()->isWeaver())
                 <li class="menu-item">
                     <a href="#" class="hover:bg-primary hover:text-primary-content waves-effect p-2">
                         <div class="bg-[#292C64] rounded-sm px-2 py-[0.2rem]">
@@ -70,8 +70,36 @@
                 </li>
             @endif
 
-            @if (auth()->user()->role->name == 'admin')
+            @if (auth()->user()->isAdmin())
                 <li class="menu-title">Data Master</li>
+
+
+                <li class="menu-item">
+                    <a href="javascript:void(0)" data-fc-type="collapse"
+                        class="menu-link hover:bg-primary hover:text-primary-content waves-effect p-2 fc-collapse focus:bg-none focus:text-primary-content bg-primary text-primary-content">
+                        <div class="rounded-sm px-2 py-[0.2rem] bg-[#292C64]">
+                            <span class="menu-icon">
+                                <span class="mdi mdi-account-multiple text-md"></span>
+                            </span>
+                        </div>
+                        <span class="menu-text font-extrabold"> Management User</span>
+
+                        <div class="menu-arrow"></div>
+                    </a>
+
+                    <ul class="sub-menu  {{ request()->is('admin/dashboard/weavers') || request()->is('admin/dashboard/weavers/create') || request()->is('admin/dashboard/weavers/edit/*') ? '' : 'hidden' }}"
+                        style="">
+                        <li class="menu-item">
+                            <a href="{{ route('admin.dashboard.weavers.index') }}"
+                                class="menu-link p-2 {{ request()->is('admin/dashboard/weavers') || request()->is('admin/dashboard/weavers/create') || request()->is('admin/dashboard/weavers/edit/*') ? 'active' : '' }}">
+                                <span class="menu-dot text-white"></span>
+
+                                <span class="menu-text font-extrabold"> Weavers </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="menu-item">
                     <a href="{{ route('admin.dashboard.items.categories.index') }}"
                         class="hover:bg-primary hover:text-primary-content waves-effect p-2 {{ request()->is('admin/dashboard/items/categories') || request()->is('admin/dashboard/items/categories/create') || request()->is('admin/dashboard/items/categories/edit/*') ? 'bg-primary text-primary-content' : '' }}">
@@ -115,7 +143,7 @@
                 </li>
             @endif
 
-            @if (auth()->user()->role->name == 'customer')
+            @if (auth()->user()->isCustomer())
                 {{-- <li class="menu-title">Data Master</li> --}}
                 <li class="menu-item">
                     <a href="{{ route('customer.dashboard.address.index') }}"

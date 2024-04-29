@@ -259,7 +259,7 @@
                                     onkeypress="return onlyNumberKey(event)">
                             </label>
 
-                            @error('email')
+                            @error('phone_number')
                                 <p class="mt-2 text-error text-xs">{{ $message }}</p>
                             @enderror
                         </div>

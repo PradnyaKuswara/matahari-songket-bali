@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Interfaces\AddressInterface::class,
             \App\Repositories\AddressRepository::class
         );
+        $this->app->bind(
+            \App\Interfaces\WeaverInterface::class,
+            \App\Repositories\WeaverRepository::class
+        );
     }
 
     /**

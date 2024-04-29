@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WeaverController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
@@ -48,5 +49,15 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::delete('delete/{productCategory}', 'destroy')->name('destroy');
             Route::get('/search', 'search')->name('search');
         });
+    });
+
+    Route::controller(WeaverController::class)->prefix('weavers')->name('weavers.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{weaver}', 'edit')->name('edit');
+        Route::patch('update/{weaver}', 'update')->name('update');
+        Route::delete('delete/{weaver}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
     });
 });

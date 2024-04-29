@@ -12,6 +12,7 @@
 
     <!-- App css -->
     <link href="{{ asset('assets/lunoz/css/theme.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/lunoz/css/icons.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Head Js -->
     <script src="{{ asset('assets/lunoz/js/head.js') }}"></script>

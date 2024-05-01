@@ -37,7 +37,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingCountry" class="form-input grow border-none outline-none"
-                                        type="text" name="country" value="{{ $address->country ?? old('country') }}"
+                                        type="text" name="country" value="{{ old('country') ?? $address->country }}"
                                         minlength="1" maxlength="20" placeholder="Enter your country">
                                 </label>
 
@@ -57,7 +57,7 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingProvince" class="form-input grow border-none outline-none"
-                                        type="text" name="province" value="{{ $address->province ?? old('province') }}"
+                                        type="text" name="province" value="{{ old('province') ?? $address->province }}"
                                         minlength="1" maxlength="20" placeholder="Enter your province">
                                 </label>
 
@@ -80,7 +80,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingCity" class="form-input grow border-none outline-none" type="text"
-                                        name="city" value="{{ $address->city ?? old('city') }}" minlength="1"
+                                        name="city" value="{{ old('city') ?? $address->city }}" minlength="1"
                                         maxlength="20" placeholder="Enter your city">
                                 </label>
 
@@ -101,8 +101,8 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingPostalCode" class="form-input grow border-none outline-none"
                                         type="text" name="postal_code"
-                                        value="{{ $address->postal_code ?? old('postal_code') }}" minlength="1" maxlength="10"
-                                        placeholder="Enter your postal code">
+                                        value="{{ old('postal_code') ?? $address->postal_code }}" minlength="1"
+                                        maxlength="10" placeholder="Enter your postal code">
                                 </label>
 
                                 @error('postal_code')
@@ -123,7 +123,7 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingAddress" class="form-input grow border-none outline-none"
-                                        type="text" name="address" value="{{ $address->address ?? old('address') }}"
+                                        type="text" name="address" value="{{ old('address') ?? $address->address }}"
                                         minlength="1" maxlength="100" placeholder="Enter your address">
                                 </label>
 
@@ -146,7 +146,7 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingAdditional" class="form-input grow border-none outline-none"
                                         type="text" name="additional_information"
-                                        value="{{ $address->additional_information ?? old('additional_information') }}"
+                                        value="{{ old('additional_information') ?? $address->additional_information }}"
                                         minlength="1" maxlength="100" placeholder="Enter your additional information">
                                 </label>
 

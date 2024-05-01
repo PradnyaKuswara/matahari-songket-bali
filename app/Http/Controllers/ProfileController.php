@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AddressUpdateRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
@@ -85,23 +84,6 @@ class ProfileController extends Controller
 
         return Redirect::route('dashboard.index')->with('status', 'password-updated');
     }
-
-    // public function updateAddress(AddressUpdateRequest $request): RedirectResponse
-    // {
-    //     $request->user()->update($request->validated());
-
-    //     Toaster::success('Address updated successfully!');
-
-    //     if ($request->user()->isAdmin()) {
-    //         return Redirect::route('admin.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
-    //     }
-
-    //     if ($request->user()->isCustomer()) {
-    //         return Redirect::route('customer.dashboard.profile.edit')->with('status', 'address-updated')->withFragment('profile-address');
-    //     }
-
-    //     return Redirect::route('dashboard.index')->with('status', 'address-updated');
-    // }
 
     /**
      * Delete the user's account.

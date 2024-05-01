@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuditController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
@@ -57,7 +58,17 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::post('store', 'store')->name('store');
         Route::get('edit/{weaver}', 'edit')->name('edit');
         Route::patch('update/{weaver}', 'update')->name('update');
-        Route::delete('delete/{weaver}', 'destroy')->name('destroy');
+        Route::patch('toggleActive/{weaver}', 'toggleActive')->name('toggleActive');
+        Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(CustomerController::class)->prefix('customers')->name('customers.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{customer}', 'edit')->name('edit');
+        Route::patch('update/{customer}', 'update')->name('update');
+        Route::patch('toggleActive/{customer}', 'toggleActive')->name('toggleActive');
         Route::get('/search', 'search')->name('search');
     });
 });

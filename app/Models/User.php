@@ -31,18 +31,13 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
         'google_id',
         'name',
         'username',
-        'address',
-        'city',
-        'province',
-        'country',
-        'postal_code',
         'date_of_birth',
         'gender',
         'email',
         'password',
         'phone_number',
         'avatar',
-        'additional_information',
+        'is_active',
     ];
 
     /**

@@ -1,5 +1,5 @@
 <!-- Sidenav Menu Start -->
-<div class="app-menu bg-gradient-to-t text-white from-indigo-900 to-[#040849]  ">
+<div class="app-menu bg-gradient-to-t text-white from-indigo-900 to-[#040849]">
 
     <!-- Brand Logo -->
     <a href="javascript:void(0)" class="logo-box mt-4">
@@ -7,7 +7,7 @@
     </a>
 
     <!--- Menu -->
-    <div data-simplebar>
+    <div data-simplebar="init">
         <ul class="menu" data-fc-type="accordion">
             <li class="menu-title">Menu</li>
 
@@ -73,7 +73,6 @@
             @if (auth()->user()->isAdmin())
                 <li class="menu-title">Data Master</li>
 
-
                 <li class="menu-item">
                     <a href="javascript:void(0)" data-fc-type="collapse"
                         class="menu-link hover:bg-primary hover:text-primary-content waves-effect p-2 fc-collapse focus:bg-none focus:text-primary-content bg-primary text-primary-content">
@@ -87,7 +86,7 @@
                         <div class="menu-arrow"></div>
                     </a>
 
-                    <ul class="sub-menu  {{ request()->is('admin/dashboard/weavers') || request()->is('admin/dashboard/weavers/create') || request()->is('admin/dashboard/weavers/edit/*') ? '' : 'hidden' }}"
+                    <ul class="sub-menu  {{ request()->is('admin/dashboard/weavers') || request()->is('admin/dashboard/weavers/create') || request()->is('admin/dashboard/weavers/edit/*') || request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/create') || request()->is('admin/dashboard/customers/edit/*')  ? '' : 'hidden' }}"
                         style="">
                         <li class="menu-item">
                             <a href="{{ route('admin.dashboard.weavers.index') }}"
@@ -95,6 +94,14 @@
                                 <span class="menu-dot text-white"></span>
 
                                 <span class="menu-text font-extrabold"> Weavers </span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ route('admin.dashboard.customers.index') }}"
+                                class="menu-link p-2 {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/create') || request()->is('admin/dashboard/customers/edit/*') ? 'active' : '' }}">
+                                <span class="menu-dot text-white"></span>
+
+                                <span class="menu-text font-extrabold"> Customers </span>
                             </a>
                         </li>
                     </ul>
@@ -141,6 +148,7 @@
                         <span class="menu-text font-extrabold">History Log </span>
                     </a>
                 </li>
+
             @endif
 
             @if (auth()->user()->isCustomer())

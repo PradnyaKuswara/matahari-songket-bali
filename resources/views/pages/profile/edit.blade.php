@@ -101,6 +101,13 @@
                         </div>
                     </div>
 
+                    {{-- <button class="btn w-full bg-primary text-white" data-modal-trigger
+                        aria-controls="modal-name-{{ $user->created_at }}" aria-expanded="false">
+                        Open modal
+                    </button>
+                    <x-dashboard.confirm-modal2 :modalId="$user->created_at" title="Update password"
+                        description="Are you sure change password?"></x-dashboard.confirm-modal2> --}}
+
                     <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
                         Update Password
                     </button>
@@ -144,7 +151,7 @@
 
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                 <input id="LoggingName" class="form-input grow border-none outline-none" type="text"
-                                    name="name" value="{{ $user->name ?? old('name') }}" minlength="1" maxlength="30"
+                                    name="name" value="{{ old('name') ?? $user->name }}" minlength="1" maxlength="30"
                                     placeholder="Enter your name">
                             </label>
 
@@ -164,9 +171,9 @@
                                 </div>
                             </label>
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingUsername" class="form-input grow border-none outline-none" type="text"
-                                    name="username" value="{{ $user->username ?? old('username') }}" minlength="1"
-                                    maxlength="15" placeholder="Enter your username">
+                                <input id="LoggingUsername" class="form-input grow border-none outline-none"
+                                    type="text" name="username" value="{{ old('username') ?? $user->username }}"
+                                    minlength="1" maxlength="15" placeholder="Enter your username">
                             </label>
 
                             @error('username')
@@ -186,8 +193,12 @@
                             </label>
                             <select id="LoggingGender" name="gender" class="select w-full select-bordered">
                                 <option disabled selected>Pick one</option>
-                                <option value="men" {{ $user->gender == 'men' ? 'selected' : null }}>Men</option>
-                                <option value="women" {{ $user->gender == 'women' ? 'selected' : null }}>Women
+                                <option value="men"
+                                    {{ $user->gender == 'men' ? 'selected' : (old('gender') == 'men' ? 'selected' : null) }}>
+                                    Men</option>
+                                <option value="women"
+                                    {{ $user->gender == 'women' ? 'selected' : (old('gender') == 'women' ? 'selected' : null) }}>
+                                    Women
                                 </option>
                             </select>
 
@@ -208,7 +219,7 @@
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                 <input id="loggingDateOfBirth" type="date"
                                     class="form-input grow border-none outline-none " name="date_of_birth"
-                                    value="{{ $user->date_of_birth ?? old('date_of_birth') }}"
+                                    value="{{ old('date_of_birth') ?? $user->date_of_birth }}"
                                     placeholder="Enter your date" />
                             </label>
 
@@ -231,7 +242,7 @@
 
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                 <input id="LoggingEmailAddress" class="form-input grow border-none outline-none "
-                                    type="email" name="email" value="{{ $user->email ?? old('email') }}"
+                                    type="email" name="email" value="{{ old('email') ?? $user->email }}"
                                     minlength="1" maxlength="100" placeholder="Enter your email">
                             </label>
 
@@ -252,7 +263,7 @@
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                 <input id="LoggingPhoneNumber" class="form-input grow border-none outline-none "
                                     type="text" name="phone_number"
-                                    value="{{ $user->phone_number ?? old('phone_number') }}"
+                                    value="{{ old('phone_number') ?? $user->phone_number }}"
                                     placeholder="Enter your phone number" minlength="10"
                                     maxlength="{{ config('validation.phone_number.maxlength') }}"
                                     pattern="{{ config('validation.phone_number.regex') }}"
@@ -281,6 +292,12 @@
                         </div>
                     </div>
 
+                    {{-- <button class="btn w-full bg-primary text-white" data-modal-trigger
+                        aria-controls="modal-name-{{ $user->created_at }}" aria-expanded="false">
+                        Open modal
+                    </button>
+                    <x-dashboard.confirm-modal2 :modalId="$user->created_at" title="Update Profile"
+                        description="Are you sure change your profile?"></x-dashboard.confirm-modal2> --}}
                     <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
                         Update Profile
                     </button>
@@ -290,172 +307,6 @@
                     </form>
                 </div> <!-- end card body -->
             </div> <!-- end card -->
-
-            {{-- <div class="card w-full bg-white shadow-md rounded-sm mt-4" id="profile-address">
-                <div class="card-body">
-                    @if (auth()->user()->role->name == 'admin')
-                        <form action="{{ route('admin.dashboard.profile.update-address') }}" method="POST">
-                    @endif
-
-                    @if (auth()->user()->role->name == 'customer')
-                        <form action="{{ route('customer.dashboard.profile.update-address') }}" method="POST">
-                    @endif
-
-                    @csrf
-                    @method('PATCH')
-                    <h2 class="text-xl mb-4 "><i class="ph-duotone ph-info"></i> Address
-                    </h2>
-
-                    <div class="flex flex-col">
-                        <h2>Note:</h2>
-                        <p class="text-muted">* If you want to change your address, please fill in the form.</p>
-                        <p class="text-muted">* Ensure that the address you provide is accurate and complete.</p>
-                        <p class="text-muted">* We appreciate your honesty in filling out this form, as it will help
-                            facilitate a smoother and more accurate delivery process.</p>
-                    </div>
-
-                    <div class="flex flex-col lg:flex-row gap-4 mt-4 mb-4">
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingCountry">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">Country</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-
-                                </div>
-                            </label>
-
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingCountry" class="form-input grow border-none outline-none"
-                                    type="text" name="country" value="{{ $user->country ?? old('country') }}"
-                                    minlength="1" maxlength="20" placeholder="Enter your country">
-                            </label>
-
-                            @error('country')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingProvince">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">Province</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-                                </div>
-                            </label>
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingProvince" class="form-input grow border-none outline-none"
-                                    type="text" name="province" value="{{ $user->province ?? old('province') }}"
-                                    minlength="1" maxlength="20" placeholder="Enter your province">
-                            </label>
-
-                            @error('province')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col lg:flex-row gap-4 mb-4">
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingCity">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">City</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingCity" class="form-input grow border-none outline-none" type="text"
-                                    name="city" value="{{ $user->city ?? old('city') }}" minlength="1"
-                                    maxlength="20" placeholder="Enter your city">
-                            </label>
-
-                            @error('city')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingPostalCode">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">Postal Code</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-                                </div>
-                            </label>
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingPostalCode" class="form-input grow border-none outline-none"
-                                    type="text" name="postal_code"
-                                    value="{{ $user->postal_code ?? old('postal_code') }}" minlength="1" maxlength="10"
-                                    placeholder="Enter your postal code">
-                            </label>
-
-                            @error('postal_code')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4 mb-4">
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingAddress">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">Address</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-                                </div>
-                            </label>
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingAddress" class="form-input grow border-none outline-none"
-                                    type="text" name="address" value="{{ $user->address ?? old('address') }}"
-                                    minlength="1" maxlength="100" placeholder="Enter your address">
-                            </label>
-
-                            @error('address')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4 mb-4">
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingAdditional">
-                                <div class="label">
-                                    <div>
-                                        <span class="label-text">Additional information</span>
-                                        <span class="text-error">*</span>
-                                    </div>
-                                </div>
-                            </label>
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="LoggingAdditional" class="form-input grow border-none outline-none"
-                                    type="text" name="additional_information"
-                                    value="{{ $user->additional_information ?? old('additional_information') }}"
-                                    minlength="1" maxlength="100" placeholder="Enter your additional information">
-                            </label>
-
-                            @error('additional_information')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
-                        Update Address
-                    </button>
-
-                    <x-dashboard.confirm-modal title="Update Address"
-                        description="Are you sure change your address?"></x-dashboard.confirm-modal>
-                    </form>
-                </div>
-            </div> --}}
         </div>
     </div>
 @endsection

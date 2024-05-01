@@ -30,7 +30,6 @@
 
         <x-dashboard.sidebar></x-dashboard.sidebar>
 
-
         <div class="app-content">
 
             <x-dashboard.topbar></x-dashboard.topbar>
@@ -86,6 +85,8 @@
 
     <!-- Dashboard Project Page js -->
     <script src="{{ asset('assets/lunoz/js/pages/dashboard.js') }}"></script>
+
+    <script src="{{ asset('assets/js/modal.js') }}"></script>
 
     @stack('scripts')
 </body>

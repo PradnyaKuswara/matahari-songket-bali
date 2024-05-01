@@ -26,19 +26,19 @@ class WeaverRepository implements WeaverInterface
         return User::create($data);
     }
 
-    public function update(array $data, $user)
+    public function update(array $data, $weaver)
     {
-        return $user->update($data);
+        return $weaver->update($data);
     }
 
-    public function delete($user)
+    public function toogleActive($weaver)
     {
-        return $user->delete();
+        return $weaver->update(['is_active' => ! $weaver->is_active]);
     }
 
-    public function find($user)
+    public function find($weaver)
     {
-        return $user;
+        return $weaver;
     }
 
     public function search($request, $model, $conditions)

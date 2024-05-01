@@ -21,10 +21,12 @@ class WeaverController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
+
         return view('pages.admin.weavers.index', [
-            'weavers' => $this->weaverService->all(),
+            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number']),
         ]);
     }
 
@@ -62,11 +64,11 @@ class WeaverController extends Controller
         return redirect()->route('admin.dashboard.weavers.index');
     }
 
-    public function destroy(User $weaver)
+    public function toggleActive(User $weaver)
     {
-        $this->weaverService->delete($weaver);
+        $this->weaverService->toogleActive($weaver);
 
-        Toaster::success('Weaver deleted successfully');
+        Toaster::success('Weaver update status successfully');
 
         return redirect()->route('admin.dashboard.weavers.index');
     }
@@ -76,7 +78,7 @@ class WeaverController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
         return view('pages.admin.weavers.table', [
-            'weavers' => $this->weaverService->search($request, $user, ['name']),
+            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number']),
         ]);
     }
 }

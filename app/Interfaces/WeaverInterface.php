@@ -8,11 +8,11 @@ interface WeaverInterface
 
     public function create(array $data);
 
-    public function update(array $data, $user);
+    public function update(array $data, $weaver);
 
-    public function delete($user);
+    public function toogleActive($weaver);
 
-    public function find($user);
+    public function find($weaver);
 
     public function search($request, $model, $conditions);
 

@@ -27,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Interfaces\WeaverInterface::class,
             \App\Repositories\WeaverRepository::class
         );
+        $this->app->bind(
+            \App\Interfaces\CustomerInterface::class,
+            \App\Repositories\CustomerRepository::class
+        );
     }
 
     /**

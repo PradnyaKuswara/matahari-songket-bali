@@ -28,7 +28,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="loggingName" type="text" class="form-input grow border-none outline-none "
-                                        name="name" value="{{ $productCategory->name ?? old('name') }}" placeholder="Enter your item name"
+                                        name="name" value="{{ old('name') ?? $productCategory->name }}" placeholder="Enter your item name"
                                         minlength="1" maxlength="50" />
                                 </label>
 

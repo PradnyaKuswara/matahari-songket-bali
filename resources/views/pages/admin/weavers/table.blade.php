@@ -1,6 +1,7 @@
 <table class="table table-sm md:table-md w-full ">
     <thead>
         <tr>
+            <th class="text-left text-black font-bold text-sm">Status</th>
             <th class="text-left text-black font-bold text-sm">Name</th>
             <th class="text-left text-black font-bold text-sm">Phone Number</th>
             <th class="text-left text-black font-bold text-sm">Gender</th>
@@ -16,6 +17,29 @@
     <tbody>
         @forelse ($weavers as $weaver)
             <tr>
+                @if ($weaver->is_active)
+                    <td>
+                        <form action="{{ route('admin.dashboard.weavers.toggleActive', $weaver) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="button" class="btn btn-outline btn-sm btn-success "
+                                data-fc-type="modal">Active</button>
+                            <x-dashboard.confirm-modal title="Status"
+                                description="Are you sure update weaver status?"></x-dashboard.confirm-modal>
+                        </form>
+                    </td>
+                @else
+                    <td>
+                        <form action="{{ route('admin.dashboard.weavers.toggleActive', $weaver) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="button" class="btn btn-outline btn-sm btn-error"
+                                data-fc-type="modal">Inactive</button>
+                            <x-dashboard.confirm-modal title="Status"
+                                description="Are you sure update weaver status?"></x-dashboard.confirm-modal>
+                        </form>
+                    </td>
+                @endif
                 <td>{{ $weaver->name }}</td>
                 <td>{{ $weaver->phone_number }}</td>
                 <td>{{ $weaver->gender }}</td>
@@ -31,15 +55,6 @@
                     <div class="flex gap-2">
                         <a href="{{ route('admin.dashboard.weavers.edit', $weaver->id) }}" class=" text-black"><span
                                 class="mdi mdi-pencil text-xl text-success"></span></a>
-
-                        <form action="{{ route('admin.dashboard.weavers.destroy', $weaver->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" data-fc-type="modal">
-                                <span class="mdi mdi-trash-can-outline text-xl text-error"></span></button>
-                            <x-dashboard.confirm-modal title="Delete Weaver"
-                                description="Are you sure delete this data?"></x-dashboard.confirm-modal>
-                        </form>
                     </div>
                 </td>
             </tr>

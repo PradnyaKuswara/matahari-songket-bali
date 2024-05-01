@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Edit Weaver
+    Edit Customer
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Edit Weaver" subtitle="Weaver" :linkSubTitle="route('admin.dashboard.weavers.index')" title="Edit"
-        :linkTitle="route('admin.dashboard.weavers.edit', $weaver)"></x-dashboard.page-title>
+    <x-dashboard.page-title header="Edit Customer" subtitle="Customer" :linkSubTitle="route('admin.dashboard.customers.index')" title="Edit"
+        :linkTitle="route('admin.dashboard.customers.edit', $customer)"></x-dashboard.page-title>
 
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12">
             <div class="card bg-white shadow-lg rounded-lg">
                 <div class="card-body">
-                    <form action="{{ route('admin.dashboard.weavers.update', $weaver) }}" method="POST">
+                    <form action="{{ route('admin.dashboard.customers.update', $customer) }}" method="POST">
                         @csrf
                         @method('PATCH')
                         <div class="flex flex-col lg:flex-row gap-4 mb-4">
@@ -29,7 +29,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingName" class="form-input grow border-none outline-none" type="text"
-                                        name="name" value="{{ old('name') ?? $weaver->name }}" minlength="1"
+                                        name="name" value="{{  old('name') ?? $customer->name }}" minlength="1"
                                         maxlength="30" placeholder="Enter your name">
                                 </label>
 
@@ -39,26 +39,22 @@
                             </div>
 
                             <div class=" w-full">
-                                <label class="form-control w-full max-w-xs" for="LoggingPhoneNumber">
+                                <label class="form-control w-full max-w-xs" for="LoggingUsername">
                                     <div class="label">
                                         <div>
-                                            <span class="label-text">Phone Number (08)</span>
+                                            <span class="label-text">User Name</span>
                                             <span class="text-error">*</span>
                                         </div>
+
                                     </div>
                                 </label>
-
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                    <input id="LoggingPhoneNumber" class="form-input grow border-none outline-none "
-                                        type="text" name="phone_number"
-                                        value="{{ old('phone_number') ?? $weaver->phone_number }}"
-                                        placeholder="Enter your phone number" minlength="10"
-                                        maxlength="{{ config('validation.phone_number.maxlength') }}"
-                                        pattern="{{ config('validation.phone_number.regex') }}"
-                                        onkeypress="return onlyNumberKey(event)">
+                                    <input id="LoggingUsername" class="form-input grow border-none outline-none"
+                                        type="text" name="username" value="{{ old('username') ?? $customer->username  }}"
+                                        minlength="1" maxlength="15" placeholder="Enter your username">
                                 </label>
 
-                                @error('phone_number')
+                                @error('username')
                                     <p class="mt-2 text-error text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -70,17 +66,16 @@
                                     <div class="label">
                                         <div>
                                             <span class="label-text">Gender</span>
-                                            <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>
                                 <select id="LoggingGender" name="gender" class="select w-full select-bordered">
                                     <option disabled selected>Pick one</option>
                                     <option value="men"
-                                        {{ $weaver->gender == 'men' ? 'selected' : (old('gender') == 'men' ? 'selected' : null) }}>
+                                        {{ $customer->gender == 'men' ? 'selected' : (old('gender') == 'men' ? 'selected' : null) }}>
                                         Men</option>
                                     <option value="women"
-                                        {{ $weaver->gender == 'women' ? 'selected' : (old('gender') == 'women' ? 'selected' : null) }}>
+                                        {{ $customer->gender == 'women' ? 'selected' : (old('gender') == 'women' ? 'selected' : null) }}>
                                         Women
                                     </option>
                                 </select>
@@ -95,7 +90,6 @@
                                     <div class="label">
                                         <div>
                                             <span class="label-text">Date Of Birth</span>
-                                            <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>
@@ -103,7 +97,7 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="loggingDateOfBirth" type="date"
                                         class="form-input grow border-none outline-none " name="date_of_birth"
-                                        value="{{ old('date_of_birth') ?? $weaver->date_of_birth }}"
+                                        value="{{ old('date_of_birth') ??  $customer->date_of_birth }}"
                                         placeholder="Enter your date" />
                                 </label>
 
@@ -115,65 +109,46 @@
 
                         <div class="flex flex-col lg:flex-row gap-4 mb-4">
                             <div class=" w-full">
-                                <label class="form-control w-full max-w-xs" for="LoggingProvince">
+                                <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">
                                     <div class="label">
                                         <div>
-                                            <span class="label-text">Province</span>
+                                            <span class="label-text">Email</span>
                                             <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>
+
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                    <input id="LoggingProvince" class="form-input grow border-none outline-none"
-                                        type="text" name="province"
-                                        value="{{ old('province') ?? $weaver->addresses()->first()->province }}"
-                                        minlength="1" maxlength="20" placeholder="Enter your province">
+                                    <input id="LoggingEmailAddress" class="form-input grow border-none outline-none "
+                                        type="email" name="email" value="{{ old('email') ?? $customer->email }}"
+                                        minlength="1" maxlength="100" placeholder="Enter your email">
                                 </label>
 
-                                @error('province')
+                                @error('email')
                                     <p class="mt-2 text-error text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
+
                             <div class=" w-full">
-                                <label class="form-control w-full max-w-xs" for="LoggingCity">
+                                <label class="form-control w-full max-w-xs" for="LoggingPhoneNumber">
                                     <div class="label">
                                         <div>
-                                            <span class="label-text">City</span>
-                                            <span class="text-error">*</span>
+                                            <span class="label-text">Phone Number (08)</span>
                                         </div>
                                     </div>
                                 </label>
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                    <input id="LoggingCity" class="form-input grow border-none outline-none" type="text"
-                                        name="city" value="{{ old('city') ?? $weaver->addresses()->first()->city }}"
-                                        minlength="1" maxlength="20" placeholder="Enter your city">
+                                    <input id="LoggingPhoneNumber" class="form-input grow border-none outline-none "
+                                        type="text" name="phone_number"
+                                        value="{{ old('phone_number') ??  $customer->phone_number }}"
+                                        placeholder="Enter your phone number" minlength="10"
+                                        maxlength="{{ config('validation.phone_number.maxlength') }}"
+                                        pattern="{{ config('validation.phone_number.regex') }}"
+                                        onkeypress="return onlyNumberKey(event)">
                                 </label>
 
-                                @error('city')
-                                    <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4 mb-4">
-                            <div class=" w-full">
-                                <label class="form-control w-full max-w-xs" for="LoggingAddress">
-                                    <div class="label">
-                                        <div>
-                                            <span class="label-text">Address</span>
-                                            <span class="text-error">*</span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                    <input id="LoggingAddress" class="form-input grow border-none outline-none"
-                                        type="text" name="address"
-                                        value="{{ old('address') ?? $weaver->addresses()->first()->address }}"
-                                        minlength="1" maxlength="100" placeholder="Enter your address">
-                                </label>
-
-                                @error('address')
+                                @error('phone_number')
                                     <p class="mt-2 text-error text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -183,7 +158,7 @@
                             Submit Form
                         </button>
 
-                        <x-dashboard.confirm-modal title="Edit Weaver"
+                        <x-dashboard.confirm-modal title="Edit Customer"
                             description="Are you sure edit this data?"></x-dashboard.confirm-modal>
                     </form>
                 </div>

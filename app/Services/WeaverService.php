@@ -28,9 +28,9 @@ class WeaverService
         return $this->weaverInterface->update($data, $weaver);
     }
 
-    public function delete($weaver)
+    public function toogleActive($weaver)
     {
-        return $this->weaverInterface->delete($weaver);
+        return $this->weaverInterface->toogleActive($weaver);
     }
 
     public function find($weaver)

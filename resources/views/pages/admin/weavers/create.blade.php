@@ -42,6 +42,7 @@
                                     <div class="label">
                                         <div>
                                             <span class="label-text">Phone Number (08)</span>
+                                            <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>
@@ -67,6 +68,7 @@
                                     <div class="label">
                                         <div>
                                             <span class="label-text">Gender</span>
+                                            <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>
@@ -87,6 +89,7 @@
                                     <div class="label">
                                         <div>
                                             <span class="label-text">Date Of Birth</span>
+                                            <span class="text-error">*</span>
                                         </div>
                                     </div>
                                 </label>

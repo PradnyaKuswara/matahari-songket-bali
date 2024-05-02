@@ -6,24 +6,35 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Management Address" subtitle="Address" :linkSubTitle="route('customer.dashboard.address.index')" title="Index"
-        :linkTitle="route('customer.dashboard.address.index')"></x-dashboard.page-title>
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Customer</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Address</span>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Index</span>
+            </li>
+        </ul>
 
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12">
-            <div class="card-actions mb-4 items-center w-full justify-end">
-                <a href="{{ route('customer.dashboard.address.create') }}"
-                    class="btn btn-md bg-neutral text-white w-full md:w-48 hover:text-black">+ Create New Address</a>
-                {{-- <label class="input input-bordered input-md w-full md:w-80  flex items-center gap-2">
+        <div class="grid grid-cols-12 gap-4 mt-5">
+            <div class="col-span-12">
+                <div class="card-actions mb-4 items-center w-full justify-end">
+                    <a href="{{ route('admin.dashboard.weavers.create') }}"
+                        class="btn btn-neutral text-white border-none w-full lg:w-32 btn-md rounded-md">+ Create
+                        Data</a>
+                    {{-- <label class="input input-bordered input-md w-full md:w-80  flex items-center gap-2">
                     <input type="text" id="search" class="form-input grow border-none outline-none "
                         placeholder="Search" @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                     <span class="mdi mdi-magnify"></span>
                 </label> --}}
+                </div>
+                <div id="item">
+                    @include('pages.customer.addresses.list')
+                </div>
             </div>
-            <div id="item">
-                @include('pages.customer.addresses.list')
-            </div>
-
         </div>
     </div>
 @endsection

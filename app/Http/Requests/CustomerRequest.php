@@ -30,13 +30,18 @@ class CustomerRequest extends FormRequest
             'username' => ['required', 'string', 'max:255'],
             'gender' => ['nullable', 'string', 'max:255'],
             'date_of_birth' => ['nullable', 'date'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->customer->id)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::when($this->conditionalEmailUpdate(), Rule::unique(User::class)->ignore($this->customer->id ?? null)), ''],
             'phone_number' => ['nullable', new PhoneNumber],
             'password' => [Rule::when($this->conditionalPasswordUpdate(), '', ['required', Rules\Password::defaults(), 'max:255'])],
         ];
     }
 
     private function conditionalPasswordUpdate(): bool
+    {
+        return $this->isMethod('patch') or $this->isMethod('put');
+    }
+
+    private function conditionalEmailUpdate(): bool
     {
         return $this->isMethod('patch') or $this->isMethod('put');
     }

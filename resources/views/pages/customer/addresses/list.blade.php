@@ -10,11 +10,11 @@
                         <div class="badge badge-primary badge-xs"></div>
 
                     </div>
-                    @if ($address->is_active)
+                    @if ($address->is_active && auth()->user()->isCustomer())
                         <div>
                             <div class="badge badge-primary badge-outline p-4">Default</div>
                         </div>
-                    @else
+                    @elseif(!$address->is_active && auth()->user()->isCustomer())
                         <form action="{{ route('customer.dashboard.address.update-status', $address) }}" method="POST">
                             @csrf
                             @method('PATCH')
@@ -77,25 +77,31 @@
                             {{ $address->additional_information }}
                         </dd>
                     </div>
-                    <div class="py-3 sm:py-5  sm:px-6">
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            <div class="flex gap-4  items-center">
 
-                                <a href="{{ route('customer.dashboard.address.edit', $address) }}"
-                                    class="btn btn-warning btn-sm text-white">Edit address</a>
+                    @if (auth()->user()->isCustomer())
+                        <div class="py-3 sm:py-5  sm:px-6">
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <div class="flex gap-4  items-center">
 
-                                <form action="{{ route('customer.dashboard.address.destroy', $address) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-error text-white btn-sm" data-fc-type="modal">
-                                        Delete address</button>
-                                    <x-dashboard.confirm-modal title="Delete Address"
-                                        description="Are you sure delete this data?"></x-dashboard.confirm-modal>
-                                </form>
-                            </div>
-                        </dd>
-                    </div>
+                                    <a href="{{ route('customer.dashboard.address.edit', $address) }}"
+                                        class="btn btn-warning btn-sm text-white">Edit address</a>
+
+                                    <form action="{{ route('customer.dashboard.address.destroy', $address) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div x-data="modal">
+                                            <button type="button" class="btn btn-error text-white btn-sm">
+                                                Delete address</button>
+                                            <x-dashboard.confirm-modal-action
+                                                modalId="delete-data-{$address->created_at}" title="Delete Address"
+                                                description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
+                                        </div>
+                                    </form>
+                                </div>
+                            </dd>
+                        </div>
+                    @endif
                 </dl>
             </div>
         </div>

@@ -31,7 +31,7 @@
     <section id="hero"
         class="hero hero-bg-light ">
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
-            class="hero-content flex-col-reverse lg:flex-row-reverse w-full min-h-screen 2xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
+            class="hero-content flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
             <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                 class="w-full lg:w-6/12 rounded-lg shadow-2xl" :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
             <div class="w-full">
@@ -59,7 +59,7 @@
         </div>
     </section>
 
-    <section id="why-do-we-use-it" class="2xl:max-w-screen-xl lg:max-w-screen-lg mx-auto py-20">
+    <section id="why-do-we-use-it" class="lg:max-w-screen-lg mx-auto py-20">
         <div class="flex flex-col lg:flex-row items-center gap-20 w-full ">
             <div class="w-10/12 md:w-8/12">
                 <div class="text-5xl font-bold mb-5">Why do we use it?</div>
@@ -85,7 +85,7 @@
         </div>
     </section>
 
-    <section id="our-categories" class=" 2xl:max-w-screen-xl lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
+    <section id="our-categories" class=" lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
         <div class="flex flex-col md:gap-16 gap-10 " x-data="{ intersect: false }" x-intersect:enter="intersect=true"
             x-intersect:leave="intersect=false">
             <div class="flex flex-col md:flex-row justify-center px-4 lg:px-0">
@@ -191,7 +191,7 @@
         </div>
     </section>
 
-    <section id="newest-product" class=" 2xl:max-w-screen-xl lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
+    <section id="newest-product" class=" lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
         <div class="flex flex-col md:gap-16 gap-10 ">
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <h1 class="text-4xl font-bold">Newest product</h1>

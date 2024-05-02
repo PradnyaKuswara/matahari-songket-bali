@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
 use App\Models\User;
+use App\Services\AddressService;
 use App\Services\CustomerService;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
@@ -12,9 +13,12 @@ class CustomerController extends Controller
 {
     protected $customerService;
 
-    public function __construct(CustomerService $customerService)
+    protected $addressService;
+
+    public function __construct(CustomerService $customerService, AddressService $addressService)
     {
         $this->customerService = $customerService;
+        $this->addressService = $addressService;
     }
 
     public function index(Request $request)
@@ -71,6 +75,20 @@ class CustomerController extends Controller
 
         return view('pages.admin.customers.table', [
             'customers' => $this->customerService->search($request, $user, ['name', 'phone_number']),
+        ]);
+    }
+
+    public function showMenu(User $customer)
+    {
+        return view('pages.admin.customers.show-menu', [
+            'customer' => $customer,
+        ]);
+    }
+
+    public function showAddress(User $customer)
+    {
+        return view('pages.admin.customers.show-address', [
+            'addresses' => $this->addressService->all($customer),
         ]);
     }
 }

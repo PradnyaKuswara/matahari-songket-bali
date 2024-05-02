@@ -5,13 +5,19 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Create Weaver" subtitle="Weaver" :linkSubTitle="route('admin.dashboard.weavers.index')" title="Create"
-        :linkTitle="route('admin.dashboard.weavers.create')"></x-dashboard.page-title>
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Weaver</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Create</span>
+            </li>
+        </ul>
 
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12">
-            <div class="card bg-white shadow-lg rounded-lg">
-                <div class="card-body">
+        <div class="grid grid-cols-12 gap-4 mt-5">
+            <div class="col-span-12">
+                <div class="panel">
                     <form action="{{ route('admin.dashboard.weavers.store') }}" method="POST">
                         @csrf
                         <div class="flex flex-col lg:flex-row gap-4 mb-4">
@@ -146,9 +152,6 @@
                                     <p class="mt-2 text-error text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="flex gap-4 mb-4">
                             <div class=" w-full">
                                 <label class="form-control w-full max-w-xs" for="LoggingAddress">
                                     <div class="label">
@@ -170,12 +173,12 @@
                             </div>
                         </div>
 
-                        <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
-                            Submit Form
-                        </button>
-
-                        <x-dashboard.confirm-modal title="Create Weaver"
-                            description="Are you sure create this data?"></x-dashboard.confirm-modal>
+                        <div x-data="modal">
+                            <button type="button" class="btn btn-primary btn-sm w-full lg:w-44 border-none"
+                                @click="toggle">Submit Form</button>
+                            <x-dashboard.confirm-modal-action modalId="create-data" title="Create Weaver"
+                                description="Are you sure create weaver?"></x-dashboard.confirm-modal-action>
+                        </div>
                     </form>
                 </div>
             </div>

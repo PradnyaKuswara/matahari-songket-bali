@@ -2,36 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="{{ asset('assets/vristo/assets/css/perfect-scrollbar.min.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/vristo/assets/css/style.css') }}" />
+    <link defer rel="stylesheet" type="text/css" media="screen"
+        href="{{ asset('assets/vristo/assets/css/animate.css') }}" />
+    <script src="{{ asset('assets/vristo/assets/js/perfect-scrollbar.min.js') }}"></script>
+    {{-- <script defer src="{{ asset('assets/vristo/assets/js/perfect-scrollbar.min.js') }}"></script> --}}
+    <script defer src="{{ asset('assets/vristo/assets/js/popper.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/tippy-bundle.umd.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/sweetalert.min.js') }}"></script>
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
 
-
-    <!-- App css -->
-    <link href="{{ asset('assets/lunoz/css/theme.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/lunoz/css/icons.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Head Js -->
-    <script src="{{ asset('assets/lunoz/js/head.js') }}"></script>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
+    @stack('css')
 </head>
 
-<body>
-    <div class="app-wrapper">
+<body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased"
+    :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme === 'dark' || $store.app.isDarkMode ? 'dark' : '',
+        $store.app.menu, $store.app.layout, $store.app.rtlClass
+    ]">
 
-        <div class="app-content">
-            <main>
-                @yield('content')
-            </main>
-
+    <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
+        <div class="main-content flex min-h-screen flex-col">
+            @yield('content')
         </div>
+    </div>
+
+    <script src="{{ asset('assets/vristo/assets/js/alpine-collaspe.min.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/alpine-persist.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine-ui.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine-focus.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine.min.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/alpine-init.js') }}"></script>
 </body>
 
 </html>

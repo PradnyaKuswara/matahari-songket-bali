@@ -5,13 +5,22 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Create Address" subtitle="Address" :linkSubTitle="route('customer.dashboard.address.index')" title="Edit"
-        :linkTitle="route('customer.dashboard.address.edit', $address)"></x-dashboard.page-title>
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Customer</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Address</span>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Edit</span>
+            </li>
+        </ul>
 
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12">
-            <div class="card bg-white shadow-lg rounded-lg">
-                <div class="card-body">
+        <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-12">
+                <div class="panel">
                     <form action="{{ route('customer.dashboard.address.update', $address->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -156,15 +165,16 @@
                             </div>
                         </div>
 
-                        <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
-                            Update Address
-                        </button>
-
-                        <x-dashboard.confirm-modal title="Edit Address"
-                            description="Are you sure change your address?"></x-dashboard.confirm-modal>
+                        <div x-data="modal">
+                            <button type="button" class="btn btn-primary btn-sm w-full lg:w-44 border-none"
+                                @click="toggle">Submit Form</button>
+                            <x-dashboard.confirm-modal-action modalId="edit-data" title="Edit Customer Address"
+                                description="Are you sure edit this data?"></x-dashboard.confirm-modal-action>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

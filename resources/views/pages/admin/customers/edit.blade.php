@@ -5,13 +5,19 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Edit Customer" subtitle="Customer" :linkSubTitle="route('admin.dashboard.customers.index')" title="Edit"
-        :linkTitle="route('admin.dashboard.customers.edit', $customer)"></x-dashboard.page-title>
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Customer</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Edit</span>
+            </li>
+        </ul>
 
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12">
-            <div class="card bg-white shadow-lg rounded-lg">
-                <div class="card-body">
+        <div class="grid grid-cols-12 gap-4 mt-5">
+            <div class="col-span-12">
+                <div class="panel">
                     <form action="{{ route('admin.dashboard.customers.update', $customer) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -29,7 +35,7 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingName" class="form-input grow border-none outline-none" type="text"
-                                        name="name" value="{{  old('name') ?? $customer->name }}" minlength="1"
+                                        name="name" value="{{ old('name') ?? $customer->name }}" minlength="1"
                                         maxlength="30" placeholder="Enter your name">
                                 </label>
 
@@ -50,7 +56,7 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingUsername" class="form-input grow border-none outline-none"
-                                        type="text" name="username" value="{{ old('username') ?? $customer->username  }}"
+                                        type="text" name="username" value="{{ old('username') ?? $customer->username }}"
                                         minlength="1" maxlength="15" placeholder="Enter your username">
                                 </label>
 
@@ -97,7 +103,7 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="loggingDateOfBirth" type="date"
                                         class="form-input grow border-none outline-none " name="date_of_birth"
-                                        value="{{ old('date_of_birth') ??  $customer->date_of_birth }}"
+                                        value="{{ old('date_of_birth') ?? $customer->date_of_birth }}"
                                         placeholder="Enter your date" />
                                 </label>
 
@@ -141,7 +147,7 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingPhoneNumber" class="form-input grow border-none outline-none "
                                         type="text" name="phone_number"
-                                        value="{{ old('phone_number') ??  $customer->phone_number }}"
+                                        value="{{ old('phone_number') ?? $customer->phone_number }}"
                                         placeholder="Enter your phone number" minlength="10"
                                         maxlength="{{ config('validation.phone_number.maxlength') }}"
                                         pattern="{{ config('validation.phone_number.regex') }}"
@@ -154,12 +160,12 @@
                             </div>
                         </div>
 
-                        <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
-                            Submit Form
-                        </button>
-
-                        <x-dashboard.confirm-modal title="Edit Customer"
-                            description="Are you sure edit this data?"></x-dashboard.confirm-modal>
+                        <div x-data="modal">
+                            <button type="button" class="btn btn-primary btn-sm w-full lg:w-44 border-none"
+                                @click="toggle">Submit Form</button>
+                            <x-dashboard.confirm-modal-action modalId="edit-data" title="Edit Customer"
+                                description="Are you sure edit this data?"></x-dashboard.confirm-modal-action>
+                        </div>
                     </form>
                 </div>
             </div>

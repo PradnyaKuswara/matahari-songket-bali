@@ -9,186 +9,131 @@
         <div class="hero-overlay bg-opacity-60"></div>
     </div>
 
-    <div class="md:max-w-screen-md mx-auto p-6">
-        <div class="flex flex-col">
-            <h1 class="text-3xl font-extrabold">Reminder Invoice</h1>
-            <p class="text-xl mt-2">Hello </p>
-            <p class="text-lg">
-                Reminder for your invoice ... belonging to you. Here are the details of your purchase invoice. </p>
-        </div>
-
-        <div class="card p-6 bg-white animate-fade mt-8">
-            <div class="flex justify-between gap-4">
-                <div class="">
-                    <img class="h-8 md:h-16" src="{{ asset('assets/images/logo.png') }}" alt="Logo">
-                </div>
-
-                <div class="text-end">
-                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-800">Invoice # </h2>
-                    <span class="badge badge-error bg-error rounded ms-auto text-white">Unpaid</span>
-
-                    <address class="mt-4 not-italic text-gray-800">
-                        1093 Coleman Avenue<br>
-                        Escondido<br>
-                        CA 92025<br>
-                        United States<br>
-                    </address>
-                </div>
-            </div>
-
-            <div class="mt-8 grid grid-cols-2 gap-3 ">
+    <!-- start main content section -->
+    <div x-data="invoicePreview" class="mx-0 lg:mx-72 lg:p-4">
+        <div class="panel p-8 lg:p-10">
+            <div class="flex flex-wrap justify-between items-center gap-4 px-4">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800">Bill to:</h3>
-                    <h3 class="text-lg font-semibold text-gray-800">Sara Williams</h3>
-                    <address class="mt-2 not-italic text-gray-500">
-                        1274 Stark Hollow Road,<br>
-                        Denver, CO 80202,<br>
-                        United States<br>
-                    </address>
+                    <div class="text-2xl font-semibold uppercase">Invoice</div>
+                    <div class="badge badge-success text-white badge-md px-4 py-2">PAID</div>
                 </div>
 
-                <div class="text-end space-y-2">
-                    <div class="grid md:grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
-                        <dl class="grid  gap-x-3">
-                            <dt class=" font-semibold text-gray-800">Invoice date:</dt>
-                            <dd class=" text-gray-500">07/08/2023</dd>
-                        </dl>
-                        <dl class="grid gap-x-3 place-content-end place-items-end">
-                            <dt class=" font-semibold text-gray-800">Due date:</dt>
-                            <dd class=" text-gray-500">05/12/2023</dd>
-                        </dl>
-                    </div>
+                <div class="shrink-0">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="image" class="w-32 lg:w-40 ltr:ml-auto rtl:mr-auto" />
                 </div>
             </div>
 
-            <!-- Table -->
-            <div class="mt-6">
-                <div class="border border-gray-200 p-4 rounded-lg space-y-4">
-                    <div class="grid grid-cols-5">
-                        <div class="sm:col-span-2 text-xs font-medium text-gray-500 uppercase">Item</div>
-                        <div class="text-left text-xs font-medium text-gray-500 uppercase">Qty</div>
-                        <div class="text-left text-xs font-medium text-gray-500 uppercase">Rate</div>
-                        <div class="text-end text-xs font-medium text-gray-500 uppercase">Amount</div>
+            <div class="px-4 ltr:text-right rtl:text-left">
+                <div class="mt-6 space-y-1 text-white-dark">
+                    <div>13 Tetrick Road, Cypress Gardens, Florida, 33884, US</div>
+                    <div>vristo@gmail.com</div>
+                    <div>+1 (070) 123-4567</div>
+                </div>
+            </div>
+
+            <hr class="my-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
+            <div class="flex flex-col flex-wrap justify-between gap-6 lg:flex-row">
+                <div class="flex-1">
+                    <div class="space-y-1 text-white-dark">
+                        <div>Issue For:</div>
+                        <div class="font-semibold text-black dark:text-white">John Doe</div>
+                        <div>405 Mulberry Rd. Mc Grady, NC, 28649</div>
+                        <div>redq@company.com</div>
+                        <div>(128) 666 070</div>
                     </div>
-
-                    <div class="hidden sm:block border-b border-gray-200"></div>
-
-                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                        <div class="col-span-full sm:col-span-2">
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                            <p class="font-medium text-gray-800">Admin Design</p>
+                </div>
+                <div class="flex flex-col justify-between gap-6 sm:flex-row lg:w-2/3">
+                    <div class="xl:1/3 sm:w-1/2 lg:w-2/5">
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Invoice :</div>
+                            <div>#8701</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                            <p class="text-gray-800">1</p>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Issue Date :</div>
+                            <div>13 Sep 2022</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                            <p class="text-gray-800">8</p>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Order ID :</div>
+                            <div>#OD-85794</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                            <p class="sm:text-end text-gray-800">$500</p>
-                        </div>
-                    </div>
-
-                    <div class="sm:hidden border-b border-gray-200"></div>
-
-                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                        <div class="col-span-full sm:col-span-2">
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                            <p class="font-medium text-gray-800">Website Desgin project</p>
-                        </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                            <p class="text-gray-800">1</p>
-                        </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                            <p class="text-gray-800">32</p>
-                        </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                            <p class="sm:text-end text-gray-800">$1550</p>
+                        <div class="flex w-full items-center justify-between">
+                            <div class="text-white-dark">Shipment ID :</div>
+                            <div>#SHP-8594</div>
                         </div>
                     </div>
-
-                    <div class="sm:hidden border-b border-gray-200"></div>
-
-                    <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                        <div class="col-span-full sm:col-span-2">
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                            <p class="font-medium text-gray-800">SEO Marketing</p>
+                    <div class="xl:1/3 sm:w-1/2 lg:w-2/5">
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Bank Name:</div>
+                            <div class="whitespace-nowrap">Bank Of America</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                            <p class="text-gray-800">1</p>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Account Number:</div>
+                            <div>1234567890</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Rate</h5>
-                            <p class="text-gray-800">6</p>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">SWIFT Code:</div>
+                            <div>S58K796</div>
                         </div>
-                        <div>
-                            <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Amount</h5>
-                            <p class="sm:text-end text-gray-800">$3000</p>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">IBAN:</div>
+                            <div>L5698445485</div>
+                        </div>
+                        <div class="mb-2 flex w-full items-center justify-between">
+                            <div class="text-white-dark">Country:</div>
+                            <div>United States</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Table -->
+            <div class="table-responsive mt-6">
+                <table class="table-striped">
+                    <thead>
+                        <tr>
+                            <template x-for="item in columns" :key="item.key">
+                                <th :class="[item.class]" x-text="item.label"></th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="item in items" :key="item.id">
+                            <tr>
+                                <td x-text="item.id"></td>
+                                <td x-text="item.title"></td>
+                                <td x-text="item.quantity"></td>
+                                <td class="ltr:text-right rtl:text-left" x-text="`$${item.price}`"></td>
+                                <td class="ltr:text-right rtl:text-left" x-text="`$${item.amount}`"></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
 
-            <div class="mt-8 flex justify-end">
-                <div class="w-full max-w-2xl sm:text-end space-y-2">
-                    <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
-                        <dl class="grid sm:grid-cols-5 gap-x-3">
-                            <dt class="col-span-3 font-semibold text-gray-800">Subtotal:</dt>
-                            <dd class="col-span-2 text-gray-500">$3000.00</dd>
-                        </dl>
-
-                        <dl class="grid sm:grid-cols-5 gap-x-3">
-                            <dt class="col-span-3 font-semibold text-gray-800">Total:</dt>
-                            <dd class="col-span-2 text-gray-500">$3000.00</dd>
-                        </dl>
-
-                        <dl class="grid sm:grid-cols-5 gap-x-3">
-                            <dt class="col-span-3 font-semibold text-gray-800">Tax:</dt>
-                            <dd class="col-span-2 text-gray-500">$300.00</dd>
-                        </dl>
-
-                        <dl class="grid sm:grid-cols-5 gap-x-3">
-                            <dt class="col-span-3 font-semibold text-gray-800">Amount paid:</dt>
-                            <dd class="col-span-2 text-gray-500">$3300.00</dd>
-                        </dl>
-
-                        <dl class="grid sm:grid-cols-5 gap-x-3">
-                            <dt class="col-span-3 font-semibold text-gray-800">Due balance:</dt>
-                            <dd class="col-span-2 text-gray-500">$0.00</dd>
-                        </dl>
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-1">
+                <div></div>
+                <div class="space-y-2 ltr:text-right rtl:text-left">
+                    <div class="flex items-center">
+                        <div class="flex-1">Subtotal</div>
+                        <div class="w-[37%]">$3255</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">Tax</div>
+                        <div class="w-[37%]">$700</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">Shipping Rate</div>
+                        <div class="w-[37%]">$0</div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex-1">Discount</div>
+                        <div class="w-[37%]">$10</div>
+                    </div>
+                    <div class="flex items-center text-lg font-semibold">
+                        <div class="flex-1">Grand Total</div>
+                        <div class="w-[37%]">$3945</div>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-8 sm:mt-12">
-                <h4 class="text-lg font-semibold text-gray-800">Thank you!</h4>
-                <p class="text-gray-500">If you have any questions concerning this invoice, use the following contact
-                    information:</p>
-                <div class="mt-2">
-                    <p class="block text-sm font-medium text-gray-800">mataharisongketbali@gmail.com</p>
-                    <p class="block text-sm font-medium text-gray-800">+1 (062) 109-9222</p>
-                </div>
-            </div>
-
-            <div class="flex items-center justify-between">
-                <p class="mt-5 text-sm text-gray-500">© {{ now()->format('Y') }} Matahari Songket Bali.</p>
-            </div>
-        </div>
-
-        <div class="flex flex-col mt-10">
-            <p class="w-full md:text-lg">Payment will be due in the coming days, no later than [date]. Please make your payment by
-                accessing your dashboard menu or by clicking pay now below. </p>
-            <a href="#" class="btn btn-primary mt-4 w-52 mx-auto">Pay Now</a>
-            <p class="text-center font-bold mt-4">Note: This is a notification email from our system. Please access your
-                dashboard area to connect with your service </p>
         </div>
     </div>
+    <!-- end main content section -->
 @endsection

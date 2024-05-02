@@ -70,5 +70,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::patch('update/{customer}', 'update')->name('update');
         Route::patch('toggleActive/{customer}', 'toggleActive')->name('toggleActive');
         Route::get('/search', 'search')->name('search');
+        Route::get('/show-menu/{customer}', 'showMenu')->name('showMenu');
+        Route::get('/show-address/{customer}', 'showAddress')->name('showAddress');
     });
 });

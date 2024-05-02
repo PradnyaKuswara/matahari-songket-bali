@@ -5,13 +5,22 @@
 @endsection
 
 @section('content')
-    <x-dashboard.page-title header="Create Address" subtitle="Address" :linkSubTitle="route('customer.dashboard.address.index')" title="Create"
-        :linkTitle="route('customer.dashboard.address.create')"></x-dashboard.page-title>
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Customer</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Address</span>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Create</span>
+            </li>
+        </ul>
 
-    <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-12">
-            <div class="card bg-white shadow-lg rounded-lg">
-                <div class="card-body">
+        <div class="grid grid-cols-12 gap-4 mt-5">
+            <div class="col-span-12">
+                <div class="panel">
                     <form action="{{ route('customer.dashboard.address.store') }}" method="POST">
                         @csrf
                         <div class="flex flex-col">
@@ -36,8 +45,8 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingCountry" class="form-input grow border-none outline-none"
-                                        type="text" name="country" value="{{  old('country') }}"
-                                        minlength="1" maxlength="20" placeholder="Enter your country">
+                                        type="text" name="country" value="{{ old('country') }}" minlength="1"
+                                        maxlength="20" placeholder="Enter your country">
                                 </label>
 
                                 @error('country')
@@ -56,8 +65,8 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingProvince" class="form-input grow border-none outline-none"
-                                        type="text" name="province" value="{{  old('province') }}"
-                                        minlength="1" maxlength="20" placeholder="Enter your province">
+                                        type="text" name="province" value="{{ old('province') }}" minlength="1"
+                                        maxlength="20" placeholder="Enter your province">
                                 </label>
 
                                 @error('province')
@@ -79,8 +88,8 @@
 
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingCity" class="form-input grow border-none outline-none" type="text"
-                                        name="city" value="{{  old('city') }}" minlength="1"
-                                        maxlength="20" placeholder="Enter your city">
+                                        name="city" value="{{ old('city') }}" minlength="1" maxlength="20"
+                                        placeholder="Enter your city">
                                 </label>
 
                                 @error('city')
@@ -99,9 +108,8 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingPostalCode" class="form-input grow border-none outline-none"
-                                        type="text" name="postal_code"
-                                        value="{{  old('postal_code') }}" minlength="1" maxlength="10"
-                                        placeholder="Enter your postal code">
+                                        type="text" name="postal_code" value="{{ old('postal_code') }}" minlength="1"
+                                        maxlength="10" placeholder="Enter your postal code">
                                 </label>
 
                                 @error('postal_code')
@@ -122,8 +130,8 @@
                                 </label>
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingAddress" class="form-input grow border-none outline-none"
-                                        type="text" name="address" value="{{ old('address') }}"
-                                        minlength="1" maxlength="100" placeholder="Enter your address">
+                                        type="text" name="address" value="{{ old('address') }}" minlength="1"
+                                        maxlength="100" placeholder="Enter your address">
                                 </label>
 
                                 @error('address')
@@ -145,8 +153,8 @@
                                 <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                     <input id="LoggingAdditional" class="form-input grow border-none outline-none"
                                         type="text" name="additional_information"
-                                        value="{{ old('additional_information') }}"
-                                        minlength="1" maxlength="100" placeholder="Enter your additional information">
+                                        value="{{ old('additional_information') }}" minlength="1" maxlength="100"
+                                        placeholder="Enter your additional information">
                                 </label>
 
                                 @error('additional_information')
@@ -155,12 +163,12 @@
                             </div>
                         </div>
 
-                        <button type="button" data-fc-type="modal" class="btn w-full bg-primary text-white">
-                            Create Address
-                        </button>
-
-                        <x-dashboard.confirm-modal title="Create Address"
-                            description="Are you sure create your address?"></x-dashboard.confirm-modal>
+                        <div x-data="modal">
+                            <button type="button" class="btn btn-primary btn-sm w-full lg:w-44 border-none"
+                                @click="toggle">Submit Form</button>
+                            <x-dashboard.confirm-modal-action modalId="create-data" title="Create Customer Address"
+                                description="Are you sure create this data?"></x-dashboard.confirm-modal-action>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -1,92 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@yield('title')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="{{ asset('assets/vristo/assets/css/perfect-scrollbar.min.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/vristo/assets/css/style.css') }}" />
+    <link defer rel="stylesheet" type="text/css" media="screen"
+        href="{{ asset('assets/vristo/assets/css/animate.css') }}" />
+    <script src="{{ asset('assets/vristo/assets/js/perfect-scrollbar.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/popper.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/tippy-bundle.umd.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/sweetalert.min.js') }}"></script>
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
-
-    <!-- App css -->
-    <link href="{{ asset('assets/lunoz/css/theme.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/lunoz/css/icons.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Head Js -->
-    <script src="{{ asset('assets/lunoz/js/head.js') }}"></script>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
 
     @stack('css')
-
-
 </head>
 
-<body>
+<body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased"
+    :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme === 'dark' || $store.app.isDarkMode ? 'dark' : '',
+        $store.app.menu, $store.app.layout, $store.app.rtlClass
+    ]">
     <x-toaster-hub /> <!-- 👈 -->
-    <div class="app-wrapper">
 
-        <x-dashboard.sidebar></x-dashboard.sidebar>
+    <!-- sidebar menu overlay -->
+    <div x-cloak class="fixed inset-0 z-50 bg-[black]/60 lg:hidden" :class="{ 'hidden': !$store.app.sidebar }"
+        @click="$store.app.toggleSidebar()"></div>
 
-        <div class="app-content">
-
-            <x-dashboard.topbar></x-dashboard.topbar>
-
-            <main class="p-6 bg-[#F1F5F9] min-h-screen">
-
-                @if (!auth()->user()->hasVerifiedEmail())
-                    <div role="alert" class="alert alert-primary mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            class="stroke-current shrink-0 w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span>Please verify you account. We’ve sent you a verification link to
-                            the email address <span
-                                class="font-medium text-indigo-500">{{ auth()->user()->email }}</span> or click beside
-                            button to
-                            resend email verification</span>
-                        <form method="POST" action="{{ route('verification.send') }}">
-                            @csrf
-                            <button type="submit"
-                                class="btn btn-sm btn-primary w-50 rounded px-5 py-3 font-medium text-white shadow-md shadow-indigo-500/20">Resend
-                                Verification Email</button>
-                        </form>
-                    </div>
-                @endif
-                @yield('content')
-            </main>
-
-            <x-dashboard.footer></x-dashboard.footer>
-        </div>
-        <!-- End Page content -->
-
+    <!-- screen loader -->
+    <div
+        class="screen_loader animate__animated fixed inset-0 z-[60] grid place-content-center bg-[#fafafa] dark:bg-[#060818]">
+        <svg width="64" height="64" viewBox="0 0 135 135" xmlns="http://www.w3.org/2000/svg" fill="#4361ee">
+            <path
+                d="M67.447 58c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10zm9.448 9.447c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10s-4.478-10-10-10c-5.523 0-10 4.477-10 10zm-9.448 9.448c-5.523 0-10 4.477-10 10 0 5.522 4.477 10 10 10s10-4.478 10-10c0-5.523-4.477-10-10-10zM58 67.447c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10z">
+                <animateTransform attributeName="transform" type="rotate" from="0 67 67" to="-360 67 67" dur="2.5s"
+                    repeatCount="indefinite" />
+            </path>
+            <path
+                d="M28.19 40.31c6.627 0 12-5.374 12-12 0-6.628-5.373-12-12-12-6.628 0-12 5.372-12 12 0 6.626 5.372 12 12 12zm30.72-19.825c4.686 4.687 12.284 4.687 16.97 0 4.686-4.686 4.686-12.284 0-16.97-4.686-4.687-12.284-4.687-16.97 0-4.687 4.686-4.687 12.284 0 16.97zm35.74 7.705c0 6.627 5.37 12 12 12 6.626 0 12-5.373 12-12 0-6.628-5.374-12-12-12-6.63 0-12 5.372-12 12zm19.822 30.72c-4.686 4.686-4.686 12.284 0 16.97 4.687 4.686 12.285 4.686 16.97 0 4.687-4.686 4.687-12.284 0-16.97-4.685-4.687-12.283-4.687-16.97 0zm-7.704 35.74c-6.627 0-12 5.37-12 12 0 6.626 5.373 12 12 12s12-5.374 12-12c0-6.63-5.373-12-12-12zm-30.72 19.822c-4.686-4.686-12.284-4.686-16.97 0-4.686 4.687-4.686 12.285 0 16.97 4.686 4.687 12.284 4.687 16.97 0 4.687-4.685 4.687-12.283 0-16.97zm-35.74-7.704c0-6.627-5.372-12-12-12-6.626 0-12 5.373-12 12s5.374 12 12 12c6.628 0 12-5.373 12-12zm-19.823-30.72c4.687-4.686 4.687-12.284 0-16.97-4.686-4.686-12.284-4.686-16.97 0-4.687 4.686-4.687 12.284 0 16.97 4.686 4.687 12.284 4.687 16.97 0z">
+                <animateTransform attributeName="transform" type="rotate" from="0 67 67" to="360 67 67" dur="8s"
+                    repeatCount="indefinite" />
+            </path>
+        </svg>
     </div>
 
-    <!-- Plugin Js -->
-    <script src="{{ asset('assets/lunoz/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/lunoz/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/lunoz/libs/node-waves/waves.min.js') }}"></script>
-    <script src="{{ asset('assets/lunoz/libs/@frostui/tailwindcss/frostui.js') }}"></script>
+    <!-- scroll to top button -->
+    <div class="fixed bottom-6 z-50 ltr:right-6 rtl:left-6" x-data="scrollToTop">
+        <template x-if="showTopButton">
+            <button type="button"
+                class="btn btn-primary text-primary-content btn-sm animate-pulse rounded-full  p-2  dark:bg-[#060818] dark:hover:bg-primary"
+                @click="goToTop">
+                <svg width="24" height="24" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12 20.75C12.4142 20.75 12.75 20.4142 12.75 20L12.75 10.75L11.25 10.75L11.25 20C11.25 20.4142 11.5858 20.75 12 20.75Z"
+                        fill="currentColor" />
+                    <path
+                        d="M6.00002 10.75C5.69667 10.75 5.4232 10.5673 5.30711 10.287C5.19103 10.0068 5.25519 9.68417 5.46969 9.46967L11.4697 3.46967C11.6103 3.32902 11.8011 3.25 12 3.25C12.1989 3.25 12.3897 3.32902 12.5304 3.46967L18.5304 9.46967C18.7449 9.68417 18.809 10.0068 18.6929 10.287C18.5768 10.5673 18.3034 10.75 18 10.75L6.00002 10.75Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+        </template>
+    </div>
 
-    <!-- App Js -->
-    <script src="{{ asset('assets/lunoz/js/app.js') }}"></script>
+    <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
+        <x-dashboard.sidebar></x-dashboard.sidebar>
 
-    <!-- Apexcharts js -->
-    <script src="{{ asset('assets/lunoz/libs/apexcharts/apexcharts.min.js') }}"></script>
+        <div class="main-content flex min-h-screen flex-col lg:p-4">
+            <x-dashboard.topbar></x-dashboard>
 
-    <!-- Morris Js-->
-    <script src="{{ asset('assets/lunoz/libs/morris.js/morris.min.js') }}"></script>
+                <!-- start main content section -->
+                <div class="dvanimation animate__animated p-6" :class="[$store.app.animation]">
+                    @if (!auth()->user()->hasVerifiedEmail())
+                        <div role="alert" class="alert alert-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="stroke-current shrink-0 w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Please verify you account. We’ve sent you a verification link to
+                                the email address <span
+                                    class="font-medium text-indigo-500">{{ auth()->user()->email }}</span> or click
+                                beside
+                                button to
+                                resend email verification</span>
+                            <form method="POST" action="{{ route('verification.send') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="btn btn-sm btn-primary w-50 rounded px-5 font-medium text-white shadow-md shadow-indigo-500/20">Resend
+                                    Verification Email</button>
+                            </form>
+                        </div>
+                    @endif
+                    <div>
+                        @yield('content')
+                    </div>
+                </div>
+                <!-- end main content section -->
 
-    <!-- Raphael Js-->
-    <script src="{{ asset('assets/lunoz/libs/raphael/raphael.min.js') }}"></script>
+                <!-- start footer section -->
+                <x-dashboard.footer></x-dashboard.footer>
+                <!-- end footer section -->
+        </div>
+    </div>
 
-    <!-- Dashboard Project Page js -->
-    <script src="{{ asset('assets/lunoz/js/pages/dashboard.js') }}"></script>
-
-    <script src="{{ asset('assets/js/modal.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/alpine-collaspe.min.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/alpine-persist.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine-ui.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine-focus.min.js') }}"></script>
+    <script defer src="{{ asset('assets/vristo/assets/js/alpine.min.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/js/alpine-init.js') }}"></script>
 
     @stack('scripts')
 </body>

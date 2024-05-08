@@ -8,7 +8,7 @@ class SearchService
 {
     private string $key = 'keyword';
 
-    public function handle(Request $request, object $table, array $conditions)
+    public function handle(Request $request, object $table, array $conditions, ?array $relations = null)
     {
         $model = $table;
 
@@ -22,6 +22,23 @@ class SearchService
                 }
 
                 $model = $model->orWhere($value, 'LIKE', '%'.$request->get($this->key).'%');
+            }
+
+            if (! empty($relations)) {
+
+                foreach ($relations as $relation) {
+                    $model = $model->orWhereHas($relation, function ($query) use ($conditions, $request) {
+                        foreach ($conditions as $key => $value) {
+                            if ($key === 0) {
+                                $query->where($value, 'LIKE', '%'.$request->get($this->key).'%');
+
+                                continue;
+                            }
+
+                            $query->orWhere($value, 'LIKE', '%'.$request->get($this->key).'%');
+                        }
+                    });
+                }
             }
 
             session()->flash('keyword', $request->get($this->key));

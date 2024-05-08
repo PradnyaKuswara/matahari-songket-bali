@@ -32,7 +32,7 @@
         class="hero hero-bg-light ">
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
             class="hero-content flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
-            <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+            <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                 class="w-full lg:w-6/12 rounded-lg shadow-2xl" :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
             <div class="w-full">
                 <h1 class="text-7xl font-extrabold mb-5 " :class="intersect ? 'animate-fade-right' : 'opacity-0'">What is Lorem
@@ -70,15 +70,15 @@
             </div>
 
             <div class="relative">
-                <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                     class=" rounded-lg shadow-2xl" />
 
                 <div class="absolute -bottom-10 -left-10">
-                    <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                    <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                         class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
                 <div class="absolute -top-10 -right-10 flex justify-end">
-                    <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                    <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                         class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
             </div>
@@ -93,13 +93,13 @@
             </div>
 
             <div class="grid place-items-center md:grid-cols-4 gap-4">
-                <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
             </div>
 
@@ -163,28 +163,28 @@
                 <ul x-ref="logos"
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Facebook" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Facebook" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Disney" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Disney" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Airbnb" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Airbnb" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Apple" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Apple" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Spark" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Spark" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Samsung" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Samsung" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Quora" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Quora" />
                     </li>
                     <li>
-                        <img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Sass" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Sass" />
                     </li>
                 </ul>
             </div>
@@ -206,7 +206,7 @@
             </div>
 
             <div class="flex flex-col justify-center items-center">
-                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products.index') }}">See another
+                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products.indexFront') }}">See another
                     product</x-button-link>
             </div>
         </div>

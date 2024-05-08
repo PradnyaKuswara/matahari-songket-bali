@@ -30,11 +30,6 @@ class WeaverController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('pages.admin.weavers.create');
-    }
-
     public function store(WeaverRequest $request)
     {
         $weaver = $this->weaverService->create(collect($request->validated())->only(['name', 'gender', 'date_of_birth', 'phone_number'])->toArray());
@@ -44,13 +39,6 @@ class WeaverController extends Controller
         Toaster::success('Weaver created successfully');
 
         return redirect()->route('admin.dashboard.weavers.index');
-    }
-
-    public function edit(User $weaver)
-    {
-        return view('pages.admin.weavers.edit', [
-            'weaver' => $this->weaverService->find($weaver),
-        ]);
     }
 
     public function update(WeaverRequest $request, User $weaver)

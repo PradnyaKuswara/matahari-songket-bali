@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemCategoryRequest;
 use App\Models\ItemCategory;
 use App\Services\ItemCategoryService;
+use App\Services\ReturnRedirectService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,35 +15,38 @@ class ItemCategoryController extends Controller
 {
     protected $itemCategoryService;
 
-    public function __construct(ItemCategoryService $itemCategoryService)
+    protected $returnRedirectService;
+
+    public function __construct(ItemCategoryService $itemCategoryService, ReturnRedirectService $returnRedirectService)
     {
         $this->itemCategoryService = $itemCategoryService;
+        $this->returnRedirectService = $returnRedirectService;
     }
 
     public function index(Request $request): View
     {
-        return view('pages.admin.items.categories.index', [
+        return view('pages.admin-seller.items.categories.index', [
             'itemCategories' => $this->itemCategoryService->search($request, new ItemCategory, ['name']),
         ]);
     }
 
     public function create(): View
     {
-        return view('pages.admin.items.categories.create');
+        return view('pages.admin-seller.items.categories.create');
     }
 
     public function store(ItemCategoryRequest $request): RedirectResponse
     {
-        $this->itemCategoryService->create($request->validated());
+        $this->itemCategoryService->firstOrCreate($request->validated());
 
         Toaster::success('Item category created successfully');
 
-        return redirect()->route('admin.dashboard.items.categories.index');
+        return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.items.categories.index'));
     }
 
     public function edit(ItemCategory $itemCategory): View
     {
-        return view('pages.admin.items.categories.edit', [
+        return view('pages.admin-seller.items.categories.edit', [
             'itemCategory' => $this->itemCategoryService->find($itemCategory),
         ]);
     }
@@ -53,23 +57,23 @@ class ItemCategoryController extends Controller
 
         Toaster::success('Item category updated successfully');
 
-        return redirect()->route('admin.dashboard.items.categories.index');
+        return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.items.categories.index'));
     }
 
-    public function destroy(ItemCategory $itemCategory): RedirectResponse
+    public function destroy(Request $request, ItemCategory $itemCategory): RedirectResponse
     {
         $this->itemCategoryService->delete($itemCategory);
 
         Toaster::success('Item category deleted successfully');
 
-        return redirect()->route('admin.dashboard.items.categories.index');
+        return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.items.categories.index'));
     }
 
     public function search(Request $request): View
     {
         $itemCategories = $this->itemCategoryService->search($request, new ItemCategory, ['name']);
 
-        return view('pages.admin.items.categories.table', [
+        return view('pages.admin-seller.items.categories.table', [
             'itemCategories' => $itemCategories,
         ]);
     }

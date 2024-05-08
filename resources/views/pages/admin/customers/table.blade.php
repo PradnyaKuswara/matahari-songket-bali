@@ -2,17 +2,17 @@
     <table class="table-hover ">
         <thead>
             <tr>
-                <th class="text-left text-black font-bold text-sm">Status</th>
-                <th class="text-left text-black font-bold text-sm">Name</th>
-                <th class="text-left text-black font-bold text-sm">Email</th>
-                <th class="text-left text-black font-bold text-sm">User Name</th>
-                <th class="text-left text-black font-bold text-sm">Gender</th>
-                <th class="text-left text-black font-bold text-sm">Phone Number</th>
-                <th class="text-left text-black font-bold text-sm">Date of Birth</th>
-                <th class="text-left text-black font-bold text-sm">Email Verified</th>
-                <th class="text-left text-black font-bold text-sm">Created At</th>
-                <th class="text-left text-black font-bold text-sm">Updated At</th>
-                <th class="text-left text-black font-bold text-sm">Action</th>
+                <th class="text-left  font-bold text-sm">Status</th>
+                <th class="text-left  font-bold text-sm">Name</th>
+                <th class="text-left  font-bold text-sm">Email</th>
+                <th class="text-left  font-bold text-sm">User Name</th>
+                <th class="text-left  font-bold text-sm">Gender</th>
+                <th class="text-left  font-bold text-sm">Phone Number</th>
+                <th class="text-left  font-bold text-sm">Date of Birth</th>
+                <th class="text-left  font-bold text-sm">Email Verified</th>
+                <th class="text-left  font-bold text-sm">Created At</th>
+                <th class="text-left  font-bold text-sm">Updated At</th>
+                <th class="text-left  font-bold text-sm">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -71,8 +71,71 @@
                     <td>{{ $customer->updated_at }}</td>
                     <td>
                         <div class="flex gap-2">
-                            <a href="{{ route('admin.dashboard.customers.edit', $customer->id) }}"
-                                class=" text-black"><span class="mdi mdi-pencil text-xl text-success"></span></a>
+                            <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
+                                <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"
+                                    @click="toggle()"><span class="mdi mdi-pencil text-xl text-success"></label>
+
+                                <x-dashboard.edit-modal :elements="[
+                                    [
+                                        'name' => 'name',
+                                        'id' => 'inputName',
+                                        'label' => 'Name',
+                                        'type' => 'text',
+                                        'value' => $customer->name,
+                                        'placeholder' => 'Enter your customer name',
+                                        'is_required' => 'true',
+                                    ],
+                                    [
+                                        'name' => 'username',
+                                        'id' => 'inputUserName',
+                                        'label' => 'User Name',
+                                        'type' => 'text',
+                                        'value' => $customer->username,
+                                        'placeholder' => 'Enter your customer username',
+                                        'is_required' => 'true',
+                                    ],
+                                    [
+                                        'name' => 'gender',
+                                        'id' => 'inputGender',
+                                        'label' => 'Gender',
+                                        'type' => 'select',
+                                        'value' => $customer->gender,
+                                        'options' => [
+                                            [
+                                                'id' => 'men',
+                                                'name' => 'men',
+                                            ],
+                                            [
+                                                'id' => 'women',
+                                                'name' => 'women',
+                                            ],
+                                        ],
+                                        'placeholder' => 'Select your customer gender',
+                                        'is_required' => 'false',
+                                    ],
+                                    [
+                                        'name' => 'date_of_birth',
+                                        'id' => 'inputDateOfBirth',
+                                        'label' => 'Date of Birth',
+                                        'type' => 'date',
+                                        'value' => $customer->date_of_birth,
+                                        'placeholder' => 'Enter your customer date of birth',
+                                        'is_required' => 'false',
+                                    ],
+                                    [
+                                        'name' => 'email',
+                                        'id' => 'inputEmail',
+                                        'label' => 'Email',
+                                        'type' => 'email',
+                                        'value' => $customer->email,
+                                        'placeholder' => 'Enter your customer email',
+                                        'is_required' => 'true',
+                                    ],
+
+                                ]" route="admin.dashboard.customers.update"
+                                    idRoute="{{ $customer->id }}" title="Edit Customer"
+                                    :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                            </div>
 
                             <a href="{{ route('admin.dashboard.customers.showMenu', $customer->id) }}"
                                 class=" text-black"><span class="mdi mdi-cog text-primary text-xl"></span></a>

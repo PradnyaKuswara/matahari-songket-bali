@@ -6,7 +6,7 @@ interface ProductCategoryInterface
 {
     public function all();
 
-    public function create(array $data);
+    public function firstOrCreate(array $data);
 
     public function update(array $data, $productCategory);
 

@@ -30,11 +30,6 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('pages.admin.customers.create');
-    }
-
     public function store(CustomerRequest $request)
     {
         $this->customerService->create($request->validated());
@@ -42,13 +37,6 @@ class CustomerController extends Controller
         Toaster::success('Customer created successfully');
 
         return redirect()->route('admin.dashboard.customers.index');
-    }
-
-    public function edit(User $customer)
-    {
-        return view('pages.admin.customers.edit', [
-            'customer' => $customer,
-        ]);
     }
 
     public function update(CustomerRequest $request, User $customer)
@@ -89,6 +77,7 @@ class CustomerController extends Controller
     {
         return view('pages.admin.customers.show-address', [
             'addresses' => $this->addressService->all($customer),
+            'customer' => $customer,
         ]);
     }
 }

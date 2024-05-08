@@ -18,10 +18,74 @@
         <div class="mt-5">
             <div class="panel">
                 <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
-                    <a href="{{ route('admin.dashboard.customers.create') }}"
-                        class="btn btn-neutral text-white border-none w-full lg:w-32 btn-md rounded-md">+ Create
-                        Data</a>
-                    <label class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 text-white bg-[#0E1726]">
+                    <div class="w-full" x-data="modalCreate">
+                        <label for="modal_create" class="btn btn-primary w-full lg:w-32" @click="toggle()">+ Create
+                            Data</label>
+
+                        <x-dashboard.create-modal :elements="[
+                            [
+                                'name' => 'name',
+                                'id' => 'inputName',
+                                'label' => 'Name',
+                                'type' => 'text',
+                                'placeholder' => 'Enter your customer name',
+                                'is_required' => 'true',
+                            ],
+                            [
+                                'name' => 'username',
+                                'id' => 'inputUserName',
+                                'label' => 'User Name',
+                                'type' => 'text',
+                                'placeholder' => 'Enter your customer username',
+                                'is_required' => 'true',
+                            ],
+                            [
+                                'name' => 'gender',
+                                'id' => 'inputGender',
+                                'label' => 'Gender',
+                                'type' => 'select',
+                                'options' => [
+                                    [
+                                        'id' => 'men',
+                                        'name' => 'men',
+                                    ],
+                                    [
+                                        'id' => 'women',
+                                        'name' => 'women',
+                                    ],
+                                ],
+                                'placeholder' => 'Select your customer gender',
+                                'is_required' => 'false',
+                            ],
+                            [
+                                'name' => 'date_of_birth',
+                                'id' => 'inputDateOfBirth',
+                                'label' => 'Date of Birth',
+                                'type' => 'date',
+                                'placeholder' => 'Enter your customer date of birth',
+                                'is_required' => 'false',
+                            ],
+                            [
+                                'name' => 'email',
+                                'id' => 'inputEmail',
+                                'label' => 'Email',
+                                'type' => 'email',
+                                'placeholder' => 'Enter your customer email',
+                                'is_required' => 'true',
+                            ],
+                            [
+                                'name' => 'password',
+                                'id' => 'inputPassword',
+                                'label' => 'Password',
+                                'type' => 'password',
+                                'placeholder' => 'Enter your customer password',
+                                'is_required' => 'true',
+                            ]
+                        ]" route="admin.dashboard.customers.store"
+                            title="Create Customer"></x-dashboard.create-modal>
+                    </div>
+                    <label
+                        class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 text-white bg-[#0E1726]">
                         <input type="text" id="search" class="form-input grow border-none outline-none text-white "
                             placeholder="Search by keyword"
                             @if (session('keyword')) value="{{ session('keyword') }}" @endif />

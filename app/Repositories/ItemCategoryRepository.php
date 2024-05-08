@@ -17,12 +17,12 @@ class ItemCategoryRepository implements ItemCategoryInterface
 
     public function all()
     {
-        return ItemCategory::paginate(10);
+        return ItemCategory::all();
     }
 
-    public function create(array $data)
+    public function firstOrCreate(array $data)
     {
-        return ItemCategory::create($data);
+        return ItemCategory::firstOrCreate($data);
     }
 
     public function update(array $data, $itemCategory)

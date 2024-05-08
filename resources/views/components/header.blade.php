@@ -7,7 +7,7 @@
         </a>
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
             <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a href="{{ route('products.index') }}">Product</a></li>
+            <li><a href="{{ route('products.indexFront') }}">Product</a></li>
             <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
             <li><a href="{{ route('about') }}">About us</a></li>
         </ul>
@@ -89,7 +89,7 @@
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a href="{{ route('index') }}">Home</a></li>
-                <li><a href="{{ route('products.index') }}">Product</a></li>
+                <li><a href="{{ route('products.indexFront') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
                 <li><a href="{{ route('about') }}">About us</a></li>
                 <div class="mt-4">

@@ -18,7 +18,7 @@ class WeaverRepository implements WeaverInterface
 
     public function all()
     {
-        return User::whereHas('role', fn ($query) => $query->where('name', 'weaver'))->paginate(10);
+        return User::whereHas('role', fn ($query) => $query->where('name', 'weaver'))->get();
     }
 
     public function create(array $data)

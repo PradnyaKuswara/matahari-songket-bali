@@ -24,8 +24,8 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('detail', 'detail')->name('product.detail');
+    Route::get('/', 'indexFront')->name('indexFront');
+    Route::get('detail', 'detailFront')->name('detailFront');
 });
 
 Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {

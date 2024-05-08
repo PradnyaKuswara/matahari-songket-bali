@@ -18,9 +18,9 @@ class ProductCategoryService
         return $this->productCategoryInterface->all();
     }
 
-    public function create(array $data)
+    public function firstOrCreate(array $data)
     {
-        return $this->productCategoryInterface->create($data);
+        return $this->productCategoryInterface->firstOrCreate($data);
     }
 
     public function update(array $data, $productCategory)

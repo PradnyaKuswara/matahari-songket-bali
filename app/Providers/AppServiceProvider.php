@@ -31,6 +31,18 @@ class AppServiceProvider extends ServiceProvider
             \App\Interfaces\CustomerInterface::class,
             \App\Repositories\CustomerRepository::class
         );
+        $this->app->bind(
+            \App\Interfaces\ItemInterface::class,
+            \App\Repositories\ItemRepository::class
+        );
+        $this->app->bind(
+            \App\Interfaces\ProductInterface::class,
+            \App\Repositories\ProductRepository::class
+        );
+        $this->app->bind(
+            \App\Interfaces\ProductionInterface::class,
+            \App\Repositories\ProductionRepository::class
+        );
     }
 
     /**

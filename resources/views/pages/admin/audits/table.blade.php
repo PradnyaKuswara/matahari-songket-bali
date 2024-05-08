@@ -2,12 +2,12 @@
     <table class="table-hover ">
         <thead>
             <tr>
-                <th class="text-left text-black font-bold text-sm">Account</th>
-                <th class="text-left text-black font-bold text-sm">Event</th>
-                <th class="text-left text-black font-bold text-sm">Type</th>
-                <th class="text-left text-black font-bold text-sm">Created At</th>
-                <th class="text-left text-black font-bold text-sm">Updated At</th>
-                <th class="text-left text-black font-bold text-sm">Action</th>
+                <th class="text-left font-bold text-sm">Account</th>
+                <th class="text-left font-bold text-sm">Event</th>
+                <th class="text-left font-bold text-sm">Type</th>
+                <th class="text-left font-bold text-sm">Created At</th>
+                <th class="text-left font-bold text-sm">Updated At</th>
+                <th class="text-left font-bold text-sm">Action</th>
             </tr>
         </thead>
         <tbody>

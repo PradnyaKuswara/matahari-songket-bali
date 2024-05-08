@@ -12,7 +12,7 @@
                 <a href="javascript:;" class="text-primary hover:underline">Customer</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1 ">
-                <a href="{{ route('admin.dashboard.customers.showMenu', $addresses->first()->user->id) }}"
+                <a href="{{ route('admin.dashboard.customers.showMenu', $customer->id) }}"
                     class="text-primary hover:underline">Menu</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">

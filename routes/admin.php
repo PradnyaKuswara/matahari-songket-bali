@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeaverController;
 use Illuminate\Support\Facades\Route;
@@ -29,23 +30,30 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     });
 
     Route::controller(ItemController::class)->prefix('items')->name('items.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('store', 'store')->name('store');
+        Route::patch('update/{item}', 'update')->name('update');
+        Route::delete('delete/{item}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
+
         Route::controller(ItemCategoryController::class)->prefix('categories')->name('categories.')->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
-            Route::get('edit/{itemCategory}', 'edit')->name('edit');
-            Route::patch('update/{itemCategory}', 'update')->name('update');
-            Route::delete('delete/{itemCategory}', 'destroy')->name('destroy');
             Route::get('/search', 'search')->name('search');
         });
     });
 
     Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('store', 'store')->name('store');
+        Route::patch('update/{product}', 'update')->name('update');
+        Route::delete('delete/{product}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
+        Route::patch('toggleActive/{product}', 'toggleActive')->name('toggleActive');
+
         Route::controller(ProductCategoryController::class)->prefix('categories')->name('categories.')->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
             Route::post('store', 'store')->name('store');
-            Route::get('edit/{productCategory}', 'edit')->name('edit');
             Route::patch('update/{productCategory}', 'update')->name('update');
             Route::delete('delete/{productCategory}', 'destroy')->name('destroy');
             Route::get('/search', 'search')->name('search');
@@ -54,9 +62,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(WeaverController::class)->prefix('weavers')->name('weavers.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('edit/{weaver}', 'edit')->name('edit');
         Route::patch('update/{weaver}', 'update')->name('update');
         Route::patch('toggleActive/{weaver}', 'toggleActive')->name('toggleActive');
         Route::get('/search', 'search')->name('search');
@@ -64,13 +70,22 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(CustomerController::class)->prefix('customers')->name('customers.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('edit/{customer}', 'edit')->name('edit');
         Route::patch('update/{customer}', 'update')->name('update');
         Route::patch('toggleActive/{customer}', 'toggleActive')->name('toggleActive');
         Route::get('/search', 'search')->name('search');
         Route::get('/show-menu/{customer}', 'showMenu')->name('showMenu');
         Route::get('/show-address/{customer}', 'showAddress')->name('showAddress');
+    });
+
+    Route::controller(ProductionController::class)->prefix('productions')->name('productions.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{production}', 'edit')->name('edit');
+        Route::patch('update/{production}', 'update')->name('update');
+        Route::delete('delete/{production}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
+        Route::get('/all-weaver-json', 'allWeaverJson')->name('allWeaverJson');
     });
 });

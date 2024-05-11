@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Visitor;
 use App\Services\ArticleService;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,8 @@ class WhatsNewController extends Controller
 
     public function detail(Article $article)
     {
-        // dd($article);
+        visits(Visitor::TYPE_ARTICLE, $article)->increment();
+
         return view('pages.whats-new-detail', [
             'article' => $article,
             'articles' => $this->articleService->all()->where('slug', '!=', $article->slug)

@@ -40,6 +40,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex gap-2 items-center">
+                    <span class="mdi mdi-eye text-sm text-gray-500"></span>
+                    <p class="text-sm text-gray-500">
+                        {{ visits(\App\Models\Visitor::TYPE_ARTICLE, $article)->getVisitorCountPerSite() }}
+                    </p>
+                </div>
             </div>
             <div class="flex flex-col gap-10 animate-fade mt-4">
                 {!! $article->content !!}

@@ -43,24 +43,28 @@
                                 <img src="{{ $articleItem->thumbnail() }}" class="w-96 object-cover" alt="Album" />
                             </figure>
                             <div class="card-body w-96 gap-4">
-                                <div
-                                    class="badge badge-primary animate-pulse py-3 px-3 badge-outline text-xs p-2 md:text-base">
-                                    New
+                                <div class="flex justify-between">
+                                    <div
+                                        class="badge badge-primary animate-pulse py-3 px-3 badge-outline text-xs p-2 md:text-base">
+                                        New
+                                    </div>
+                                    <div class="flex gap-2 items-center">
+                                        <span class="mdi mdi-eye text-sm text-gray-500"></span>
+                                        <p class="text-sm text-gray-500">
+                                            {{ visits(\App\Models\Visitor::TYPE_ARTICLE, $articleItem)->getVisitorCountPerSite() }}
+                                        </p>
+                                    </div>
                                 </div>
+
                                 <h2 class="card-title font-bold">{{ $articleItem->title }}
                                 </h2>
-                                <p class="text-sm 2xl:w-8/12">There are many variations of passages of Lorem Ipsum
-                                    available. There are
-                                    many
-                                    variations of passages
-                                    of Lorem Ipsum available. There are many variations of passages of Lorem Ipsum
-                                    available....
+                                <p class="text-sm 2xl:w-8/12">{!! Str::limit(strip_tags($articleItem->content), 250) !!}
                                 </p>
                                 <div class="flex gap-3 iitem-center mt-4">
                                     <div class="flex flex-col">
                                         <div class="avatar">
                                             <div class="w-8 rounded-full">
-                                                <img src="{{ $articleItem->user->avatar ? $articleItem->user->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $article->user->username . '&size=150' }}"
+                                                <img src="{{ $articleItem->user->avatar ? $articleItem->user->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $articleItem->user->username . '&size=150' }}"
                                                     alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>

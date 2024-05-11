@@ -12,6 +12,7 @@
                 <th class="text-left font-bold text-sm">Published At</th>
                 <th class="text-left font-bold text-sm">Created At</th>
                 <th class="text-left font-bold text-sm">Updated At</th>
+                <th class="text-left font-bold text-sm">Watched</th>
                 <th class="text-left font-bold text-sm">Action</th>
             </tr>
         </thead>
@@ -63,11 +64,12 @@
                     <td>{{ $article->user->name }}</td>
                     <td>{{ $article->title ?? '-' }}</td>
                     <td>{{ $article->slug ?? '-' }}</td>
-                    <td>{{ $article->meta_desc ?  Str::limit(strip_tags($article->meta_desc), 30) : '-' }}</td>
-                    <td>{{ $article->meta_keyword ?  Str::limit(strip_tags($article->meta_keyword), 30) : '-' }}</td>
+                    <td>{{ $article->meta_desc ? Str::limit(strip_tags($article->meta_desc), 30) : '-' }}</td>
+                    <td>{{ $article->meta_keyword ? Str::limit(strip_tags($article->meta_keyword), 30) : '-' }}</td>
                     <td>{{ $article->published_at ?? '-' }}</td>
                     <td>{{ $article->created_at }}</td>
                     <td>{{ $article->updated_at }}</td>
+                    <td> {{ visits(\App\Models\Visitor::TYPE_ARTICLE, $article)->getVisitorCountPerSite() }}</td>
                     <td>
                         <div class="flex gap-2">
                             <a href="{{ route(request()->user()->role->name . '.dashboard.articles.edit', $article) }}"

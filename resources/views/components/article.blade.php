@@ -25,6 +25,12 @@
             <h2 class="card-title font-bold">{{ $article->title }}</h2>
             <p class="text-sm text-left break-all"> {!! Str::limit(strip_tags($article->content), 100) !!}
             </p>
+            <div class="flex gap-2 items-center">
+                <span class="mdi mdi-eye text-sm text-gray-500"></span>
+                <p class="text-sm text-gray-500">
+                    {{ visits(\App\Models\Visitor::TYPE_ARTICLE, $article)->getVisitorCountPerSite() }}
+                </p>
+            </div>
         </div>
     </div>
 </a>

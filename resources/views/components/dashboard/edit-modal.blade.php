@@ -1,5 +1,6 @@
 @props(['elements' => [], 'title' => 'Create', 'route' => '', 'idModal' => '', 'idRoute' => ''])
 
+{{-- @dd($idRoute) --}}
 
 <input type="checkbox" id="modal_edit_{{ $idModal }}" class="modal-toggle" />
 <div class="modal" role="dialog">

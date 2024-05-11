@@ -136,8 +136,7 @@
                                     'is_required' => 'true',
                                 ],
                             ]" route="admin.dashboard.weavers.update"
-                                idRoute="{{ $weaver->id }}" title="Edit Weaver"
-                                :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                :idRoute="$weaver" title="Edit Weaver" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
                 </tr>

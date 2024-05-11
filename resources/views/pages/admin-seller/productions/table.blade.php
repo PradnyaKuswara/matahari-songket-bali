@@ -28,11 +28,11 @@
                     <td>{{ $production->updated_at }}</td>
                     <td>
                         <div class="flex gap-2">
-                            <a href="{{ route(request()->user()->role->name . '.dashboard.productions.edit', $production->id) }}"
+                            <a href="{{ route(request()->user()->role->name . '.dashboard.productions.edit', $production) }}"
                                 class=" text-black"><span class="mdi mdi-pencil text-xl text-success"></span></a>
 
                             <form
-                                action="{{ route(request()->user()->role->name . '.dashboard.productions.destroy', $production->id) }}"
+                                action="{{ route(request()->user()->role->name . '.dashboard.productions.destroy', $production) }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')

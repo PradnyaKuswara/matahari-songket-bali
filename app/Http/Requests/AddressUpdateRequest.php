@@ -30,9 +30,4 @@ class AddressUpdateRequest extends FormRequest
             'additional_information' => ['required', 'string', 'max:255'],
         ];
     }
-
-    protected function getRedirectUrl()
-    {
-        return parent::getRedirectUrl().'#profile-address';
-    }
 }

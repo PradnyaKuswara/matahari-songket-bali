@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Traits\UseUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +18,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class User extends Authenticatable implements AuditableContract, MustVerifyEmail
 {
-    use Auditable, HasApiTokens, HasFactory, Notifiable;
+    use Auditable, HasApiTokens, HasFactory, Notifiable, UseUuid;
 
     const IMAGE_PATH = 'avatars';
 
@@ -75,6 +76,11 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
         return $this->hasMany(Address::class);
     }
 
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
     public function avatar(): string
     {
         return Storage::url($this->avatar);
@@ -98,5 +104,10 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
     public function isWeaver(): bool
     {
         return $this->role->name === 'weaver';
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
     }
 }

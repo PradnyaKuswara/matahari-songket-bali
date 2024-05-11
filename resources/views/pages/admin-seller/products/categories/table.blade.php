@@ -18,8 +18,8 @@
                     <td>{{ $productCategory->updated_at }}</td>
                     <td>
                         <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
-                            <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"
-                                @click="toggle()"><span class="mdi mdi-pencil text-xl text-success"></label>
+                            <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer" @click="toggle()"><span
+                                    class="mdi mdi-pencil text-xl text-success"></label>
 
                             <x-dashboard.edit-modal :elements="[
                                 [
@@ -31,9 +31,9 @@
                                     'placeholder' => 'Enter your item name',
                                     'is_required' => 'true',
                                 ],
-                            ]" route="{{ request()->user()->role->name }}.dashboard.products.categories.update"
-                                idRoute="{{ $productCategory->id }}" title="Edit Product Post"
-                                :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                            ]"
+                                route="{{ request()->user()->role->name }}.dashboard.products.categories.update"
+                                :idRoute="$productCategory" title="Edit Product Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
                 </tr>

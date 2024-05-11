@@ -30,7 +30,7 @@ Route::controller(ProductController::class)->prefix('products')->name('products.
 
 Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('detail', 'detail')->name('detail');
+    Route::get('detail/{article}', 'detail')->name('detail');
 });
 
 Route::get('about', [AboutController::class, 'index'])->name('about');

@@ -61,6 +61,10 @@ class ProfileController extends Controller
             return Redirect::route('customer.dashboard.profile.edit')->with('status', 'profile-updated');
         }
 
+        if ($request->user()->isSeller()) {
+            return Redirect::route('seller.dashboard.profile.edit')->with('status', 'profile-updated');
+        }
+
         return Redirect::route('dashboard.index')->with('status', 'profile-updated');
     }
 
@@ -80,6 +84,10 @@ class ProfileController extends Controller
 
         if ($request->user()->isCustomer()) {
             return Redirect::route('customer.dashboard.profile.edit')->with('status', 'password-updated');
+        }
+
+        if ($request->user()->isSeller()) {
+            return Redirect::route('seller.dashboard.profile.edit')->with('status', 'profile-updated');
         }
 
         return Redirect::route('dashboard.index')->with('status', 'password-updated');

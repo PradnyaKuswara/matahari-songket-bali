@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UseUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class ItemCategory extends Model implements AuditableContract
 {
-    use Auditable, HasFactory;
+    use Auditable, HasFactory, UseUuid;
 
     protected $fillable = [
         'name',
@@ -19,5 +20,10 @@ class ItemCategory extends Model implements AuditableContract
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
     }
 }

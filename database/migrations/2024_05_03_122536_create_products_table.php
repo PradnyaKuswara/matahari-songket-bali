@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
 
             $table->foreignId('product_category_id')->constrained('product_categories')->cascadeOnDelete();
 
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('color')->nullable();
             $table->string('type')->default('aquired')->nullable();
+            $table->string('slug')->unique();
             $table->boolean('is_active')->default(true);
 
             $table->timestamps();

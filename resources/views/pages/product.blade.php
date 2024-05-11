@@ -66,7 +66,7 @@
                 <x-loading-card></x-loading-card>
 
             </div>
-            <x-pagination></x-pagination>
+            {{-- <x-pagination></x-pagination> --}}
         </div>
     </section>
 @endsection

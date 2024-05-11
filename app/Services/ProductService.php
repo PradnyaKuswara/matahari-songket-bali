@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ProductRequest;
 use App\Interfaces\ProductInterface;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,6 +22,8 @@ class ProductService
 
     public function create(array $data)
     {
+        $data['slug'] = $data['name'];
+
         for ($i = 0; $i < 4; $i++) {
             $image = 'image_'.($i + 1);
             if (isset($data[$image])) {
@@ -31,8 +34,12 @@ class ProductService
         return $this->productInterface->create($data);
     }
 
-    public function update(array $data, $product)
+    public function update(ProductRequest $request, array $data, $product)
     {
+
+        if ($request->name !== $product->name) {
+            $data['slug'] = $data['name'];
+        }
 
         for ($i = 0; $i < 4; $i++) {
             $image = 'image_'.($i + 1);

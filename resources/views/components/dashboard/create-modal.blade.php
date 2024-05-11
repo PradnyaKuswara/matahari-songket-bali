@@ -32,7 +32,7 @@
                                     <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
                                         placeholder="{{ $element['placeholder'] }}" class="form-input"
                                         value="{{ old($element['name']) }}" name="{{ $element['name'] }}" minlength="1"
-                                        maxlength="30" />
+                                        maxlength="50" />
                                     <button type="button" class="color-picker text-white">--</button>
                                 </div>
 
@@ -43,7 +43,7 @@
                                 <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
                                     placeholder="{{ $element['placeholder'] }}" class="form-input"
                                     name="{{ $element['name'] }}" value="{{ old($element['name']) }}" minlength="1"
-                                    maxlength="30" />
+                                    maxlength="50" />
                                 @error($element['name'])
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror

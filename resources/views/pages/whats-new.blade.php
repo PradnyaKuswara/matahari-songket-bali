@@ -4,6 +4,17 @@
     What's New | Matahari Songket Bali
 @endsection
 
+@push('css')
+    <style>
+        #preview-container>img {
+            width: 380px;
+            height: 180px;
+            /* border: 2px solid rgb(219, 219, 219); */
+            object-fit: cover;
+        }
+    </style>
+@endpush
+
 @section('content')
     <section id="hero">
         <div
@@ -11,13 +22,11 @@
             <div class="hero-content text-center">
                 <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
                     class="max-w-xl">
-                    <h1 class="text-5xl font-bold w-full " :class="intersect ? 'animate-fade-down' : 'opacity-0'">What is
-                        Lorem Ipsum?</h1>
-                    <p class="py-6 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">Lorem Ipsum is simply dummy
-                        text of the printing and typesetting
-                        industry. Lorem Ipsum
-                        has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley</p>
+                    <h1 class="text-5xl font-bold w-full " :class="intersect ? 'animate-fade-down' : 'opacity-0'">Discover
+                        the Beauty of Bali's Songket</h1>
+                    <p class="py-6 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">Explore our collection of
+                        articles showcasing the rich tradition and exquisite craftsmanship of Bali's traditional songket.
+                        Immerse yourself in the stories behind these beautiful pieces of artistry.</p>
                 </div>
             </div>
         </div>
@@ -27,18 +36,21 @@
             class="min-h-screen 2xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto md:px-14 lg:px-0 lg:py-2 animate-fade-right">
             <div class="swiper swiperArticle">
                 <div class="swiper-wrapper max-w-screen-lg mx-auto mb-8">
-                    @for ($i = 0; $i < 3; $i++)
-                        <div class="swiper-slide card  md:card-side bg-base-100 w-full ">
-                            <figure><img src="{{ asset('assets/images/hero2.jpg') }}" class="w-96 rounded-md"
-                                    alt="Album" />
+                    @forelse ($articlesSwiper as $articleItem)
+                        <a href="{{ route('whats-new.detail', $articleItem) }}"
+                            class="swiper-slide card  md:card-side bg-base-100 w-full ">
+                            <figure id="">
+                                <img src="{{ $articleItem->thumbnail() }}" class="w-96 object-cover" alt="Album" />
                             </figure>
                             <div class="card-body w-96 gap-4">
-                                <div class="badge badge-neutral py-3 px-3 badge-outline text-xs p-2 md:text-base">Songket
+                                <div
+                                    class="badge badge-primary animate-pulse py-3 px-3 badge-outline text-xs p-2 md:text-base">
+                                    New
                                 </div>
-                                <h2 class="card-title font-bold">There are many variations of passages of Lorem Ipsum
-                                    available
+                                <h2 class="card-title font-bold">{{ $articleItem->title }}
                                 </h2>
-                                <p class="text-sm 2xl:w-8/12">There are many variations of passages of Lorem Ipsum available. There are
+                                <p class="text-sm 2xl:w-8/12">There are many variations of passages of Lorem Ipsum
+                                    available. There are
                                     many
                                     variations of passages
                                     of Lorem Ipsum available. There are many variations of passages of Lorem Ipsum
@@ -48,34 +60,33 @@
                                     <div class="flex flex-col">
                                         <div class="avatar">
                                             <div class="w-8 rounded-full">
-                                                <img
-                                                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                                <img src="{{ $articleItem->user->avatar ? $articleItem->user->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $article->user->username . '&size=150' }}"
+                                                    alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex gap-4">
                                         <div class="flex flex-col">
-                                            <p class="text-xs">By: Matahari Songket Bali</p>
-                                            <p class="text-xs">18 Jun 2022</p>
+                                            <p class="text-xs">By: {{ $articleItem->user->name }}</p>
+                                            <p class="text-xs">{{ $articleItem->published_at->format('d F Y') }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endfor
+                        </a>
+                    @empty
+                    @endforelse
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
 
+            <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10 animate-fade-down">
+                @include('pages.whats-new-data')
+            </div>
+            <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10">
+                <button id="load-more" class="btn btn-primary btn-outline">Load More</button>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10 animate-fade-down">
-                @for ($i = 0; $i < 6; $i++)
-                    <x-article class="shadow-md" />
-                @endfor
-            </div>
-            <div class="flex flex-col item-center mb-10">
-                <x-pagination></x-pagination>
-            </div>
         </div>
     </section>
 @endsection
@@ -93,5 +104,39 @@
                 el: ".swiper-pagination",
             },
         });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        let endpoint = "{{ route('whats-new.index') }}";
+        let page = 1;
+
+        $(document).on('click', '#load-more', function() {
+            page++;
+            // console.log(page);
+            loadMoreData(page);
+        });
+
+        function loadMoreData(page) {
+            $.ajax({
+                url: endpoint + '?page=' + page,
+                type: 'get',
+                beforeSend: function() {
+                    $('#load-more').text('Loading...');
+                    console.log(this.url);
+                }
+            }).done(function(data) {
+                if (data.html == "") {
+                    $('#load-more').hide();
+                    return;
+                }
+                console.log(data.html);
+                $('#article-list').append(data.html);
+                $('#load-more').text('Load More');
+            }).fail(function(jqXHR, ajaxOptions, thrownError) {
+                alert('server not responding...');
+            });
+        }
     </script>
 @endpush

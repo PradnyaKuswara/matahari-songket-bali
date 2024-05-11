@@ -42,7 +42,7 @@
                                 [
                                     'name' => 'name',
                                     'id' => 'inputName',
-                                    'label' => 'Input Name',
+                                    'label' => 'Name',
                                     'type' => 'text',
                                     'value' => $item->name,
                                     'placeholder' => 'Enter your item name',
@@ -51,7 +51,7 @@
                                 [
                                     'name' => 'price',
                                     'id' => 'inputPrice',
-                                    'label' => 'Input Price',
+                                    'label' => 'Price',
                                     'type' => 'number',
                                     'value' => $item->price,
                                     'placeholder' => 'Enter your item price',
@@ -67,14 +67,14 @@
                                     'is_required' => 'true',
                                 ],
                             ]" route="{{ request()->user()->role->name }}.dashboard.items.update"
-                                idRoute="{{ $item->id }}" title="Edit Item Post"
+                                :idRoute="$item " title="Edit Item Post"
                                 :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">No data available</td>
+                    <td colspan="7" class="text-center">No data available</td>
                 </tr>
             @endforelse
         </tbody>

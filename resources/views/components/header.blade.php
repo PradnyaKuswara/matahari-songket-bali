@@ -61,6 +61,16 @@
                         </li>
                     @endif
 
+                    @if (auth()->user()->role->name == 'seller')
+                        <li><a href="{{ route('seller.dashboard.index') }}">Dashboard</a></li>
+                        <li>
+                            <a href="{{ route('seller.dashboard.profile.edit') }}" class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                    @endif
+
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <li><button type="submit" class="w-full">Logout</button></li>
@@ -108,6 +118,17 @@
                             <li><a href="{{ route('customer.dashboard.index') }}">Dashboard</a></li>
                             <li>
                                 <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
+                                    Profile
+                                    <span class="badge">New</span>
+                                </a>
+                            </li>
+                    @endif
+
+                    @if (auth()->check() && auth()->user()->role->name == 'seller')
+                        <div class="mt-4">
+                            <li><a href="{{ route('seller.dashboard.index') }}">Dashboard</a></li>
+                            <li>
+                                <a href="{{ route('seller.dashboard.profile.edit') }}" class="justify-between">
                                     Profile
                                     <span class="badge">New</span>
                                 </a>

@@ -20,9 +20,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(AddressController::class)->prefix('address')->name('address.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
-        Route::get('/edit/{address}', 'edit')->name('edit');
         Route::patch('/update/{address}', 'update')->name('update');
         Route::patch('/update-status/{address}', 'updateStatus')->name('update-status');
         Route::delete('/delete/{address}', 'destroy')->name('destroy');

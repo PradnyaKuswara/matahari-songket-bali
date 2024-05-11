@@ -83,21 +83,86 @@
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div class="flex gap-4  items-center">
 
-                                    <a href="{{ route('customer.dashboard.address.edit', $address) }}"
-                                        class="btn btn-warning btn-sm text-white">Edit address</a>
+                                    <div x-data="modalEdit{{ $loop->iteration }}">
+                                        <label for="modal_edit_{{ $loop->iteration }}"
+                                            class="btn btn-warning btn-sm text-white" @click="toggle()">Edit
+                                            address</label>
 
-                                    <form action="{{ route('customer.dashboard.address.destroy', $address) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div x-data="modal">
-                                            <button type="button" class="btn btn-error text-white btn-sm">
-                                                Delete address</button>
-                                            <x-dashboard.confirm-modal-action
-                                                modalId="delete-data-{$address->created_at}" title="Delete Address"
-                                                description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
-                                        </div>
-                                    </form>
+                                        <x-dashboard.edit-modal :elements="[
+                                            [
+                                                'name' => 'country',
+                                                'id' => 'inputCountry',
+                                                'label' => 'Country',
+                                                'type' => 'text',
+                                                'value' => $address->country,
+                                                'placeholder' => 'Enter your country',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
+                                                'name' => 'province',
+                                                'id' => 'inputProvince',
+                                                'label' => 'Province',
+                                                'type' => 'text',
+                                                'value' => $address->province,
+                                                'placeholder' => 'Enter your province',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
+                                                'name' => 'city',
+                                                'id' => 'inputCity',
+                                                'label' => 'City',
+                                                'type' => 'text',
+                                                'value' => $address->city,
+                                                'placeholder' => 'Enter your city',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
+                                                'name' => 'postal_code',
+                                                'id' => 'inputPostalCode',
+                                                'label' => 'Postal Code',
+                                                'type' => 'text',
+                                                'value' => $address->postal_code,
+                                                'placeholder' => 'Enter your postal code',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
+                                                'name' => 'address',
+                                                'id' => 'inputAddress',
+                                                'label' => 'Address',
+                                                'type' => 'text',
+                                                'value' => $address->address,
+                                                'placeholder' => 'Enter your address',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
+                                                'name' => 'additional_information',
+                                                'id' => 'inputAdditionalInformation',
+                                                'label' => 'Additional Information',
+                                                'type' => 'text',
+                                                'value' => $address->additional_information,
+                                                'placeholder' => 'Enter your additional information',
+                                                'is_required' => 'true',
+                                            ],
+                                        ]"
+                                            route="customer.dashboard.address.update" :idRoute="$address"
+                                            title="Edit Address User" :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                    </div>
+
+                                    <div>
+                                        <form action="{{ route('customer.dashboard.address.destroy', $address) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div x-data="modal">
+                                                <button type="button"
+                                                    class="btn btn-error btn-sm text-white"
+                                                    @click="toggle">Delete address</button>
+                                                <x-dashboard.confirm-modal-action :modalId="$address->created_at" title="Status"
+                                                    description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </dd>
                         </div>

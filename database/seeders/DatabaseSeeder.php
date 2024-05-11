@@ -32,5 +32,19 @@ class DatabaseSeeder extends Seeder
             'email' => 'customer@gmail.com',
             'role_id' => Role::where('name', 'customer')->first()->id,
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'seller',
+            'username' => 'seller',
+            'email' => 'seller@gmail.com',
+            'role_id' => Role::where('name', 'seller')->first()->id,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'weaver',
+            'username' => 'weaver',
+            'email' => 'weaver@gmail.com',
+            'role_id' => Role::where('name', 'weaver')->first()->id,
+        ]);
     }
 }

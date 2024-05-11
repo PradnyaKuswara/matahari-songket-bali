@@ -43,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Interfaces\ProductionInterface::class,
             \App\Repositories\ProductionRepository::class
         );
+        $this->app->bind(
+            \App\Interfaces\ArticleInterface::class,
+            \App\Repositories\ArticleRepository::class
+        );
     }
 
     /**

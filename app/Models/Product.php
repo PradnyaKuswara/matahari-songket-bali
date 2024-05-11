@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\Slugable;
+use App\Traits\UseUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +14,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Product extends Model implements AuditableContract
 {
-    use Auditable, HasFactory;
+    use Auditable, HasFactory, Slugable, UseUuid;
 
     const IMAGE_PATH = 'products';
 
@@ -30,6 +32,7 @@ class Product extends Model implements AuditableContract
         'color',
         'type',
         'is_active',
+        'slug',
     ];
 
     public function productCategory(): BelongsTo

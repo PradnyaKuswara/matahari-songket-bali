@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class SearchService
 {
@@ -12,9 +13,24 @@ class SearchService
     {
         $model = $table;
 
+        if ($model instanceof \Illuminate\Database\Eloquent\Builder) {
+            $model = $model->getModel();
+            $columns = Schema::getColumnListing($model->getTable());
+            $validConditions = array_filter($conditions, function ($condition) use ($columns) {
+                return in_array($condition, $columns);
+            });
+
+            $model = $table;
+        } else {
+            $columns = Schema::getColumnListing($model->getTable());
+            $validConditions = array_filter($conditions, function ($condition) use ($columns) {
+                return in_array($condition, $columns);
+            });
+        }
+
         if (! empty($request->get($this->key))) {
 
-            foreach ($conditions as $key => $value) {
+            foreach ($validConditions as $key => $value) {
                 if ($key === 0) {
                     $model = $model->where($value, 'LIKE', '%'.$request->get($this->key).'%');
 
@@ -25,10 +41,16 @@ class SearchService
             }
 
             if (! empty($relations)) {
-
                 foreach ($relations as $relation) {
-                    $model = $model->orWhereHas($relation, function ($query) use ($conditions, $request) {
-                        foreach ($conditions as $key => $value) {
+                    $model = $model->with($relation);
+                    $relatedModel = $model->getRelation($relation)->getRelated();
+                    $relatedColumns = Schema::getColumnListing($relatedModel->getTable());
+                    $validRelationConditions = array_filter($conditions, function ($condition) use ($relatedColumns) {
+                        return in_array($condition, $relatedColumns);
+                    });
+
+                    $model = $model->orWhereHas($relation, function ($query) use ($validRelationConditions, $request) {
+                        foreach ($validRelationConditions as $key => $value) {
                             if ($key === 0) {
                                 $query->where($value, 'LIKE', '%'.$request->get($this->key).'%');
 

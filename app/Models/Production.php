@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\UseUuid;
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Production extends Model
 {
-    use HasFactory, UseUuid;
+    use HasFactory, Uuid;
 
     protected $fillable = [
         'name',

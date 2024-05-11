@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Traits\UseUuid;
+use App\Traits\Uuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,7 +18,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class User extends Authenticatable implements AuditableContract, MustVerifyEmail
 {
-    use Auditable, HasApiTokens, HasFactory, Notifiable, UseUuid;
+    use Auditable, HasApiTokens, HasFactory, Notifiable, Uuid;
 
     const IMAGE_PATH = 'avatars';
 

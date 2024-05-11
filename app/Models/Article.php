@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Slugable;
-use App\Traits\UseUuid;
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ use OwenIt\Auditing\Contracts\Auditable as ContractsAuditable;
 
 class Article extends Model implements ContractsAuditable
 {
-    use Auditable, HasFactory, Slugable, UseUuid;
+    use Auditable, HasFactory, Slugable, Uuid;
 
     const IMAGE_PATH = 'articles';
 

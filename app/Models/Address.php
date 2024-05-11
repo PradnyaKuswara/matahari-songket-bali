@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\UseUuid;
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +11,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Address extends Model implements AuditableContract
 {
-    use Auditable, HasFactory, UseUuid;
+    use Auditable, HasFactory, Uuid;
 
     protected $fillable = [
         'user_id',

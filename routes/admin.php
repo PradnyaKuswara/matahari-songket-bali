@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
@@ -87,5 +88,16 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::delete('delete/{production}', 'destroy')->name('destroy');
         Route::get('/search', 'search')->name('search');
         Route::get('/all-weaver-json', 'allWeaverJson')->name('allWeaverJson');
+    });
+
+    Route::controller(ArticleController::class)->prefix('articles')->name('articles.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('edit/{article}', 'edit')->name('edit');
+        Route::patch('update/{article}', 'update')->name('update');
+        Route::patch('toggleActive/{article}', 'toggleActive')->name('toggleActive');
+        Route::delete('delete/{article}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
     });
 });

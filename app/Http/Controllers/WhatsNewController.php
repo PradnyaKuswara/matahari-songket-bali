@@ -2,15 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Services\ArticleService;
+use Illuminate\Http\Request;
+
 class WhatsNewController extends Controller
 {
-    public function index()
+    protected $articleService;
+
+    public function __construct(ArticleService $articleService)
     {
-        return view('pages.whats-new');
+        $this->articleService = $articleService;
     }
 
-    public function detail()
+    public function index(Request $request)
     {
-        return view('pages.whats-new-detail');
+        $articles = $this->articleService->all()->latest()->paginate(9);
+
+        if ($request->ajax()) {
+            $view = view('pages.whats-new-data', compact('articles'))->render();
+
+            return response()->json(['html' => $view]);
+        }
+
+        return view('pages.whats-new', [
+            'articles' => $articles,
+            'articlesSwiper' => $this->articleService->all()->latest()->take(3)->get(),
+        ]);
+    }
+
+    public function detail(Article $article)
+    {
+        // dd($article);
+        return view('pages.whats-new-detail', [
+            'article' => $article,
+            'articles' => $this->articleService->all()->where('slug', '!=', $article->slug)
+                ->inRandomOrder()
+                ->take(3)
+                ->get(),
+        ]);
     }
 }

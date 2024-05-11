@@ -19,7 +19,8 @@
                 </div>
 
                 <div class="shrink-0">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="image" class="w-32 lg:w-40 ltr:ml-auto rtl:mr-auto" />
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="image"
+                        class="w-32 lg:w-40 ltr:ml-auto rtl:mr-auto" />
                 </div>
             </div>
 
@@ -85,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="table-responsive mt-6">
+            {{-- <div class="table-responsive mt-6">
                 <table class="table-striped">
                     <thead>
                         <tr>
@@ -106,7 +107,7 @@
                         </template>
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
 
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-1">
                 <div></div>

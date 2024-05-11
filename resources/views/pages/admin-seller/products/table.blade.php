@@ -5,6 +5,7 @@
                 <th class="text-left  font-bold text-sm">Status</th>
                 <th class="text-left  font-bold text-sm">Image</th>
                 <th class="text-left  font-bold text-sm">Color</th>
+                <th class="text-left  font-bold text-sm">Category</th>
                 <th class="text-left  font-bold text-sm">Name</th>
                 <th class="text-left  font-bold text-sm">Stock</th>
                 <th class="text-left  font-bold text-sm">Goods Price</th>
@@ -22,7 +23,7 @@
                     @if ($product->is_active)
                         <td>
                             <form
-                                action="{{ route(request()->user()->role->name . '.dashboard.products.toggleActive', $product->id) }}"
+                                action="{{ route(request()->user()->role->name . '.dashboard.products.toggleActive', $product) }}"
                                 method="POST">
                                 @csrf
                                 @method('PATCH')
@@ -38,7 +39,7 @@
                     @else
                         <td>
                             <form
-                                action="{{ route(request()->user()->role->name . '.dashboard.products.toggleActive', $product->id) }}"
+                                action="{{ route(request()->user()->role->name . '.dashboard.products.toggleActive', $product) }}"
                                 method="POST">
                                 @csrf
                                 @method('PATCH')
@@ -102,6 +103,7 @@
                         @endif
 
                     </td>
+                    <td>{{ $product->productCategory->name }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->goods_price }}</td>
@@ -216,15 +218,14 @@
                                     'is_required' => 'true',
                                 ],
                             ]"
-                                route="{{ request()->user()->role->name }}.dashboard.products.update"
-                                idRoute="{{ $product->id }}" title="Edit Product Post"
-                                :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                route="{{ request()->user()->role->name }}.dashboard.products.update" :idRoute="$product"
+                                title="Edit Product Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="11" class="text-center">No data available</td>
+                    <td colspan="12" class="text-center">No data available</td>
                 </tr>
             @endforelse
         </tbody>

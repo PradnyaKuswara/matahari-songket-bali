@@ -131,10 +131,8 @@
                                         'placeholder' => 'Enter your customer email',
                                         'is_required' => 'true',
                                     ],
-
                                 ]" route="admin.dashboard.customers.update"
-                                    idRoute="{{ $customer->id }}" title="Edit Customer"
-                                    :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                    :idRoute="$customer" title="Edit Customer" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                             </div>
 
                             <a href="{{ route('admin.dashboard.customers.showMenu', $customer->id) }}"

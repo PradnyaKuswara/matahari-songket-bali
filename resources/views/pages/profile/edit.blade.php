@@ -125,6 +125,10 @@
                             <form action="{{ route('customer.dashboard.profile.update') }}" method="POST"
                                 enctype="multipart/form-data">
                         @endif
+                        @if ($user->isSeller())
+                            <form action="{{ route('seller.dashboard.profile.update') }}" method="POST"
+                                enctype="multipart/form-data">
+                        @endif
                         @csrf
                         @method('PATCH')
                         <div class="grid lg:grid-cols-2 gap-6 mb-4">
@@ -236,14 +240,17 @@
                             phone number as part of the password.</p>
                         <p class="text-muted text-xs">* Do not use the same password for various online services.</p>
                     </div>
-                    @if (auth()->user()->isAdmin())
+                    @if ($user->isAdmin())
                         <form action="{{ route('admin.dashboard.profile.update-password') }}" method="POST">
                     @endif
 
-                    @if (auth()->user()->isCustomer())
+                    @if ($user->isCustomer())
                         <form action="{{ route('customer.dashboard.profile.update-password') }}" method="POST">
                     @endif
-
+                    @if ($user->isSeller())
+                        <form action="{{ route('seller.dashboard.profile.update-password') }}" method="POST"
+                            enctype="multipart/form-data">
+                    @endif
                     @csrf
                     @method('PATCH')
 

@@ -131,8 +131,7 @@
                                 </div>
                                 <div class="truncate ltr:pl-4 rtl:pr-4">
                                     <h4 class="text-base">
-                                        {{ auth()->user()->username }}<span
-                                            class="rounded bg-success-light px-1 text-xs text-success ltr:ml-2 rtl:ml-2">Pro</span>
+                                        {{ auth()->user()->username }}
                                     </h4>
                                     <a class="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white"
                                         href="javascript:;">{{ auth()->user()->email }}</a>
@@ -141,7 +140,7 @@
                         </li>
                         @if (auth()->user()->isAdmin())
                             <li>
-                                <a href="{{ route('admin.dashboard.profile.edit', auth()->user()) }}"
+                                <a href="{{ route('admin.dashboard.profile.edit') }}"
                                     class="dark:hover:text-white" @click="toggle">
                                     <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +156,23 @@
 
                         @if (auth()->user()->isCustomer())
                             <li>
-                                <a href="{{ route('customer.dashboard.profile.edit', auth()->user()->id) }}"
+                                <a href="{{ route('customer.dashboard.profile.edit') }}"
+                                    class="dark:hover:text-white" @click="toggle">
+                                    <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="6" r="4" stroke="currentColor"
+                                            stroke-width="1.5" />
+                                        <path opacity="0.5"
+                                            d="M20 17.5C20 19.9853 20 22 12 22C4 22 4 19.9853 4 17.5C4 15.0147 7.58172 13 12 13C16.4183 13 20 15.0147 20 17.5Z"
+                                            stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                    Profile</a>
+                            </li>
+                        @endif
+
+                        @if (auth()->user()->isSeller())
+                            <li>
+                                <a href="{{ route('seller.dashboard.profile.edit') }}"
                                     class="dark:hover:text-white" @click="toggle">
                                     <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

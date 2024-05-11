@@ -55,7 +55,7 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $this->productService->update($request->validated(), $product);
+        $this->productService->update($request, $request->validated(), $product);
 
         Toaster::success('Product updated successfully');
 

@@ -26,11 +26,6 @@ class AddressController extends Controller
         ]);
     }
 
-    public function create(): View
-    {
-        return view('pages.customer.addresses.create');
-    }
-
     public function store(AddressUpdateRequest $request): RedirectResponse
     {
         $this->addressService->create($request->validated(), $request->user());
@@ -38,15 +33,6 @@ class AddressController extends Controller
         Toaster::success('Address created successfully');
 
         return redirect()->route('customer.dashboard.address.index');
-    }
-
-    public function edit(Address $address): View
-    {
-        $this->authorize('customer-address', $address);
-
-        return view('pages.customer.addresses.edit', [
-            'address' => $this->addressService->find($address),
-        ]);
     }
 
     public function update(AddressUpdateRequest $request, Address $address): RedirectResponse

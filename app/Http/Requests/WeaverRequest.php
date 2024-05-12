@@ -23,7 +23,7 @@ class WeaverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:users,name'],
             'gender' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date'],
             'phone_number' => ['required', new PhoneNumber],

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
-class CustomerRequest extends FormRequest
+class SellerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class CustomerRequest extends FormRequest
             'username' => ['required', 'string', 'max:255'],
             'gender' => ['nullable', 'string', 'max:255'],
             'date_of_birth' => ['nullable', 'date'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::when($this->conditionalEmailUpdate(), Rule::unique(User::class)->ignore($this->customer->id ?? null), 'unique:users,email')],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::when($this->conditionalEmailUpdate(), Rule::unique(User::class)->ignore($this->seller->id ?? null), 'unique:users,email')],
             'phone_number' => ['nullable', new PhoneNumber],
             'password' => [Rule::when($this->conditionalPasswordUpdate(), '', ['required', Rules\Password::defaults(), 'max:255'])],
         ];

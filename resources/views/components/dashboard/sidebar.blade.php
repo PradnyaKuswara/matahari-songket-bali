@@ -271,6 +271,15 @@
                                      </div>
                                  </a>
                              </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('admin.dashboard.sellers.index') }}" class="group">
+                                     <div class="flex items-center">
+                                         <span class="mdi mdi-account-details-outline text-xl"></span>
+                                         <span
+                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Seller</span>
+                                     </div>
+                                 </a>
+                             </li>
                          </ul>
                      </li>
 
@@ -326,7 +335,7 @@
                  @endif
 
                  @if (auth()->user()->isSeller())
-                     
+
                  @endif
              </ul>
          </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\WeaverController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,14 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/search', 'search')->name('search');
         Route::get('/show-menu/{customer}', 'showMenu')->name('showMenu');
         Route::get('/show-address/{customer}', 'showAddress')->name('showAddress');
+    });
+
+    Route::controller(SellerController::class)->prefix('sellers')->name('sellers.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('store', 'store')->name('store');
+        Route::patch('update/{seller}', 'update')->name('update');
+        Route::patch('toggleActive/{seller}', 'toggleActive')->name('toggleActive');
+        Route::get('/search', 'search')->name('search');
     });
 
     Route::controller(ProductionController::class)->prefix('productions')->name('productions.')->group(function () {

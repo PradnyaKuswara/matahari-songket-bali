@@ -16,34 +16,32 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($customers as $customer)
+            @forelse ($sellers as $seller)
                 <tr>
-                    @if ($customer->is_active)
+                    @if ($seller->is_active)
                         <td>
-                            <form action="{{ route('admin.dashboard.customers.toggleActive', $customer) }}"
-                                method="POST">
+                            <form action="{{ route('admin.dashboard.sellers.toggleActive', $seller) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
 
                                 <div x-data="modal">
                                     <button type="button" class="btn btn-outline btn-success btn-sm border-none"
                                         @click="toggle">Active</button>
-                                    <x-dashboard.confirm-modal-action :modalId="$customer->created_at" title="Status"
-                                        description="Are you sure update customer status?"></x-dashboard.confirm-modal-action>
+                                    <x-dashboard.confirm-modal-action :modalId="$seller->created_at" title="Status"
+                                        description="Are you sure update seller status?"></x-dashboard.confirm-modal-action>
                                 </div>
                             </form>
                         </td>
                     @else
                         <td>
-                            <form action="{{ route('admin.dashboard.customers.toggleActive', $customer) }}"
-                                method="POST">
+                            <form action="{{ route('admin.dashboard.sellers.toggleActive', $seller) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
                                 <div x-data="modal">
                                     <button type="button" class="btn btn-outline btn-error btn-sm border-none"
                                         @click="toggle">Inactive</button>
-                                    <x-dashboard.confirm-modal-action :modalId="$customer->created_at" title="Status"
-                                        description="Are you sure update customer status?"></x-dashboard.confirm-modal-action>
+                                    <x-dashboard.confirm-modal-action :modalId="$seller->created_at" title="Status"
+                                        description="Are you sure update seller status?"></x-dashboard.confirm-modal-action>
                                 </div>
                             </form>
                         </td>
@@ -52,23 +50,23 @@
                         <div class="flex items-center gap-3">
                             <div class="avatar">
                                 <div class="mask mask-squircle w-10 h-10">
-                                    <img src="{{ $customer->avatar ? $customer->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $customer->username . '&size=150' }}"
+                                    <img src="{{ $seller->avatar ? $seller->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $seller->username . '&size=150' }}"
                                         alt="Avatar Tailwind CSS Component" />
                                 </div>
                             </div>
                             <div>
-                                <div class="font-bold">{{ $customer->name }}</div>
+                                <div class="font-bold">{{ $seller->name }}</div>
                             </div>
                         </div>
                     </td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->username ?? '-' }}</td>
-                    <td>{{ $customer->gender ?? '-' }}</td>
-                    <td>{{ $customer->phone_number ?? '-' }}</td>
-                    <td>{{ $customer->date_of_birth ?? '-' }}</td>
-                    <td>{{ $customer->email_verified_at ?? '-' }}</td>
-                    <td>{{ $customer->created_at }}</td>
-                    <td>{{ $customer->updated_at }}</td>
+                    <td>{{ $seller->email }}</td>
+                    <td>{{ $seller->username ?? '-' }}</td>
+                    <td>{{ $seller->gender ?? '-' }}</td>
+                    <td>{{ $seller->phone_number ?? '-' }}</td>
+                    <td>{{ $seller->date_of_birth ?? '-' }}</td>
+                    <td>{{ $seller->email_verified_at ?? '-' }}</td>
+                    <td>{{ $seller->created_at }}</td>
+                    <td>{{ $seller->updated_at }}</td>
                     <td>
                         <div class="flex gap-2">
                             <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
@@ -81,8 +79,8 @@
                                         'id' => 'inputName',
                                         'label' => 'Name',
                                         'type' => 'text',
-                                        'value' => $customer->name,
-                                        'placeholder' => 'Enter your customer name',
+                                        'value' => $seller->name,
+                                        'placeholder' => 'Enter your seller name',
                                         'is_required' => 'true',
                                     ],
                                     [
@@ -90,8 +88,8 @@
                                         'id' => 'inputUserName',
                                         'label' => 'User Name',
                                         'type' => 'text',
-                                        'value' => $customer->username,
-                                        'placeholder' => 'Enter your customer username',
+                                        'value' => $seller->username,
+                                        'placeholder' => 'Enter your seller username',
                                         'is_required' => 'true',
                                     ],
                                     [
@@ -99,7 +97,7 @@
                                         'id' => 'inputGender',
                                         'label' => 'Gender',
                                         'type' => 'select',
-                                        'value' => $customer->gender,
+                                        'value' => $seller->gender,
                                         'options' => [
                                             [
                                                 'id' => 'men',
@@ -110,7 +108,7 @@
                                                 'name' => 'women',
                                             ],
                                         ],
-                                        'placeholder' => 'Select your customer gender',
+                                        'placeholder' => 'Select your seller gender',
                                         'is_required' => 'false',
                                     ],
                                     [
@@ -118,8 +116,8 @@
                                         'id' => 'inputDateOfBirth',
                                         'label' => 'Date of Birth',
                                         'type' => 'date',
-                                        'value' => $customer->date_of_birth,
-                                        'placeholder' => 'Enter your customer date of birth',
+                                        'value' => $seller->date_of_birth,
+                                        'placeholder' => 'Enter your seller date of birth',
                                         'is_required' => 'false',
                                     ],
                                     [
@@ -127,16 +125,13 @@
                                         'id' => 'inputEmail',
                                         'label' => 'Email',
                                         'type' => 'email',
-                                        'value' => $customer->email,
-                                        'placeholder' => 'Enter your customer email',
+                                        'value' => $seller->email,
+                                        'placeholder' => 'Enter your seller email',
                                         'is_required' => 'true',
                                     ],
-                                ]" route="admin.dashboard.customers.update"
-                                    :idRoute="$customer" title="Edit Customer" :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                ]" route="admin.dashboard.sellers.update"
+                                    :idRoute="$seller" title="Edit seller" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                             </div>
-
-                            <a href="{{ route('admin.dashboard.customers.showMenu', $customer) }}"
-                                class=" text-black"><span class="mdi mdi-cog text-primary text-xl"></span></a>
                         </div>
                     </td>
                 </tr>
@@ -149,6 +144,6 @@
     </table>
 
     <div class="mt-2">
-        {{ $customers->links('components.dashboard.pagination') }}
+        {{ $sellers->links('components.dashboard.pagination') }}
     </div>
 </div>

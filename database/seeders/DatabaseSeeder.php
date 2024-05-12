@@ -40,11 +40,22 @@ class DatabaseSeeder extends Seeder
             'role_id' => Role::where('name', 'seller')->first()->id,
         ]);
 
-        \App\Models\User::factory()->create([
+        $weaver = \App\Models\User::factory()->create([
             'name' => 'weaver',
             'username' => 'weaver',
+            'phone_number' => '081234567890',
+            'date_of_birth' => '1990-01-01',
+            'gender' => 'men',
             'email' => 'weaver@gmail.com',
             'role_id' => Role::where('name', 'weaver')->first()->id,
+        ]);
+
+        $weaver->addresses()->create([
+            'city' => 'Bandung',
+            'province' => 'Jawa Barat',
+            'address' => 'Jl. Raya Bandung',
+            'postal_code' => '40291',
+            'additional_information' => 'Rumah warna biru',
         ]);
     }
 }

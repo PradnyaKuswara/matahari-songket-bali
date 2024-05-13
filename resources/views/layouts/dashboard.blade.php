@@ -69,7 +69,7 @@
             <x-dashboard.topbar></x-dashboard>
 
                 <!-- start main content section -->
-                <div class="dvanimation animate__animated p-6" :class="[$store.app.animation]">
+                <div class="dvanimation animate__animated p-4 lg:p-6" :class="[$store.app.animation]">
                     @if (!auth()->user()->hasVerifiedEmail())
                         <div role="alert" class="alert alert-primary mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

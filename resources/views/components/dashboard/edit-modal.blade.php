@@ -1,6 +1,8 @@
 @props(['elements' => [], 'title' => 'Create', 'route' => '', 'idModal' => '', 'idRoute' => ''])
 
-{{-- @dd($idRoute) --}}
+@php
+    $incrementFile = 1;
+@endphp
 
 <input type="checkbox" id="modal_edit_{{ $idModal }}" class="modal-toggle" />
 <div class="modal" role="dialog">
@@ -120,8 +122,15 @@
 
                             <input id="{{ $element['id'] . $idModal }}" type="{{ $element['type'] }}"
                                 placeholder="{{ $element['placeholder'] }}"
-                                class=" file-input file-input-bordered file-input-ghost file-input-sm h-10 border-gray-200 text-sm"
+                                class="file-edit-{{ $idModal }} file-input file-input-bordered file-input-ghost file-input-sm h-10 border-gray-200 text-sm"
                                 accept="{{ $element['accept'] }}" name="{{ $element['name'] }}" />
+                            <div class="flex items-center">
+                                <div id="{{ $element['idPreview'] . $idModal }}"
+                                    style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);">
+                                    <img class="w-full h-full object-contain" id="{{ $element['idPreviewImage'] . $idModal }}"
+                                        src="{{ $element['value'] }}" alt="">
+                                </div>
+                            </div>
                             @error($element['name'])
                                 <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                             @enderror
@@ -149,6 +158,7 @@
 
                     if (this.status && this.modalId == this.idModal) {
                         document.getElementById(`modal_edit_${this.idModal}`).checked = true;
+                        this.previewImage();
                     } else {
                         document.getElementById(`modal_edit_${this.idModal}`).checked = false;
                     }
@@ -193,9 +203,26 @@
                     this.status = localStorage.getItem('x_modal_edit') == 'true' ? false : true;
                     this.modalId = localStorage.getItem('x_modal_edit_id') == this.idModal ? 0 : this
                         .idModal;
+
+                    if (this.status) {
+                        this.previewImage();
+                    }
+
                     localStorage.setItem('x_modal_edit', this.status);
                     localStorage.setItem('x_modal_edit_id', this.modalId);
                 },
+                previewImage() {
+                    const elementsTypeFileEdit = document.querySelectorAll(`.file-edit-${this.idModal}`);
+
+                    elementsTypeFileEdit.forEach((element, index) => {
+                        const previewEdit = new Preview();
+
+                        previewEdit.setImageNode(`preview-image-edit-${index+1}${this.idModal}`).setInputNode(
+                                element.id)
+                            .setParentNode(`preview-container-edit-${index+1}${this.idModal}`)
+                            .set();
+                    });
+                }
             }));
         });
     </script>

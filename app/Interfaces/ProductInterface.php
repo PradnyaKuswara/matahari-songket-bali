@@ -17,4 +17,6 @@ interface ProductInterface
     public function find($product);
 
     public function search($request, $model, $conditions, $relations);
+
+    public function searchFront($request, $model, $conditions, $relations);
 }

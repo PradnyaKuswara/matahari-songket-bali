@@ -1,6 +1,5 @@
 @props(['elements' => [], 'title' => 'Create', 'route' => ''])
 
-
 <input type="checkbox" id="modal_create" class="modal-toggle" />
 <div class="modal" role="dialog">
     <div class="modal-box w-12/12 md:max-w-3xl">
@@ -117,8 +116,16 @@
 
                             <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
                                 placeholder="{{ $element['placeholder'] }}"
-                                class=" file-input file-input-bordered file-input-ghost file-input-sm h-10 border-gray-200 text-sm"
+                                class="file-create file-input file-input-bordered file-input-ghost file-input-sm h-10 border-gray-200 text-sm"
                                 accept="{{ $element['accept'] }}" name="{{ $element['name'] }}" />
+                            {{-- <div id="{{ $element['idPreview'] }}" class="mb-3"></div> --}}
+                            <div class="flex items-center">
+                                <div id="{{ $element['idPreview'] }}"
+                                    style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);">
+                                    <img class="w-full h-full object-contain" id="{{ $element['idPreviewImage'] }}"
+                                        src="{{ asset('assets/images/placeholder-image.jpg') }}" alt="">
+                                </div>
+                            </div>
                             @error($element['name'])
                                 <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                             @enderror
@@ -140,11 +147,14 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('modalCreate', () => ({
                 init() {
-                    this.status ? document.getElementById('modal_create').checked = true : document
-                        .getElementById(
-                            'modal_create').checked = false;
+                    if (this.status) {
+                        document.getElementById('modal_create').checked = true
+                        this.previewImage();
+                    } else {
+                        document.getElementById('modal_create').checked = false
+                    }
 
-                    if(document.querySelector('.color-picker') === null) return
+                    if (document.querySelector('.color-picker') === null) return
 
                     this.pickr = Pickr.create({
                         el: '.color-picker',
@@ -182,8 +192,24 @@
 
                 toggle() {
                     this.status = !this.status;
+
+                    if (this.status) {
+                        this.previewImage();
+                    }
                     localStorage.setItem('x_modal_create', this.status);
                 },
+                previewImage() {
+                    const elementsTypeFile = document.querySelectorAll('.file-create');
+
+                    elementsTypeFile.forEach((element, index) => {
+                        const previewCreate = new Preview();
+                        previewCreate.setImageNode(`preview-image-create-${index+1}`)
+                            .setInputNode(
+                                element.id)
+                            .setParentNode(`preview-container-create-${index+1}`)
+                            .set();
+                    });
+                }
             }));
         });
     </script>

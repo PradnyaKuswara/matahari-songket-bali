@@ -23,23 +23,23 @@ class ViewServiceProvider extends ServiceProvider
     {
         $dataCounter = [
             [
-                'value' => 400,
-                'valueLabel' => 'K+',
-                'label' => 'Lesson',
+                'value' => 300,
+                'valueLabel' => '+',
+                'label' => 'Product',
             ],
             [
-                'value' => 200,
-                'valueLabel' => 'K+',
-                'label' => 'Lesson',
+                'value' => 1000,
+                'valueLabel' => '+',
+                'label' => 'Reached',
             ],
             [
-                'value' => 70,
-                'valueLabel' => 'K+',
-                'label' => 'Lesson',
+                'value' => 40,
+                'valueLabel' => '+',
+                'label' => 'Partner',
             ],
             [
-                'value' => 2000,
-                'valueLabel' => 'K+',
+                'value' => 100,
+                'valueLabel' => '+',
                 'label' => 'Lesson',
             ],
         ];

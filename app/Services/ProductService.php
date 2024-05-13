@@ -71,4 +71,9 @@ class ProductService
     {
         return $this->productInterface->search($request, $model, $conditions, $relations);
     }
+
+    public function searchFront($request, $model, $conditions, $relations)
+    {
+        return $this->productInterface->searchFront($request, $model, $conditions, $relations);
+    }
 }

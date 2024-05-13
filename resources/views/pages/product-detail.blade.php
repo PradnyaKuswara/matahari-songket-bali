@@ -29,36 +29,39 @@
             <div class="grid lg:grid-cols-2 gap-8 place-items-center place-content-center">
                 <div class="flex flex-col gap-4 animate-fade-down lg:animate-fade-right ">
                     <div class="flex">
-                        <x-product-image onclick="modal_image_preview_1.showModal()"
+                        <x-product-image :src="$product->image1()" onclick="modal_image_preview_1.showModal()"
                             id="modal_image_preview_1"></x-product-image>
                     </div>
                     <div class="grid grid-cols-3 gap-2 lg:gap-4">
-                        <x-product-image onclick="modal_image_preview_2.showModal()"
+                        <x-product-image :src="$product->image_2
+                            ? $product->image2()
+                            : asset('assets/images/placeholder-image.jpg')" onclick="modal_image_preview_2.showModal()"
                             id="modal_image_preview_2"></x-product-image>
-                        <x-product-image onclick="modal_image_preview_3.showModal()"
+                        <x-product-image :src="$product->image_3
+                            ? $product->image3()
+                            : asset('assets/images/placeholder-image.jpg')" onclick="modal_image_preview_3.showModal()"
                             id="modal_image_preview_3"></x-product-image>
-                        <x-product-image onclick="modal_image_preview_4.showModal()"
+                        <x-product-image :src="$product->image_4
+                            ? $product->image4()
+                            : asset('assets/images/placeholder-image.jpg')" onclick="modal_image_preview_4.showModal()"
                             id="modal_image_preview_4"></x-product-image>
-
                     </div>
                 </div>
                 <div class="flex flex-col gap-4 animate-fade-right lg:animate-fade-down">
-                    <p class="text-xs md:text-sm font-bold">Songket / Kamen</p>
-                    <h1 class="text-3xl md:text-5xl font-extrabold">Product Name</h1>
-                    <p class="text-xs font-bold"><i class="fas fa-eye"></i> 2.5k view this product</p>
-                    <h1 class="text-xl md:text-3xl font-bold font-mono">Rp.8000000</h1>
+                    <p class="text-xs md:text-sm font-bold">Songket / {{ $product->productCategory->name }}</p>
+                    <h1 class="text-3xl md:text-5xl font-extrabold">{{ $product->name }}</h1>
+                    <p class="text-xs font-bold"><i class="fas fa-eye"></i>
+                        {{ visits(\App\Models\Visitor::TYPE_PRODUCT, $product)->getVisitorCountPerSite() }} view this
+                        product</p>
+                    <h1 class="text-xl md:text-3xl font-bold font-sans text-primary"> Rp.
+                        {{ number_format($product->sell_price, 2, ',', '.') }}</h1>
                     <div class="flex flex-col gap-2">
                         <h1 class="text-lg md:text-xl font-bold">Product Description</h1>
-                        <p class="text-sm md:text-base">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
-                            Lorem
-                            Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
-                            took
-                            a galley of type and scrambled it to make a type specimen book</p>
+                        <p class="text-sm md:text-base">{{ $product->description }}</p>
                     </div>
                     <div class="flex flex-col gap-2">
                         <h1 class="text-lg md:text-xl font-bold">Avaliable Color</h1>
-                        <div class="p-2 md:p-3 w-1/12 rounded-lg bg-primary"></div>
+                        <div class="p-2 md:p-3 w-1/12 rounded-lg" style="background-color: {{ $product->color }}"></div>
                     </div>
                     <div class="flex flex-row gap-4 items-center">
                         <div class="flex flex-col gap-2">
@@ -95,10 +98,9 @@
         <div class="flex flex-col gap-8 lg:gap-4">
             <div class="text-2xl md:text-4xl font-bold">You may like also</div>
             <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-                @for ($i = 0; $i < 4; $i++)
-                    <x-product-card class="shadow-md"></x-product-card>
-                @endfor
-
+                @foreach ($products as $product)
+                    <x-product-card :product="$product" class="card" />
+                @endforeach
             </div>
         </div>
     </section>

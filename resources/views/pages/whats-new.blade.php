@@ -118,7 +118,6 @@
 
         $(document).on('click', '#load-more', function() {
             page++;
-            // console.log(page);
             loadMoreData(page);
         });
 
@@ -128,14 +127,12 @@
                 type: 'get',
                 beforeSend: function() {
                     $('#load-more').text('Loading...');
-                    console.log(this.url);
                 }
             }).done(function(data) {
                 if (data.html == "") {
                     $('#load-more').hide();
                     return;
                 }
-                console.log(data.html);
                 $('#article-list').append(data.html);
                 $('#load-more').text('Load More');
             }).fail(function(jqXHR, ajaxOptions, thrownError) {

@@ -212,6 +212,27 @@
                                     class="file-input file-input-bordered w-full file-input-sm text-base rounded-md"
                                     accept=".jpg, .jpeg, .png" />
 
+                                <div class="flex flex-col md:flex-row items-center mt-4">
+                                    <div class=""
+                                        style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);">
+                                        <img class="w-full h-full object-contain"
+                                            src="{{ $user->avatar ? $user->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $user->username . '&size=150' }}"
+                                            alt="{{ $user->username }}">
+                                    </div>
+                                    <svg width="52" height="52" viewBox="0 0 32 32" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.5717 9.90039L26.6669 15.9987L20.5717 22.0954M6.85742 16.0002H26.6669"
+                                            stroke="black" stroke-width="3" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="mx-2"
+                                        style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);"
+                                        id="preview-container">
+                                        <img class="w-full h-full object-contain" id="preview"
+                                            src="{{ asset('assets/images/placeholder-image.jpg') }}" alt="">
+                                    </div>
+                                </div>
+
                                 @error('avatar')
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
@@ -489,6 +510,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('assets/js/preview.js') }}"></script>
     <script>
         function onlyNumberKey(event) {
             const ASCIICode = (event.which) ? event.which : event.keyCode
@@ -500,5 +522,10 @@
         const maxlength = inputPhoneNumber.getAttribute('maxlength')
 
         maxInputValue(inputPhoneNumber, maxlength)
+    </script>
+
+    <script>
+        const preview = new Preview();
+        preview.setImageNode('preview').setInputNode('inputAvatar').setParentNode('preview-container').set();
     </script>
 @endpush

@@ -108,7 +108,7 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->goods_price }}</td>
                     <td>{{ $product->sell_price }}</td>
-                    <td>{{ $product->description ?? '-' }}</td>
+                    <td>{{ $product->description ? Str::limit(strip_tags($product->description), 30) : '-' }}</td>
                     <td>{{ $product->type }}</td>
                     <td>{{ $product->created_at }}</td>
                     <td>{{ $product->updated_at }}</td>
@@ -174,36 +174,56 @@
                                 ],
                                 [
                                     'name' => 'image_1',
-                                    'id' => 'inputImage1',
-                                    'label' => 'Image 1',
+                                    'id' => 'inputImageEdit1',
+                                    'idPreview' => 'preview-container-edit-1',
+                                    'idPreviewImage' => 'preview-image-edit-1',
+                                    'label' => 'Image 1 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
+                                    'value' => $product->image_1
+                                        ? $product->image1()
+                                        : asset('assets/images/placeholder-image.jpg'),
                                     'placeholder' => 'Choose your product image 1',
                                     'is_required' => 'false',
                                     'accept' => '.jpg, .jpeg, .png',
                                 ],
                                 [
                                     'name' => 'image_2',
-                                    'id' => 'inputImage2',
-                                    'label' => 'Image 2',
+                                    'id' => 'inputImageEdit2',
+                                    'idPreview' => 'preview-container-edit-2',
+                                    'idPreviewImage' => 'preview-image-edit-2',
+                                    'label' => 'Image 2 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
+                                    'value' => $product->image_2
+                                        ? $product->image2()
+                                        : asset('assets/images/placeholder-image.jpg'),
                                     'placeholder' => 'Choose your product image 2',
                                     'is_required' => 'false',
                                     'accept' => '.jpg, .jpeg, .png',
                                 ],
                                 [
                                     'name' => 'image_3',
-                                    'id' => 'inputImage3',
-                                    'label' => 'Image 3',
+                                    'id' => 'inputImageEdit3',
+                                    'idPreview' => 'preview-container-edit-3',
+                                    'idPreviewImage' => 'preview-image-edit-3',
+                                    'label' => 'Image 3 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
+                                    'value' => $product->image_3
+                                        ? $product->image3()
+                                        : asset('assets/images/placeholder-image.jpg'),
                                     'placeholder' => 'Choose your product image 3',
                                     'is_required' => 'false',
                                     'accept' => '.jpg, .jpeg, .png',
                                 ],
                                 [
                                     'name' => 'image_4',
-                                    'id' => 'inputImage4',
-                                    'label' => 'Image 4',
+                                    'id' => 'inputImageEdit4',
+                                    'idPreview' => 'preview-container-edit-4',
+                                    'idPreviewImage' => 'preview-image-edit-4',
+                                    'label' => 'Image 4 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
+                                    'value' => $product->image_4
+                                        ? $product->image4()
+                                        : asset('assets/images/placeholder-image.jpg'),
                                     'placeholder' => 'Choose your product image 4',
                                     'is_required' => 'false',
                                     'accept' => '.jpg, .jpeg, .png',

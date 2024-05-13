@@ -6,6 +6,7 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+    <script src="{{ asset('assets/js/preview.js') }}"></script>
 @endpush
 
 @section('content')
@@ -79,8 +80,10 @@
                                 ],
                                 [
                                     'name' => 'image_1',
-                                    'id' => 'inputImage1',
-                                    'label' => 'Image 1',
+                                    'id' => 'inputImageCreate1',
+                                    'idPreview' => 'preview-container-create-1',
+                                    'idPreviewImage' => 'preview-image-create-1',
+                                    'label' => 'Image 1 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
                                     'placeholder' => 'Choose your product image 1',
                                     'is_required' => 'true',
@@ -88,8 +91,10 @@
                                 ],
                                 [
                                     'name' => 'image_2',
-                                    'id' => 'inputImage2',
-                                    'label' => 'Image 2',
+                                    'id' => 'inputImageCreate2',
+                                    'idPreview' => 'preview-container-create-2',
+                                    'idPreviewImage' => 'preview-image-create-2',
+                                    'label' => 'Image 2 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
                                     'placeholder' => 'Choose your product image 2',
                                     'is_required' => 'false',
@@ -97,8 +102,10 @@
                                 ],
                                 [
                                     'name' => 'image_3',
-                                    'id' => 'inputImage3',
-                                    'label' => 'Image 3',
+                                    'id' => 'inputImageCreate3',
+                                    'idPreview' => 'preview-container-create-3',
+                                    'idPreviewImage' => 'preview-image-create-3',
+                                    'label' => 'Image 3 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
                                     'placeholder' => 'Choose your product image 3',
                                     'is_required' => 'false',
@@ -106,8 +113,10 @@
                                 ],
                                 [
                                     'name' => 'image_4',
-                                    'id' => 'inputImage4',
-                                    'label' => 'Image 4',
+                                    'id' => 'inputImageCreate4',
+                                    'idPreview' => 'preview-container-create-4',
+                                    'idPreviewImage' => 'preview-image-create-4',
+                                    'label' => 'Image 4 (recomedation ratio 1920x1080)',
                                     'type' => 'file',
                                     'placeholder' => 'Choose your product image 4',
                                     'is_required' => 'false',
@@ -121,7 +130,8 @@
                                     'placeholder' => 'Enter your product description',
                                     'is_required' => 'true',
                                 ],
-                            ]" route="{{ request()->user()->role->name }}.dashboard.products.store"
+                            ]"
+                                route="{{ request()->user()->role->name }}.dashboard.products.store"
                                 title="Create Product Post"></x-dashboard.create-modal>
                         </div>
 

@@ -77,7 +77,7 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="#" class="group">
+                                 <a href="{{ route('admin.dashboard.products.show') }}" class="group">
                                      <div class="flex items-center">
                                          <span class="mdi mdi-apps text-xl"></span>
                                          <span

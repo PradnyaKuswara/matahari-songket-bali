@@ -25,7 +25,13 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
     Route::get('/', 'indexFront')->name('indexFront');
-    Route::get('detail', 'detailFront')->name('detailFront');
+    Route::get('detail/{product}', 'detailFront')->name('detailFront');
+    Route::get('/categories-all', 'categoriesAll')->name('categoriesAll');
+    Route::get('/categories-popular', 'categoriesPopular')->name('categoriesPopular');
+    Route::get('/categories-oldest', 'categoriesOldest')->name('categoriesOldest');
+    Route::get('/categories-cheapest', 'categoriesCheapest')->name('categoriesCheapest');
+    Route::get('/categories-expansive', 'categoriesExpensive')->name('categoriesExpensive');
+    Route::get('/search', 'searchFront')->name('search');
 });
 
 Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {

@@ -28,21 +28,21 @@
 @endpush
 
 @section('content')
-    <section id="hero"
-        class="hero hero-bg-light ">
+    <section id="hero" class="hero hero-bg-light ">
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
-            class="hero-content flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
-            <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                class="w-full lg:w-6/12 rounded-lg shadow-2xl" :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
-            <div class="w-full">
-                <h1 class="text-7xl font-extrabold mb-5 " :class="intersect ? 'animate-fade-right' : 'opacity-0'">What is Lorem
-                    <span class="text-primary">Ipsum</span> </h1>
+            class="hero-content items-center flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
+            <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
+                class="lg:w-[24rem] lg:h-[35rem] rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
+            <div class="w-full mt-4">
+                <h1 class="text-7xl font-extrabold mb-5 " :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
+                    Songket
+                    <span class="text-accent">Bali</span>
+                </h1>
 
-                <h1 class="text-base mt-8 font-[500]">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem
-                    Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.</h1>
+                <h1 class="text-base mt-8 font-[500]">Immerse yourself in the rich cultural heritage of Bali with Matahari
+                    Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese songket, a
+                    luxurious fabric handwoven with intricate patterns and vibrant colors. Each piece tells a story of
+                    craftsmanship and artistry, passed down through generations.</h1>
 
                 <section class="grid gap-4 grid-cols-2 md:grid-cols-4 md:gap-1 mt-8">
                     @foreach ($dataCounter as $index => $counter)
@@ -52,8 +52,9 @@
                 </section>
 
                 <div class="flex items-center my-5 gap-4">
-                    <x-button-link href="#" class="bg-primary text-white ">Explore</x-button-link>
-                    <x-button-link href="#" class="animate-pulse animate-infinite">See Product</x-button-link>
+                    <x-button-link link="#why-do-we-use-it" class="bg-accent text-white ">Explore</x-button-link>
+                    <x-button-link :link="route('products.indexFront')" class="bg-primary text-white  animate-pulse animate-infinite">See
+                        Product</x-button-link>
                 </div>
             </div>
         </div>
@@ -146,7 +147,8 @@
         <div class="popular flex flex-col lg:flex-row items-center w-full justify-between gap-8 py-40 lg:ps-40">
 
             <div class="w-8/12">
-                <x-string-typing idType="typed-3" idStringElement="typed-title-3" class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
+                <x-string-typing idType="typed-3" idStringElement="typed-title-3"
+                    class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
                 <div class="text-base mt-8">It is a long established fact that a reader will be distracted by the readable
                     content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less
@@ -163,28 +165,36 @@
                 <ul x-ref="logos"
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Facebook" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Facebook" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Disney" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Disney" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Airbnb" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Airbnb" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Apple" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Apple" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Spark" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Spark" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Samsung" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Samsung" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Quora" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Quora" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Sass" />
+                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                            alt="Sass" />
                     </li>
                 </ul>
             </div>
@@ -196,17 +206,18 @@
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <h1 class="text-4xl font-bold">Newest product</h1>
             </div>
-            <div x-data="{loading: false, card: false}" x-init="loading=true, card=true" class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 mx-4 lg:mx-0">
-                <x-product-card class="shadow-xl"></x-product-card>
-                <x-product-card class="shadow-xl"></x-product-card>
-                <x-product-card class="shadow-xl"></x-product-card>
-                <x-product-card class="shadow-xl"></x-product-card>
-                <x-product-card class="shadow-xl"></x-product-card>
-                <x-product-card class="shadow-xl"></x-product-card>
+            <div x-data="{ loading: false, card: false }" x-init="loading = true, card = true"
+                class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 mx-4 lg:mx-0">
+                @foreach ($products as $product)
+                    <x-product-card :product="$product" class="shadow-md">
+                    </x-product-card>
+                @endforeach
             </div>
 
             <div class="flex flex-col justify-center items-center">
-                <x-button-link class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]" link="{{ route('products.indexFront') }}">See another
+                <x-button-link
+                    class="btn-primary text-xs md:text-base btn-outline w-1/3 animate-shake animate-infinite animate-duration-[2000ms]"
+                    link="{{ route('products.indexFront') }}">See another
                     product</x-button-link>
             </div>
         </div>

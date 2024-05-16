@@ -4,7 +4,7 @@
          class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
          <div class="h-full bg-white dark:bg-[#0e1726]">
              <div class="flex items-center justify-between px-4 py-3">
-                 <a href="index.html" class="main-logo flex items-center shrink-0 overflow-hidden">
+                 <a href="javascript:void(0)" class="main-logo flex items-center shrink-0 overflow-hidden">
                      <img class=" w-10 flex-none" src="{{ asset('assets/images/logo_icon.png') }}" alt="image" />
                      <span>
                          <img class="ml-2 w-20 flex-none" src="{{ asset('assets/images/logo_text.png') }}"
@@ -143,7 +143,8 @@
                                      class="{{ request()->is('admin/dashboard/items/categories/*') ? 'text-white dark:text-[#506690]' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
                                      Item</span>
                              </div>
-                             <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'managementItem' }">
+                             <div class="rtl:rotate-180"
+                                 :class="{ '!rotate-90': activeDropdown === 'managementItem' }">
 
                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -321,9 +322,11 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="{{ route('customer.dashboard.address.index') }}" class="group {{ request()->is('customer/dashboard/address') ? 'bg-primary text-white' : '' }}">
+                                 <a href="{{ route('customer.dashboard.address.index') }}"
+                                     class="group {{ request()->is('customer/dashboard/address') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-format-list-text text-xl {{ request()->is('customer/dashboard/address') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="mdi mdi-format-list-text text-xl {{ request()->is('customer/dashboard/address') ? 'text-white' : '' }}"></span>
                                          <span
                                              class="{{ request()->is('customer/dashboard/address') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Address
                                              Detail</span>
@@ -335,7 +338,6 @@
                  @endif
 
                  @if (auth()->user()->isSeller())
-
                  @endif
              </ul>
          </div>

@@ -45,7 +45,7 @@ class SellerRepository implements SellerInterface
 
     public function search($request, $model, $conditions)
     {
-        return $this->searchService->handle($request, $model, $conditions)->paginate(10)->withQueryString()->withPath('sellers');
+        return $this->searchService->handle($request, $model, $conditions)->latest()->paginate(10)->withQueryString()->withPath('sellers');
     }
 
     public function assignRoleSeller(array $data)

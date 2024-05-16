@@ -35,7 +35,7 @@
                                     'name' => 'price',
                                     'id' => 'inputPrice',
                                     'label' => 'Input Price',
-                                    'type' => 'number',
+                                    'type' => 'text',
                                     'placeholder' => 'Enter your item price',
                                     'is_required' => 'true',
                                 ],

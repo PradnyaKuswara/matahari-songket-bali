@@ -18,10 +18,10 @@
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.13.8",
-        "@ckeditor/ckeditor5-build-classic": "^41.3.1",
         "@mdi/font": "^7.4.47",
         "alpinejs": "^3.13.8",
-        "ckeditor5-build-classic-base64-upload": "^27.0.2",
+        "lodash": "^4.17.21",
+        "notyf": "^3.10.0",
         "swiper": "^11.1.0",
         "tailwindcss-animated": "^1.0.1",
         "typed.js": "^2.1.0"

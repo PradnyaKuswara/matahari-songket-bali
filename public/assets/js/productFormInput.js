@@ -47,10 +47,11 @@ const inputProfitProduct = (i) => {
     </label>
 
     <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+    <p class="text-sm text-gray-400">Rp.</p>
     <input id="loggingProductProfit${i}" type="text"
         class="form-input grow border-none outline-none "
         name="products[`+i+`][profit]" x-model="form.products[`+i+`].profit"
-        placeholder="Enter your product profit" minlength="1" maxlength="50" />
+        placeholder="Enter your product profit" x-mask:dynamic="$money($input,',')" step="1000" minlength="1" maxlength="50" />
     </label>
 
     <template x-if="isSubmitFormItem && form.products[`+i+`].profit">

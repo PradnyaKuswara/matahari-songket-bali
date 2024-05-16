@@ -66,9 +66,9 @@
                     <td>{{ $article->slug ?? '-' }}</td>
                     <td>{{ $article->meta_desc ? Str::limit(strip_tags($article->meta_desc), 30) : '-' }}</td>
                     <td>{{ $article->meta_keyword ? Str::limit(strip_tags($article->meta_keyword), 30) : '-' }}</td>
-                    <td>{{ $article->published_at ?? '-' }}</td>
-                    <td>{{ $article->created_at }}</td>
-                    <td>{{ $article->updated_at }}</td>
+                    <td>{{ $article->published_at->format('d F Y H:i:s') ?? '-' }}</td>
+                    <td>{{ $article->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $article->updated_at->format('d F Y H:i:s') }}</td>
                     <td> {{ visits(\App\Models\Visitor::TYPE_ARTICLE, $article)->getVisitorCountPerSite() }}</td>
                     <td>
                         <div class="flex gap-2">

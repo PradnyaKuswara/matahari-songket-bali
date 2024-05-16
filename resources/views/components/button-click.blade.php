@@ -1,4 +1,5 @@
-@props(['title', 'description', 'image', 'badges', 'link' => 'javascript:void(0)'])
+@props(['id' => 'btn-click', 'link' => 'javascript:void(0)', 'type' => 'button'])
 
 
-<button {{ $attributes->merge(['class' => 'btn text-xs lg:text-xs ', 'href' => '']) }}>{{ $slot }}</button>
+<button type="{{ $type }}" id="{{ $id }}"
+    {{ $attributes->merge(['class' => 'btn text-xs lg:text-xs ', 'href' => '']) }}>{{ $slot }}</button>

@@ -54,8 +54,8 @@
                         <td>{{ $itemAddress->province }}</td>
                         <td>{{ $itemAddress->city }}</td>
                     @endforeach
-                    <td>{{ $weaver->created_at }}</td>
-                    <td>{{ $weaver->updated_at }}</td>
+                    <td>{{ $weaver->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $weaver->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
                             <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"

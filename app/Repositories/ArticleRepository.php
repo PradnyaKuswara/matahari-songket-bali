@@ -47,6 +47,6 @@ class ArticleRepository implements ArticleInterface
 
     public function search($request, $model, $conditions, $relations)
     {
-        return $this->searchService->handle($request, $model, $conditions, $relations)->paginate(10)->withQueryString()->withPath('articles');
+        return $this->searchService->handle($request, $model, $conditions, $relations)->latest()->paginate(10)->withQueryString()->withPath('articles');
     }
 }

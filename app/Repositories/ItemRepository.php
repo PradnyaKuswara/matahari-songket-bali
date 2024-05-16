@@ -42,6 +42,6 @@ class ItemRepository implements ItemInterface
 
     public function search($request, $model, $conditions, $relations)
     {
-        return $this->searchService->handle($request, $model, $conditions, $relations)->paginate(10)->withQueryString()->withPath('items');
+        return $this->searchService->handle($request, $model, $conditions, $relations)->latest()->paginate(10)->withQueryString()->withPath('items');
     }
 }

@@ -39,13 +39,25 @@
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
                             @else
-                                <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
-                                    placeholder="{{ $element['placeholder'] }}" class="form-input"
-                                    name="{{ $element['name'] }}" value="{{ old($element['name']) }}" minlength="1"
-                                    maxlength="50" />
-                                @error($element['name'])
-                                    <p class="mt-2 text-danger text-xs">{{ $message }}</p>
-                                @enderror
+                                <div class="flex">
+                                    @if ($element['name'] == 'goods_price' || $element['name'] == 'sell_price' || $element['name'] == 'price')
+                                        <div
+                                            class="bg-[#eee] text-xs flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                            Rp.</div>
+                                    @endif
+                                    <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
+                                        placeholder="{{ $element['placeholder'] }}" class="form-input"
+                                        name="{{ $element['name'] }}" value="{{ old($element['name']) }}"minlength="1"
+                                        maxlength="50"
+                                        @if (
+                                            $element['name'] == 'goods_price' ||
+                                                $element['name'] == 'sell_price' ||
+                                                $element['name'] == 'stock' ||
+                                                $element['name'] == 'price') x-mask:dynamic="$money($input,',')" step="1000"" @endif />
+                                    @error($element['name'])
+                                        <p class="mt-2 text-danger text-xs">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             @endif
                         @endif
 

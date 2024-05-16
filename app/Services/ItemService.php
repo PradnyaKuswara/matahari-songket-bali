@@ -20,11 +20,15 @@ class ItemService
 
     public function firstOrCreate(array $data)
     {
+        $data['price'] = floatval(str_replace('.', '', $data['price']));
+
         return $this->itemInterface->firstOrCreate($data);
     }
 
     public function update(array $data, $item)
     {
+        $data['price'] = floatval(str_replace('.', '', $data['price']));
+
         return $this->itemInterface->update($data, $item);
     }
 

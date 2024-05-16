@@ -23,6 +23,9 @@ class ProductService
     public function create(array $data)
     {
         $data['slug'] = $data['name'];
+        $data['stock'] = floatval(str_replace('.', '', $data['stock']));
+        $data['goods_price'] = floatval(str_replace('.', '', $data['goods_price']));
+        $data['sell_price'] = floatval(str_replace('.', '', $data['sell_price']));
 
         for ($i = 0; $i < 4; $i++) {
             $image = 'image_'.($i + 1);
@@ -36,6 +39,10 @@ class ProductService
 
     public function update(ProductRequest $request, array $data, $product)
     {
+
+        $data['stock'] = floatval(str_replace('.', '', $data['stock']));
+        $data['goods_price'] = floatval(str_replace('.', '', $data['goods_price']));
+        $data['sell_price'] = floatval(str_replace('.', '', $data['sell_price']));
 
         if ($request->name !== $product->name) {
             $data['slug'] = $data['name'];

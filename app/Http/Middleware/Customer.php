@@ -18,6 +18,11 @@ class Customer
     {
         if (auth()->check()) {
             if (! auth()->user()->isCustomer()) {
+                //check to json or not
+                if ($request->expectsJson()) {
+                    return response()->json(['message' => 'Not found'], 404);
+                }
+
                 Toaster::error('Not found');
 
                 return redirect()->back();
@@ -25,6 +30,11 @@ class Customer
                 return $next($request);
             }
         } else {
+            //check to json or not
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Not found'], 404);
+            }
+
             Toaster::error('Not found');
 
             return redirect()->back();

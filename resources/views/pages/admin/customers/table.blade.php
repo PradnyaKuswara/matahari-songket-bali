@@ -67,8 +67,8 @@
                     <td>{{ $customer->phone_number ?? '-' }}</td>
                     <td>{{ $customer->date_of_birth ?? '-' }}</td>
                     <td>{{ $customer->email_verified_at ?? '-' }}</td>
-                    <td>{{ $customer->created_at }}</td>
-                    <td>{{ $customer->updated_at }}</td>
+                    <td>{{ $customer->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $customer->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="flex gap-2">
                             <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">

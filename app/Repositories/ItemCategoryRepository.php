@@ -42,6 +42,6 @@ class ItemCategoryRepository implements ItemCategoryInterface
 
     public function search($request, $model, $conditions)
     {
-        return $this->searchService->handle($request, $model, $conditions)->paginate(10)->withQueryString()->withPath('categories');
+        return $this->searchService->handle($request, $model, $conditions)->latest()->paginate(10)->withQueryString()->withPath('categories');
     }
 }

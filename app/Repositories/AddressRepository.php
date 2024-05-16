@@ -16,7 +16,7 @@ class AddressRepository implements AddressInterface
 
     public function all($user)
     {
-        return $user->addresses()->paginate(9);
+        return $user->addresses()->latest()->paginate(9);
     }
 
     public function create(array $data, $user)

@@ -30,46 +30,63 @@
                         <td>-</td>
                     @endif
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>{{ $item->updated_at }}</td>
+                    <td>Rp.{{ number_format($item->price, 2, ',', '.') }}</td>
+                    <td>{{ $item->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $item->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
-                        <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
-                            <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"
-                                @click="toggle()"><span class="mdi mdi-pencil text-xl text-success"></label>
+                        @if ($item->productions()->exists())
+                            <p>Edit on your data production</p>
+                        @else
+                            <div class="w-full flex gap-1" x-data="modalEdit{{ $loop->iteration }}">
+                                <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"
+                                    @click="toggle()"><span class="mdi mdi-pencil text-xl text-success"></label>
+                                <x-dashboard.edit-modal :elements="[
+                                    [
+                                        'name' => 'name',
+                                        'id' => 'inputName',
+                                        'label' => 'Name',
+                                        'type' => 'text',
+                                        'value' => $item->name,
+                                        'placeholder' => 'Enter your item name',
+                                        'is_required' => 'true',
+                                    ],
+                                    [
+                                        'name' => 'price',
+                                        'id' => 'inputPrice',
+                                        'label' => 'Price',
+                                        'type' => 'text',
+                                        'value' => $item->price,
+                                        'placeholder' => 'Enter your item price',
+                                        'is_required' => 'true',
+                                    ],
+                                    [
+                                        'name' => 'item_category_id',
+                                        'id' => 'inputCategory',
+                                        'label' => 'Select Category',
+                                        'type' => 'select',
+                                        'value' => $item->item_category_id,
+                                        'options' => $itemCategories,
+                                        'is_required' => 'true',
+                                    ],
+                                ]"
+                                    route="{{ request()->user()->role->name }}.dashboard.items.update" :idRoute="$item"
+                                    title="Edit Item Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
 
-                            <x-dashboard.edit-modal :elements="[
-                                [
-                                    'name' => 'name',
-                                    'id' => 'inputName',
-                                    'label' => 'Name',
-                                    'type' => 'text',
-                                    'value' => $item->name,
-                                    'placeholder' => 'Enter your item name',
-                                    'is_required' => 'true',
-                                ],
-                                [
-                                    'name' => 'price',
-                                    'id' => 'inputPrice',
-                                    'label' => 'Price',
-                                    'type' => 'number',
-                                    'value' => $item->price,
-                                    'placeholder' => 'Enter your item price',
-                                    'is_required' => 'true',
-                                ],
-                                [
-                                    'name' => 'item_category_id',
-                                    'id' => 'inputCategory',
-                                    'label' => 'Select Category',
-                                    'type' => 'select',
-                                    'value' => $item->item_category_id,
-                                    'options' => $itemCategories,
-                                    'is_required' => 'true',
-                                ],
-                            ]" route="{{ request()->user()->role->name }}.dashboard.items.update"
-                                :idRoute="$item " title="Edit Item Post"
-                                :idModal="$loop->iteration"></x-dashboard.edit-modal>
-                        </div>
+                                <form
+                                    action="{{ route(request()->user()->role->name . '.dashboard.items.destroy', $item) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div x-data="modal">
+                                        <button type="button" @click="toggle"><span
+                                                class="mdi mdi-trash-can-outline text-xl text-error"></span></button>
+                                        <x-dashboard.confirm-modal-action :modalId="$item->created_at" title="Delete Item"
+                                            description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+
                     </td>
                 </tr>
             @empty

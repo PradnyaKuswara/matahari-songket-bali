@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductionRequest;
 use App\Models\Production;
+use App\Services\ItemCategoryService;
+use App\Services\ProductCategoryService;
 use App\Services\ProductionService;
 use App\Services\ReturnRedirectService;
 use App\Services\WeaverService;
 use Illuminate\Http\Request;
+use Masmerise\Toaster\Toaster;
 
 class ProductionController extends Controller
 {
@@ -17,11 +20,17 @@ class ProductionController extends Controller
 
     protected $weaverService;
 
-    public function __construct(ProductionService $productionService, ReturnRedirectService $returnRedirectService, WeaverService $weaverService)
+    protected $itemCategoryService;
+
+    protected $productCategoryService;
+
+    public function __construct(ProductionService $productionService, ReturnRedirectService $returnRedirectService, WeaverService $weaverService, ItemCategoryService $itemCategoryService, ProductCategoryService $productCategoryService)
     {
         $this->productionService = $productionService;
         $this->returnRedirectService = $returnRedirectService;
         $this->weaverService = $weaverService;
+        $this->itemCategoryService = $itemCategoryService;
+        $this->productCategoryService = $productCategoryService;
     }
 
     public function index(Request $request)
@@ -40,10 +49,10 @@ class ProductionController extends Controller
 
     public function store(ProductionRequest $request)
     {
-
         // dd($request->validated());
-
         $this->productionService->create($request->validated());
+
+        Toaster::success('Productions created successfully!');
 
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.productions.index'));
     }
@@ -58,9 +67,10 @@ class ProductionController extends Controller
 
     public function update(ProductionRequest $request, Production $production)
     {
-
         // dd($request->validated());
         $this->productionService->update($request->validated(), $production);
+
+        Toaster::success('Productions updated successfully!');
 
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.productions.index'));
     }
@@ -69,6 +79,17 @@ class ProductionController extends Controller
     {
         return view('pages.admin-seller.productions.table', [
             'productions' => $this->productionService->search($request, new Production, ['name', 'date', 'estimate', 'material', 'service', 'total', 'goods_price'], ['items', 'products']),
+        ]);
+    }
+
+    public function show(Production $production)
+    {
+        return view('pages.admin-seller.productions.show', [
+            'itemCategories' => $this->itemCategoryService->all(),
+            'productCategories' => $this->productCategoryService->all(),
+            'items' => $production->items()->paginate(10),
+            'products' => $production->products()->paginate(10),
+            'production' => $production,
         ]);
     }
 

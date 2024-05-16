@@ -32,7 +32,7 @@
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
             class="hero-content items-center flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
             <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
-                class="lg:w-[24rem] lg:h-[35rem] rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
+                class="lg:w-[20rem] lg:h-[35rem] rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
             <div class="w-full mt-4">
                 <h1 class="text-7xl font-extrabold mb-5 " :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
                     Songket
@@ -64,23 +64,21 @@
         <div class="flex flex-col lg:flex-row items-center gap-20 w-full ">
             <div class="w-10/12 md:w-8/12">
                 <div class="text-5xl font-bold mb-5">Why do we use it?</div>
-                <div class="text-base mt-8">It is a long established fact that a reader will be distracted by the
-                    readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making
-                    it look like readable English.</div>
+                <div class="text-base mt-8">Matahari Songket Bali offers a stunning collection of traditional Balinese
+                    songket products, meticulously handcrafted for special occasions such as weddings, cultural ceremonies,
+                    formal events, and more. Each piece showcases the exquisite artistry and rich heritage of Bali, making
+                    it a perfect choice for those seeking to add a touch of elegance and tradition to their attire." on
+                    indonesia. </div>
             </div>
 
             <div class="relative">
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                    class=" rounded-lg shadow-2xl" />
+                <img src="{{ asset('assets/images/photographer 1.png') }}" class=" rounded-lg w-full h-96 shadow-2xl" />
 
                 <div class="absolute -bottom-10 -left-10">
-                    <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                        class="w-1/2 rounded-lg shadow-2xl" />
+                    <img src="{{ asset('assets/images/photographer 2.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
                 <div class="absolute -top-10 -right-10 flex justify-end">
-                    <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                        class="w-1/2 rounded-lg shadow-2xl" />
+                    <img src="{{ asset('assets/images/photographer 5.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
             </div>
         </div>
@@ -104,9 +102,9 @@
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
             </div>
 
-            <div class="text-base flex justify-center px-10 ">
-                It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout.
+            <div class="text-base flex justify-center text-center px-10 ">
+                This category encompasses a variety of products that are currently in stock and available for purchase,
+                catering to a diverse range of preferences and needs.
             </div>
         </div>
     </section>
@@ -149,11 +147,11 @@
             <div class="w-8/12">
                 <x-string-typing idType="typed-3" idStringElement="typed-title-3"
                     class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
-                <div class="text-base mt-8">It is a long established fact that a reader will be distracted by the readable
-                    content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less
-                    normal distribution of letters, as opposed to using 'Content here, content here', making it look like
-                    readable English.</div>
+                <div class="text-base mt-8">These products are popular or highly sought after by the community. They are in
+                    high demand due to their quality, uniqueness, or relevance to current trends. Customers frequently seek
+                    out these products for their exceptional features or value, making them a prominent choice in the
+                    market.
+                </div>
             </div>
 
             <div x-data="{}" x-init="$nextTick(() => {
@@ -165,36 +163,32 @@
                 <ul x-ref="logos"
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}"
                             alt="Facebook" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Disney" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Airbnb" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Apple" />
-                    </li>
-                    <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Spark" />
-                    </li>
-                    <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Samsung" />
-                    </li>
-                    <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Quora" />
-                    </li>
-                    <li>
-                        <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                            alt="Sass" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}"
+                            alt="Facebook" />
                     </li>
                 </ul>
             </div>

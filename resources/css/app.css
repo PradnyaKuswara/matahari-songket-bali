@@ -1,5 +1,6 @@
 @import "swiper/css/bundle";
 @import "@mdi/font/css/materialdesignicons.min.css";
+@import "notyf/notyf.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

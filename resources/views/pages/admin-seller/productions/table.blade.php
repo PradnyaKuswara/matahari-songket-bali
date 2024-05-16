@@ -19,30 +19,20 @@
                 <tr>
                     <td>{{ $production->name }}</td>
                     <td>{{ $production->date }}</td>
-                    <td>{{ $production->material }}</td>
-                    <td>{{ $production->service }}</td>
-                    <td>{{ $production->total }}</td>
-                    <td>{{ $production->goods_price }}</td>
-                    <td>{{ $production->estimate }}</td>
-                    <td>{{ $production->created_at }}</td>
-                    <td>{{ $production->updated_at }}</td>
+                    <td>Rp.{{ number_format($production->material, 2, ',', '.') }}</td>
+                    <td>Rp.{{ number_format($production->service, 2, ',', '.') }}</td>
+                    <td>Rp.{{ number_format($production->total, 2, ',', '.') }}</td>
+                    <td>Rp.{{ number_format($production->goods_price, 2, ',', '.') }}</td>
+                    <td>{{ $production->estimate }} month</td>
+                    <td>{{ $production->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $production->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="flex gap-2">
                             <a href="{{ route(request()->user()->role->name . '.dashboard.productions.edit', $production) }}"
                                 class=" text-black"><span class="mdi mdi-pencil text-xl text-success"></span></a>
 
-                            <form
-                                action="{{ route(request()->user()->role->name . '.dashboard.productions.destroy', $production) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <div x-data="modal">
-                                    <button type="button" @click="toggle"><span
-                                            class="mdi mdi-trash-can-outline text-xl text-error"></span></button>
-                                    <x-dashboard.confirm-modal-action :modalId="$production->created_at" title="Delete Production"
-                                        description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
-                                </div>
-                            </form>
+                            <a href="{{ route(request()->user()->role->name . '.dashboard.productions.show', $production) }}"
+                                class=" text-black"><span class="mdi mdi-eye text-xl text-primary"></span></a>
                         </div>
                     </td>
                 </tr>

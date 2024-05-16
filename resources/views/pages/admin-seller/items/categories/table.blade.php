@@ -11,8 +11,8 @@
             @forelse ($itemCategories as $itemCategory)
                 <tr>
                     <td>{{ $itemCategory->name }}</td>
-                    <td>{{ $itemCategory->created_at }}</td>
-                    <td>{{ $itemCategory->updated_at }}</td>
+                    <td>{{ $itemCategory->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $itemCategory->updated_at->format('d F Y H:i:s') }}</td>
                 </tr>
             @empty
                 <tr>

@@ -15,7 +15,7 @@ class Authenticate extends Middleware
     {
 
         if ($request->expectsJson()) {
-            return null;
+            return response()->json(['message' => 'Unauthenticated'], 401);
         }
 
         Toaster::error('Please login first!'); //

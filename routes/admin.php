@@ -97,6 +97,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::patch('update/{production}', 'update')->name('update');
         Route::delete('delete/{production}', 'destroy')->name('destroy');
         Route::get('/search', 'search')->name('search');
+        Route::get('/show/{production}', 'show')->name('show');
         Route::get('/all-weaver-json', 'allWeaverJson')->name('allWeaverJson');
     });
 

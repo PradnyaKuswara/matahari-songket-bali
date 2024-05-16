@@ -111,14 +111,14 @@ class ProductController extends Controller
             'products' => $this->productService->all()->where('slug', '!=', $product->slug)
                 ->where('stock', '>', 0)
                 ->inRandomOrder()
-                ->take(3)
+                ->take(4)
                 ->get(),
         ]);
     }
 
     public function categoriesOldest(Request $request)
     {
-        $products = $this->productService->all()->orderByRaw('stock > 0 desc, created_at asc')->paginate(3);
+        $products = $this->productService->all()->orderByRaw('stock > 0 desc, created_at asc')->paginate(9);
 
         $view = view('pages.product-data', compact('products'))->render();
 
@@ -136,10 +136,11 @@ class ProductController extends Controller
             ->leftJoin('visitors', 'visitors.id', '=', 'visitor_metas.visitor_id')
             ->select('products.*')
             ->selectRaw('COUNT(CASE WHEN visitors.type = "product" THEN visitor_metas.identity ELSE NULL END) AS total')
+            ->where('products.is_active', true)
             ->groupBy('products.id')
             ->orderByRaw('IF(products.stock > 0, 1, 2)') // Order by stock availability
             ->orderByDesc('total') // Then order by total visitors
-            ->paginate(3);
+            ->paginate(9);
 
         $view = view('pages.product-data', compact('products'))->render();
 
@@ -148,7 +149,7 @@ class ProductController extends Controller
 
     public function categoriesCheapest(Request $request)
     {
-        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price asc')->paginate(3);
+        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price asc')->paginate(1);
 
         $view = view('pages.product-data', compact('products'))->render();
 
@@ -157,7 +158,7 @@ class ProductController extends Controller
 
     public function categoriesExpensive(Request $request)
     {
-        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price desc')->paginate(3);
+        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price desc')->paginate(9);
 
         $view = view('pages.product-data', compact('products'))->render();
 
@@ -166,7 +167,8 @@ class ProductController extends Controller
 
     public function searchFront(Request $request)
     {
-        $products = $this->productService->searchFront($request, new Product, ['name', 'sell_price'], ['productCategory']);
+        $model = Product::where('is_active', true);
+        $products = $this->productService->searchFront($request, $model, ['name', 'sell_price'], ['productCategory']);
 
         return view('pages.product-data', compact('products'));
     }

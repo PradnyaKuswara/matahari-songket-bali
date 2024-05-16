@@ -82,7 +82,7 @@ class ProductionService
                 $product->update([
                     'name' => $product_input['name'],
                     'goods_price' => $items['data']['goods_price'],
-                    'sell_price' => $product_input['profit'] + $items['data']['goods_price'],
+                    'sell_price' => floatval(str_replace('.', '', $product_input['profit'])) + $items['data']['goods_price'],
                     'product_category_id' => $productCategory->id,
                     'is_active' => false,
                     'type' => 'manufactured',
@@ -91,7 +91,7 @@ class ProductionService
                 $product = $this->ProductService->create([
                     'name' => $product_input['name'],
                     'goods_price' => $items['data']['goods_price'],
-                    'sell_price' => $product_input['profit'] + $items['data']['goods_price'],
+                    'sell_price' => floatval(str_replace('.', '', $product_input['profit'])) + $items['data']['goods_price'],
                     'product_category_id' => $productCategory->id,
                     'is_active' => false,
                     'type' => 'manufactured',
@@ -149,7 +149,7 @@ class ProductionService
 
             $items[] = $this->ItemService->firstOrCreate([
                 'name' => $item_input['name'],
-                'price' => $item_input['price'],
+                'price' => floatval(str_replace('.', '', $item_input['price'])),
                 'item_category_id' => $itemCategory->id,
             ]);
 
@@ -176,7 +176,7 @@ class ProductionService
             $products[] = $this->ProductService->create([
                 'name' => $product_input['name'],
                 'goods_price' => $data['goods_price'],
-                'sell_price' => $product_input['profit'] + $data['goods_price'],
+                'sell_price' => floatval(str_replace('.', '', $product_input['profit'])) + $data['goods_price'],
                 'product_category_id' => $productCategory->id,
                 'is_active' => false,
                 'type' => 'manufactured',

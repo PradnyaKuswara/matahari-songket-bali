@@ -68,6 +68,23 @@
                 </div>
 
                 <div>
+                    <a href="{{ route('carts.indexFront') }}"
+                        class="flex items-center rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60">
+                        <div tabindex="0" role="button" class="">
+                            <div class="indicator">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span class="badge badge-sm indicator-item bg-red-500"></span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div>
                     <a href="javascript:;" x-cloak x-show="$store.app.theme === 'light'" href="javascript:;"
                         class="flex items-center rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60"
                         @click="$store.app.toggleTheme('dark')">
@@ -140,8 +157,8 @@
                         </li>
                         @if (auth()->user()->isAdmin())
                             <li>
-                                <a href="{{ route('admin.dashboard.profile.edit') }}"
-                                    class="dark:hover:text-white" @click="toggle">
+                                <a href="{{ route('admin.dashboard.profile.edit') }}" class="dark:hover:text-white"
+                                    @click="toggle">
                                     <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="currentColor"
@@ -156,8 +173,8 @@
 
                         @if (auth()->user()->isCustomer())
                             <li>
-                                <a href="{{ route('customer.dashboard.profile.edit') }}"
-                                    class="dark:hover:text-white" @click="toggle">
+                                <a href="{{ route('customer.dashboard.profile.edit') }}" class="dark:hover:text-white"
+                                    @click="toggle">
                                     <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="currentColor"
@@ -172,8 +189,8 @@
 
                         @if (auth()->user()->isSeller())
                             <li>
-                                <a href="{{ route('seller.dashboard.profile.edit') }}"
-                                    class="dark:hover:text-white" @click="toggle">
+                                <a href="{{ route('seller.dashboard.profile.edit') }}" class="dark:hover:text-white"
+                                    @click="toggle">
                                     <svg class="h-4.5 w-4.5 shrink-0 ltr:mr-2 rtl:ml-2" width="18" height="18"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="currentColor"

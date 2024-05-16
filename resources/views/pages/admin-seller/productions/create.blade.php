@@ -210,10 +210,12 @@
                                         </label>
 
                                         <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <p class="text-sm text-gray-400">Rp.</p>
                                             <input id="loggingItemPrice" type="text"
                                                 class="form-input grow border-none outline-none " name="items[0][price]"
                                                 x-model="form.items[0].price" placeholder="Production price"
-                                                minlength="1" maxlength="50" />
+                                                x-mask:dynamic="$money($input,',')" step="1000" minlength="1"
+                                                maxlength="50" />
                                         </label>
 
                                         <template
@@ -294,9 +296,11 @@
                                         </label>
 
                                         <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <p class="text-sm text-gray-400">Rp.</p>
                                             <input id="loggingProductProfit0" type="text"
                                                 class="form-input grow border-none outline-none "
                                                 name="products[0][profit]" x-model="form.products[0].profit"
+                                                x-mask:dynamic="$money($input,',')" step="1000"
                                                 placeholder="Enter your product profit" minlength="1" maxlength="50" />
                                         </label>
 
@@ -443,6 +447,8 @@
 
                     this.form.items.forEach((item, index) => {
                         if (item) {
+                            item.price = this.clearDotFormInput(item.price);
+                            console.log(item.price);
                             if (!item.name || !item.category_name || !item.price || isNaN(item
                                     .price)) {
                                 this.statusRequest = false;
@@ -452,6 +458,7 @@
 
                     this.form.products.forEach((product, index) => {
                         if (product) {
+                            product.profit = this.clearDotFormInput(product.profit);
                             if (!product.name || !product.profit || !product.weaver_name || !
                                 product
                                 .category_name) {
@@ -768,6 +775,10 @@
 
                     this.indexProduct = 0;
                     localStorage.setItem('x_form_product', this.indexProduct);
+                },
+
+                clearDotFormInput(price) {
+                    return price.split('.').join('');
                 },
 
                 showMessage(msg = '', type = 'success') {

@@ -1,5 +1,7 @@
 import "./bootstrap";
-import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
+import "../../vendor/masmerise/livewire-toaster/resources/js"; // 👈
+import { Notyf } from "notyf";
+import { debounce } from "lodash";
 import Typed from "typed.js";
 import Swiper from "swiper/bundle";
 import Alpine from "alpinejs";
@@ -8,6 +10,8 @@ import intersect from "@alpinejs/intersect";
 window.Typed = Typed;
 window.Swiper = Swiper;
 window.Alpine = Alpine;
+window.Notyf = Notyf;
+window.debounce = debounce;
 
 Alpine.plugin(intersect);
 Alpine.start();

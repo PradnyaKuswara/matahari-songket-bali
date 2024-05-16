@@ -14,8 +14,8 @@
             @forelse ($productCategories as $productCategory)
                 <tr>
                     <td>{{ $productCategory->name }}</td>
-                    <td>{{ $productCategory->created_at }}</td>
-                    <td>{{ $productCategory->updated_at }}</td>
+                    <td>{{ $productCategory->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $productCategory->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
                             <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer" @click="toggle()"><span

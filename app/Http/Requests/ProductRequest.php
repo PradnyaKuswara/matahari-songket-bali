@@ -29,9 +29,9 @@ class ProductRequest extends FormRequest
             'image_2' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
             'image_3' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
             'image_4' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
-            'stock' => ['required', 'numeric'],
-            'goods_price' => ['required', 'numeric'],
-            'sell_price' => ['required', 'numeric'],
+            'stock' => ['required', 'string'],
+            'goods_price' => ['required', 'string'],
+            'sell_price' => ['required', 'string'],
             'description' => ['required', 'string', 'max:255'],
             'color' => ['required', 'string', 'max:255'],
         ];

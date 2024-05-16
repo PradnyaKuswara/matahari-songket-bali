@@ -111,6 +111,7 @@
     <script src="{{ asset('assets/vristo/assets/js/custom.js') }}"></script>
     <script src="{{ asset('assets/vristo/assets/js/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/js/alpine-init.js') }}"></script>
+    <script src="{{ asset('assets/vristo/assets/js/alpine-mask.min.js') }}"></script>
 
     @stack('scripts')
 </body>

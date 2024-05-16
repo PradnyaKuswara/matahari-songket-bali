@@ -106,12 +106,12 @@
                     <td>{{ $product->productCategory->name }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->stock }}</td>
-                    <td>{{ $product->goods_price }}</td>
-                    <td>{{ $product->sell_price }}</td>
+                    <td>Rp.{{ number_format($product->goods_price, 2, ',', '.') }}</td>
+                    <td>Rp.{{ number_format($product->sell_price, 2, ',', '.') }}</td>
                     <td>{{ $product->description ? Str::limit(strip_tags($product->description), 30) : '-' }}</td>
                     <td>{{ $product->type }}</td>
-                    <td>{{ $product->created_at }}</td>
-                    <td>{{ $product->updated_at }}</td>
+                    <td>{{ $product->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $product->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="w-full" x-data="modalEdit{{ $loop->iteration }}">
                             <label for="modal_edit_{{ $loop->iteration }}" class="cursor-pointer"
@@ -140,7 +140,7 @@
                                     'name' => 'stock',
                                     'id' => 'inputStock',
                                     'label' => 'Stock',
-                                    'type' => 'number',
+                                    'type' => 'text',
                                     'value' => $product->stock,
                                     'placeholder' => 'Enter your product stock',
                                     'is_required' => 'true',
@@ -149,16 +149,17 @@
                                     'name' => 'goods_price',
                                     'id' => 'inputGoodsPrice',
                                     'label' => 'Goods Price',
-                                    'type' => 'number',
+                                    'type' => 'text',
                                     'value' => $product->goods_price,
                                     'placeholder' => 'Enter your product goods price',
                                     'is_required' => 'true',
+                                    'attribute' => $product->productions()->exists() ? 'readonly' : '',
                                 ],
                                 [
                                     'name' => 'sell_price',
                                     'id' => 'inputSellPrice',
                                     'label' => 'Sell Price',
-                                    'type' => 'number',
+                                    'type' => 'text',
                                     'value' => $product->sell_price,
                                     'placeholder' => 'Enter your product sell price',
                                     'is_required' => 'true',

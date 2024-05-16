@@ -73,9 +73,10 @@ const inputPrice = (i) => {
         </label>
 
         <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+        <p class="text-sm text-gray-400">Rp.</p>
         <input id="loggingPrice${i}" type="text"
             class="form-input grow border-none outline-none " name="items[` + i + `][price]"
-            x-model="form.items[` + i + `].price" value="" placeholder="Production price"
+            x-model="form.items[` + i + `].price" value="" placeholder="Production price" x-mask:dynamic="$money($input,',')" step="1000"
             minlength="1" maxlength="50" />
         </label>
 
@@ -103,7 +104,7 @@ const buttonRemove = (i) => {
 const formParent = (i) => {
 
     return `
-        <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 border-t border-t-gray-800 animate-fade-up " id="formParent${i}">
+        <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 border-t border-t-gray-800" id="formParent${i}">
         ${inputName(i)}
         ${inputCategory(i)}
         ${inputPrice(i)}

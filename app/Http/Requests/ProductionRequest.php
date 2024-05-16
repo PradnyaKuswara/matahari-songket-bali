@@ -27,9 +27,9 @@ class ProductionRequest extends FormRequest
             'estimate' => ['required', 'numeric'],
             'items.*.name' => ['required', 'string', 'max:255'],
             'items.*.category_name' => ['required', 'string'],
-            'items.*.price' => ['required', 'numeric'],
+            'items.*.price' => ['required', 'string'],
             'products.*.name' => ['required', 'string', 'max:255'],
-            'products.*.profit' => ['required', 'numeric'],
+            'products.*.profit' => ['required', 'string'],
             'products.*.weaver_name' => ['required', 'string'],
             'products.*.category_name' => ['required', 'string'],
         ];

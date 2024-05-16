@@ -45,6 +45,11 @@ class Product extends Model implements AuditableContract
         return $this->belongsToMany(Production::class)->withPivot('weaver_name');
     }
 
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)->withPivot(['quantity', 'is_active', 'is_buy'])->withTimestamps();
+    }
+
     public function image1(): string
     {
         return Storage::url($this->image_1);

@@ -16,8 +16,8 @@
                     <td>{{ $audit->user_name ?? 'system' }}</td>
                     <td>{{ $audit->event }}</td>
                     <td>{{ $audit->auditable_type }}</td>
-                    <td>{{ $audit->created_at }}</td>
-                    <td>{{ $audit->updated_at }}</td>
+                    <td>{{ $audit->created_at->format('d F Y H:i:s') }}</td>
+                    <td>{{ $audit->updated_at->format('d F Y H:i:s') }}</td>
                     <td x-data="modal">
                         <button type="button" @click="toggle"><span
                                 class="mdi mdi-note-outline text-primary text-lg"></span></button>

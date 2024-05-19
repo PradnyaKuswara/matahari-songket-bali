@@ -53,6 +53,12 @@ class ProfileController extends Controller
 
         Toaster::success('Profile updated successfully!');
 
+        if (session()->has('link-direct-checkout')) {
+            session()->forget('link-direct-checkout');
+
+            return Redirect::route('checkout.index');
+        }
+
         if ($request->user()->isAdmin()) {
             return Redirect::route('admin.dashboard.profile.edit')->with('status', 'profile-updated');
         }

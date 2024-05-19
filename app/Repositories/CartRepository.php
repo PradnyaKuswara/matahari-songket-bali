@@ -13,6 +13,13 @@ class CartRepository implements CartInterface
         return $user->carts;
     }
 
+    public function getCartActiveByCustomer($user)
+    {
+        return $user->load(['carts' => function ($query) {
+            $query->wherePivot('is_active', true);
+        }]);
+    }
+
     public function storeCartByCustomer(array $data, $user)
     {
         DB::beginTransaction();
@@ -177,6 +184,41 @@ class CartRepository implements CartInterface
                 $response = [
                     'status' => 'success',
                     'message' => 'All product active successfully',
+                    'user' => $user,
+                ];
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return $response = [
+                'status' => 'error',
+                'message' => $th->getMessage(),
+                'user' => null,
+            ];
+        }
+    }
+
+    public function updateCartStatusBaseOnStock($user)
+    {
+        DB::beginTransaction();
+
+        try {
+            foreach ($user->carts as $cart) {
+                $productStock = (int) Product::find($cart->id)->stock;
+
+                if ($productStock === 0) {
+                    $this->deleteCartByCustomer(['product_id' => $cart->id], $user);
+                } elseif ($cart->pivot->quantity > $productStock) {
+                    $cart->pivot->quantity = $productStock;
+                    $cart->pivot->save();
+                }
+            }
+
+            DB::commit();
+
+            return
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Cart status updated successfully',
                     'user' => $user,
                 ];
         } catch (\Throwable $th) {

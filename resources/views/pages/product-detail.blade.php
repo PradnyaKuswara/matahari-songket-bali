@@ -95,7 +95,7 @@
                     <div class="flex gap-2 md:gap-4 item-center mt-5">
                         <x-button-click @click="addToCart({{ $product }})" id="btn-cart"
                             class="bg-primary w-full text-white"><span class="mdi mdi-cart-outline text-xl"></span>Add to
-                            Chart</x-button-click>
+                            Cart</x-button-click>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,9 @@
                         }
                     }).done(response => {
                         notify.success(response.message);
-                        $('#btn-cart').html('Add to Chart');
+                        $('#btn-cart').html(
+                            '<span class="mdi mdi-cart-outline text-xl"></span>Add to Cart'
+                            );
                     }).fail((jqXHR, textStatus, errorThrown) => {
                         $('#btn-cart').html('Add to Chart');
 

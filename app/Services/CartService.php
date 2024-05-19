@@ -18,6 +18,11 @@ class CartService
         return $this->cartInterface->getCartByCustomer($user);
     }
 
+    public function getCartActiveByCustomer($user)
+    {
+        return $this->cartInterface->getCartActiveByCustomer($user);
+    }
+
     public function storeCartByCustomer(array $data, $user)
     {
         return $this->cartInterface->storeCartByCustomer($data, $user);
@@ -41,5 +46,10 @@ class CartService
     public function toggleCartByCustomerAll($data, $user)
     {
         return $this->cartInterface->toggleCartByCustomerAll($data, $user);
+    }
+
+    public function updateCartStatusBaseOnStock($user)
+    {
+        return $this->cartInterface->updateCartStatusBaseOnStock($user);
     }
 }

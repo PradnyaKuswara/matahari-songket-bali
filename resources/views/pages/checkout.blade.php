@@ -30,34 +30,146 @@
             <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">Checkout Product</h1>
         </div>
 
+        @if (!auth()->user()->hasVerifiedEmail())
+            <div role="alert" class="alert alert-primary mb-4 mt-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="stroke-current shrink-0 w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Please verify you account. We’ve sent you a verification link to
+                    the email address <span class="font-medium text-indigo-500">{{ auth()->user()->email }}</span> or click
+                    beside
+                    button to
+                    resend email verification</span>
+                <form method="POST" action="{{ route('verification.send') }}">
+                    @csrf
+                    <button type="submit"
+                        class="btn btn-sm btn-primary w-50 rounded px-5 font-medium text-white shadow-md shadow-indigo-500/20">Resend
+                        Verification Email</button>
+                </form>
+            </div>
+        @endif
+
         <div class="grid lg:grid-cols-6 gap-8 mt-8">
             <div class="md:col-span-3 lg:col-span-4">
                 <div class="flex flex-col gap-4 mt-4">
                     <div class="flex flex-col border rounded-sm shadow-md w-full p-8 gap-4 ">
+                        @if ($user->addresses->count() <= 0)
+                            <div role="alert" class="alert alert-primary mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="stroke-current shrink-0 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Please fill in the details of your account address completely at the following link.
+                                    or click
+                                    beside
+                                    button</span>
+                                @php
+                                    session()->put('link-direct-checkout', 'checkout');
+                                @endphp
+                                <x-button-link class="btn btn-primary" :link="route('customer.dashboard.address.index')">Add your address</x-button-link>
+                            </div>
+                        @else
+                            <div role="alert" class="alert alert-primary mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    class="stroke-current shrink-0 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>If you want change your address, please follow link or click beside button</span>
+                                @php
+                                    session()->put('link-direct-checkout', 'checkout');
+                                @endphp
+                                <x-button-link class="btn btn-primary" :link="route('customer.dashboard.address.index')">Change your address</x-button-link>
+                            </div>
+                        @endif
+
                         <h2 class="font-extrabold text-3xl">Book Information - <span class="font-bold text-xl">Your
                                 detail</span> </h2>
-                        <form action="" class="flex flex-col gap-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <label class="form-control w-full ">
-                                    <div class="label">
-                                        <span class="label-text">First Name</span>
-                                    </div>
-                                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
-                                </label>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <label class="form-control w-full ">
+                                <div class="label">
+                                    <span class="label-text">Name</span>
+                                </div>
+                                <p class="mx-2 font-bold text-sm">{{ $user->name }}</p>
 
-                                <label class="form-control w-full">
-                                    <div class="label">
-                                        <span class="label-text">Last Name</span>
-                                    </div>
-                                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
-                                </label>
-                            </div>
+                            </label>
 
+                            <label class="form-control w-full">
+                                <div class="label">
+                                    <span class="label-text">User Name</span>
+                                </div>
+                                <p class="mx-2 font-bold text-sm">{{ $user->username }}</p>
+                            </label>
+
+                            <label class="form-control w-full">
+                                <div class="label">
+                                    <span class="label-text">Phone Number</span>
+                                </div>
+                                @if ($user->phone_number == null)
+                                    @php
+                                        session()->put('link-direct-checkout', 'checkout');
+                                    @endphp
+                                    <x-button-link class="btn btn-primary" :link="route('customer.dashboard.profile.edit')">Add
+                                        your phone number</x-button-link>
+                                @else
+                                    <p class="mx-2 font-bold text-sm font-sans">{{ $user->phone_number ?? '-' }}</p>
+                                @endif
+                            </label>
+                        </div>
+
+                        @if ($user->addresses->count() > 0)
                             <label class="form-control w-full ">
                                 <div class="label">
                                     <span class="label-text">Address</span>
                                 </div>
-                                <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                                <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->address }}</p>
+                            </label>
+
+                            <div class="grid md:grid-cols-4 gap-4">
+                                <label class="form-control w-full ">
+                                    <div class="label">
+                                        <span class="label-text">Country</span>
+                                    </div>
+                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->country }}</p>
+                                </label>
+                                <label class="form-control w-full ">
+                                    <div class="label">
+                                        <span class="label-text">Province</span>
+                                    </div>
+                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->province }}</p>
+                                </label>
+
+                                <label class="form-control w-full ">
+                                    <div class="label">
+                                        <span class="label-text">City</span>
+                                    </div>
+                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->city }}</p>
+                                </label>
+
+                                <label class="form-control w-full ">
+                                    <div class="label">
+                                        <span class="label-text">Post Code</span>
+                                    </div>
+                                    <p class="mx-2 font-bold text-sm font-sans">{{ $user->addresses->first()->postal_code }}
+                                    </p>
+                            </div>
+
+                            <label class="form-control w-full ">
+                                <div class="label">
+                                    <span class="label-text">Additional Information</span>
+                                </div>
+                                <p class="mx-2 font-bold text-sm">
+                                    {{ $user->addresses->first()->additional_information }}</p>
+                            </label>
+                        @else
+                            <label class="form-control w-full ">
+                                <div class="label">
+                                    <span class="label-text">Address</span>
+                                </div>
+                                <p class="mx-2 font-bold text-sm">-</p>
                             </label>
 
                             <div class="grid grid-cols-3 gap-4">
@@ -65,21 +177,21 @@
                                     <div class="label">
                                         <span class="label-text">Province</span>
                                     </div>
-                                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                                    <p class="mx-2 font-bold text-sm">-</p>
                                 </label>
 
                                 <label class="form-control w-full ">
                                     <div class="label">
                                         <span class="label-text">Regency</span>
                                     </div>
-                                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                                    <p class="mx-2 font-bold text-sm">-</p>
                                 </label>
 
                                 <label class="form-control w-full ">
                                     <div class="label">
                                         <span class="label-text">Post Code</span>
                                     </div>
-                                    <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                                    <p class="mx-2 font-bold text-sm">-</p>
                                 </label>
                             </div>
 
@@ -87,66 +199,106 @@
                                 <div class="label">
                                     <span class="label-text">Additional Information</span>
                                 </div>
-                                <input type="text" placeholder="Type here" class="input input-bordered w-full" />
+                                <p class="mx-2 font-bold text-sm">-</p>
                             </label>
-                        </form>
+                        @endif
                     </div>
 
                     <div class="flex flex-col border rounded-sm  w-full p-8 gap-4 shadow-md">
                         <h2 class="font-extrabold text-xl">Account Information</h2>
                         <div class="flex flex-col">
-                            <p>Lorem Ipsum</p>
-                            <p>loremipsum@gmail.com</p>
+                            <p>Name: <span class="font-bold">{{ $user->name }}</span></p>
+                            <p>Email: <span class="font-bold">{{ $user->email }}</span></p>
                         </div>
-
-
                     </div>
-                    {{-- <div class="flex flex-col w-full gap-4 mt-4">
-                        <h2 class="ml-4">Payment Method</h2>
-                        <form action="">
-                            <div class="flex gap-4 items-center border rounded-md border-slate-400 p-4">
-                                <input type="radio" name="radio-2" class="radio radio-primary" checked />
-                                <label for="radio-2" class="text-sm">Bank Transfer</label>
-                            </div>
-                        </form>
-
-                    </div> --}}
                 </div>
             </div>
 
             <div class="md:col-span-3 lg:col-span-2  ">
                 <div class="flex flex-col gap-4 mt-4">
-                    <div
-                        class="flex flex-col border rounded-md bg-primary text-primary-content border-slate-400 w-full p-8 gap-4 ">
-                        <h2 class="font-extrabold text-3xl">Order Summary</h2>
-                        <div class="h-[15rem] overflow-auto ">
-                            <x-order-summary></x-order-summary>
-                            <x-order-summary></x-order-summary>
-                            <x-order-summary></x-order-summary>
-                        </div>
+                    <form action="{{ route('checkout.store') }}" method="POST">
+                        @csrf
+                        <input type="text" class="hidden" name="user_id" value="{{ $user->id }}">
+                        <input type="text" class="hidden" name="address_id"
+                            value="{{ $user->addresses->first()->id ?? '' }}">
+                        <div class="flex flex-col border rounded-md border-primary  text-primary w-full p-8 gap-4 ">
+                            <h2 class="font-extrabold text-3xl">Order Summary</h2>
+                            <div class="max-h-[15rem] overflow-auto ">
+                                @forelse ($user->carts as $cart)
+                                    <x-order-summary :cart="$cart"></x-order-summary>
+                                @empty
+                                    <div class="flex justify-center items-center h-32">
+                                        <h1 class="text-lg">No item in cart</h1>
+                                    </div>
+                                @endforelse
+                            </div>
 
-                        <div class="flex-col border-b pb-4">
+                            @php
+                                $item = $user->carts->sum(function ($cart) {
+                                    return $cart->sell_price * $cart->pivot->quantity;
+                                });
+
+                                $quantity = $user->carts->sum(function ($cart) {
+                                    return $cart->pivot->quantity;
+                                });
+
+                                $shipping = $quantity * 10000;
+
+                                $total = $item + $shipping;
+
+                                $tax = $total * 0.05;
+
+                                $totalAll = $total + $tax;
+                            @endphp
+                            <div class="flex-col border-b pb-4">
+                                <div class="flex justify-between items-center">
+                                    <h1>Items ({{ $quantity }}) : </h1>
+                                    <h1 class="font-sans">Rp. {{ number_format($item, 2, ',', '.') }}</h1>
+                                    <input type="text" class="hidden" name="item_total_price"
+                                        value="{{ $item }}">
+                                    <input type="text" class="hidden" name="quantity" value="{{ $quantity }}">
+                                </div>
+                                <div class="flex justify-between items-center mt-4">
+                                    <h1>Shipping : </h1>
+                                    <h1 class="font-sans">Rp. {{ number_format($shipping, 2, ',', '.') }}</h1>
+                                    <input type="text" class="hidden" name="shipping_price"
+                                        value="{{ $shipping }}">
+                                </div>
+                                <div class="flex justify-between items-center mt-4">
+                                    <h1>Subtotal : </h1>
+                                    <h1 class="font-sans">Rp. {{ number_format($total, 2, ',', '.') }}</h1>
+                                </div>
+                            </div>
                             <div class="flex justify-between items-center">
-                                <h1>Items (4) : </h1>
-                                <h1 class="font-sans">Rp. 1000000</h1>
+                                <h1>PPN : </h1>
+                                <h1 class="font-sans">Rp. {{ number_format($tax, 2, ',', '.') }}</h1>
+                                <input type="text" class="hidden" name="tax" value="{{ $tax }}">
                             </div>
-                            <div class="flex justify-between items-center mt-4">
-                                <h1>Subtotal : </h1>
-                                <h1 class="font-sans">Rp. 1000000</h1>
+                            <div class="text-4xl font-sans">
+                                <h1>Rp. {{ number_format($totalAll, 2, ',', '.') }}</h1>
+                                <input type="text" class="hidden" name="total_price" value="{{ $totalAll }}">
+                            </div>
+                            <div class="flex flex-col gap-4 mt-8">
+                                @if ($user->carts->count() > 0 && $user->addresses->count() > 0 && $user->phone_number != null)
+                                    <button type="submit" class="btn btn-accent w-full"><span
+                                            class="mdi mdi-dots-hexagon text-xl"></span>Checkout Product</button>
+                                    <x-button-link class="btn btn-neutral  w-full" :link="route('carts.indexFront')"><span
+                                            class="mdi mdi-cart-outline text-xl"></span>Change
+                                        Product Cart</x-button-link>
+                                @else
+                                    <x-button-link class="btn btn-neutral  w-full" :link="route('products.indexFront')">Explore
+                                        Product</x-button-link>
+                                    <div class="">
+                                        <p class="text-red-500 text-xs">* Make sure choose your product on cart</p>
+                                        <p class="text-red-500 text-xs">* Please complete your profile address to
+                                            checkout</p>
+                                        <p class="text-red-500 text-xs">* Please complete your profile phone number to
+                                            checkout</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <h1>PPN : </h1>
-                            <h1 class="font-sans">Rp. 20.000</h1>
-                        </div>
-                        <div class="text-4xl font-sans">
-                            <h1>Rp. 1020000</h1>
-                        </div>
-                        <div class="flex mt-8">
-                            <button class="btn btn-accent w-full">Checkout</button>
-                        </div>
-
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

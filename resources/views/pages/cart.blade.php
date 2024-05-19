@@ -25,10 +25,17 @@
 @section('content')
     <div x-data="carts"
         class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 py-14 md:px-14 lg:px-0 lg:pt-28 mx-4 md:mx-0">
-        <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
-            class="flex flex-col md:flex-row px-4 lg:px-0">
-            <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart</h1>
+        <div class="flex justify-between items-center" x-data="{ intersect: false }" x-intersect:enter="intersect=true"
+            x-intersect:leave="intersect=false">
+            <div class="flex flex-col md:flex-row px-4 lg:px-0">
+                <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart</h1>
+            </div>
+            <div class="flex flex-col md:flex-row px-4 lg:px-0">
+                <x-button-link class="btn-neutral" :link="route('products.indexFront')">
+                    <span class="mdi mdi-store-search-outline text-xl"></span>Browse Product</x-button-link>
+            </div>
         </div>
+
 
         <div class="grid lg:grid-cols-4 gap-8 mt-8">
             <div class="md:col-span-3 lg:col-span-3">
@@ -41,8 +48,13 @@
                         </div>
                     </div>
                     <div class="flex flex-col w-full shadow-lg rounded-md p-4 2xl:h-[49rem] h-[33rem] overflow-y-scroll">
-                        <div id="cart-list" class="flex flex-col gap-4">
+                        <div x-show="temp" id="cart-list" class="flex flex-col gap-4">
                             @include('pages.cart-data')
+                        </div>
+                        <div>
+                            <x-loading-cart></x-loading-cart>
+                            <x-loading-cart></x-loading-cart>
+                            <x-loading-cart></x-loading-cart>
                         </div>
                     </div>
                 </div>
@@ -56,7 +68,7 @@
                             <p class="text-sm">Total</p>
                             <p class="text-sm font-sans" x-text="totalPriceDisplay"></p>
                         </div>
-                        <x-button-link link="{{ route('checkout') }}"
+                        <x-button-link link="{{ route('checkout.index') }}"
                             class="btn-sm bg-accent text-white">Checkout</x-button-link>
                     </div>
                     <div class="flex flex-col gap-4 shadow-md rounded-md p-4">
@@ -84,6 +96,7 @@
                 loading: false,
                 cart: true,
                 products: null,
+                temp: true,
                 totalPrice: 0,
                 endpointCart: '{{ route('carts.getCartByCustomer') }}',
                 endpointUpdate: '{{ route('carts.updateCartByCustomer') }}',
@@ -108,8 +121,7 @@
 
                 toggleCheckAll: debounce(function() {
                     this.checkAll = !this.checkAll;
-
-                    this.forms.map((form) => {
+                    this.forms.map((form, index) => {
                         form.is_active = this.checkAll;
                     });
 
@@ -124,7 +136,7 @@
                             checkAll: this.checkAll ? 1 : 0,
                         },
                     }).done((response) => {
-                        this.getTotalPrice();
+                        this.getCart();
                     }).fail((jqXHR, ajaxOptions, thrownError) => {
                         this.showMessage(jqXHR.responseJSON.message, 'error');
                         console.log(jqXHR.responseJSON.message);
@@ -146,7 +158,7 @@
                             quantity: this.forms[index].quantity,
                         },
                     }).done((response) => {
-                        this.getTotalPrice();
+                        this.getCart();
 
                     }).fail((jqXHR, ajaxOptions, thrownError) => {
                         this.showMessage('Failed to update cart', 'error');
@@ -173,20 +185,20 @@
                         type: 'get',
                         beforeSend: () => {
                             this.loading = true;
-                            this.cart = false;
+                            this.temp = false;
                         },
                     }).done((response) => {
-                        this.products = response.products;
                         $('#cart-list').html(response.html);
-                        this.loading = false;
-                        this.cart = true;
+                        this.products = response.products;
                         this.initForm();
                         this.getTotalPrice();
                         this.checkAll = this.checkAllStatus();
+                        this.loading = false;
+                        this.temp = true;
+
                     }).fail((jqXHR, ajaxOptions, thrownError) => {
                         this.showMessage('Failed to get cart', 'error');
                         this.loading = false;
-                        this.cart = true;
                     });
                 },
 
@@ -204,7 +216,6 @@
                 },
 
                 minusQuantity: debounce(function(index) {
-                    console.log(this.forms[index]);
                     if (this.forms[index].quantity > 1) {
                         this.forms[index].quantity--;
 
@@ -220,7 +231,7 @@
                                 quantity: this.forms[index].quantity,
                             },
                         }).done((response) => {
-                            this.getTotalPrice();
+                            this.getCart();
                         }).fail((jqXHR, ajaxOptions, thrownError) => {
                             this.showMessage('Failed to update cart', 'error');
                         });
@@ -248,7 +259,7 @@
                             quantity: this.forms[index].quantity,
                         },
                     }).done((response) => {
-                        this.getTotalPrice();
+                        this.getCart();
                     }).fail((jqXHR, ajaxOptions, thrownError) => {
                         this.showMessage('Failed to update cart', 'error');
                     });

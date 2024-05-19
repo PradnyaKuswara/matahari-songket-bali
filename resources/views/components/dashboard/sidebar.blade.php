@@ -1,7 +1,7 @@
  <!-- start sidebar section -->
  <div :class="{ 'dark text-white-dark': $store.app.semidark }">
      <nav x-data="sidebar"
-         class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
+         class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300 no-print">
          <div class="h-full bg-white dark:bg-[#0e1726]">
              <div class="flex items-center justify-between px-4 py-3">
                  <a href="javascript:void(0)" class="main-logo flex items-center shrink-0 overflow-hidden">
@@ -72,6 +72,8 @@
                          @endif
                      </ul>
                  </li>
+
+
 
                  @if (!auth()->user()->isCustomer())
                      <li class="nav-item">
@@ -242,6 +244,31 @@
                      </li>
                  @endif
 
+                 @if (auth()->user()->isSeller())
+                     <h2
+                         class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                         <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"
+                             stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                             <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                         <span>Management Shipping</span>
+                     </h2>
+
+                     <li class="nav-item">
+                         <ul>
+                             <li class="nav-item">
+                                 <a href="{{ route('seller.dashboard.shippings.index') }}" class="group">
+                                     <div class="flex items-center">
+                                         <span class="mdi mdi-truck-cargo-container text-xl"></span>
+                                         <span
+                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Shipping</span>
+                                     </div>
+                                 </a>
+                             </li>
+                         </ul>
+                     </li>
+                 @endif
+
                  @if (auth()->user()->isAdmin())
                      <h2
                          class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
@@ -335,10 +362,56 @@
                              </li>
                          </ul>
                      </li>
+
+                     <h2
+                         class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                         <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"
+                             stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                             <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                         <span>Management History</span>
+                     </h2>
+
+                     <li class="nav-item">
+                         <ul>
+                             <li class="nav-item">
+                                 <a href="{{ route('customer.dashboard.order.index') }}"
+                                     class="group {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-order-bool-descending-variant text-xl {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Order</span>
+                                     </div>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('customer.dashboard.transaction.index') }}"
+                                     class="group {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Invoice</span>
+                                     </div>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('customer.dashboard.shipping.index') }}"
+                                     class="group {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Shipping</span>
+                                     </div>
+                                 </a>
+                             </li>
+                         </ul>
+                     </li>
                  @endif
 
-                 @if (auth()->user()->isSeller())
-                 @endif
+
              </ul>
          </div>
      </nav>

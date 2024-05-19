@@ -54,4 +54,11 @@ class ProductRepository implements ProductInterface
     {
         return $this->searchService->handle($request, $model, $conditions, $relations)->where('is_active', true)->orderByRaw('stock > 0 desc, created_at desc')->paginate(9)->withQueryString()->withPath('products');
     }
+
+    public function updateStock($order)
+    {
+        foreach ($order->products as $product) {
+            $product->update(['stock' => $product->stock - $product->pivot->quantity]);
+        }
+    }
 }

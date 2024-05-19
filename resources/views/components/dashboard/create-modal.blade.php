@@ -31,7 +31,7 @@
                                     <input id="{{ $element['id'] }}" type="{{ $element['type'] }}"
                                         placeholder="{{ $element['placeholder'] }}" class="form-input"
                                         value="{{ old($element['name']) }}" name="{{ $element['name'] }}" minlength="1"
-                                        maxlength="50" />
+                                        min="1" maxlength="50" />
                                     <button type="button" class="color-picker text-white">--</button>
                                 </div>
 
@@ -54,10 +54,10 @@
                                                 $element['name'] == 'sell_price' ||
                                                 $element['name'] == 'stock' ||
                                                 $element['name'] == 'price') x-mask:dynamic="$money($input,',')" step="1000"" @endif />
-                                    @error($element['name'])
-                                        <p class="mt-2 text-danger text-xs">{{ $message }}</p>
-                                    @enderror
                                 </div>
+                                @error($element['name'])
+                                    <p class="mt-2 text-danger text-xs">{{ $message }}</p>
+                                @enderror
                             @endif
                         @endif
 

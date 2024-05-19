@@ -32,6 +32,12 @@ class AddressController extends Controller
 
         Toaster::success('Address created successfully');
 
+        if (session()->has('link-direct-checkout')) {
+            session()->forget('link-direct-checkout');
+
+            return redirect()->route('checkout.index');
+        }
+
         return redirect()->route('customer.dashboard.address.index');
     }
 
@@ -43,6 +49,12 @@ class AddressController extends Controller
 
         Toaster::success('Address updated successfully');
 
+        if (session()->has('link-direct-checkout')) {
+            session()->forget('link-direct-checkout');
+
+            return redirect()->route('checkout.index');
+        }
+
         return redirect()->route('customer.dashboard.address.index');
     }
 
@@ -53,6 +65,12 @@ class AddressController extends Controller
         $this->addressService->updateStatus($request->user(), $address);
 
         Toaster::success('Address status updated successfully');
+
+        if (session()->has('link-direct-checkout')) {
+            session()->forget('link-direct-checkout');
+
+            return redirect()->route('checkout.index');
+        }
 
         return redirect()->route('customer.dashboard.address.index');
     }

@@ -1,9 +1,5 @@
 @props(['elements' => [], 'title' => 'Create', 'route' => '', 'idModal' => '', 'idRoute' => '', 'attribute' => ''])
 
-@php
-    $incrementFile = 1;
-@endphp
-
 <input type="checkbox" id="modal_edit_{{ $idModal }}" class="modal-toggle" />
 <div class="modal" role="dialog">
     <div class="modal-box w-12/12 md:max-w-3xl">
@@ -62,10 +58,10 @@
                                                 $element['name'] == 'sell_price' ||
                                                 $element['name'] == 'stock' ||
                                                 $element['name'] == 'price') x-mask:dynamic="$money($input,',')" step="1000"" @endif />
-                                    @error($element['name'])
-                                        <p class="mt-2 text-danger text-xs">{{ $message }}</p>
-                                    @enderror
                                 </div>
+                                @error($element['name'])
+                                    <p class="mt-2 text-danger text-xs">{{ $message }}</p>
+                                @enderror
                             @endif
                         @endif
 

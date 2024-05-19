@@ -46,7 +46,6 @@
                         <li>
                             <a href="{{ route('admin.dashboard.profile.edit') }}" class="justify-between">
                                 Profile
-                                <span class="badge">New</span>
                             </a>
                         </li>
                     @endif
@@ -56,7 +55,12 @@
                         <li>
                             <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
                                 Profile
-                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.order.index') }}" class="justify-between">
+                                Order
+                                <span class="badge badge-primary animate-pulse animate-infinite">New</span>
                             </a>
                         </li>
                     @endif
@@ -66,7 +70,6 @@
                         <li>
                             <a href="{{ route('seller.dashboard.profile.edit') }}" class="justify-between">
                                 Profile
-                                <span class="badge">New</span>
                             </a>
                         </li>
                     @endif
@@ -108,7 +111,6 @@
                         <li>
                             <a href="{{ route('admin.dashboard.profile.edit') }}" class="justify-between">
                                 Profile
-                                <span class="badge">New</span>
                             </a>
                         </li>
                     @endif
@@ -119,7 +121,13 @@
                             <li>
                                 <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
                                     Profile
-                                    <span class="badge">New</span>
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('customer.dashboard.order.index') }}" class="justify-between">
+                                    Order
+                                    <span class="badge badge-primary animate-pulse animate-infinite">New</span>
                                 </a>
                             </li>
                     @endif
@@ -130,7 +138,6 @@
                             <li>
                                 <a href="{{ route('seller.dashboard.profile.edit') }}" class="justify-between">
                                     Profile
-                                    <span class="badge">New</span>
                                 </a>
                             </li>
                     @endif

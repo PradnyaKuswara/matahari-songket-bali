@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
@@ -24,5 +27,21 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::patch('/update/{address}', 'update')->name('update');
         Route::patch('/update-status/{address}', 'updateStatus')->name('update-status');
         Route::delete('/delete/{address}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/show/{order}', 'show')->name('show');
+    });
+
+    Route::controller(TransactionController::class)->prefix('transaction')->name('transaction.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/show/{transaction}', 'show')->name('show');
+    });
+
+    Route::controller(ShippingController::class)->prefix('shipping')->name('shipping.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/show/{shipping}', 'show')->name('show');
+        Route::patch('/confirmation/{shipping}', 'confirmation')->name('confirmation');
     });
 });

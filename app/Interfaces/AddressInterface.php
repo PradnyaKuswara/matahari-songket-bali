@@ -18,9 +18,5 @@ interface AddressInterface
 
     public function find($address);
 
-    // public function search($request, $model, $conditions);
-
-    // public function createAttached(array $data, $user, $status);
-
-    // public function deleteDetached($user, $address);
+    public function addressCheckOut($user);
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShippingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
@@ -75,5 +76,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::patch('toggleActive/{article}', 'toggleActive')->name('toggleActive');
         Route::delete('delete/{article}', 'destroy')->name('destroy');
         Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(ShippingController::class)->prefix('shippings')->name('shippings.')->group(function () {
+        Route::get('/', 'indexSeller')->name('index');
+        Route::patch('update/{shipping}', 'update')->name('update');
     });
 });

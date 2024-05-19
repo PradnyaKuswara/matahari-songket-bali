@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('customer-address', function (User $user, $address) {
             return $user->id === $address->user_id;
         });
+
+        Gate::define('customer-order', function (User $user, $order) {
+            return $user->id === $order->user_id && $order->transaction->status === 'pending';
+        });
     }
 }

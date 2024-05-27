@@ -18,14 +18,12 @@ class Admin
     {
         if (auth()->check()) {
             if (!auth()->user()->isAdmin()) {
-                Toaster::error('Not found');
 
                 return redirect()->back();
             } else {
                 return $next($request);
             }
         } else {
-            Toaster::error('Not found');
 
             return redirect()->back();
         }

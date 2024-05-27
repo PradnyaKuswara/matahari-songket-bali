@@ -180,6 +180,7 @@ class ProductionService
                 'product_category_id' => $productCategory->id,
                 'is_active' => false,
                 'type' => 'manufactured',
+                'stock' => 1,
             ]);
         }
 

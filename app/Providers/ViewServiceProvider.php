@@ -13,7 +13,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WhatsNewController;
@@ -42,7 +43,7 @@ Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-n
 
 Route::get('about', [AboutController::class, 'index'])->name('about');
 
-Route::controller(CartController::class)->prefix('carts')->name('carts.')->middleware('auth')->group(function () {
+Route::controller(CartController::class)->prefix('carts')->name('carts.')->middleware('customer')->group(function () {
     Route::get('/', 'indexFront')->name('indexFront');
     Route::get('/get-cart-by-customer', 'getCartByCustomer')->name('getCartByCustomer');
     Route::post('/store', 'storeCartByCustomer')->name('storeCartByCustomer');
@@ -52,9 +53,17 @@ Route::controller(CartController::class)->prefix('carts')->name('carts.')->middl
     Route::patch('/toggle-all', 'toggleCartByCustomerAll')->name('toggleCartByCustomerAll');
 });
 
-Route::get('checkout', function () {
-    return view('pages.checkout');
-})->name('checkout');
+Route::controller(CheckOutController::class)->prefix('checkout')->name('checkout.')->middleware('customer')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/check-stock', 'checkStock')->name('checkStock');
+
+    Route::prefix('payment')->group(function () {
+        Route::get('/{order}', 'showPayment')->name('showPayment');
+        Route::get('/status/success', 'successView')->name('successView');
+        Route::patch('/update/status', 'updateCheckout')->name('updateCheckout');
+    });
+});
 
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
 

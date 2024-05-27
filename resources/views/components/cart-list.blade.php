@@ -4,8 +4,8 @@
     <div class="flex gap-4 flex-col md:flex-row  p-2 md:p-1 2xl:p-4 border-gray-200 ">
         <div class="flex w-full gap-6 md:gap-12 xl:gap-4">
             <div class="flex item gap-4">
-                <input type="checkbox" x-bind:checked="forms[{{ $index }}].is_active" @click="toggleCheck({{ $index }})"
-                    class="checkbox checkbox-accent" />
+                <input type="checkbox" x-bind:checked="forms[{{ $index }}].is_active"
+                    @click="toggleCheck({{ $index }})" class="checkbox checkbox-accent" />
                 <img src="{{ $product->image1() }}" class="w-32 md:w-40 rounded-md" alt="Album" />
             </div>
             <div class="flex flex-col gap-2">
@@ -63,17 +63,11 @@
                     </div>
                 </div>
             </div>
+            @if ($product->stock < $product->pivot->quantity)
+                <div id="alert-stock" class="w-full flex justify-end">
+                    <p class="text-xs text-red-500">Update your cart because stock is uptodated</p>
+                </div>
+            @endif
         </div>
     </div>
 </template>
-
-{{-- @push('scripts')
-    <script>
-        Alpine.data('detailCart', () => ({
-            form: {
-                product_id: null,
-                quantity: 1,
-            },
-        }));
-    </script>
-@endpush --}}

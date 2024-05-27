@@ -1,6 +1,6 @@
 <!-- start header section -->
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">
-    <div class="shadow-sm">
+    <div class="shadow-sm no-print">
         <div class="relative flex w-full items-center gap-4 bg-white px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
                 <a href="javascript:void(0);" class="main-logo flex shrink-0 items-center">
@@ -22,8 +22,8 @@
             </div>
 
             <div x-data="header"
-                class="flex items-center space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0 lg:space-x-2">
-                <div class="sm:ltr:mr-auto sm:rtl:ml-auto" x-data="{ search: false }" @click.outside="search = false">
+                class="flex items-center justify-end space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0 lg:space-x-2">
+                {{-- <div class="sm:ltr:mr-auto sm:rtl:ml-auto" x-data="{ search: false }" @click.outside="search = false">
                     <form
                         class="absolute inset-x-0 top-1/2 z-10 mx-4 hidden -translate-y-1/2 sm:relative sm:top-0 sm:mx-0 sm:block sm:translate-y-0"
                         :class="{ '!block': search }" @submit.prevent="search = false">
@@ -65,7 +65,7 @@
                                 stroke-linecap="round" />
                         </svg>
                     </button>
-                </div>
+                </div> --}}
 
                 <div>
                     <a href="{{ route('carts.indexFront') }}"

@@ -29,11 +29,12 @@
 </head>
 
 <body data-theme>
-    <header>
+    <header class="no-print">
         <x-header></x-header>
     </header>
 
     <main>
+        {{-- @dd($status) --}}
         <x-toaster-hub /> <!-- 👈 -->
         @yield('content')
     </main>
@@ -41,6 +42,11 @@
     <x-footer></x-footer>
 
     <script type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
+    <script>
+        localStorage.removeItem('x_modal_create')
+        localStorage.removeItem('x_modal_edit')
+        localStorage.removeItem('x_modal_edit_id')
+    </script>
     @stack('scripts')
 </body>
 

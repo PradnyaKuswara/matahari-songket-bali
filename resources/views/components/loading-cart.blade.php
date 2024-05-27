@@ -1,4 +1,4 @@
-<div x-show="loading" class="flex flex-row gap-4 w-full justify-between items-center mx-10 ">
+<div x-show="loading" class="flex flex-row gap-4 w-full justify-between items-center mx-10 mt-4 ">
     <div class="flex items-center">
         <div class="skeleton h-20 w-20 lg:h-32 lg:w-52"></div>
         <div class="p-4 flex flex-col gap-4">

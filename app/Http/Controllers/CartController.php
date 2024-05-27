@@ -17,6 +17,8 @@ class CartController extends Controller
 
     public function indexFront(Request $request)
     {
+        $this->cartService->updateCartStatusBaseOnStock($request->user());
+
         return view('pages.cart', [
             'products' => [],
         ]);
@@ -24,6 +26,7 @@ class CartController extends Controller
 
     public function getCartByCustomer(Request $request)
     {
+        $this->cartService->updateCartStatusBaseOnStock($request->user());
 
         $products = $this->cartService->getCartByCustomer($request->user());
         $view = view('pages.cart-data', compact('products'))->render();

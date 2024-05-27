@@ -4,7 +4,7 @@
     <a href="{{ route('products.detailFront', $product) }}"
         class="hidden lg:flex {{ $product->stock <= 0 ? 'pointer-events-none' : '' }}">
         <div {{ $attributes->merge(['class' => 'card h-full']) }}>
-            <figure style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);"><img
+            <figure class="aspect-video border"><img
                     class="w-full h-full object-cover" src="{{ $product->image1() }}" alt="Shoes" />
             </figure>
             <div class="card-body ">

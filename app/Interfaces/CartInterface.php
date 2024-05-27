@@ -6,6 +6,8 @@ interface CartInterface
 {
     public function getCartByCustomer($user);
 
+    public function getCartActiveByCustomer($user);
+
     public function storeCartByCustomer(array $data, $user);
 
     public function updateCartByCustomer(array $data, $user);
@@ -15,4 +17,6 @@ interface CartInterface
     public function toggleCartByCustomer(array $data, $user);
 
     public function toggleCartByCustomerAll($data, $user);
+
+    public function updateCartStatusBaseOnStock($user);
 }

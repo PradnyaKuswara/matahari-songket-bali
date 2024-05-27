@@ -49,19 +49,10 @@ class AddressRepository implements AddressInterface
         return $address;
     }
 
-    // public function search($request, $model, $conditions)
-    // {
-    //     return $this->searchService->handle($request, $model, $conditions)->paginate(9)->withQueryString()->withPath('addresses');
-    // }
-
-    // public function createAttached(array $data, $user, $status)
-    // {
-    //     return $user->addresses()->attach($data, ['is_active' => $status]);
-    // }
-
-    // public function deleteDetached($user, $address)
-    // {
-    //     return $user->addresses()->detach($address);
-    // }
-
+    public function addressCheckOut($user)
+    {
+        return $user->load(['addresses' => function ($query) {
+            $query->where('is_active', true);
+        }]);
+    }
 }

@@ -26,7 +26,7 @@ class InvoiceMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Reminder] Invoice # Your Product Transaction',
+            subject: '[Reminder] Invoice #'.$this->content->transaction->generate_id.' Your Product Transaction',
         );
     }
 
@@ -48,7 +48,6 @@ class InvoiceMail extends Mailable
      */
     public function attachments(): array
     {
-        return [
-        ];
+        return [];
     }
 }

@@ -83,4 +83,9 @@ class ProductService
     {
         return $this->productInterface->searchFront($request, $model, $conditions, $relations);
     }
+
+    public function updateStock($order)
+    {
+        return $this->productInterface->updateStock($order);
+    }
 }

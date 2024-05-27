@@ -54,6 +54,11 @@ class AddressService
         return $this->addressInterface->find($address);
     }
 
+    public function addressCheckOut($user)
+    {
+        return $this->addressInterface->addressCheckOut($user);
+    }
+
     // public function search($request, $model, $conditions)
     // {
     //     return $this->addressInterface->search($request, $model, $conditions);

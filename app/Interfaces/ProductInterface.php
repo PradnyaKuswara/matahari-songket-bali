@@ -19,4 +19,6 @@ interface ProductInterface
     public function search($request, $model, $conditions, $relations);
 
     public function searchFront($request, $model, $conditions, $relations);
+
+    public function updateStock($order);
 }

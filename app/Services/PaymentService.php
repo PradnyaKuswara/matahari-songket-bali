@@ -10,7 +10,9 @@ class PaymentService
 
     protected $mailService;
 
-    public function __construct(ShippingService $shippingService, MailService $mailService)
+    protected $whatsappService;
+
+    public function __construct(ShippingService $shippingService, MailService $mailService, WhatsappService $whatsappService)
     {
         \Midtrans\Config::$serverKey = config('midtrans.server-key');
         \Midtrans\Config::$isProduction = config('midtrans.is-production');
@@ -19,6 +21,7 @@ class PaymentService
 
         $this->shippingService = $shippingService;
         $this->mailService = $mailService;
+        $this->whatsappService = $whatsappService;
     }
 
     public function paymentCharge(object $order)
@@ -84,6 +87,7 @@ class PaymentService
                 ]);
 
                 $this->mailService->sendThankPurchase($order);
+                $this->whatsappService->sendWhatsAppMessage($order);
             }
 
             if ($request->transaction_status == 'cancel') {

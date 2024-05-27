@@ -41,7 +41,10 @@ Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-n
     Route::get('detail/{article}', 'detail')->name('detail');
 });
 
-Route::get('about', [AboutController::class, 'index'])->name('about');
+Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/faq', 'faq')->name('faq');
+});
 
 Route::controller(CartController::class)->prefix('carts')->name('carts.')->middleware('customer')->group(function () {
     Route::get('/', 'indexFront')->name('indexFront');

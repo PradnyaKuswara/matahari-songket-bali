@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Masmerise\Toaster\Toaster;
 use Symfony\Component\HttpFoundation\Response;
 
 class Customer
@@ -17,13 +16,11 @@ class Customer
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (! auth()->user()->isCustomer()) {
+            if (! auth()->user()->role->name == 'customer') {
                 //check to json or not
                 if ($request->expectsJson()) {
                     return response()->json(['message' => 'Not found'], 404);
                 }
-
-                Toaster::error('Not found');
 
                 return redirect()->back();
             } else {
@@ -34,8 +31,6 @@ class Customer
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'Not found'], 404);
             }
-
-            Toaster::error('Not found');
 
             return redirect()->back();
         }

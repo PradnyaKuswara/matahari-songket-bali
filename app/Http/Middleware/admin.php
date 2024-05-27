@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Masmerise\Toaster\Toaster;
 use Symfony\Component\HttpFoundation\Response;
 
 class Admin
@@ -17,7 +16,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (!auth()->user()->isAdmin()) {
+            if (! auth()->user()->role->name == 'admin') {
 
                 return redirect()->back();
             } else {

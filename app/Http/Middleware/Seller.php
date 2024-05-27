@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Masmerise\Toaster\Toaster;
 use Symfony\Component\HttpFoundation\Response;
 
 class Seller
@@ -17,16 +16,13 @@ class Seller
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (! auth()->user()->isSeller()) {
-                Toaster::error('Not found');
+            if (! auth()->user()->role->name == 'seller') {
 
                 return redirect()->back();
             } else {
                 return $next($request);
             }
         } else {
-            Toaster::error('Not found');
-
             return redirect()->back();
         }
     }

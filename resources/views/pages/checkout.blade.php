@@ -115,7 +115,13 @@
                                     <x-button-link class="btn btn-primary" :link="route('customer.dashboard.profile.edit')">Add
                                         your phone number</x-button-link>
                                 @else
-                                    <p class="mx-2 font-bold text-sm font-sans">{{ $user->phone_number ?? '-' }}</p>
+                                    <div class="flex gap-2 items-center">
+                                        <p class="mx-2 font-bold text-sm font-sans">{{ $user->phone_number ?? '-' }}</p>
+                                        @php
+                                            session()->put('link-direct-checkout', 'checkout');
+                                        @endphp
+                                        <a href="{{ route('customer.dashboard.profile.edit') }}" class="text-xs text-primary underline">Edit phone number</a>
+                                    </div>
                                 @endif
                             </label>
                         </div>
@@ -153,7 +159,8 @@
                                     <div class="label">
                                         <span class="label-text">Post Code</span>
                                     </div>
-                                    <p class="mx-2 font-bold text-sm font-sans">{{ $user->addresses->first()->postal_code }}
+                                    <p class="mx-2 font-bold text-sm font-sans">
+                                        {{ $user->addresses->first()->postal_code }}
                                     </p>
                             </div>
 
@@ -219,8 +226,6 @@
                     <form action="{{ route('checkout.store') }}" method="POST">
                         @csrf
                         <input type="text" class="hidden" name="user_id" value="{{ $user->id }}">
-                        <input type="text" class="hidden" name="address_id"
-                            value="{{ $user->addresses->first()->id ?? '' }}">
                         <div class="flex flex-col border rounded-md border-primary  text-primary w-full p-8 gap-4 ">
                             <h2 class="font-extrabold text-3xl">Order Summary</h2>
                             <div class="max-h-[15rem] overflow-auto ">
@@ -246,7 +251,7 @@
 
                                 $total = $item + $shipping;
 
-                                $tax = $total * 0.05;
+                                $tax = $item * 0.05;
 
                                 $totalAll = $total + $tax;
                             @endphp

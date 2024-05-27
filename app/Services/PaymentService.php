@@ -8,7 +8,9 @@ class PaymentService
 {
     protected $shippingService;
 
-    public function __construct(ShippingService $shippingService)
+    protected $mailService;
+
+    public function __construct(ShippingService $shippingService, MailService $mailService)
     {
         \Midtrans\Config::$serverKey = config('midtrans.server-key');
         \Midtrans\Config::$isProduction = config('midtrans.is-production');
@@ -16,6 +18,7 @@ class PaymentService
         \Midtrans\Config::$is3ds = config('midtrans.is3ds');
 
         $this->shippingService = $shippingService;
+        $this->mailService = $mailService;
     }
 
     public function paymentCharge(object $order)
@@ -76,21 +79,11 @@ class PaymentService
                     'money' => $request->gross_amount,
                     'status' => 'settlement',
                 ]);
-                foreach ($order->products as $product) {
-                    $quantity = $product->pivot->quantity ?? 0;
-                    $product->update([
-                        'stock' => $product->stock - $quantity,
-                    ]);
-                }
+                $order->shipping->update([
+                    'status' => 'packing',
+                ]);
 
-                $data = [
-                    'order_id' => $order->id,
-                    'user_id' => $order->user_id,
-                    'name' => 'Shipping '.$order->generate_id,
-                    'status' => 'pending',
-                ];
-
-                $this->shippingService->create($data, $order);
+                $this->mailService->sendThankPurchase($order);
             }
 
             if ($request->transaction_status == 'cancel') {
@@ -100,6 +93,16 @@ class PaymentService
                 $order->transaction->update([
                     'status' => 'cancel',
                 ]);
+                $order->shipping->update([
+                    'status' => 'cancel',
+                ]);
+
+                foreach ($order->products as $product) {
+                    $quantity = $product->pivot->quantity ?? 0;
+                    $product->update([
+                        'stock' => $product->stock + $quantity,
+                    ]);
+                }
             }
 
             if ($request->transaction_status == 'deny') {
@@ -109,6 +112,15 @@ class PaymentService
                 $order->transaction->update([
                     'status' => 'deny',
                 ]);
+                $order->shipping->update([
+                    'status' => 'cancel',
+                ]);
+                foreach ($order->products as $product) {
+                    $quantity = $product->pivot->quantity ?? 0;
+                    $product->update([
+                        'stock' => $product->stock + $quantity,
+                    ]);
+                }
             }
 
             if ($request->transaction_status == 'expire') {
@@ -118,6 +130,15 @@ class PaymentService
                 $order->transaction->update([
                     'status' => 'expired',
                 ]);
+                $order->shipping->update([
+                    'status' => 'cancel',
+                ]);
+                foreach ($order->products as $product) {
+                    $quantity = $product->pivot->quantity ?? 0;
+                    $product->update([
+                        'stock' => $product->stock + $quantity,
+                    ]);
+                }
             }
 
             if ($request->transaction_status == 'pending') {
@@ -126,6 +147,9 @@ class PaymentService
                 ]);
                 $order->transaction->update([
                     'status' => 'pending',
+                ]);
+                $order->shipping->update([
+                    'status' => 'cancel',
                 ]);
             }
 
@@ -146,6 +170,16 @@ class PaymentService
                     $order->transaction->update([
                         'status' => 'expired',
                     ]);
+                    $order->shipping->update([
+                        'status' => 'cancel',
+                    ]);
+
+                    foreach ($order->products as $product) {
+                        $quantity = $product->pivot->quantity ?? 0;
+                        $product->update([
+                            'stock' => $product->stock + $quantity,
+                        ]);
+                    }
                 }
             }
         }

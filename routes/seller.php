@@ -40,6 +40,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/show', 'show')->name('show');
         Route::post('store', 'store')->name('store');
         Route::patch('update/{product}', 'update')->name('update');
         Route::delete('delete/{product}', 'destroy')->name('destroy');

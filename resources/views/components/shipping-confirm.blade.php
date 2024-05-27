@@ -46,16 +46,35 @@
              <h1 class="text-2xl font-bold mt-8">{{ $shipping->courier ?? 'Courier: On Process' }}</h1>
              <p class="text-2xl font-bold">{{ $shipping->tracking_number ?? 'Number: On Process' }}</p>
 
-             @if ($shipping->status == 'shipping')
-                 <p class="mt-8 leading-loose text-gray-600 text-justify">You can track your shipment by clicking on the
-                     link
-                     below. For more detailed shipping information, please log in to your service dashboard.
-                     Thank you for shopping with us!</p>
-                 <div class="flex justify-center">
-                     <a href="{{ $shipping->tracking_link }}" class="btn btn-primary mt-8" target="__blank">Tracking
-                         Order</a>
-                 </div>
-             @endif
+
+             <p class="mt-2 leading-loose text-gray-600 text-justify">
+                 We hope this message finds you well. We would like to confirm if your order has been safely
+                 received.
+             </p>
+
+             <p class="mt-2 leading-loose text-gray-600 text-justify">Please click the link below to confirm the
+                 receipt
+                 of the goods:</p>
+
+             <div class="flex justify-center">
+                 <a href="{{ route('customer.dashboard.shipping.index') }}"
+                     class="btn btn-primary mt-4 flex justify-center">Confirmation Receive Product</a>
+             </div>
+
+             <p class="mt-8 leading-loose text-gray-600 text-justify">Kindly confirm the receipt of the goods before
+                 [{{ $shipping->max_confirm->format('d F Y') }}]. If no confirmation is received after due date, we
+                 will assume that
+                 the goods have been received successfully. You can track your shipment by clicking on the link
+                 below</p>
+
+             <div class="flex justify-center">
+                 <a href="{{ $shipping->tracking_link }}" class="btn btn-primary mt-8" target="__blank">Tracking
+                     Order</a>
+             </div>
+
+             <p class="mt-4 leading-loose text-gray-600 text-justify">If you have any questions, please do not
+                 hesitate
+                 to contact us </p>
          </main>
 
 

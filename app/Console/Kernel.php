@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\ResetPreparePayment::class,
+        Commands\ConfirmShipped::class,
     ];
 
     /**
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('payment:reset-prepare-payment')->everyMinute();
+        $schedule->command('app:confirm-shipped')->everyMinute();
     }
 
     /**

@@ -26,7 +26,7 @@ class ReceivedProductMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Reminder] Order # has beeen recevied',
+            subject: '[Reminder] Order #'.$this->content->order->generate_id.' Confirm Your Received Product',
         );
     }
 

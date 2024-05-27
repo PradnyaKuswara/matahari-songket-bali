@@ -9,13 +9,38 @@
         <p class="text-gray-500">{{ $order->transaction->generate_id }}</p>
         <p class="text-gray-500">Order created at {{ $order->created_at->format('d M Y') }}</p>
         <div class="card-actions justify-between items-center mt-4">
-            @if ($order->status == false)
+            @if ($order->transaction->status == 'cancel')
+                <div class="badge badge-error badge-outline">Cancel</div>
+            @endif
+
+            @if ($order->transaction->status == 'pending')
                 <div class="badge badge-warning badge-outline">Pending</div>
             @endif
 
-            @if ($order->status == true)
-                <div class="badge badge-success badge-outline">Success</div>
+            @if ($order->transaction->status == 'settlement')
+                <div class="badge badge-success badge-outline">Settlement</div>
             @endif
+
+            @if ($order->transaction->status == 'failed')
+                <div class="badge badge-error badge-outline">Failed</div>
+            @endif
+
+            @if ($order->transaction->status == 'refund')
+                <div class="badge badge-error badge-outline">Refund</div>
+            @endif
+
+            @if ($order->transaction->status == 'expired')
+                <div class="badge badge-error badge-outline">Expired</div>
+            @endif
+
+            @if ($order->transaction->status == 'deny')
+                <div class="badge badge-error badge-outline">Deny</div>
+            @endif
+
+            @if ($order->transaction->status == 'capture')
+                <div class="badge badge-success badge-outline">Capture</div>
+            @endif
+
             @if ($order->status == false)
                 <a href="{{ route('checkout.showPayment', $order) }}" class="btn btn-primary">Pay Now</a>
             @endif

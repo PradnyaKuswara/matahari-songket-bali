@@ -79,7 +79,8 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="{{ route('admin.dashboard.products.show') }}" class="group">
+                                 <a href="{{ route(request()->user()->role->name . '.dashboard.products.show') }}"
+                                     class="group">
                                      <div class="flex items-center">
                                          <span class="mdi mdi-apps text-xl"></span>
                                          <span
@@ -337,6 +338,30 @@
                  @endif
 
                  @if (auth()->user()->isCustomer())
+                     <h2
+                         class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                         <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"
+                             stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                             <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                         <span>Order Product</span>
+                     </h2>
+
+                     <li class="nav-item">
+                         <ul>
+                             <li class="nav-item">
+                                 <a href="{{ route('products.indexFront') }}" class="group ">
+                                     <div class="flex items-center">
+                                         <span class="mdi mdi-apps text-xl"></span>
+                                         <span
+                                             class="{{ request()->is('products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Buy
+                                             Product</span>
+                                     </div>
+                                 </a>
+                             </li>
+                         </ul>
+                     </li>
+
                      <h2
                          class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
                          <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"

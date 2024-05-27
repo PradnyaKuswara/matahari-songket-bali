@@ -22,8 +22,16 @@ return new class extends Migration
             $table->string('courier')->nullable();
             $table->string('tracking_number')->nullable();
             $table->string('tracking_link')->nullable();
-            $table->enum('status', ['pending', 'shipping', 'delivered'])->default('pending');
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('country')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('additional_information')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->enum('status', ['pending', 'cancel', 'packing', 'shipping', 'delivered'])->default('pending');
             $table->dateTime('shipped_at')->nullable();
+            $table->dateTime('delivered_at')->nullable();
             $table->dateTime('max_confirm')->nullable();
             $table->timestamps();
         });

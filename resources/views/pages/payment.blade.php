@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-    Payement | Matahari Songket Bali
+    Payment | Matahari Songket Bali
 @endsection
 
 @push('css')
@@ -34,7 +34,7 @@
                 <x-invoice :order="$order"></x-invoice>
             </div>
             <div class="col-span-3 md:col-span-1 no-print">
-                <button @click="checkStock()" type="button" class="btn btn-primary w-full">Pay Now</button>
+                <button @click="payNow()" type="button" class="btn btn-primary w-full">Pay Now</button>
             </div>
         </div>
     </section>

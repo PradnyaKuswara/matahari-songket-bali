@@ -32,11 +32,6 @@ class Order extends Model implements AuditableContract
         return $this->belongsTo(User::class);
     }
 
-    public function address(): BelongsTo
-    {
-        return $this->belongsTo(Address::class);
-    }
-
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity', 'price', 'total_price')->withTimestamps();

@@ -41,7 +41,7 @@ class ShippingService
             $data['tracking_link'] = 'https://www.jet.co.id/track';
         }
         $data['status'] = 'shipping';
-        $data['max_confirm'] = Carbon::parse($data['shipped_at'])->addDays(7);
+        $data['max_confirm'] = Carbon::parse($data['delivered_at'])->addDays(7);
         $shipping = $this->shippingInterface->update($data, $shipping);
 
         return $shipping;

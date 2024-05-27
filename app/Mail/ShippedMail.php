@@ -26,7 +26,7 @@ class ShippedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Order # ] Your Order Has Been Shipped',
+            subject: '['.$this->content->order->generate_id.'] Your Order Has Been Shipped',
         );
     }
 

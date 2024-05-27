@@ -16,7 +16,6 @@ return new class extends Migration
             $table->uuid();
 
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('address_id')->constrained('addresses')->cascadeOnDelete();
 
             $table->string('generate_id')->unique()->nullable();
             $table->double('item_total_price');

@@ -34,6 +34,7 @@ class CartRepository implements CartInterface
                 $productStock = (int) Product::find($data['product_id'])->stock;
 
                 if ($newQuantity > $productStock) {
+                    DB::rollBack();
                     $message = 'The quantity of the product is not enough to add. Please check your cart and try again.';
 
                     return $response = [
@@ -75,6 +76,7 @@ class CartRepository implements CartInterface
             (int) $newQuantity = (int) $data['quantity'];
 
             if ($newQuantity > (int) Product::find($data['product_id'])->stock) {
+                DB::rollBack();
                 $message = 'The quantity of the product is not enough to update. Please check your cart and try again.';
 
                 return $response = [
@@ -138,6 +140,7 @@ class CartRepository implements CartInterface
             $existingCart = $user->carts()->where('product_id', $data['product_id'])->first();
 
             if (! $existingCart) {
+                DB::rollBack();
                 $message = 'The product is not in the cart';
 
                 return $response = [

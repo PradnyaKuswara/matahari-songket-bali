@@ -23,7 +23,6 @@ class CheckOutRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'address_id' => ['required', 'integer', 'exists:addresses,id'],
             'item_total_price' => ['required', 'numeric'],
             'shipping_price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],

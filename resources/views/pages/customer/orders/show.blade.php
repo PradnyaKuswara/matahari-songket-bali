@@ -49,14 +49,19 @@
                         <div class="mt-4">
                             <div class="flex justify-between mt-2">
                                 <span>Shipping Date</span>
-                                <span>{{ $order->shipping->created_at->format('d M Y') }}</span>
+                                <span>{{ $order->shipping->shipped_at ? $order->shipping->shipped_at->format('d M Y') : 'Not delivered' }}</span>
                             </div>
                             <div class="flex justify-between mt-2">
                                 <span>Shipping Status</span>
-                                @if ($order->shipping->status == 'pending')
-                                    <div class="badge badge-warning badge-outline">Packing</div>
+                                @if ($order->shipping->status == 'cancel')
+                                    <div class="badge badge-error badge-outline">Cancel</div>
                                 @endif
-
+                                @if ($order->shipping->status == 'pending')
+                                    <div class="badge badge-warning badge-outline">Pending</div>
+                                @endif
+                                @if ($order->shipping->status == 'packing')
+                                    <div class="badge badge-accent badge-outline">Packing</div>
+                                @endif
                                 @if ($order->shipping->status == 'shipping')
                                     <div class="badge badge-primary badge-outline">Shipping</div>
                                 @endif

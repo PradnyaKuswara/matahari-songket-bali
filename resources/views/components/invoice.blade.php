@@ -4,21 +4,38 @@
     <div class="flex flex-wrap justify-between items-center gap-4 px-4">
         <div>
             <div class="text-2xl font-semibold font-sans uppercase">{{ $order->transaction->generate_id }}</div>
+            @if ($order->transaction->status == 'cancel')
+                <div class="badge badge-error badge-outline">Cancel</div>
+            @endif
+
             @if ($order->transaction->status == 'pending')
-                <div class="badge badge-warning text-white badge-md px-4 py-2">PENDING</div>
+                <div class="badge badge-warning badge-outline">Pending</div>
             @endif
 
             @if ($order->transaction->status == 'settlement')
-                <div class="badge badge-success text-white badge-md px-4 py-2">PAID</div>
+                <div class="badge badge-success badge-outline">Settlement</div>
             @endif
 
             @if ($order->transaction->status == 'failed')
-                <div class="badge badge-error text-white badge-md px-4 py-2">FAILED</div>
+                <div class="badge badge-error badge-outline">Failed</div>
+            @endif
+
+            @if ($order->transaction->status == 'refund')
+                <div class="badge badge-error badge-outline">Refund</div>
             @endif
 
             @if ($order->transaction->status == 'expired')
-                <div class="badge badge-error text-white badge-md px-4 py-2">EXPIRED</div>
+                <div class="badge badge-error badge-outline">Expired</div>
             @endif
+
+            @if ($order->transaction->status == 'deny')
+                <div class="badge badge-error badge-outline">Deny</div>
+            @endif
+
+            @if ($order->transaction->status == 'capture')
+                <div class="badge badge-success badge-outline">Capture</div>
+            @endif
+
         </div>
 
         <div class="shrink-0">
@@ -36,7 +53,7 @@
     </div>
 
     <hr class="my-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
-    <div class="ml-10 grid grid-cols-2">
+    <div class="ml-10 grid md:grid-cols-2">
         <div class="w-full">
             <div class="space-y-1 text-white-dark">
                 <div>Issue For:</div>
@@ -50,12 +67,12 @@
             </div>
         </div>
 
-        <div class="w-full">
-            <div class="mb-2 flex w-full items-center justify-between">
+        <div class="w-full mt-4 md:mt-0">
+            <div class="mb-2 flex flex-col md:flex-row w-full md:items-center md:justify-between">
                 <div class="text-white-dark">Order ID :</div>
                 <div class="font-sans">#{{ $order->generate_id }}</div>
             </div>
-            <div class="mb-2 flex w-full items-center justify-between">
+            <div class="mb-2 flex flex-col md:flex-row w-full md:items-center md:justify-between">
                 <div class="text-white-dark">Issue Date :</div>
                 <div class="font-sans">{{ $order->created_at->format('d F Y') }}</div>
             </div>

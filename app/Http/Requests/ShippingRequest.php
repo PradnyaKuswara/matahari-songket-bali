@@ -25,6 +25,7 @@ class ShippingRequest extends FormRequest
             'courier' => ['required', 'string'],
             'tracking_number' => ['required', 'string'],
             'shipped_at' => ['required', 'date'],
+            'delivered_at' => ['required', 'date'],
             'notification' => ['required', 'string'],
         ];
     }

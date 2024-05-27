@@ -19,13 +19,22 @@ class Shipping extends Model implements AuditableContract
         'courier',
         'tracking_number',
         'tracking_link',
+        'address',
+        'city',
+        'province',
+        'country',
+        'postal_code',
+        'additional_information',
+        'phone_number',
         'status',
         'shipped_at',
+        'delivered_at',
         'max_confirm',
     ];
 
     protected $casts = [
         'shipped_at' => 'datetime',
+        'delivered_at' => 'datetime',
         'max_confirm' => 'datetime',
     ];
 

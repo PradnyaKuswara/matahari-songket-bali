@@ -26,12 +26,24 @@
 @section('content')
     <section class=" xl:max-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 md:mx-0 pt-32 md:px-14 lg:px-0 pb-16">
         <div class="flex flex-col gap-6">
-            <div x-data="products" class="grid lg:grid-cols-2 gap-8 place-items-center place-content-center">
+            <div x-data="products" class="grid lg:grid-cols-2 gap-8 md:place-items-center md:place-content-center">
 
                 <div class="flex flex-col gap-4 animate-fade-down lg:animate-fade-right ">
                     <div class="flex">
-                        <x-product-image :src="$product->image1()" onclick="modal_image_preview_1.showModal()"
-                            id="modal_image_preview_1"></x-product-image>
+                        <button onclick="modal_image_preview_1.showModal()""
+                            class="hover:opacity-75 hover:animate-normal rounded-lg mx-auto aspect-video border"
+                            >
+                            <img class="w-full h-full object-contain" src="{{ $product->image1() }}" alt=""
+                                class="w-full h-full">
+                        </button>
+                        <dialog id="modal_image_preview_1" class="modal">
+                            <div class="modal-box p-0 max-w-screen-lg overflow-auto rounded-lg">
+                                <img src="{{ $product->image1() }}" alt="" class="w-full h-full object-cover">
+                            </div>
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
                     </div>
                     <div class="grid grid-cols-3 gap-2 lg:gap-4">
                         <x-product-image :src="$product->image_2
@@ -148,7 +160,7 @@
                         notify.success(response.message);
                         $('#btn-cart').html(
                             '<span class="mdi mdi-cart-outline text-xl"></span>Add to Cart'
-                            );
+                        );
                     }).fail((jqXHR, textStatus, errorThrown) => {
                         $('#btn-cart').html('Add to Chart');
 

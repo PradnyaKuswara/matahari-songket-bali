@@ -3,10 +3,15 @@
 <div class="card w-full lg:w-80 bg-base-100 shadow-xl">
     <div class="card-body">
         <h2 class="card-title">{{ $shipping->name }}</h2>
-        @if ($shipping->status == 'pending')
-            <div class="badge badge-warning badge-outline">Packing</div>
+        @if ($shipping->status == 'cancel')
+            <div class="badge badge-error badge-outline">Cancel</div>
         @endif
-
+        @if ($shipping->status == 'pending')
+            <div class="badge badge-warning badge-outline">Pending</div>
+        @endif
+        @if ($shipping->status == 'packing')
+            <div class="badge badge-accent badge-outline">Packing</div>
+        @endif
         @if ($shipping->status == 'shipping')
             <div class="badge badge-primary badge-outline">Shipping</div>
         @endif
@@ -16,8 +21,10 @@
         @endif
         <p class="text-gray-500 text-sm"><b>Courier:</b> {{ $shipping->courier ?? '-' }}</p>
         <p class="text-gray-500 text-sm"><b>Number:</b> {{ $shipping->tracking_number ?? '-' }}</p>
-        <p class="text-gray-500 text-sm"><b>Shipped at:</b>
+        <p class="text-gray-500 text-sm"><b>Shipped at: </b>
             {{ $shipping->shipped_at ? $shipping->shipped_at->format('d F Y') : '-' }}</p>
+        <p class="text-gray-500 text-sm"><b>Estimate Delivered at:</b>
+            {{ $shipping->delivered_at ? $shipping->delivered_at->format('d F Y') : '-' }}</p>
 
         @if (auth()->user()->isCustomer())
             <div class="card-actions justify-center mt-4 gap-4">
@@ -83,10 +90,19 @@
                     [
                         'name' => 'shipped_at',
                         'id' => 'inputShippedAt',
-                        'label' => 'Estimation Shipped At',
+                        'label' => 'Shipped At',
                         'type' => 'date',
                         'value' => '',
                         'placeholder' => 'Enter your shipped at',
+                        'is_required' => 'true',
+                    ],
+                    [
+                        'name' => 'delivered_at',
+                        'id' => 'inputDeliveredAt',
+                        'label' => 'Estimation Delivered At',
+                        'type' => 'date',
+                        'value' => '',
+                        'placeholder' => 'Enter your delivered at',
                         'is_required' => 'true',
                     ],
                     [

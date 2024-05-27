@@ -11,11 +11,7 @@
 
     <!-- start main content section -->
     <div class="w-full">
-        @php
-            $order = $content;
-            // $order = \App\Models\Order::find(1);
-        @endphp
-        <x-invoice :order="$order"></x-invoice>
+        <x-invoice :order="$content"></x-invoice>
     </div>
     <!-- end main content section -->
 @endsection

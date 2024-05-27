@@ -39,11 +39,17 @@ class CheckOutController extends Controller
             return redirect()->back();
         }
 
-        $order = $this->checkOutService->createCheckout($request->validated(), $request);
+        $result = $this->checkOutService->createCheckout($request->validated(), $request);
+
+        if ($result['status'] === 'error') {
+            Toaster::error($result['message']);
+
+            return redirect()->route('products.indexFront');
+        }
 
         Toaster::success('Checkout Success');
 
-        return redirect()->route('checkout.showPayment', $order);
+        return redirect()->route('checkout.showPayment', $result['order']);
     }
 
     public function showPayment(Order $order)

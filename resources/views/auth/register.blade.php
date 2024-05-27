@@ -80,7 +80,7 @@
                         </div>
                     </div> --}}
 
-                    <div class="flex flex-col lg:flex-row gap-4 mb-9">
+                    <div class="flex flex-col lg:flex-row gap-4 mb-4">
                         <div class=" w-full">
                             <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">
                                 <div class="label">
@@ -110,6 +110,14 @@
                                 <p class="mt-2 text-error text-xs">{{ $message }}</p>
                             @enderror
                         </div>
+                    </div>
+
+                    <div class="col-span-2 flex flex-col gap-4 mb-4">
+                        <!-- Google Recaptcha -->
+                        <div class="g-recaptcha" data-sitekey={{ config('recaptcha.google_recaptcha_key') }}></div>
+                        @error('g-recaptcha-response')
+                            <p class="mt-2 text-error text-xs">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="flex justify-center mb-5">

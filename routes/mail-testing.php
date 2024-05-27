@@ -24,3 +24,5 @@ Route::post('send-mail-unpaid-invoice', 'App\Http\Controllers\MailController@sen
 Route::post('send-mail-thank-purchase', 'App\Http\Controllers\MailController@sendThankPurchase')->name('send-mail-thank-purchase');
 Route::post('send-mail-shipped', 'App\Http\Controllers\MailController@sendShipped')->name('send-mail-shipped');
 Route::post('send-mail-received-product', 'App\Http\Controllers\MailController@sendReceived')->name('send-mail-received-product');
+
+Route::get('send-whatsapp-message', 'App\Http\Controllers\MailController@sendWhatsAppMessage')->name('send-whatsapp-message');

@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use App\Rules\ReCaptcha;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules;
 
-class RegisterRequest extends FormRequest
+class FaqRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +24,15 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:25'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', Rules\Password::defaults(), 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'question' => ['required', 'string', 'max:255'],
             'g-recaptcha-response' => ['required', new ReCaptcha],
         ];
+    }
+
+    public function getRedirectUrl()
+    {
+        return parent::getRedirectUrl().'#faq';
     }
 
     /**

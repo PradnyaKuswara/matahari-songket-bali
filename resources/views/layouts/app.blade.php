@@ -21,6 +21,10 @@
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
 
+    <script async src="https://www.google.com/recaptcha/api.js">
+        // Add recaptcha script
+    </script>
+
     @stack('css')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

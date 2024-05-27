@@ -74,7 +74,7 @@
                     <div class="flex flex-col gap-4 shadow-md rounded-md p-4">
                         <h1 class="text-lg font-bold">Need Help?</h1>
                         <p class="text-sm">If you have any question, feel free to contact us</p>
-                        <x-button-link link="{{ route('about') }}/#contact-us" class="btn-sm bg-accent text-white">Contact
+                        <x-button-link link="{{ route('about.index') }}/#contact-us" class="btn-sm bg-accent text-white">Contact
                             Us</x-button-link>
                     </div>
                 </div>

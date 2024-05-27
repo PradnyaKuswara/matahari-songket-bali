@@ -16,7 +16,7 @@ class Seller
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (! auth()->user()->role->name == 'seller') {
+            if (auth()->user()->role->name != 'seller') {
 
                 return redirect()->back();
             } else {

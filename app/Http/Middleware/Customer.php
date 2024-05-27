@@ -16,7 +16,7 @@ class Customer
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            if (! auth()->user()->role->name == 'customer') {
+            if (auth()->user()->role->name != 'customer') {
                 //check to json or not
                 if ($request->expectsJson()) {
                     return response()->json(['message' => 'Not found'], 404);

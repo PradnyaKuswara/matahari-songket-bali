@@ -1,52 +1,33 @@
-name: 🚀 Deployment
+name: 🚀 Deploy Website
 on:
   push:
-    branches: ["staging"]
+    branches:
+      - staging
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Deploy website
     runs-on: ubuntu-latest
     steps:
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-
+      # Checkout the repository
       - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # Setup Node.js environment
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-reqs
+      # Install dependencies
+      - name: 📦 Install dependencies
+        run: npm install
 
-      - name: Generate key
-        run: php artisan key:generate
-
-      - name: Clear Config and Cache
-        run: php artisan cache:clear && php artisan config:clear
-
-      - name: Generate storage link
-        run: php artisan storage:link
-
-      - name: Directory Permissions
-        run: chmod -R 755 storage bootstrap/cache
-
-      - name: Clear NPM Cache
-        run: npm cache clean --force
-
-      - name: Update NPM
-        run: npm install -g npm
-
-      - name: Rebuild Node Modules
-        run: |
-          rm -rf node_modules
-          npm install --verbose
-
-      - name: Compile Css and Js Assets
+      # Build the project
+      - name: 🛠️ Build the project
         run: npm run build
 
+      # sync files via FTP
       - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

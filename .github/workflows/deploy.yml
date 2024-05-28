@@ -33,8 +33,16 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 755 storage bootstrap/cache
 
-      - name: Install Npm
-        run: npm install
+      - name: Clear NPM Cache
+        run: npm cache clean --force
+
+      - name: Update NPM
+        run: npm install -g npm
+
+      - name: Rebuild Node Modules
+        run: |
+          rm -rf node_modules
+          npm install --verbose
 
       - name: Compile Css and Js Assets
         run: npm run build

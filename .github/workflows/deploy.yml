@@ -1,18 +1,48 @@
-name: 🚀 Deploy Website
+name: 🚀 Deployment
 on:
   push:
-    branches:
-      - staging
+    branches: ["staging"]
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy website
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
       - name: 🚚 Get latest code
-        uses: actions/checkout@v4
-      # sync files via FTP
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Config Clearing
+        run: php artisan config:clear
+
+      - name: Cache Clearing
+        run: php artisan cache:clear
+
+      - name: Generate App Key
+        run: php artisan key:generate
+
+      - name: Generate storage link
+        run: php artisan storage:link
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Install Npm
+        run: npm install
+
+      - name: Compile Css and Js Assets
+        run: npm run build
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
       - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

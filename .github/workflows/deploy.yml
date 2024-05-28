@@ -12,26 +12,7 @@ jobs:
       # Checkout the repository
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
-
-      # Setup Node.js environment
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16' # You can try different versions like '14', '16', '18'
-
-      # Clean npm cache
-      - name: 🧹 Clean npm cache
-        run: npm cache clean --force
-
-      # Install dependencies without optional dependencies
-      - name: 📦 Install dependencies
-        run: npm install --no-optional
-
-      # Build the project
-      - name: 🛠️ Build the project
-        run: npm run build
-
-      # Sync files via FTP
+      # sync files via FTP
       - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

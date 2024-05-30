@@ -86,8 +86,8 @@ class PaymentService
                     'status' => 'packing',
                 ]);
 
-                $this->mailService->sendThankPurchase($order);
-                $this->whatsappService->sendWhatsAppMessage($order);
+                // $this->mailService->sendThankPurchase($order);
+                // $this->whatsappService->sendWhatsAppMessage($order);
             }
 
             if ($request->transaction_status == 'cancel') {

@@ -74,7 +74,8 @@
                     <div class="flex flex-col gap-4 shadow-md rounded-md p-4">
                         <h1 class="text-lg font-bold">Need Help?</h1>
                         <p class="text-sm">If you have any question, feel free to contact us</p>
-                        <x-button-link link="{{ route('about.index') }}/#contact-us" class="btn-sm bg-accent text-white">Contact
+                        <x-button-link link="{{ route('about.index') }}/#contact-us"
+                            class="btn-sm bg-accent text-white">Contact
                             Us</x-button-link>
                     </div>
                 </div>
@@ -113,7 +114,7 @@
 
                 checkAllStatus() {
                     if (this.forms.length > 0) {
-                        return this.forms.every((form) => form.is_active);
+                        return this.forms.every((form) => form.is_active == 1);
                     } else {
                         return false;
                     }
@@ -122,7 +123,7 @@
                 toggleCheckAll: debounce(function() {
                     this.checkAll = !this.checkAll;
                     this.forms.map((form, index) => {
-                        form.is_active = this.checkAll;
+                        form.is_active = this.checkAll ? 1 : 0;
                     });
 
                     $.ajax({
@@ -144,7 +145,7 @@
                 }, 300),
 
                 toggleCheck: debounce(function(index) {
-                    this.forms[index].is_active = !this.forms[index].is_active;
+                    this.forms[index].is_active = this.forms[index].is_active == 1 ? 0 : 1;
 
                     $.ajax({
                         url: this.endpointToggle,
@@ -169,7 +170,7 @@
                     this.totalPrice = 0; // Reset totalPrice setiap kali fungsi dipanggil
                     if (this.products && this.products.length > 0) {
                         this.forms.map((form, index) => {
-                            if (form.is_active) {
+                            if (form.is_active == 1) {
                                 this.totalPrice += this.products[index].sell_price * form
                                     .quantity;
                             }

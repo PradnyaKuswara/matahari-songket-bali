@@ -19,10 +19,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-      # Run build command on remote server
       - name: 🛠️ Run build command on server
         run: |
-          ssh -o StrictHostKeyChecking=no kojidevm@103.163.138.168 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -p 45022 kojidevm@103.163.138.168 << 'EOF'
             source /home/kojidevm/nodevenv/mataharisongketbali/20/bin/activate
             cd /home/kojidevm/mataharisongketbali
             npm run build
@@ -30,4 +29,3 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-

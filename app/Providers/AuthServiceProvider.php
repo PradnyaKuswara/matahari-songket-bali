@@ -26,11 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         //gate
 
-        Gate::define('customer-address', function (User $user, $address) {
+        Gate::define('customer-address', function ($user, $address) {
             return $user->id === $address->user_id;
         });
 
-        Gate::define('customer-order', function (User $user, $order) {
+        Gate::define('customer-order', function ($user, $order) {
             return $user->id === $order->user_id && $order->transaction->status === 'pending';
         });
     }

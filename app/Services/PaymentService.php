@@ -59,105 +59,111 @@ class PaymentService
 
     public function callBack($request)
     {
-        $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.config('midtrans.server-key'));
-        $order = Order::where('generate_id', $request->order_id)->first();
+        try {
+            $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.config('midtrans.server-key'));
+            $order = Order::where('generate_id', $request->order_id)->first();
 
-        if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture') {
+            if ($hashed == $request->signature_key) {
+                if ($request->transaction_status == 'capture') {
 
-                $order->update([
-                    'status' => true,
-                ]);
-                $order->transaction->update([
-                    'status' => 'capture',
-                ]);
-            }
-
-            if ($request->transaction_status == 'settlement') {
-                $order->update([
-                    'status' => true,
-                ]);
-                $order->transaction->update([
-                    'type' => $request->payment_type,
-                    'money' => $request->gross_amount,
-                    'status' => 'settlement',
-                ]);
-                $order->shipping->update([
-                    'status' => 'packing',
-                ]);
-
-                // $this->mailService->sendThankPurchase($order);
-                // $this->whatsappService->sendWhatsAppMessage($order);
-            }
-
-            if ($request->transaction_status == 'cancel') {
-                $order->update([
-                    'status' => false,
-                ]);
-                $order->transaction->update([
-                    'status' => 'cancel',
-                ]);
-                $order->shipping->update([
-                    'status' => 'cancel',
-                ]);
-
-                foreach ($order->products as $product) {
-                    $quantity = $product->pivot->quantity ?? 0;
-                    $product->update([
-                        'stock' => $product->stock + $quantity,
+                    $order->update([
+                        'status' => true,
+                    ]);
+                    $order->transaction->update([
+                        'status' => 'capture',
                     ]);
                 }
-            }
 
-            if ($request->transaction_status == 'deny') {
-                $order->update([
-                    'status' => false,
-                ]);
-                $order->transaction->update([
-                    'status' => 'deny',
-                ]);
-                $order->shipping->update([
-                    'status' => 'cancel',
-                ]);
-                foreach ($order->products as $product) {
-                    $quantity = $product->pivot->quantity ?? 0;
-                    $product->update([
-                        'stock' => $product->stock + $quantity,
+                if ($request->transaction_status == 'settlement') {
+                    $order->update([
+                        'status' => true,
+                    ]);
+                    $order->transaction->update([
+                        'type' => $request->payment_type,
+                        'money' => $request->gross_amount,
+                        'status' => 'settlement',
+                    ]);
+                    $order->shipping->update([
+                        'status' => 'packing',
+                    ]);
+
+                    // $this->mailService->sendThankPurchase($order);
+                    // $this->whatsappService->sendWhatsAppMessage($order);
+                }
+
+                if ($request->transaction_status == 'cancel') {
+                    $order->update([
+                        'status' => false,
+                    ]);
+                    $order->transaction->update([
+                        'status' => 'cancel',
+                    ]);
+                    $order->shipping->update([
+                        'status' => 'cancel',
+                    ]);
+
+                    foreach ($order->products as $product) {
+                        $quantity = $product->pivot->quantity ?? 0;
+                        $product->update([
+                            'stock' => $product->stock + $quantity,
+                        ]);
+                    }
+                }
+
+                if ($request->transaction_status == 'deny') {
+                    $order->update([
+                        'status' => false,
+                    ]);
+                    $order->transaction->update([
+                        'status' => 'deny',
+                    ]);
+                    $order->shipping->update([
+                        'status' => 'cancel',
+                    ]);
+                    foreach ($order->products as $product) {
+                        $quantity = $product->pivot->quantity ?? 0;
+                        $product->update([
+                            'stock' => $product->stock + $quantity,
+                        ]);
+                    }
+                }
+
+                if ($request->transaction_status == 'expire') {
+                    $order->update([
+                        'status' => false,
+                    ]);
+                    $order->transaction->update([
+                        'status' => 'expired',
+                    ]);
+                    $order->shipping->update([
+                        'status' => 'cancel',
+                    ]);
+                    foreach ($order->products as $product) {
+                        $quantity = $product->pivot->quantity ?? 0;
+                        $product->update([
+                            'stock' => $product->stock + $quantity,
+                        ]);
+                    }
+                }
+
+                if ($request->transaction_status == 'pending') {
+                    $order->update([
+                        'status' => false,
+                    ]);
+                    $order->transaction->update([
+                        'status' => 'pending',
+                    ]);
+                    $order->shipping->update([
+                        'status' => 'cancel',
                     ]);
                 }
-            }
 
-            if ($request->transaction_status == 'expire') {
-                $order->update([
-                    'status' => false,
-                ]);
-                $order->transaction->update([
-                    'status' => 'expired',
-                ]);
-                $order->shipping->update([
-                    'status' => 'cancel',
-                ]);
-                foreach ($order->products as $product) {
-                    $quantity = $product->pivot->quantity ?? 0;
-                    $product->update([
-                        'stock' => $product->stock + $quantity,
-                    ]);
-                }
+                return $message = 'success';
+            } else {
+                return $message = 'failed';
             }
-
-            if ($request->transaction_status == 'pending') {
-                $order->update([
-                    'status' => false,
-                ]);
-                $order->transaction->update([
-                    'status' => 'pending',
-                ]);
-                $order->shipping->update([
-                    'status' => 'cancel',
-                ]);
-            }
-
-            return $message = 'success';
+        } catch (\Throwable $th) {
+            return $message = $th->getMessage();
         }
     }
 

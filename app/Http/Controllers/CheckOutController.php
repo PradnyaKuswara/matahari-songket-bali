@@ -70,7 +70,7 @@ class CheckOutController extends Controller
     {
         $message = $this->checkOutService->callBack($request);
 
-        return response()->json($message, 200);
+        return response()->json(['message' => $message], 200);
     }
 
     public function checkStock(Request $request)

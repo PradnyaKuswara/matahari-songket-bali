@@ -149,7 +149,7 @@ class ProductController extends Controller
 
     public function categoriesCheapest(Request $request)
     {
-        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price asc')->paginate(1);
+        $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price asc')->paginate(9);
 
         $view = view('pages.product-data', compact('products'))->render();
 

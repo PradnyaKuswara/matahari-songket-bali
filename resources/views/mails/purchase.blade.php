@@ -763,7 +763,7 @@
                         <td height="10" style="font-size:10px;line-height:10px;" data-height="Spacing top">&nbsp;
                         </td>
                     </tr>
-                    <tr data-element="blue-ty-paragraph" data-label="Paragraphs">
+                    {{-- <tr data-element="blue-ty-paragraph" data-label="Paragraphs">
                         <td class="center-text" data-text-style="Paragraphs" align="center"
                             style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:26px;font-weight:400;font-style:italic;color:#6e6e6e;text-decoration:none;letter-spacing:0px;">
                             <singleline>
@@ -773,7 +773,7 @@
                                 </div>
                             </singleline>
                         </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing bottom">
                             &nbsp;</td>

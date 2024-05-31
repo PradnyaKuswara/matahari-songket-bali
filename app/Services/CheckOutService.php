@@ -145,6 +145,7 @@ class CheckOutService
 
             $this->createShipping($dataShipping, $order);
             $this->mailService->sendInvoice($order);
+            $this->mailService->sendThankPurchase($order);
 
             DB::commit();
 

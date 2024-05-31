@@ -88,7 +88,7 @@ class PaymentService
                     ]);
 
                     $this->mailService->sendThankPurchase($order);
-                    // $this->whatsappService->sendWhatsAppMessage($order);
+                    $this->whatsappService->sendWhatsAppMessage($order);
                 }
 
                 if ($request->transaction_status == 'cancel') {

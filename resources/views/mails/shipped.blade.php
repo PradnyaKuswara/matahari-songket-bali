@@ -516,9 +516,9 @@
                                 <tr data-element="blue-logo" data-label="Logo">
                                     <td align="center" class="center-text">
                                         <img style="width:120px;border:0px;display: inline!important;"
-                                            src="images/logo.png" width="120" border="0" editable="true"
-                                            data-icon data-image-edit data-url data-label="Logo" data-image-width
-                                            alt="logo">
+                                            src="{{ asset('assets/images/logo.png') }}" width="120" border="0"
+                                            editable="true" data-icon data-image-edit data-url data-label="Logo"
+                                            data-image-width alt="logo">
                                     </td>
                                 </tr>
                             </table>

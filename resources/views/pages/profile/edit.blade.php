@@ -137,14 +137,14 @@
                                     <label for="inputName">Name</label>
                                     <span class="text-danger">*</span>
                                 </div>
-
-                                <input id="inputName" type="text" placeholder="Enter your name" class="form-input"
+                                <input id="inputName" type="text" placeholder="Enter your name" class="form-input "
                                     name="name" value="{{ old('name') ?? $user->name }}" minlength="1"
                                     maxlength="30" />
                                 @error('name')
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
+
 
                             <div class="w-full col-span-2 lg:col-span-1">
                                 <div class="flex">
@@ -153,15 +153,16 @@
                                 </div>
 
                                 <input id="inputUsername" type="text" placeholder="Enter your username"
-                                    class="form-input" name="username" value="{{ old('username') ?? $user->username }}"
-                                    minlength="1" maxlength="15" />
+                                    class="form-input md:w-full w-72" name="username"
+                                    value="{{ old('username') ?? $user->username }}" minlength="1" maxlength="15" />
                                 @error('username')
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="w-full col-span-2 lg:col-span-1">
                                 <label for="inputGender">Gender</label>
-                                <select id="inputGender" class="form-select text-white-dark" name="gender">
+                                <select id="inputGender" class="form-select text-white-dark md:w-full w-72"
+                                    name="gender">
                                     <option disabled selected>Open this select menu</option>
                                     <option value="men"
                                         {{ $user->gender == 'men' ? 'selected' : (old('gender') == 'men' ? 'selected' : null) }}>
@@ -176,8 +177,8 @@
                             </div>
                             <div class="w-full col-span-2 lg:col-span-1">
                                 <label for="inputDob">Date of Birth</label>
-                                <input id="inputDob" type="date" class="form-input" name="date_of_birth"
-                                    value="{{ old('dob') ?? $user->dob }}" />
+                                <input id="inputDob" type="date" class="form-input md:w-full w-72"
+                                    name="date_of_birth" value="{{ old('dob') ?? $user->dob }}" />
                                 @error('date_of_birth')
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
@@ -187,17 +188,18 @@
                                     <label for="inputEmail">Email</label>
                                     <span class="text-danger">*</span>
                                 </div>
-                                <input id="inputEmail" type="email" placeholder="Enter your email" class="form-input"
-                                    name="email" value="{{ old('email') ?? $user->email }}" minlength="1"
-                                    maxlength="100" />
+                                <input id="inputEmail" type="email" placeholder="Enter your email"
+                                    class="form-input md:w-full w-72" name="email"
+                                    value="{{ old('email') ?? $user->email }}" minlength="1" maxlength="100" />
                                 @error('email')
                                     <p class="mt-2 text-danger text-xs">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="w-full col-span-2 lg:col-span-1">
                                 <label for="inputPhone">Phone (08)</label>
-                                <input id="inputPhone" type="text" placeholder="Enter your phone" class="form-input"
-                                    name="phone_number" value="{{ old('phone') ?? $user->phone_number }}"
+                                <input id="inputPhone" type="text" placeholder="Enter your phone"
+                                    class="form-input md:w-full w-72" name="phone_number"
+                                    value="{{ old('phone') ?? $user->phone_number }}"
                                     placeholder="Enter your phone number" minlength="10"
                                     maxlength="{{ config('validation.phone_number.maxlength') }}"
                                     pattern="{{ config('validation.phone_number.regex') }}"
@@ -209,12 +211,12 @@
                             <div class="w-full col-span-2 lg:col-span-2">
                                 <label for="inputAvatar">Avatar</label>
                                 <input id="inputAvatar" type="file" name="avatar"
-                                    class="file-input file-input-bordered w-full file-input-sm text-base rounded-md"
+                                    class="file-input file-input-bordered md:w-full w-72 file-input-sm text-base rounded-md"
                                     accept=".jpg, .jpeg, .png" />
 
-                                <div class="flex flex-col md:flex-row items-center mt-4">
+                                <div class="flex flex-col md:flex-row md:items-center mt-4">
                                     <div class=""
-                                        style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);">
+                                        style="width: 300px; height: 160px; border: 2px solid rgb(219, 219, 219);">
                                         <img class="w-full h-full object-contain"
                                             src="{{ $user->avatar ? $user->avatar() : 'https://eu.ui-avatars.com/api/?name=' . $user->username . '&size=150' }}"
                                             alt="{{ $user->username }}">
@@ -226,7 +228,7 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                     <div class="mx-2"
-                                        style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);"
+                                        style="width: 300px; height: 160px; border: 2px solid rgb(219, 219, 219);"
                                         id="preview-container">
                                         <img class="w-full h-full object-contain" id="preview"
                                             src="{{ asset('assets/images/placeholder-image.jpg') }}" alt="">

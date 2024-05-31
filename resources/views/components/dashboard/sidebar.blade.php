@@ -74,17 +74,17 @@
                  </li>
 
 
-
                  @if (!auth()->user()->isCustomer())
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.products.show') }}"
-                                     class="group">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-apps text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product</span>
+                                             class="mdi mdi-apps text-xl {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product</span>
                                      </div>
                                  </a>
                              </li>
@@ -122,12 +122,12 @@
                          <ul>
                              <li class="nav-item">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.productions.index') }}"
-                                     class="group {{ request()->is('admin/dashboard/productions') || request()->is('admin/dashboard/productions/*') ? 'bg-primary text-white' : '' }}">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-cube-outline text-xl {{ request()->is('admin/dashboard/productions') || request()->is('admin/dashboard/productions/*') ? 'text-white' : '' }}"></span>
+                                             class="mdi mdi-cube-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class=" {{ request()->is('admin/dashboard/productions') || request()->is('admin/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
+                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
                                              Product</span>
                                      </div>
                                  </a>
@@ -135,7 +135,7 @@
                          </ul>
                      </li>
 
-                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is('admin/dashboard/items/*') ? 'managementItem' : null) }">
+                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'managementItem' : null) }">
                          <button type="button" class="nav-link group"
                              :class="{ 'bg-primary': activeDropdown === 'managementItem' }"
                              @click="activeDropdown === 'managementItem' ? activeDropdown = null : activeDropdown = 'managementItem'">
@@ -143,7 +143,7 @@
                                  <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
                                      class="mdi mdi-card-text-outline text-xl"></span>
                                  <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
-                                     class="{{ request()->is('admin/dashboard/items/categories/*') ? 'text-white dark:text-[#506690]' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                     class="{{ request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
                                      Item</span>
                              </div>
                              <div class="rtl:rotate-180"
@@ -159,7 +159,8 @@
                          <ul x-cloak x-show="activeDropdown === 'managementItem'" x-collapse
                              class="sub-menu text-gray-500">
                              <li>
-                                 <a href="{{ route('admin.dashboard.items.index') }}" class="group">
+                                 <a href="{{ route(request()->user()->role->name . '.dashboard.items.index') }}"
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active' : '' }}">
                                      <div class="flex items-center">
                                          <span
                                              class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
@@ -169,7 +170,7 @@
                              </li>
                              <li>
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.items.categories.index') }}"
-                                     class="group {{ request()->is('admin/dashboard/items/categories') || request()->is('admin/dashboard/items/categories/*') ? 'active' : '' }}">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/items/categories') ? 'active' : '' }}">
                                      <div class="flex items-center">
                                          <span
                                              class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
@@ -180,7 +181,7 @@
                          </ul>
                      </li>
 
-                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is('admin/dashboard/products/*') ? 'managementProduct' : null) }">
+                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'managementProduct' : null) }">
                          <button type="button" class="nav-link group"
                              :class="{ 'bg-primary': activeDropdown === 'managementProduct' }"
                              @click="activeDropdown === 'managementProduct' ? activeDropdown = null : activeDropdown = 'managementProduct'">
@@ -188,7 +189,7 @@
                                  <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
                                      class="mdi mdi-list-box-outline text-xl"></span>
                                  <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
-                                     class="{{ request()->is('admin/dashboard/products/categories/*') ? 'text-white dark:text-[#506690]' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                     class="{{ request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
                                      Product</span>
                              </div>
                              <div class="rtl:rotate-180"
@@ -206,7 +207,7 @@
                              class="sub-menu text-gray-500">
                              <li>
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.products.index') }}"
-                                     class="group">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/products') ? 'active' : '' }}">
                                      <div class="flex items-center">
                                          <span
                                              class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
@@ -216,7 +217,7 @@
                              </li>
                              <li>
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.products.categories.index') }}"
-                                     class="group {{ request()->is('admin/dashboard/products/categories') || request()->is('admin/dashboard/products/categories/*') ? 'active' : '' }}">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'active' : '' }}">
                                      <div class="flex items-center">
                                          <span
                                              class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
@@ -231,12 +232,12 @@
                          <ul>
                              <li class="nav-item">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.articles.index') }}"
-                                     class="group {{ request()->is('admin/dashboard/articles') || request()->is('admin/dashboard/articles/*') ? 'bg-primary text-white' : '' }}">
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-post-outline  text-xl {{ request()->is('admin/dashboard/articles') || request()->is('admin/dashboard/articles/*') ? 'text-white' : '' }}"></span>
+                                             class="mdi mdi-post-outline  text-xl {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class=" {{ request()->is('admin/dashboard/articles') || request()->is('admin/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">What's
+                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">What's
                                              new</span>
                                      </div>
                                  </a>
@@ -258,11 +259,14 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="{{ route('seller.dashboard.shippings.index') }}" class="group">
+                                 <a href="{{ route('seller.dashboard.shippings.index') }}"
+                                     class="group {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-truck-cargo-container text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Shipping</span>
+                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Placed
+                                             Order</span>
                                      </div>
                                  </a>
                              </li>
@@ -283,29 +287,35 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="{{ route('admin.dashboard.weavers.index') }}" class="group">
+                                 <a href="{{ route('admin.dashboard.weavers.index') }}"
+                                     class="group {{ request()->is('admin/dashboard/weavers') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-account-group-outline text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Weaver</span>
+                                             class="mdi mdi-account-group-outline text-xl {{ request()->is('admin/dashboard/weavers') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/weavers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Weaver</span>
                                      </div>
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="{{ route('admin.dashboard.customers.index') }}" class="group">
+                                 <a href="{{ route('admin.dashboard.customers.index') }}"
+                                     class="group {{ request()->is('admin/dashboard/customers') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-account-details-outline text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
+                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/customers') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/customers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
                                      </div>
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="{{ route('admin.dashboard.sellers.index') }}" class="group">
+                                 <a href="{{ route('admin.dashboard.sellers.index') }}"
+                                     class="group {{ request()->is('admin/dashboard/sellers') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-account-details-outline text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Seller</span>
+                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/sellers') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/sellers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Seller</span>
                                      </div>
                                  </a>
                              </li>
@@ -324,11 +334,13 @@
                      <li class="nav-item">
                          <ul>
                              <li class="nav-item">
-                                 <a href="{{ route('admin.dashboard.logs.index') }}" class="group">
+                                 <a href="{{ route('admin.dashboard.logs.index') }}"
+                                     class="group {{ request()->is('admin/dashboard/logs') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-math-log text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Logs
+                                             class="mdi mdi-math-log text-xl {{ request()->is('admin/dashboard/logs') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/logs') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Logs
                                              Activity</span>
                                      </div>
                                  </a>

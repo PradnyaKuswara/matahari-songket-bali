@@ -54,7 +54,7 @@
                     @endif
                     <td>
                         @if ($product->image_1)
-                            <div class="flex flex-wrap">
+                            <div class="flex flex-nowrap">
                                 <div class="flex items-center gap-3">
                                     <div class="avatar">
                                         <div class="mask mask-squircle w-10 h-10">

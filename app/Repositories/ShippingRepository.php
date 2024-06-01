@@ -4,9 +4,17 @@ namespace App\Repositories;
 
 use App\Interfaces\ShippingInterface;
 use App\Models\Shipping;
+use App\Services\SearchService;
 
 class ShippingRepository implements ShippingInterface
 {
+    protected $searchService;
+
+    public function __construct(SearchService $searchService)
+    {
+        $this->searchService = $searchService;
+    }
+
     public function all($user)
     {
         return $user->shippings();
@@ -30,5 +38,10 @@ class ShippingRepository implements ShippingInterface
     public function confirmation($shipping)
     {
         return $shipping->update(['status' => 'delivered']);
+    }
+
+    public function search($request, $model, $conditions, $relations)
+    {
+        return $this->searchService->handle($request, $model, $conditions, $relations)->latest()->paginate(8)->withQueryString()->withPath('show');
     }
 }

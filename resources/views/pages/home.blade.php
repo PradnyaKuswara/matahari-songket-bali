@@ -32,14 +32,17 @@
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
             class="hero-content items-center flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
             <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
-                class="lg:w-[20rem] lg:h-[35rem] rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
+                class="lg:w-[20rem] lg:h-[35rem] w-full h-full rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
             <div class="w-full mt-4">
-                <h1 class="text-7xl font-extrabold mb-5 " :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
+                <h1 class="text-6xl md:text-7xl font-extrabold mb-5 "
+                    :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
                     Songket
-                    <span class="text-accent">Bali</span>
+                    <span class="text-primary">Bali</span>
                 </h1>
 
-                <h1 class="text-base mt-8 font-[500]">Immerse yourself in the rich cultural heritage of Bali with Matahari
+                <h1 class="text-sm md:text-base mt-8 font-[500]  leading-6">Immerse yourself in the rich cultural heritage
+                    of Bali with
+                    Matahari
                     Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese songket, a
                     luxurious fabric handwoven with intricate patterns and vibrant colors. Each piece tells a story of
                     craftsmanship and artistry, passed down through generations.</h1>
@@ -52,8 +55,9 @@
                 </section>
 
                 <div class="flex items-center my-5 gap-4">
-                    <x-button-link link="#why-do-we-use-it" class="bg-accent text-white ">Explore</x-button-link>
-                    <x-button-link :link="route('products.indexFront')" class="bg-primary text-white  animate-pulse animate-infinite">See
+                    <x-button-link link="#why-do-we-use-it"
+                        class=" btn-neutral shadow-md text-white ">Explore</x-button-link>
+                    <x-button-link :link="route('products.indexFront')" class=" btn-primary text-white  animate-pulse animate-infinite">See
                         Product</x-button-link>
                 </div>
             </div>
@@ -63,8 +67,9 @@
     <section id="why-do-we-use-it" class="lg:max-w-screen-lg mx-auto py-20">
         <div class="flex flex-col lg:flex-row items-center gap-20 w-full ">
             <div class="w-10/12 md:w-8/12">
-                <div class="text-5xl font-bold mb-5">Why do we use it?</div>
-                <div class="text-base mt-8">Matahari Songket Bali offers a stunning collection of traditional Balinese
+                <div class="text-4xl md:text-5xl font-bold mb-5">Why do we use it?</div>
+                <div class="text-sm md:text-base mt-8 leading-6">Matahari Songket Bali offers a stunning collection of
+                    traditional Balinese
                     songket products, meticulously handcrafted for special occasions such as weddings, cultural ceremonies,
                     formal events, and more. Each piece showcases the exquisite artistry and rich heritage of Bali, making
                     it a perfect choice for those seeking to add a touch of elegance and tradition to their attire." on
@@ -147,7 +152,7 @@
             <div class="w-8/12">
                 <x-string-typing idType="typed-3" idStringElement="typed-title-3"
                     class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
-                <div class="text-base mt-8">These products are popular or highly sought after by the community. They are in
+                <div class="text-base mt-8 leading-6">These products are popular or highly sought after by the community. They are in
                     high demand due to their quality, uniqueness, or relevance to current trends. Customers frequently seek
                     out these products for their exceptional features or value, making them a prominent choice in the
                     market.

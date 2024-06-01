@@ -31,8 +31,9 @@ class Customer
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'Not found'], 404);
             }
+            session(['intended_url' => $request->url()]);
 
-            return redirect()->back();
+            return redirect()->route('login');
         }
     }
 }

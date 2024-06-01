@@ -51,4 +51,9 @@ class ShippingService
     {
         return $this->shippingInterface->confirmation($shipping);
     }
+
+    public function search($request, $model, $conditions, $relations)
+    {
+        return $this->shippingInterface->search($request, $model, $conditions, $relations);
+    }
 }

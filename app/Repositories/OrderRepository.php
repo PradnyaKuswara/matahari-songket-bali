@@ -4,9 +4,17 @@ namespace App\Repositories;
 
 use App\Interfaces\OrderInterface;
 use App\Models\Order;
+use App\Services\SearchService;
 
 class OrderRepository implements OrderInterface
 {
+    protected $searchService;
+
+    public function __construct(SearchService $searchService)
+    {
+        $this->searchService = $searchService;
+    }
+
     public function all($user)
     {
         return $user->orders();
@@ -49,5 +57,10 @@ class OrderRepository implements OrderInterface
         }
 
         return true;
+    }
+
+    public function search($request, $model, $conditions)
+    {
+        return $this->searchService->handle($request, $model, $conditions)->latest()->paginate(8)->withQueryString()->withPath('show');
     }
 }

@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-        <figure><img src="{{ asset('assets/images/hero2.jpg') }}" alt="Album" class="w-80 h-full" />
+        <figure><img src="{{ asset('assets/images/hero3.jpg') }}" alt="Album" class="w-80 h-full md:flex hidden" />
         </figure>
     </div>
 @endsection

@@ -17,13 +17,14 @@ class Seller
     {
         if (auth()->check()) {
             if (auth()->user()->role->name != 'seller') {
-
                 return redirect()->back();
             } else {
                 return $next($request);
             }
         } else {
-            return redirect()->back();
+            session(['intended_url' => $request->url()]);
+
+            return redirect()->route('login');
         }
     }
 }

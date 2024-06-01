@@ -6,11 +6,14 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WeaverController;
 use Illuminate\Support\Facades\Route;
 
@@ -109,6 +112,24 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::patch('update/{article}', 'update')->name('update');
         Route::patch('toggleActive/{article}', 'toggleActive')->name('toggleActive');
         Route::delete('delete/{article}', 'destroy')->name('destroy');
+        Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(OrderController::class)->prefix('orders')->name('orders.')->group(function () {
+        Route::get('/show', 'showAdminSeller')->name('show');
+        Route::get('/detail-order/{order}', 'detailOrderAdminSeller')->name('detail-order');
+        Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(TransactionController::class)->prefix('transactions')->name('transactions.')->group(function () {
+        Route::get('/show', 'showAdminSeller')->name('show');
+        Route::get('/detail-transaction/{transaction}', 'detailTransactionAdminSeller')->name('detail-transaction');
+        Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(ShippingController::class)->prefix('shippings')->name('shippings.')->group(function () {
+        Route::get('/show', 'showAdminSeller')->name('showAdminSeller');
+        Route::get('detail-shipping/{shipping}', 'detailShippingAdminSeller')->name('detail-shipping');
         Route::get('/search', 'search')->name('search');
     });
 });

@@ -22,8 +22,9 @@ class Admin
                 return $next($request);
             }
         } else {
+            session(['intended_url' => $request->url()]);
 
-            return redirect()->back();
+            return redirect()->route('login');
         }
     }
 }

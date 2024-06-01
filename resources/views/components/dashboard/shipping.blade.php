@@ -7,7 +7,7 @@
             <div class="badge badge-error badge-outline">Cancel</div>
         @endif
         @if ($shipping->status == 'pending')
-            <div class="badge badge-warning badge-outline">Pending</div>
+            <div class="badge badge-warning badge-outline">Unpaid</div>
         @endif
         @if ($shipping->status == 'packing')
             <div class="badge badge-accent badge-outline">Packing</div>
@@ -55,80 +55,17 @@
         @endif
 
         @if (auth()->user()->isSeller())
-            <div class="card-actions justify-center mt-4 gap-4" x-data="modalEdit{{ $loop }}">
-                <label for="modal_edit_{{ $loop }}" class="cursor-pointer btn btn-primary w-full"
-                    @click="toggle()">Delivery</label>
-                <x-dashboard.edit-modal :elements="[
-                    [
-                        'name' => 'courier',
-                        'id' => 'inputCourier',
-                        'label' => 'Courier',
-                        'type' => 'select',
-                        'value' => '',
-                        'options' => [
-                            [
-                                'id' => 'JNE',
-                                'name' => 'JNE',
-                            ],
-                            [
-                                'id' => 'JNT',
-                                'name' => 'JNT',
-                            ],
-                        ],
-                        'placeholder' => 'Select your courier',
-                        'is_required' => 'true',
-                    ],
-                    [
-                        'name' => 'tracking_number',
-                        'id' => 'inputTrackingNumber',
-                        'label' => 'Tracking Number',
-                        'type' => 'text',
-                        'value' => '',
-                        'placeholder' => 'Enter your tracking number',
-                        'is_required' => 'true',
-                    ],
-                    [
-                        'name' => 'shipped_at',
-                        'id' => 'inputShippedAt',
-                        'label' => 'Shipped At',
-                        'type' => 'date',
-                        'value' => '',
-                        'placeholder' => 'Enter your shipped at',
-                        'is_required' => 'true',
-                    ],
-                    [
-                        'name' => 'delivered_at',
-                        'id' => 'inputDeliveredAt',
-                        'label' => 'Estimation Delivered At',
-                        'type' => 'date',
-                        'value' => '',
-                        'placeholder' => 'Enter your delivered at',
-                        'is_required' => 'true',
-                    ],
-                    [
-                        'name' => 'notification',
-                        'id' => 'inputNotification',
-                        'label' => 'Notification',
-                        'type' => 'select',
-                        'value' => '',
-                        'options' => [
-                            [
-                                'id' => 'yes',
-                                'name' => 'yes',
-                            ],
-                            [
-                                'id' => 'no',
-                                'name' => 'no',
-                            ],
-                        ],
-                        'placeholder' => 'Send notification email to customer',
-                        'is_required' => 'true',
-                    ],
-                ]"
-                    route="{{ request()->user()->role->name }}.dashboard.shippings.update" :idRoute="$shipping"
-                    title="Update Shipping" :idModal="$loop"></x-dashboard.edit-modal>
+            <div class="card-actions justify-start mt-4 gap-4" x-data="modalEdit{{ $loop }}">
+                <a href="{{ route('seller.dashboard.shippings.show', $shipping) }}" class="btn btn-primary w-full"
+                    target="__blank">Detail Shipping</a>
             </div>
         @endif
 
+        @if (auth()->user()->isAdmin())
+            <div class="card-actions justify-start mt-4 gap-4" x-data="modalEdit{{ $loop }}">
+                <a href="{{ route(request()->user()->role->name . '.dashboard.shippings.detail-shipping', $shipping) }}"
+                    class="btn btn-primary w-full" target="__blank">Detail Shipping</a>
+            </div>
+        @endif
     </div>
 </div>

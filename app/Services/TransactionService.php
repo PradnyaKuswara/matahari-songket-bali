@@ -18,6 +18,11 @@ class TransactionService
         return $this->transactionInterface->all($user);
     }
 
+    public function getAll()
+    {
+        return $this->transactionInterface->getAll();
+    }
+
     public function create(array $data, $order)
     {
         return $this->transactionInterface->create($data, $order);
@@ -26,5 +31,10 @@ class TransactionService
     public function updateStatus($transaction, $status)
     {
         return $this->transactionInterface->updateStatus($transaction, $status);
+    }
+
+    public function search($request, $model, $conditions)
+    {
+        return $this->transactionInterface->search($request, $model, $conditions);
     }
 }

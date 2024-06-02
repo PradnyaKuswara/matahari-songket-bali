@@ -1445,7 +1445,7 @@
                                                                                         style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;height:54px;">
                                                                                         <singleline>
                                                                                             <a
-                                                                                                href="{{ $content->tracking_link }}">
+                                                                                                href="{{ route('customer.dashboard.trackingOrder') }}">
                                                                                                 <div mc:edit
                                                                                                     data-text-edit>
                                                                                                     Tracking order

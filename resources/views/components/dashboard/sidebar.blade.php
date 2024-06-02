@@ -386,6 +386,15 @@
                                      </div>
                                  </a>
                              </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('customer.dashboard.trackingOrder') }}" class="group {{ request()->is('customer/dashboard/tracking-order') ? 'bg-primary text-white' : '' }} ">
+                                     <div class="flex items-center">
+                                         <span class="mdi mdi-radar text-xl {{ request()->is('customer/dashboard/tracking-order') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('customer/dashboard/tracking-order') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Tracking Order</span>
+                                     </div>
+                                 </a>
+                             </li>
                          </ul>
                      </li>
 

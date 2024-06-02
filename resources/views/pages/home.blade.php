@@ -32,7 +32,8 @@
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
             class="hero-content items-center flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
             <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
-                class="lg:w-[20rem] lg:h-[35rem] w-full h-full rounded-lg " :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
+                class="lg:w-[20rem] lg:h-[35rem] w-full h-full rounded-lg "
+                :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
             <div class="w-full mt-4">
                 <h1 class="text-6xl md:text-7xl font-extrabold mb-5 "
                     :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
@@ -65,7 +66,7 @@
     </section>
 
     <section id="why-do-we-use-it" class="lg:max-w-screen-lg mx-auto py-20">
-        <div class="flex flex-col lg:flex-row items-center gap-20 w-full ">
+        <div class="flex flex-col lg:flex-row items-center gap-20 w-full " data-aos="fade-up">
             <div class="w-10/12 md:w-8/12">
                 <div class="text-4xl md:text-5xl font-bold mb-5">Why do we use it?</div>
                 <div class="text-sm md:text-base mt-8 leading-6">Matahari Songket Bali offers a stunning collection of
@@ -77,12 +78,13 @@
             </div>
 
             <div class="relative">
-                <img src="{{ asset('assets/images/photographer 1.png') }}" class=" rounded-lg w-full h-96 shadow-2xl" />
+                <img src="{{ asset('assets/images/photographer 1.png') }}"
+                    class=" rounded-lg w-full h-96 shadow-2xl" />
 
                 <div class="absolute -bottom-10 -left-10">
                     <img src="{{ asset('assets/images/photographer 2.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
-                <div class="absolute -top-10 -right-10 flex justify-end">
+                <div class="absolute -top-10 -right-10 flex justify-end ">
                     <img src="{{ asset('assets/images/photographer 5.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
             </div>
@@ -152,7 +154,8 @@
             <div class="w-8/12">
                 <x-string-typing idType="typed-3" idStringElement="typed-title-3"
                     class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
-                <div class="text-base mt-8 leading-6">These products are popular or highly sought after by the community. They are in
+                <div class="text-base mt-8 leading-6">These products are popular or highly sought after by the community.
+                    They are in
                     high demand due to their quality, uniqueness, or relevance to current trends. Customers frequently seek
                     out these products for their exceptional features or value, making them a prominent choice in the
                     market.
@@ -200,7 +203,7 @@
         </div>
     </section>
 
-    <section id="newest-product" class=" lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
+    <section id="newest-product" class=" lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20" data-aos="fade-up">
         <div class="flex flex-col md:gap-16 gap-10 ">
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <h1 class="text-4xl font-bold">Newest product</h1>
@@ -222,7 +225,7 @@
         </div>
     </section>
 
-    <section id="testimony" class="relative isolate overflow-hidden bg-white px-6 pb-20 md:pb:14 lg:px-8">
+    <section id="testimony" class="relative isolate overflow-hidden bg-white px-6 pb-20 md:pb:14 lg:px-8" data-aos="fade-right">
         <div
             class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20">
         </div>

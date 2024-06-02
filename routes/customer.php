@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -43,5 +44,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/show/{shipping}', 'show')->name('show');
         Route::patch('/confirmation/{shipping}', 'confirmation')->name('confirmation');
+    });
+
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/tracking-order', 'trackingOrder')->name('trackingOrder');
     });
 });

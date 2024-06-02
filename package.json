@@ -20,6 +20,7 @@
         "@alpinejs/intersect": "^3.13.8",
         "@mdi/font": "^7.4.47",
         "alpinejs": "^3.13.8",
+        "aos": "^2.3.4",
         "lodash": "^4.17.21",
         "notyf": "^3.10.0",
         "swiper": "^11.1.0",

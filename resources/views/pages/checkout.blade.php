@@ -23,6 +23,12 @@
 @endpush
 
 @section('content')
+    <div style="display: none;" id="loading-checkout"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[100] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="w-1/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
+    </div>
     <section
         class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 py-14 md:px-14 lg:px-0 lg:pt-28 mx-4 md:mx-0">
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
@@ -120,7 +126,8 @@
                                         @php
                                             session()->put('link-direct-checkout', 'checkout');
                                         @endphp
-                                        <a href="{{ route('customer.dashboard.profile.edit') }}" class="text-xs text-primary underline">Edit phone number</a>
+                                        <a href="{{ route('customer.dashboard.profile.edit') }}"
+                                            class="text-xs text-primary underline">Edit phone number</a>
                                     </div>
                                 @endif
                             </label>
@@ -285,7 +292,7 @@
                             </div>
                             <div class="flex flex-col gap-4 mt-8">
                                 @if ($user->carts->count() > 0 && $user->addresses->count() > 0 && $user->phone_number != null)
-                                    <button type="submit" class="btn btn-accent w-full"><span
+                                    <button type="submit" id="checkout" class="btn btn-accent w-full"><span
                                             class="mdi mdi-dots-hexagon text-xl"></span>Checkout Product</button>
                                     <x-button-link class="btn btn-neutral  w-full" :link="route('carts.indexFront')"><span
                                             class="mdi mdi-cart-outline text-xl"></span>Change
@@ -309,3 +316,14 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        const loader = document.getElementById('loading-checkout');
+        const checkout = document.getElementById('checkout');
+
+        checkout.addEventListener('click', function() {
+            loader.style.display = 'flex';
+        });
+    </script>
+@endpush

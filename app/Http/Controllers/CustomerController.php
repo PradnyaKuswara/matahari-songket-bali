@@ -80,4 +80,9 @@ class CustomerController extends Controller
             'customer' => $customer,
         ]);
     }
+
+    public function trackingOrder()
+    {
+        return view('pages.customer.trackings.index');
+    }
 }

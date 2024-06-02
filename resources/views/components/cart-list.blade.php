@@ -6,7 +6,7 @@
             <div class="flex item gap-4">
                 <input type="checkbox" x-bind:checked="forms[{{ $index }}].is_active == 1"
                     @click="toggleCheck({{ $index }})" class="checkbox checkbox-accent" />
-                <img src="{{ $product->image1() }}" class="w-32 md:w-40 rounded-md" alt="Album" />
+                <img src="{{ $product->image1() }}" class="w-24 md:w-40 rounded-md" alt="Album" />
             </div>
             <div class="flex flex-col gap-2">
                 <div class="badge badge-neutral py-3 px-3 badge-outline text-xs md:text-xs">

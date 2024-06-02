@@ -106,7 +106,7 @@
                 <li><a href="{{ route('products.indexFront') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
                 <li><a href="{{ route('about.index') }}">About us</a></li>
-                <div class="mt-4">
+                <div class="mt-2">
                     @if (auth()->check() && auth()->user()->role->name == 'admin')
                         <li><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
                         <li>
@@ -143,10 +143,12 @@
                             </li>
                     @endif
 
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <li><button type="submit" class="w-full">Logout</button></li>
-                    </form>
+                    @if (auth()->check())
+                        <form action="{{ route('logout') }}" method="POST" class="mt-2">
+                            @csrf
+                            <li><button type="submit" class="w-full">Logout</button></li>
+                        </form>
+                    @endif
                 </div>
             </ul>
         </div>

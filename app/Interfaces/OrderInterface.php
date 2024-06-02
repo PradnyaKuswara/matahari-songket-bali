@@ -17,4 +17,6 @@ interface OrderInterface
     public function updateStatus($order, $status);
 
     public function checkStock($order);
+
+    public function search($request, $model, $conditions);
 }

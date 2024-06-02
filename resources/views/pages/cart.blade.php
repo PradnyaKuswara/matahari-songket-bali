@@ -28,11 +28,11 @@
         <div class="flex justify-between items-center" x-data="{ intersect: false }" x-intersect:enter="intersect=true"
             x-intersect:leave="intersect=false">
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
-                <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart</h1>
+                <h1 class="text-2xl md:text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart</h1>
             </div>
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
-                <x-button-link class="btn-neutral" :link="route('products.indexFront')">
-                    <span class="mdi mdi-store-search-outline text-xl"></span>Browse Product</x-button-link>
+                <x-button-link class="btn-neutral btn-sm md:btn-md" :link="route('products.indexFront')">
+                    <span class="mdi mdi-store-search-outline text-base md:text-xl"></span>Browse Product</x-button-link>
             </div>
         </div>
 
@@ -69,13 +69,13 @@
                             <p class="text-sm font-sans" x-text="totalPriceDisplay"></p>
                         </div>
                         <x-button-link link="{{ route('checkout.index') }}"
-                            class="btn-sm bg-accent text-white">Checkout</x-button-link>
+                            class="btn-sm bg-primary text-white">Checkout</x-button-link>
                     </div>
                     <div class="flex flex-col gap-4 shadow-md rounded-md p-4">
                         <h1 class="text-lg font-bold">Need Help?</h1>
                         <p class="text-sm">If you have any question, feel free to contact us</p>
                         <x-button-link link="{{ route('about.index') }}/#contact-us"
-                            class="btn-sm bg-accent text-white">Contact
+                            class="btn-sm bg-neutral text-white">Contact
                             Us</x-button-link>
                     </div>
                 </div>

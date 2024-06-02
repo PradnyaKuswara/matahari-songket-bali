@@ -28,4 +28,25 @@ class OrderController extends Controller
             'order' => $order,
         ]);
     }
+
+    public function showAdminSeller(Request $request)
+    {
+        return view('pages.admin-seller.orders.show', [
+            'orders' => $this->orderService->search($request, new Order, ['generate_id']),
+        ]);
+    }
+
+    public function detailOrderAdminSeller(Order $order)
+    {
+        return view('pages.admin-seller.orders.detail-order', [
+            'order' => $order,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        return view('pages.admin-seller.orders.data', [
+            'orders' => $this->orderService->search($request, new Order, ['generate_id']),
+        ]);
+    }
 }

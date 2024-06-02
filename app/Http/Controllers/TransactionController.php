@@ -32,4 +32,25 @@ class TransactionController extends Controller
             'transaction' => $transaction,
         ]);
     }
+
+    public function showAdminSeller(Request $request)
+    {
+        return view('pages.admin-seller.transactions.show', [
+            'transactions' => $this->transactionService->search($request, new Transaction, ['generate_id']),
+        ]);
+    }
+
+    public function detailTransactionAdminSeller(Transaction $transaction)
+    {
+        return view('pages.admin-seller.transactions.detail-transaction', [
+            'transaction' => $transaction,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        return view('pages.admin-seller.transactions.data', [
+            'transactions' => $this->transactionService->search($request, new Transaction, ['generate_id']),
+        ]);
+    }
 }

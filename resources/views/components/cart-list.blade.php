@@ -10,7 +10,7 @@
             </div>
             <div class="flex flex-col gap-2">
                 <div class="badge badge-neutral py-3 px-3 badge-outline text-xs md:text-xs">
-                    Songket
+                    {{ $product->productCategory->name }}
                 </div>
                 <div class="flex flex-col md:flex-row justify-between gap-4 md:gap-0">
                     <div class="flex flex-col gap-2 w-full">

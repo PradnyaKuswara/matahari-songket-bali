@@ -22,9 +22,9 @@
             <div class="hero-content text-center">
                 <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
                     class="max-w-xl">
-                    <h1 class="text-5xl font-bold w-full " :class="intersect ? 'animate-fade-down' : 'opacity-0'">Discover
+                    <h1 class="text-3xl md:text-5xl font-bold w-full " :class="intersect ? 'animate-fade-down' : 'opacity-0'">Discover
                         the Beauty of Bali's Songket</h1>
-                    <p class="py-6 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">Explore our collection of
+                    <p class="py-6 text-sm md:text-base leading-5 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">Explore our collection of
                         articles showcasing the rich tradition and exquisite craftsmanship of Bali's traditional songket.
                         Immerse yourself in the stories behind these beautiful pieces of artistry.</p>
                 </div>

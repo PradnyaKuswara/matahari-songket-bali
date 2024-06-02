@@ -47,4 +47,9 @@ class OrderService
     {
         return $this->orderInterface->checkStock($order);
     }
+
+    public function search($request, $model, $conditions)
+    {
+        return $this->orderInterface->search($request, $model, $conditions);
+    }
 }

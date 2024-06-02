@@ -94,7 +94,7 @@
                             <div class="text-red-500">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-neutral">Send</button>
                 </div>
             </form>
 

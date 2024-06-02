@@ -42,6 +42,13 @@ class ShippingController extends Controller
         ]);
     }
 
+    public function showSeller(Shipping $shipping)
+    {
+        return view('pages.seller.shippings.show', [
+            'shipping' => $shipping,
+        ]);
+    }
+
     public function update(ShippingRequest $request, Shipping $shipping)
     {
         if ($request->shipped_at > $request->delivered_at) {
@@ -64,13 +71,13 @@ class ShippingController extends Controller
 
         $this->shippingService->update($request->validated(), $shipping);
 
-        // dd($shipping);
-
-        $this->mailService->sendShipped($shipping);
+        if ($request->notification == 'yes') {
+            $this->mailService->sendShipped($shipping);
+        }
 
         Toaster::success('Shipping updated successfully');
 
-        return back()->with('success', 'Shipping updated successfully');
+        return redirect()->route('seller.dashboard.shippings.index');
     }
 
     public function confirmation(Shipping $shipping)
@@ -80,5 +87,26 @@ class ShippingController extends Controller
         Toaster::success('Shipping confirmed successfully');
 
         return back()->with('success', 'Shipping confirmed successfully');
+    }
+
+    public function showAdminSeller(Request $request)
+    {
+        return view('pages.admin-seller.shippings.show', [
+            'shippings' => $this->shippingService->search($request, new Shipping, ['generate_id'], ['order']),
+        ]);
+    }
+
+    public function detailShippingAdminSeller(Shipping $shipping)
+    {
+        return view('pages.admin-seller.shippings.detail-shipping', [
+            'shipping' => $shipping,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        return view('pages.admin-seller.shippings.data', [
+            'shippings' => $this->shippingService->search($request, new Shipping, ['generate_id'], ['order']),
+        ]);
     }
 }

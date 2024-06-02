@@ -106,7 +106,7 @@
 
                     <div class="flex gap-2 md:gap-4 item-center mt-5">
                         <x-button-click @click="addToCart({{ $product }})" id="btn-cart"
-                            class="bg-primary w-full text-white"><span class="mdi mdi-cart-outline text-xl"></span>Add to
+                            class="btn-neutral w-full text-white"><span class="mdi mdi-cart-outline text-xl"></span>Add to
                             Cart</x-button-click>
                     </div>
                 </div>

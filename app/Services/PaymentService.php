@@ -154,7 +154,7 @@ class PaymentService
                         'status' => 'pending',
                     ]);
                     $order->shipping->update([
-                        'status' => 'cancel',
+                        'status' => 'pending',
                     ]);
                 }
 

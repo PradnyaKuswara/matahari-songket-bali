@@ -13,4 +13,6 @@ interface ShippingInterface
     public function update(array $data, $shipping);
 
     public function confirmation($shipping);
+
+    public function search($request, $model, $conditions, $relations);
 }

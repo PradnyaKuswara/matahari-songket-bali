@@ -14,7 +14,16 @@
         <p class="text-gray-500 mt-2">Rp. {{ number_format($order->transaction->total_price, 2, ',', '.') }}</p>
         <p class="text-gray-500">Order created at {{ $order->created_at->format('d M Y') }}</p>
         <div class="card-actions justify-end items-center mt-4">
-            <a href="{{ route('customer.dashboard.order.show', $order) }}" class="btn btn-primary w-full">View Order</a>
+            @if (auth()->user()->isCustomer())
+                <a href="{{ route('customer.dashboard.order.show', $order) }}" class="btn btn-primary w-full">View
+                    Order</a>
+            @endif
+
+            @if (auth()->user()->isSeller() || auth()->user()->isAdmin())
+                <a href="{{ route(request()->user()->role->name . '.dashboard.orders.detail-order', $order) }}"
+                    class="btn btn-primary w-full">View
+                    Order</a>
+            @endif
         </div>
     </div>
 </div>

@@ -89,20 +89,35 @@
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="#" class="group">
+                                 <a href="{{ route(request()->user()->role->name . '.dashboard.orders.show') }}"
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-order-bool-descending-variant text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Order</span>
+                                             class="mdi mdi-order-bool-descending-variant text-xl {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Order</span>
                                      </div>
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="#}" class="group">
+                                 <a href="{{ route(request()->user()->role->name . '.dashboard.transactions.show') }}"
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-invoice-text-multiple-outline text-xl"></span>
                                          <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Invoice</span>
+                                             class="mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Invoice</span>
+                                     </div>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="{{ route(request()->user()->role->name . '.dashboard.shippings.showAdminSeller') }}"
+                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-shipping-pallet text-xl {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Shipping</span>
                                      </div>
                                  </a>
                              </li>
@@ -260,12 +275,12 @@
                          <ul>
                              <li class="nav-item">
                                  <a href="{{ route('seller.dashboard.shippings.index') }}"
-                                     class="group {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'bg-primary text-white' : '' }}">
+                                     class="group {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'text-white' : '' }}"></span>
+                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Placed
+                                             class="{{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Placed
                                              Order</span>
                                      </div>
                                  </a>

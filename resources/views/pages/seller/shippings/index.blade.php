@@ -8,7 +8,7 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Customer</a>
+                <a href="javascript:;" class="text-primary hover:underline">Seller</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
                 <span>Shipping</span>
@@ -19,7 +19,7 @@
         </ul>
 
         <div>
-            <h2 class="text-xl font-semibold mt-4">All Shipping</h2>
+            <h2 class="text-xl font-semibold mt-4">All Order Need Packing</h2>
             <div class="grid mx-auto lg:grid-cols-4 gap-4 mt-4" id="order-list">
                 @forelse ($shippings as $shipping)
                     <x-dashboard.shipping :shipping="$shipping" :loop="$loop->iteration"></x-dashboard.shipping>

@@ -25,7 +25,7 @@
         </div>
     </section>
 
-    <section class=" max-w-screen-lg lg:mx-auto pt-16 mx-4 md:mx-0 md:px-14 lg:px-0 lg:pt-20">
+    <section class=" max-w-screen-lg lg:mx-auto pt-16 mx-4 md:mx-0 md:px-14 lg:px-0 lg:pt-20" data-aos="fade-up">
         <div class="grid grid-cols-2 gap-8">
             <div class="flex flex-col items-center gap-8">
                 <img src="{{ asset('assets/images/hero2.jpg') }}" class=" w-96 rounded-lg shadow-2xl" />
@@ -54,7 +54,7 @@
         </div>
     </section>
 
-    <section class="max-w-screen-md lg:mx-auto mx-6 py-10 md:px-14 lg:px-0 lg:py-20 " id="faq">
+    <section class="max-w-screen-md lg:mx-auto mx-6 py-10 md:px-14 lg:px-0 lg:py-20 " id="faq" data-aos="fade-up">
         <div class="flex flex-col item-center justify-center gap-10">
             <div class="text-center">
                 <h1 class="text-4xl font-extrabold ">Drop Us a Line - We're Here to Help</h1>

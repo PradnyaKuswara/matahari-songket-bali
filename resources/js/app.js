@@ -6,6 +6,7 @@ import Typed from "typed.js";
 import Swiper from "swiper/bundle";
 import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
+import AOS from "aos";
 
 window.Typed = Typed;
 window.Swiper = Swiper;
@@ -15,3 +16,5 @@ window.debounce = debounce;
 
 Alpine.plugin(intersect);
 Alpine.start();
+
+AOS.init();

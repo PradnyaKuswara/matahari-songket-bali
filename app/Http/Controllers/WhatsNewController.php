@@ -8,7 +8,6 @@ use App\Services\ArticleService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class WhatsNewController extends Controller
 {
@@ -19,7 +18,7 @@ class WhatsNewController extends Controller
         $this->articleService = $articleService;
     }
 
-    public function index(Request $request): View | JsonResponse
+    public function index(Request $request): View|JsonResponse
     {
         $articles = $this->articleService->all()->latest()->paginate(9);
 

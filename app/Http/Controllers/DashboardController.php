@@ -98,6 +98,9 @@ class DashboardController extends Controller
             'totalShipping' => $totalShipping,
             'totalQuantityProduct' => $totalQuantityProduct,
             'totalPrice' => $totalPrice,
+            'dataChartExpenses' => [],
+            'dataChartNetIncome' => [],
+            'dataTotalNetProfit' => [],
         ]);
     }
 }

@@ -10,7 +10,7 @@ interface ProductInterface
 
     public function update(array $data, $product);
 
-    public function toogleActive($weaver);
+    public function toogleActive($product);
 
     public function delete($product);
 

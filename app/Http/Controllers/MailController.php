@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\WhatsappService;
+use Illuminate\Http\JsonResponse;
 
 class MailController extends Controller
 {
@@ -13,7 +14,7 @@ class MailController extends Controller
         $this->whatsappService = $whatsappService;
     }
 
-    public function sendWhatsAppMessage()
+    public function sendWhatsAppMessage(): JsonResponse
     {
 
         $order = null;

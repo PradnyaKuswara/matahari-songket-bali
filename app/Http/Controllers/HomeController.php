@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ProductService;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
         $this->productService = $productService;
     }
 
-    public function index()
+    public function index(): View
     {
         $products = $this->productService->all()->where('stock', '>', 0)->latest()->take(6)->get();
 

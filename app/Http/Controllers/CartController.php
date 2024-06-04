@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartRequest;
 use App\Services\CartService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -15,7 +17,7 @@ class CartController extends Controller
         $this->cartService = $cartService;
     }
 
-    public function indexFront(Request $request)
+    public function indexFront(Request $request): View
     {
         $this->cartService->updateCartStatusBaseOnStock($request->user());
 
@@ -24,7 +26,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function getCartByCustomer(Request $request)
+    public function getCartByCustomer(Request $request): JsonResponse
     {
         $this->cartService->updateCartStatusBaseOnStock($request->user());
 
@@ -38,7 +40,7 @@ class CartController extends Controller
         ], 200);
     }
 
-    public function storeCartByCustomer(CartRequest $request)
+    public function storeCartByCustomer(CartRequest $request): JsonResponse
     {
         $response = $this->cartService->storeCartByCustomer($request->validated(), $request->user());
 
@@ -49,7 +51,7 @@ class CartController extends Controller
         return response()->json($response, 200);
     }
 
-    public function updateCartByCustomer(CartRequest $request)
+    public function updateCartByCustomer(CartRequest $request): JsonResponse
     {
         $response = $this->cartService->updateCartByCustomer($request->validated(), $request->user());
 
@@ -60,7 +62,7 @@ class CartController extends Controller
         return response()->json($response, 200);
     }
 
-    public function deleteCartByCustomer(CartRequest $request)
+    public function deleteCartByCustomer(CartRequest $request): JsonResponse
     {
         $response = $this->cartService->deleteCartByCustomer($request->validated(), $request->user());
 
@@ -71,7 +73,7 @@ class CartController extends Controller
         return response()->json($response, 200);
     }
 
-    public function toggleCartByCustomer(CartRequest $request)
+    public function toggleCartByCustomer(CartRequest $request): JsonResponse
     {
         $response = $this->cartService->toggleCartByCustomer($request->validated(), $request->user());
 
@@ -82,7 +84,7 @@ class CartController extends Controller
         return response()->json($response, 200);
     }
 
-    public function toggleCartByCustomerAll(Request $request)
+    public function toggleCartByCustomerAll(Request $request): JsonResponse
     {
         $request->validate([
             'checkAll' => 'required|boolean',

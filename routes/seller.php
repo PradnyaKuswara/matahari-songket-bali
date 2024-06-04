@@ -30,7 +30,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('store', 'store')->name('store');
         Route::patch('update/{item}', 'update')->name('update');
-        Route::delete('delete/{item}', 'destroy')->name('destroy');
         Route::get('/search', 'search')->name('search');
 
         Route::controller(ItemCategoryController::class)->prefix('categories')->name('categories.')->group(function () {

@@ -85,7 +85,7 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
 
     public function carts(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withPivot(['quantity', 'is_active', 'is_buy'])->withTimestamps();
+        return $this->belongsToMany(Product::class)->withPivot(['quantity', 'is_active'])->withTimestamps();
     }
 
     public function orders(): HasMany

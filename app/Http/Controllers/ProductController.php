@@ -8,6 +8,9 @@ use App\Models\Visitor;
 use App\Services\ProductCategoryService;
 use App\Services\ProductService;
 use App\Services\ReturnRedirectService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -26,7 +29,7 @@ class ProductController extends Controller
         $this->returnRedirectService = $returnRedirectService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('pages.admin-seller.products.index', [
             'products' => $this->productService->search($request, new Product, ['name', 'stock', 'goods_price', 'sell_price', 'description', 'type'], ['productCategory']),
@@ -34,14 +37,14 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show()
+    public function show(): View
     {
         return view('pages.admin-seller.products.show', [
             'products' => $this->productService->all()->orderByRaw('stock > 0 desc, created_at desc')->paginate(9),
         ]);
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
         // dd($request->validated());
         $this->productService->create($request->validated());
@@ -51,7 +54,7 @@ class ProductController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.products.index'));
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, Product $product): RedirectResponse
     {
         $this->productService->update($request, $request->validated(), $product);
 
@@ -60,7 +63,7 @@ class ProductController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.products.index'));
     }
 
-    public function destroy(Request $request, Product $product)
+    public function destroy(Request $request, Product $product): RedirectResponse
     {
         $this->productService->delete($product);
 
@@ -69,7 +72,7 @@ class ProductController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.products.index'));
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         return view('pages.admin-seller.products.table', [
             'products' => $this->productService->search($request, new Product, ['name', 'stock', 'goods_price', 'sell_price', 'description', 'type'], ['productCategory']),
@@ -77,7 +80,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function toggleActive(Request $request, Product $product)
+    public function toggleActive(Request $request, Product $product): RedirectResponse
     {
         $this->productService->toogleActive($product);
 
@@ -102,7 +105,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function detailFront(Product $product)
+    public function detailFront(Product $product): View
     {
         visits(Visitor::TYPE_PRODUCT, $product)->increment();
 
@@ -116,7 +119,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function categoriesOldest(Request $request)
+    public function categoriesOldest(Request $request): JsonResponse
     {
         $products = $this->productService->all()->orderByRaw('stock > 0 desc, created_at asc')->paginate(9);
 
@@ -125,7 +128,7 @@ class ProductController extends Controller
         return response()->json(['html' => $view]);
     }
 
-    public function categoriesPopular(Request $request)
+    public function categoriesPopular(Request $request): JsonResponse
     {
         $products = Product::leftJoin(
             'visitor_metas',
@@ -147,7 +150,7 @@ class ProductController extends Controller
         return response()->json(['html' => $view]);
     }
 
-    public function categoriesCheapest(Request $request)
+    public function categoriesCheapest(Request $request): JsonResponse
     {
         $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price asc')->paginate(9);
 
@@ -156,7 +159,7 @@ class ProductController extends Controller
         return response()->json(['html' => $view]);
     }
 
-    public function categoriesExpensive(Request $request)
+    public function categoriesExpensive(Request $request): JsonResponse
     {
         $products = $this->productService->all()->orderByRaw('stock > 0 desc, sell_price desc')->paginate(9);
 
@@ -165,7 +168,7 @@ class ProductController extends Controller
         return response()->json(['html' => $view]);
     }
 
-    public function searchFront(Request $request)
+    public function searchFront(Request $request): View
     {
         $model = Product::where('is_active', true);
         $products = $this->productService->searchFront($request, $model, ['name', 'sell_price'], ['productCategory']);

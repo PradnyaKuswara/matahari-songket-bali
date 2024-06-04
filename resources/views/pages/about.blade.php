@@ -4,6 +4,15 @@
     About | Matahari Songket Bali
 @endsection
 
+@push('css')
+    <style>
+        .grecaptcha-badge {
+            z-index: 9999;
+            /* atau nilai yang cukup besar */
+        }
+    </style>
+@endpush
+
 @section('content')
     <section id="hero">
         <div class="hero w-full p-20  lg:mx-auto pt-28 md:px-14 lg:px-0 lg:pt-32"
@@ -28,13 +37,13 @@
     <section class=" max-w-screen-lg lg:mx-auto pt-16 mx-4 md:mx-0 md:px-14 lg:px-0 lg:pt-20" data-aos="fade-up">
         <div class="grid grid-cols-2 gap-8">
             <div class="flex flex-col items-center gap-8">
-                <img src="{{ asset('assets/images/hero2.jpg') }}" class=" w-96 rounded-lg shadow-2xl" />
+                <img src="{{ asset('assets/images/about-1.jpg') }}" class="rounded-lg shadow-2xl aspect-square object-cover" />
                 <p class="text-xs md:text-base">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
             </div>
             <div class="flex flex-col items-center gap-8">
-                <img src="{{ asset('assets/images/hero2.jpg') }}" class=" w-96 rounded-lg shadow-2xl" />
+                <img src="{{ asset('assets/images/about-2.jpg') }}" class="rounded-lg shadow-2xl aspect-square object-cover object-center" />
                 <p class="text-xs md:text-base">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>

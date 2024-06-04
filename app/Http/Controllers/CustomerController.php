@@ -6,6 +6,8 @@ use App\Http\Requests\CustomerRequest;
 use App\Models\User;
 use App\Services\AddressService;
 use App\Services\CustomerService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -21,7 +23,7 @@ class CustomerController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'customer'));
 
@@ -30,7 +32,7 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function store(CustomerRequest $request)
+    public function store(CustomerRequest $request): RedirectResponse
     {
         $this->customerService->create($request->validated());
 
@@ -39,7 +41,7 @@ class CustomerController extends Controller
         return redirect()->route('admin.dashboard.customers.index');
     }
 
-    public function update(CustomerRequest $request, User $customer)
+    public function update(CustomerRequest $request, User $customer): RedirectResponse
     {
         $this->customerService->update($request->validated(), $customer);
 
@@ -48,7 +50,7 @@ class CustomerController extends Controller
         return redirect()->route('admin.dashboard.customers.index');
     }
 
-    public function toggleActive(User $customer)
+    public function toggleActive(User $customer): RedirectResponse
     {
         $this->customerService->toggleActive($customer);
 
@@ -57,7 +59,7 @@ class CustomerController extends Controller
         return redirect()->route('admin.dashboard.customers.index');
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'customer'));
 
@@ -66,14 +68,14 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function showMenu(User $customer)
+    public function showMenu(User $customer): View
     {
         return view('pages.admin.customers.show-menu', [
             'customer' => $customer,
         ]);
     }
 
-    public function showAddress(User $customer)
+    public function showAddress(User $customer): View
     {
         return view('pages.admin.customers.show-address', [
             'addresses' => $this->addressService->all($customer),
@@ -81,7 +83,7 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function trackingOrder()
+    public function trackingOrder(): View
     {
         return view('pages.customer.trackings.index');
     }

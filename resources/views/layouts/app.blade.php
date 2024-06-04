@@ -24,6 +24,40 @@
     <script async src="https://www.google.com/recaptcha/api.js">
         // Add recaptcha script
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const recaptchaObserver = new MutationObserver(() => {
+                const recaptchaFrame = document.querySelector(".g-recaptcha iframe");
+                if (recaptchaFrame) {
+                    recaptchaFrame.style.zIndex = "9999"; // atau nilai yang cukup besar
+                }
+
+                const recaptchaChallenge = document.querySelector(
+                    ".g-recaptcha .recaptcha-checkbox-border");
+                if (recaptchaChallenge) {
+                    recaptchaChallenge.style.zIndex = "9999"; // atau nilai yang cukup besar
+                }
+            });
+
+            recaptchaObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('analytics.measurement_id') }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', '{{ config('analytics.measurement_id') }}');
+    </script>
 
     @stack('css')
 

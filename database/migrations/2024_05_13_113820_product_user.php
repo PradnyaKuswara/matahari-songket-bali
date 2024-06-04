@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity');
             $table->boolean('is_active')->default(false);
-            $table->boolean('is_buy')->default(false);
             $table->timestamps();
         });
     }

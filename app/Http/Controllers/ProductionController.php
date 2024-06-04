@@ -9,6 +9,9 @@ use App\Services\ProductCategoryService;
 use App\Services\ProductionService;
 use App\Services\ReturnRedirectService;
 use App\Services\WeaverService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -33,21 +36,21 @@ class ProductionController extends Controller
         $this->productCategoryService = $productCategoryService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('pages.admin-seller.productions.index', [
             'productions' => $this->productionService->search($request, new Production, ['name', 'date', 'estimate', 'material', 'service', 'total', 'goods_price'], ['items', 'products']),
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('pages.admin-seller.productions.create', [
             'weavers' => $this->weaverService->all(),
         ]);
     }
 
-    public function store(ProductionRequest $request)
+    public function store(ProductionRequest $request): RedirectResponse
     {
         // dd($request->validated());
         $this->productionService->create($request->validated());
@@ -57,7 +60,7 @@ class ProductionController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.productions.index'));
     }
 
-    public function edit(Production $production)
+    public function edit(Production $production): View
     {
         return view('pages.admin-seller.productions.edit', [
             'production' => $production,
@@ -65,7 +68,7 @@ class ProductionController extends Controller
         ]);
     }
 
-    public function update(ProductionRequest $request, Production $production)
+    public function update(ProductionRequest $request, Production $production): RedirectResponse
     {
         // dd($request->validated());
         $this->productionService->update($request->validated(), $production);
@@ -75,14 +78,14 @@ class ProductionController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.productions.index'));
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         return view('pages.admin-seller.productions.table', [
             'productions' => $this->productionService->search($request, new Production, ['name', 'date', 'estimate', 'material', 'service', 'total', 'goods_price'], ['items', 'products']),
         ]);
     }
 
-    public function show(Production $production)
+    public function show(Production $production): View
     {
         return view('pages.admin-seller.productions.show', [
             'itemCategories' => $this->itemCategoryService->all(),
@@ -95,7 +98,7 @@ class ProductionController extends Controller
 
     //response json
 
-    public function allWeaverJson()
+    public function allWeaverJson(): JsonResponse
     {
         return response()->json($this->weaverService->all());
     }

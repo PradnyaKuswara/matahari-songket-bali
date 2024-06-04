@@ -258,7 +258,7 @@
 
                                 $total = $item + $shipping;
 
-                                $tax = $item * 0.05;
+                                $tax = $item * 0.1;
 
                                 $totalAll = $total + $tax;
                             @endphp

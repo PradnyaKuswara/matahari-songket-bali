@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Services\CartService;
 use App\Services\CheckOutService;
 use Illuminate\Contracts\View\View as View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -31,7 +33,7 @@ class CheckOutController extends Controller
         ]);
     }
 
-    public function store(CheckOutRequest $request)
+    public function store(CheckOutRequest $request): RedirectResponse
     {
         if ($request->user()->addresses->where('is_active', 1)->count() == 0) {
             Toaster::error('Please add  your address first. Insert your detail account on dashboard');
@@ -52,7 +54,7 @@ class CheckOutController extends Controller
         return redirect()->route('checkout.showPayment', $result['order']);
     }
 
-    public function showPayment(Order $order)
+    public function showPayment(Order $order): View
     {
         $this->authorize('customer-order', $order);
 
@@ -61,19 +63,19 @@ class CheckOutController extends Controller
         ]);
     }
 
-    public function successView()
+    public function successView(): View
     {
         return view('pages.success-payment');
     }
 
-    public function callBack(Request $request)
+    public function callBack(Request $request): JsonResponse
     {
         $message = $this->checkOutService->callBack($request);
 
         return response()->json(['message' => $message], 200);
     }
 
-    public function checkStock(Request $request)
+    public function checkStock(Request $request): JsonResponse
     {
         $status = $this->checkOutService->checkStock($request);
 

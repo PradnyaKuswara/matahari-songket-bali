@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Services\TransactionService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -15,7 +16,7 @@ class TransactionController extends Controller
         $this->transactionService = $transactionService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $transactions = $this->transactionService->all($request->user())->where('status', '!=', 'pending')->latest()->paginate(8);
         $transactionPendings = $this->transactionService->all($request->user())->where('status', 'pending')->latest()->paginate(8);
@@ -26,28 +27,28 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function show(Transaction $transaction)
+    public function show(Transaction $transaction): View
     {
         return view('pages.customer.transactions.show', [
             'transaction' => $transaction,
         ]);
     }
 
-    public function showAdminSeller(Request $request)
+    public function showAdminSeller(Request $request): View
     {
         return view('pages.admin-seller.transactions.show', [
             'transactions' => $this->transactionService->search($request, new Transaction, ['generate_id']),
         ]);
     }
 
-    public function detailTransactionAdminSeller(Transaction $transaction)
+    public function detailTransactionAdminSeller(Transaction $transaction): View
     {
         return view('pages.admin-seller.transactions.detail-transaction', [
             'transaction' => $transaction,
         ]);
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         return view('pages.admin-seller.transactions.data', [
             'transactions' => $this->transactionService->search($request, new Transaction, ['generate_id']),

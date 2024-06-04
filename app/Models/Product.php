@@ -47,7 +47,7 @@ class Product extends Model implements AuditableContract
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withPivot(['quantity', 'is_active', 'is_buy'])->withTimestamps();
+        return $this->belongsToMany(User::class)->withPivot(['quantity', 'is_active'])->withTimestamps();
     }
 
     public function orders(): BelongsToMany

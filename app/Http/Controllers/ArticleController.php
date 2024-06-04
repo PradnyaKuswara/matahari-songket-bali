@@ -6,7 +6,9 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Services\ArticleService;
 use App\Services\ReturnRedirectService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Masmerise\Toaster\Toaster;
 
 class ArticleController extends Controller
@@ -21,40 +23,40 @@ class ArticleController extends Controller
         $this->returnRedirectService = $returnRedirectService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('pages.admin-seller.articles.index', [
             'articles' => $this->articleService->search($request, new Article, ['name', 'title'], ['user']),
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('pages.admin-seller.articles.create');
     }
 
-    public function store(ArticleRequest $request)
+    public function store(ArticleRequest $request): RedirectResponse
     {
         $this->articleService->create($request);
 
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.articles.index'));
     }
 
-    public function edit(Article $article)
+    public function edit(Article $article): View
     {
         return view('pages.admin-seller.articles.edit', [
             'article' => $this->articleService->find($article),
         ]);
     }
 
-    public function update(ArticleRequest $request, Article $article)
+    public function update(ArticleRequest $request, Article $article): RedirectResponse
     {
         $this->articleService->update($request, $article);
 
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.articles.index'));
     }
 
-    public function toggleActive(Request $request, Article $article)
+    public function toggleActive(Request $request, Article $article): RedirectResponse
     {
         $this->articleService->toggleActive($article);
 
@@ -63,14 +65,14 @@ class ArticleController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.articles.index'));
     }
 
-    public function destroy(Request $request, Article $article)
+    public function destroy(Request $request, Article $article): RedirectResponse
     {
         $this->articleService->delete($article);
 
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.articles.index'));
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         return view('pages.admin-seller.articles.table', [
             'articles' => $this->articleService->search($request, new Article, ['name', 'title'], ['user']),

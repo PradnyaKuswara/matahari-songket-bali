@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\TransactionController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/analytics', 'analytics')->name('analytics');
     });
 
     Route::controller(AuditController::class)->prefix('logs')->name('logs.')->group(function () {
@@ -38,7 +40,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('store', 'store')->name('store');
         Route::patch('update/{item}', 'update')->name('update');
-        Route::delete('delete/{item}', 'destroy')->name('destroy');
         Route::get('/search', 'search')->name('search');
 
         Route::controller(ItemCategoryController::class)->prefix('categories')->name('categories.')->group(function () {
@@ -131,5 +132,12 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/show', 'showAdminSeller')->name('showAdminSeller');
         Route::get('detail-shipping/{shipping}', 'detailShippingAdminSeller')->name('detail-shipping');
         Route::get('/search', 'search')->name('search');
+    });
+
+    Route::controller(ReportController::class)->prefix('reports')->name('reports.')->group(function () {
+        Route::get('/revenue', 'indexRevenue')->name('indexRevenue');
+        Route::post('/revenue/store', 'revenue')->name('revenue.store');
+        Route::get('/analytics', 'indexAnalytics')->name('indexAnalytics');
+        Route::get('/analytics/fetch', 'analytics')->name('analytics');
     });
 });

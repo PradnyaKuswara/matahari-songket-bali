@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Visitor;
 use App\Services\ArticleService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class WhatsNewController extends Controller
 {
@@ -16,7 +19,7 @@ class WhatsNewController extends Controller
         $this->articleService = $articleService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View | JsonResponse
     {
         $articles = $this->articleService->all()->latest()->paginate(9);
 
@@ -32,7 +35,7 @@ class WhatsNewController extends Controller
         ]);
     }
 
-    public function detail(Article $article)
+    public function detail(Article $article): View
     {
         visits(Visitor::TYPE_ARTICLE, $article)->increment();
 

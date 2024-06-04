@@ -6,6 +6,8 @@ use App\Http\Requests\WeaverRequest;
 use App\Models\User;
 use App\Services\AddressService;
 use App\Services\WeaverService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -21,7 +23,7 @@ class WeaverController extends Controller
         $this->addressService = $addressService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
@@ -30,7 +32,7 @@ class WeaverController extends Controller
         ]);
     }
 
-    public function store(WeaverRequest $request)
+    public function store(WeaverRequest $request): RedirectResponse
     {
         $weaver = $this->weaverService->create(collect($request->validated())->only(['name', 'gender', 'date_of_birth', 'phone_number'])->toArray());
 
@@ -41,7 +43,7 @@ class WeaverController extends Controller
         return redirect()->route('admin.dashboard.weavers.index');
     }
 
-    public function update(WeaverRequest $request, User $weaver)
+    public function update(WeaverRequest $request, User $weaver): RedirectResponse
     {
         $this->weaverService->update(collect($request->validated())->only(['name', 'gender', 'date_of_birth', 'phone_number'])->toArray(), $weaver);
 
@@ -52,7 +54,7 @@ class WeaverController extends Controller
         return redirect()->route('admin.dashboard.weavers.index');
     }
 
-    public function toggleActive(User $weaver)
+    public function toggleActive(User $weaver): RedirectResponse
     {
         $this->weaverService->toogleActive($weaver);
 
@@ -61,7 +63,7 @@ class WeaverController extends Controller
         return redirect()->route('admin.dashboard.weavers.index');
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 

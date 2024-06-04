@@ -360,6 +360,28 @@
                                      </div>
                                  </a>
                              </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('admin.dashboard.reports.indexRevenue') }}"
+                                     class="group {{ request()->is('admin/dashboard/reports/revenue') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-cash text-xl {{ request()->is('admin/dashboard/reports/revenue') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/reports/revenue') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Revenue</span>
+                                     </div>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
+                                 <a href="{{ route('admin.dashboard.reports.indexAnalytics') }}"
+                                     class="group {{ request()->is('admin/dashboard/reports/analytics') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-eye-settings-outline text-xl {{ request()->is('admin/dashboard/reports/analytics') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/reports/analytics') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Analytics</span>
+                                     </div>
+                                 </a>
+                             </li>
                          </ul>
                      </li>
                  @endif

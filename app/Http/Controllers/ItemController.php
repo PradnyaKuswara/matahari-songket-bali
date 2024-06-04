@@ -53,15 +53,6 @@ class ItemController extends Controller
         return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.items.index'));
     }
 
-    public function destroy(Request $request, Item $item): RedirectResponse
-    {
-        $this->itemService->delete($item);
-
-        Toaster::success('Item deleted successfully');
-
-        return redirect()->route($this->returnRedirectService->routeString($request, 'dashboard.items.index'));
-    }
-
     public function search(Request $request): View
     {
         return view('pages.admin-seller.items.table', [

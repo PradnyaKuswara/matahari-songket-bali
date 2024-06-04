@@ -81,10 +81,10 @@
                 <img src="{{ asset('assets/images/photographer 1.png') }}"
                     class=" rounded-lg w-full h-96 shadow-2xl" />
 
-                <div class="absolute -bottom-10 -left-10">
+                <div class="absolute -bottom-10 -left-10 hidden md:flex">
                     <img src="{{ asset('assets/images/photographer 2.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
-                <div class="absolute -top-10 -right-10 flex justify-end ">
+                <div class="absolute -top-10 -right-10 hidden md:flex justify-end ">
                     <img src="{{ asset('assets/images/photographer 5.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
             </div>
@@ -98,15 +98,13 @@
                 <h1 class="text-4xl font-bold">Our Categories</h1>
             </div>
 
-            <div class="grid place-items-center md:grid-cols-4 gap-4">
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+            <div class="grid place-items-center md:grid-cols-3 gap-4">
+                <img src="{{ asset('assets/images/category-1.jpg') }}"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                <img src="{{ asset('assets/images/category-2.jpg') }}"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
+                <img src="{{ asset('assets/images/category-3.jpg') }}"
+                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-45  ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
             </div>
 
             <div class="text-base flex justify-center text-center px-10 ">

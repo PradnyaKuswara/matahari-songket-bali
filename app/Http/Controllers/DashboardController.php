@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Services\OrderService;
+use App\Services\ReportService;
 use App\Services\ShippingService;
 use App\Services\TransactionService;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
 {
@@ -16,11 +17,14 @@ class DashboardController extends Controller
 
     protected $shippingService;
 
-    public function __construct(OrderService $orderService, TransactionService $transactionService, ShippingService $shippingService)
+    protected $reportService;
+
+    public function __construct(OrderService $orderService, TransactionService $transactionService, ShippingService $shippingService, ReportService $reportService)
     {
         $this->orderService = $orderService;
         $this->transactionService = $transactionService;
         $this->shippingService = $shippingService;
+        $this->reportService = $reportService;
     }
 
     public function index()
@@ -53,13 +57,25 @@ class DashboardController extends Controller
 
         $transactions = $this->transactionService->getAll()->where('status', 'settlement')->latest()->take(6)->get();
 
-        // dd($recentOrders, $popularProducts, $transactions);
+        $year = now()->year;
+
+        $dataRevenues = $this->reportService->revenue($year);
+
+        $collectDataRevenues = collect($dataRevenues);
+
+        $dataChartExpenses = $collectDataRevenues->pluck('expenses')->values();
+        $dataChartNetIncome = $collectDataRevenues->pluck('net_income')->values();
+        $dataTotalNetProfit = $collectDataRevenues->sum('net_profit');
 
         return view('pages.main-dashboard', [
             'user' => auth()->user(),
             'recentOrders' => $recentOrders,
             'popularProducts' => $popularProducts,
             'transactions' => $transactions,
+            'year' => $year,
+            'dataChartExpenses' => $dataChartExpenses,
+            'dataChartNetIncome' => $dataChartNetIncome,
+            'dataTotalNetProfit' => $dataTotalNetProfit,
         ]);
     }
 

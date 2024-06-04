@@ -6,9 +6,9 @@ use App\Http\Requests\ProductCategoryRequest;
 use App\Models\ProductCategory;
 use App\Services\ProductCategoryService;
 use App\Services\ReturnRedirectService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Masmerise\Toaster\Toaster;
 
 class ProductCategoryController extends Controller

@@ -6,6 +6,8 @@ use App\Http\Requests\ShippingRequest;
 use App\Models\Shipping;
 use App\Services\MailService;
 use App\Services\ShippingService;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Masmerise\Toaster\Toaster;
 
@@ -21,35 +23,35 @@ class ShippingController extends Controller
         $this->mailService = $mailService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('pages.customer.shippings.index', [
             'shippings' => $this->shippingService->all($request->user())->latest()->paginate(8),
         ]);
     }
 
-    public function show(Shipping $shipping)
+    public function show(Shipping $shipping): View
     {
         return view('pages.customer.shippings.show', [
             'shipping' => $shipping,
         ]);
     }
 
-    public function indexSeller()
+    public function indexSeller(): View
     {
         return view('pages.seller.shippings.index', [
             'shippings' => $this->shippingService->getAll()->where('status', 'packing')->latest()->paginate(8),
         ]);
     }
 
-    public function showSeller(Shipping $shipping)
+    public function showSeller(Shipping $shipping): View
     {
         return view('pages.seller.shippings.show', [
             'shipping' => $shipping,
         ]);
     }
 
-    public function update(ShippingRequest $request, Shipping $shipping)
+    public function update(ShippingRequest $request, Shipping $shipping): RedirectResponse
     {
         if ($request->shipped_at > $request->delivered_at) {
             Toaster::error('Shipped at must be less than delivered at');
@@ -80,7 +82,7 @@ class ShippingController extends Controller
         return redirect()->route('seller.dashboard.shippings.index');
     }
 
-    public function confirmation(Shipping $shipping)
+    public function confirmation(Shipping $shipping): RedirectResponse
     {
         $this->shippingService->confirmation($shipping);
 
@@ -89,21 +91,21 @@ class ShippingController extends Controller
         return back()->with('success', 'Shipping confirmed successfully');
     }
 
-    public function showAdminSeller(Request $request)
+    public function showAdminSeller(Request $request): View
     {
         return view('pages.admin-seller.shippings.show', [
             'shippings' => $this->shippingService->search($request, new Shipping, ['generate_id'], ['order']),
         ]);
     }
 
-    public function detailShippingAdminSeller(Shipping $shipping)
+    public function detailShippingAdminSeller(Shipping $shipping): View
     {
         return view('pages.admin-seller.shippings.detail-shipping', [
             'shipping' => $shipping,
         ]);
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         return view('pages.admin-seller.shippings.data', [
             'shippings' => $this->shippingService->search($request, new Shipping, ['generate_id'], ['order']),

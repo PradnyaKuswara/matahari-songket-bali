@@ -8,13 +8,13 @@ interface ArticleInterface
 
     public function create(array $data);
 
-    public function update(array $data, $itemCategory);
+    public function update(array $data, $article);
 
-    public function toggleActive($customer);
+    public function toggleActive($article);
 
-    public function delete($itemCategory);
+    public function delete($article);
 
-    public function find($itemCategory);
+    public function find($article);
 
     public function search($request, $model, $conditions, $relations);
 }

@@ -28,74 +28,74 @@
 @endpush
 
 @section('content')
-    <section id="hero" class="hero hero-bg-light ">
-        <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
-            class="hero-content items-center flex-col-reverse lg:flex-row-reverse w-full min-h-screen lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 lg:py-0 ">
-            <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
-                class="lg:w-[20rem] lg:h-[35rem] w-full h-full rounded-lg "
-                :class="intersect ? 'animate-fade-left' : 'opacity-0'" />
-            <div class="w-full mt-4">
-                <h1 class="text-6xl md:text-7xl font-extrabold mb-5 "
-                    :class="intersect ? 'animate-fade-right' : 'opacity-0'">Matahari
-                    Songket
-                    <span class="text-primary">Bali</span>
-                </h1>
-
-                <h1 class="text-sm md:text-base mt-8 font-[500]  leading-6">Immerse yourself in the rich cultural heritage
-                    of Bali with
-                    Matahari
-                    Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese songket, a
-                    luxurious fabric handwoven with intricate patterns and vibrant colors. Each piece tells a story of
-                    craftsmanship and artistry, passed down through generations.</h1>
-
-                <section class="grid gap-4 grid-cols-2 md:grid-cols-4 md:gap-1 mt-8">
-                    @foreach ($dataCounter as $index => $counter)
-                        <x-counter :counter="$counter">
-                        </x-counter>
-                    @endforeach
-                </section>
-
-                <div class="flex items-center my-5 gap-4">
+    <div class="pt-10" id="hero">
+        <div class="flex flex-col justify-between w-screen px-4 mx-auto md:pt-16 md:flex-row md:px-8 lg:max-w-screen-lg">
+            <div class="pt-16 mb-16 lg:mb-0 lg:pt-32  md: max-w-md lg:max-w-lg lg:pr-5">
+                <div class="w-full mb-6 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1500">
+                    <div>
+                        <p
+                            class="inline-block px-14 py-px mb-4 text-xs font-semibold tracking-wider text-primary-content uppercase rounded-full bg-primary">
+                        </p>
+                    </div>
+                    <h2
+                        class="w-full mb-6 font-sans text-5xl font-bold tracking-tight text-gray-900 sm:text-5xl sm:leading-none">
+                        Matahari <span class="text-primary">Songket Bali</span>
+                    </h2>
+                    <p class="text-base text-gray-700 md:text-lg">
+                        Immerse yourself in the rich cultural heritage
+                        of Bali with
+                        Matahari
+                        Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese
+                        songket, a
+                        luxurious fabric handwoven with intricate patterns and vibrant colors.
+                    </p>
+                </div>
+                <div class="flex items-center gap-4 a w-20" data-aos="fade-up" data-aos-duration="1500">
                     <x-button-link link="#why-do-we-use-it"
                         class=" btn-neutral shadow-md text-white ">Explore</x-button-link>
                     <x-button-link :link="route('products.indexFront')" class=" btn-primary text-white  animate-pulse animate-infinite">See
                         Product</x-button-link>
                 </div>
             </div>
+            <div data-aos="fade" data-aos-duration="1500">
+                <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
+                    class="object-cover object-bottom w-full h-64 mx-auto md:h-auto xl:mr-24 md:max-w-sm" alt="" />
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section id="why-do-we-use-it" class="lg:max-w-screen-lg mx-auto py-20">
-        <div class="flex flex-col lg:flex-row items-center gap-20 w-full " data-aos="fade-up">
+
+    <section id="why-do-we-use-it" class="lg:max-w-screen-lg mx-auto pt-24">
+        <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 w-full " data-aos="fade-up">
             <div class="w-10/12 md:w-8/12">
                 <div class="text-4xl md:text-5xl font-bold mb-5">Why do we use it?</div>
-                <div class="text-sm md:text-base mt-8 leading-6">Matahari Songket Bali offers a stunning collection of
+                <div class="text-base md:text-base mt-8 leading-6 text-justify">Matahari Songket Bali offers a stunning collection of
                     traditional Balinese
                     songket products, meticulously handcrafted for special occasions such as weddings, cultural ceremonies,
                     formal events, and more. Each piece showcases the exquisite artistry and rich heritage of Bali, making
                     it a perfect choice for those seeking to add a touch of elegance and tradition to their attire." on
                     indonesia. </div>
+                {{-- <img src="{{ asset('assets/images/photographer 1.png') }}" class="" /> --}}
             </div>
 
-            <div class="relative">
-                <img src="{{ asset('assets/images/photographer 1.png') }}"
-                    class=" rounded-lg w-full h-96 shadow-2xl" />
+            <div class="relative hidden md:flex ">
+                <img src="{{ asset('assets/images/photographer 1.png') }}" class=" rounded-lg w-64 h-96" />
 
-                <div class="absolute -bottom-10 -left-10 hidden md:flex">
+                <div class="absolute -bottom-10 -left-16">
                     <img src="{{ asset('assets/images/photographer 2.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
-                <div class="absolute -top-10 -right-10 hidden md:flex justify-end ">
+                <div class="absolute -top-10 -right-16 flex justify-end ">
                     <img src="{{ asset('assets/images/photographer 5.png') }}" class="w-1/2 rounded-lg shadow-2xl" />
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="our-categories" class=" lg:max-w-screen-lg md:px-14 lg:px-0 mx-auto py-20 md:py-20">
+    <section id="our-categories" class=" lg:max-w-screen-lg mx-auto py-24">
         <div class="flex flex-col md:gap-16 gap-10 " x-data="{ intersect: false }" x-intersect:enter="intersect=true"
             x-intersect:leave="intersect=false">
             <div class="flex flex-col md:flex-row justify-center px-4 lg:px-0">
-                <h1 class="text-4xl font-bold">Our Categories</h1>
+                <h1 class="text-4xl font-bold ms-4 lg:ms-0">Our Categories</h1>
             </div>
 
             <div class="grid place-items-center md:grid-cols-3 gap-4">
@@ -107,9 +107,8 @@
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-45  ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
             </div>
 
-            <div class="text-base flex justify-center text-center px-10 ">
-                This category encompasses a variety of products that are currently in stock and available for purchase,
-                catering to a diverse range of preferences and needs.
+            <div class="text-base flex justify-center text-center px-10 font-bold ">
+                This category encompasses a variety of products that are currently in stock and available for purchase.
             </div>
         </div>
     </section>
@@ -147,9 +146,9 @@
         </div>
 
 
-        <div class="popular flex flex-col lg:flex-row items-center w-full justify-between gap-8 py-40 lg:ps-40">
+        <div class="popular grid lg:grid-cols-2 w-full gap-8 py-40 lg:ps-40">
 
-            <div class="w-8/12">
+            <div class="mx-8 lg:mx-0">
                 <x-string-typing idType="typed-3" idStringElement="typed-title-3"
                     class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
                 <div class="text-base mt-8 leading-6">These products are popular or highly sought after by the community.
@@ -165,20 +164,23 @@
                 ul.insertAdjacentHTML('afterend', ul.outerHTML);
                 ul.nextSibling.setAttribute('aria-hidden', 'true');
             })"
-                class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                class="lg:w-full max-w-full-xs inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
                 <ul x-ref="logos"
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}" alt="Facebook" />
                     </li>
                     <li>
-                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}" alt="Facebook" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
-                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}" alt="Facebook" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
-                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}" alt="Facebook" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}"
@@ -223,7 +225,8 @@
         </div>
     </section>
 
-    <section id="testimony" class="relative isolate overflow-hidden bg-white px-6 pb-20 md:pb:14 lg:px-8" data-aos="fade-right">
+    <section id="testimony" class="relative isolate overflow-hidden bg-white px-6 pb-20 md:pb:14 lg:px-8"
+        data-aos="fade-right">
         <div
             class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20">
         </div>

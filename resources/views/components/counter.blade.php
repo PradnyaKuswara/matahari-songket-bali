@@ -6,7 +6,7 @@
 
 <article id="{{ $value }}">
     <div class="flex flex-col gap-3">
-        <div class="text-4xl text-black font-bold rounded-md bg-white w-42 font-sans" x-data="animatedCounter({{ $value }}, 200)"
+        <div class="text-2xl lg:text-4xl text-black font-bold rounded-md bg-white w-42 font-sans" x-data="animatedCounter({{ $value }}, 200)"
             x-intersect:enter="updatecounter" x-intersect:leave="current = 0"
             x-text="Math.round(current) + '{{ $valueLabel }}'"></div>
         <div>{{ $label }}</div>

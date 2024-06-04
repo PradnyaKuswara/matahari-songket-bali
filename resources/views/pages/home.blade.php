@@ -209,7 +209,7 @@
                 <h1 class="text-4xl font-bold">Newest product</h1>
             </div>
             <div x-data="{ loading: false, card: false }" x-init="loading = true, card = true"
-                class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 mx-4 lg:mx-0">
+                class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 lg:mx-0">
                 @foreach ($products as $product)
                     <x-product-card :product="$product" class="shadow-md">
                     </x-product-card>

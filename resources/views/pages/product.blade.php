@@ -23,7 +23,7 @@
 @endpush
 
 @section('content')
-    <section class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto mx-4 pt-28 md:px-14 lg:px-0 pb-16">
+    <section class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 md:px-14 lg:px-0 pb-16">
         <div class="flex flex-col gap-6" x-data="products">
             <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
                 class="flex flex-col md:flex-row px-4 lg:px-0">
@@ -60,7 +60,7 @@
 
             <div>
                 <div id="product-list"
-                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-10 animate-fade-down">
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 lg:gap-x-6 gap-y-10 animate-fade-down">
                     @include('pages.product-data')
                 </div>
                 <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10 mt-10">

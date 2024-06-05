@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title')
+@section('title')
     {{ $shipping->order->generate_id }}
 @endsection
 

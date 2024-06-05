@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('page-title')
+@section('title')
     {{ $transaction->generate_id }}
 @endsection
 

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Shipping;
 use App\Services\MailService;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class ConfirmShipped extends Command
@@ -38,10 +39,16 @@ class ConfirmShipped extends Command
         $shippings = Shipping::where('status', 'shipping')->get();
 
         foreach ($shippings as $shipping) {
-            if ($shipping->delivered_at < now() && $shipping->max_confirm >= now()) {
+            $deliveredAt = Carbon::parse($shipping->delivered_at)->startOfDay();
+            $maxConfirm = Carbon::parse($shipping->max_confirm)->startOfDay();
+            $now = Carbon::now()->startOfDay();
+            $tomorrow = Carbon::now()->addDay()->startOfDay();
+
+            if ($deliveredAt->eq($tomorrow)) {
                 $this->mailService->sendReceived($shipping);
             }
-            if ($shipping->max_confirm < now()) {
+
+            if ($maxConfirm->lt($now)) {
                 $shipping->update(['status' => 'delivered']);
             }
         }

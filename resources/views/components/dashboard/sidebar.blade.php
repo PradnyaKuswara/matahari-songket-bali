@@ -372,6 +372,17 @@
                                  </a>
                              </li>
                              <li class="nav-item">
+                                 <a href="{{ route('admin.dashboard.reports.indexProducts') }}"
+                                     class="group {{ request()->is('admin/dashboard/reports/products') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="mdi mdi-apps text-xl {{ request()->is('admin/dashboard/reports/products') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('admin/dashboard/reports/products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Product</span>
+                                     </div>
+                                 </a>
+                             </li>
+                             <li class="nav-item">
                                  <a href="{{ route('admin.dashboard.reports.indexAnalytics') }}"
                                      class="group {{ request()->is('admin/dashboard/reports/analytics') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">

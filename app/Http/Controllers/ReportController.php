@@ -60,4 +60,28 @@ class ReportController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function indexProducts(): View
+    {
+        return view('pages.admin.reports.products', [
+            'products' => [],
+            'year' => '',
+        ]);
+    }
+
+    public function products(Request $request): JsonResponse
+    {
+        $year = $request->year ?? now()->year;
+
+        $products = $this->reportService->products($year);
+
+        $view = view('pages.admin.reports.results-products', [
+            'products' => $products,
+            'year' => $year,
+        ]);
+
+        return response()->json([
+            'html' => $view->render(),
+        ], 200);
+    }
 }

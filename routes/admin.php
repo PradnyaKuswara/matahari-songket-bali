@@ -139,5 +139,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::post('/revenue/store', 'revenue')->name('revenue.store');
         Route::get('/analytics', 'indexAnalytics')->name('indexAnalytics');
         Route::get('/analytics/fetch', 'analytics')->name('analytics');
+        Route::get('/products', 'indexProducts')->name('indexProducts');
+        Route::post('/products/store', 'products')->name('products.store');
     });
 });

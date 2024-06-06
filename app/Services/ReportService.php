@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Product;
 use App\Models\Transaction;
 use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
@@ -164,5 +165,13 @@ class ReportService
         $data = ['totalScreenPageViews' => $totalViews, 'totalActiveUsers' => $totalActiveUsers, 'analyticsData' => $weeks];
 
         return $data;
+    }
+
+    public function products($year)
+    {
+        $products = Product::whereYear('created_at', $year)->with('productCategory')
+            ->get();
+
+        return $products;
     }
 }

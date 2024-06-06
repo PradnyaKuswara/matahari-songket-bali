@@ -39,12 +39,11 @@ class ConfirmShipped extends Command
         $shippings = Shipping::where('status', 'shipping')->get();
 
         foreach ($shippings as $shipping) {
-            $deliveredAt = Carbon::parse($shipping->delivered_at)->startOfDay();
+            $deliveredAt = Carbon::parse($shipping->delivered_at)->addDay()->startOfDay();
             $maxConfirm = Carbon::parse($shipping->max_confirm)->startOfDay();
             $now = Carbon::now()->startOfDay();
-            $tomorrow = Carbon::now()->addDay()->startOfDay();
 
-            if ($deliveredAt->eq($tomorrow)) {
+            if ($deliveredAt->eq($now)) {
                 $this->mailService->sendReceived($shipping);
             }
 

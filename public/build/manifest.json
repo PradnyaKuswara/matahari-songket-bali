@@ -16,17 +16,17 @@
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-XGgUmQAp.css",
+    "file": "assets/app-BNZ9Zb3f.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/dashboard.css": {
-    "file": "assets/dashboard-CGpO9JtM.css",
+    "file": "assets/dashboard-B-eMQb_s.css",
     "src": "resources/css/dashboard.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-9eSCSfZ0.js",
+    "file": "assets/app-DVeN8hw8.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [

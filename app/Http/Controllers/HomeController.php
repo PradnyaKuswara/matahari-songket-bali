@@ -22,4 +22,9 @@ class HomeController extends Controller
             'products' => $products,
         ]);
     }
+
+    public function successVerification(): View
+    {
+        return view('pages.success-verification-email');
+    }
 }

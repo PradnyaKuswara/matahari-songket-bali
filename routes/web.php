@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/success-verification-email', [HomeController::class, 'successVerification'])->name('successVerification');
 
 Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
     Route::get('/', 'indexFront')->name('indexFront');

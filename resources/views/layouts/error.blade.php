@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo_icon.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

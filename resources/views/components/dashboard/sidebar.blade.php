@@ -314,12 +314,12 @@
                              </li>
                              <li class="nav-item">
                                  <a href="{{ route('admin.dashboard.customers.index') }}"
-                                     class="group {{ request()->is('admin/dashboard/customers') ? 'bg-primary text-white' : '' }}">
+                                     class="group {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/customers') ? 'text-white' : '' }}"></span>
+                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/customers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
+                                             class="{{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
                                      </div>
                                  </a>
                              </li>
@@ -420,11 +420,14 @@
                                  </a>
                              </li>
                              <li class="nav-item">
-                                 <a href="{{ route('customer.dashboard.trackingOrder') }}" class="group {{ request()->is('customer/dashboard/tracking-order') ? 'bg-primary text-white' : '' }} ">
+                                 <a href="{{ route('customer.dashboard.trackingOrder') }}"
+                                     class="group {{ request()->is('customer/dashboard/tracking-order') ? 'bg-primary text-white' : '' }} ">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-radar text-xl {{ request()->is('customer/dashboard/tracking-order') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/tracking-order') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Tracking Order</span>
+                                             class="mdi mdi-radar text-xl {{ request()->is('customer/dashboard/tracking-order') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="{{ request()->is('customer/dashboard/tracking-order') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Tracking
+                                             Order</span>
                                      </div>
                                  </a>
                              </li>

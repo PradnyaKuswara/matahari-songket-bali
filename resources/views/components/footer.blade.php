@@ -7,7 +7,6 @@
     </nav> --}}
     <nav>
         <div class="grid grid-flow-col gap-6 text-primary-content">
-            <a><i class="fas fa-brands fa-whatsapp fa-2x"></i></a>
             <a href="https://www.facebook.com/gusti.ayusri.5?locale=id_ID"><i
                     class="fas fa-brands fa-facebook fa-2x"></i></a>
             <a href="https://www.instagram.com/matahari_songket_bali/"><i

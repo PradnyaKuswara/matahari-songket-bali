@@ -31,24 +31,27 @@
     <div class="pt-10" id="hero">
         <div class="flex flex-col justify-between w-screen px-4 mx-auto md:pt-16 md:flex-row md:px-8 lg:max-w-screen-lg">
             <div class="pt-16 mb-16 lg:mb-0 lg:pt-32  md: max-w-md lg:max-w-lg lg:pr-5">
-                <div class="w-full mb-6 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1500">
+                <div class="w-full mb-6 flex flex-col justify-center">
                     <div>
                         <p
-                            class="inline-block px-14 py-px mb-4 text-xs font-semibold tracking-wider text-primary-content uppercase rounded-full bg-primary">
+                            class="animate-widen w-32 py-[0.1rem] mb-4 text-xs font-semibold tracking-wider text-primary-content uppercase rounded-full bg-primary">
                         </p>
                     </div>
-                    <h2
-                        class="w-full mb-6 font-sans text-5xl font-bold tracking-tight text-gray-900 sm:text-5xl sm:leading-none">
-                        Matahari <span class="text-primary">Songket Bali</span>
-                    </h2>
-                    <p class="text-base text-gray-700 md:text-lg">
-                        Immerse yourself in the rich cultural heritage
-                        of Bali with
-                        Matahari
-                        Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese
-                        songket, a
-                        luxurious fabric handwoven with intricate patterns and vibrant colors.
-                    </p>
+                    <div data-aos="fade-right" data-aos-duration="1500">
+                        <h2
+                            class="w-full mb-6 font-sans text-5xl font-bold tracking-tight text-gray-900 sm:text-5xl sm:leading-none">
+                            Matahari <span class="text-primary">Songket Bali</span>
+                        </h2>
+                        <p class="text-base text-gray-700 md:text-lg">
+                            Immerse yourself in the rich cultural heritage
+                            of Bali with
+                            Matahari
+                            Songket Bali. Our exquisite collection showcases the finest examples of traditional Balinese
+                            songket, a
+                            luxurious fabric handwoven with intricate patterns and vibrant colors.
+                        </p>
+                    </div>
+
                 </div>
                 <div class="flex items-center gap-4 a w-20" data-aos="fade-up" data-aos-duration="1500">
                     <x-button-link link="#why-do-we-use-it"
@@ -69,7 +72,8 @@
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 w-full " data-aos="fade-up">
             <div class="w-10/12 md:w-8/12">
                 <div class="text-4xl md:text-5xl font-bold mb-5">Why do we use it?</div>
-                <div class="text-base md:text-base mt-8 leading-6 text-justify">Matahari Songket Bali offers a stunning collection of
+                <div class="text-base md:text-base mt-8 leading-6 text-justify">Matahari Songket Bali offers a stunning
+                    collection of
                     traditional Balinese
                     songket products, meticulously handcrafted for special occasions such as weddings, cultural ceremonies,
                     formal events, and more. Each piece showcases the exquisite artistry and rich heritage of Bali, making
@@ -239,8 +243,6 @@
                 <div class="swiper-wrapper mb-16">
                     <div class="swiper-slide">
                         <div class="mx-auto max-w-2xl lg:max-w-4xl">
-                            <img class="mx-auto h-12"
-                                src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" alt="">
                             <figure class="mt-10">
                                 <blockquote
                                     class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
@@ -266,8 +268,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="mx-auto max-w-2xl lg:max-w-4xl">
-                            <img class="mx-auto h-12"
-                                src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" alt="">
                             <figure class="mt-10">
                                 <blockquote
                                     class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">

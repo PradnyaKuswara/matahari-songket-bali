@@ -83,6 +83,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/search', 'search')->name('search');
         Route::get('/show-menu/{customer}', 'showMenu')->name('showMenu');
         Route::get('/show-address/{customer}', 'showAddress')->name('showAddress');
+        Route::patch('/update/password/{customer}', 'updatePassword')->name('updatePassword');
     });
 
     Route::controller(SellerController::class)->prefix('sellers')->name('sellers.')->group(function () {

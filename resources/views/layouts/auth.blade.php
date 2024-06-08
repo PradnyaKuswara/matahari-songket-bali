@@ -8,7 +8,7 @@
     {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <title>@yield('title')</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo_icon.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

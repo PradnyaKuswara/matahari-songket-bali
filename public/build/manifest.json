@@ -16,12 +16,12 @@
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BOlmOFSE.css",
+    "file": "assets/app-BE_SosHA.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/dashboard.css": {
-    "file": "assets/dashboard-DReD3ly4.css",
+    "file": "assets/dashboard-DFtXnM_e.css",
     "src": "resources/css/dashboard.css",
     "isEntry": true
   },

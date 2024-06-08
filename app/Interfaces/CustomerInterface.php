@@ -10,6 +10,8 @@ interface CustomerInterface
 
     public function update(array $data, $customer);
 
+    public function updatePassword($customer, $password);
+
     public function toggleActive($customer);
 
     public function find($customer);

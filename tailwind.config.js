@@ -10,11 +10,16 @@ export default {
         extend: {
             animation: {
                 "infinite-scroll": "infinite-scroll 25s linear infinite",
+                widen: "widen 1s ease-in-out",
             },
             keyframes: {
                 "infinite-scroll": {
                     from: { transform: "translateX(0)" },
                     to: { transform: "translateX(-100%)" },
+                },
+                widen: {
+                    "0%": { width: "0" },
+                    "100%": { width: "8rem" }, // 8rem is equivalent to 32 (8 * 4 = 32)
                 },
             },
         },

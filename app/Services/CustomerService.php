@@ -28,6 +28,11 @@ class CustomerService
         return $this->customerInterface->update($data, $customer);
     }
 
+    public function updatePassword($customer, $password)
+    {
+        return $this->customerInterface->updatePassword($customer, $password);
+    }
+
     public function toggleActive($customer)
     {
         return $this->customerInterface->toggleActive($customer);

@@ -31,6 +31,11 @@ class CustomerRepository implements CustomerInterface
         return $customer->update($data);
     }
 
+    public function updatePassword($customer, $password)
+    {
+        return $customer->update(['password' => $password]);
+    }
+
     public function toggleActive($customer)
     {
         return $customer->update(['is_active' => ! $customer->is_active]);

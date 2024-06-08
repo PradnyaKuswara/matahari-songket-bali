@@ -50,6 +50,19 @@ class CustomerController extends Controller
         return redirect()->route('admin.dashboard.customers.index');
     }
 
+    public function updatePassword(Request $request, User $customer): RedirectResponse
+    {
+        $request->validate([
+            'password' => ['required', 'min:8'],
+        ]);
+
+        $this->customerService->updatePassword($customer, $request->password);
+
+        Toaster::success('Customer update successfully');
+
+        return redirect()->back();
+    }
+
     public function toggleActive(User $customer): RedirectResponse
     {
         $this->customerService->toggleActive($customer);

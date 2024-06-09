@@ -102,13 +102,36 @@
                 <h1 class="text-4xl font-bold ms-4 lg:ms-0">Our Categories</h1>
             </div>
 
-            <div class="grid place-items-center md:grid-cols-3 gap-4">
+            <div class="hidden lg:grid place-items-center md:grid-cols-3 gap-4">
                 <img src="{{ asset('assets/images/category-1.jpg') }}"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
                 <img src="{{ asset('assets/images/category-2.jpg') }}"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
                 <img src="{{ asset('assets/images/category-3.jpg') }}"
                     class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-45  ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
+            </div>
+
+            <div class="lg:hidden flex flex-col justify-center items-center mx-auto md:flex-row gap-4 max-w-xs">
+                <div class="mx-auto flex items-center gap-4"
+                    :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
+                    <img src="{{ asset('assets/images/category-1.jpg') }}"
+                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-12 " />
+                    <h1 class="text-primary font-bold">Kain Songket</h1>
+                </div>
+
+                <div class="flex flex-row-reverse gap-4 items-center justify-end"
+                    :class="intersect ? 'animate-fade-down animate-duration-[2000ms]' : 'opacity-0'">
+                    <img src="{{ asset('assets/images/category-2.jpg') }}"
+                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-0 -rotate-12 " />
+                    <h1 class="text-primary font-bold">Slendang Songket</h1>
+                </div>
+
+                <div class="mx-auto flex items-center gap-4"
+                    :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
+                    <img src="{{ asset('assets/images/category-3.jpg') }}"
+                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-12  " />
+                    <h1 class="text-primary font-bold">Udeng Songket</h1>
+                </div>
             </div>
 
             <div class="text-base flex justify-center text-center px-10 font-bold ">
@@ -172,7 +195,8 @@
                 <ul x-ref="logos"
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
-                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}" alt="Facebook" />
+                        <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}"
+                            alt="Facebook" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}"

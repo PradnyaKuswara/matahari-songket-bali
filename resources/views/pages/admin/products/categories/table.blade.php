@@ -31,8 +31,7 @@
                                     'placeholder' => 'Enter your item name',
                                     'is_required' => 'true',
                                 ],
-                            ]"
-                                route="{{ request()->user()->role->name }}.dashboard.products.categories.update"
+                            ]" route="admin.dashboard.products.categories.update"
                                 :idRoute="$productCategory" title="Edit Product Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>

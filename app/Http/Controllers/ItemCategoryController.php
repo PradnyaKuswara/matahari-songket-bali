@@ -25,7 +25,7 @@ class ItemCategoryController extends Controller
 
     public function index(Request $request): View
     {
-        return view('pages.admin-seller.items.categories.index', [
+        return view('pages.admin.items.categories.index', [
             'itemCategories' => $this->itemCategoryService->search($request, new ItemCategory, ['name']),
         ]);
     }
@@ -43,7 +43,7 @@ class ItemCategoryController extends Controller
     {
         $itemCategories = $this->itemCategoryService->search($request, new ItemCategory, ['name']);
 
-        return view('pages.admin-seller.items.categories.table', [
+        return view('pages.admin.items.categories.table', [
             'itemCategories' => $itemCategories,
         ]);
     }

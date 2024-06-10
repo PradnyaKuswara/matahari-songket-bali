@@ -38,21 +38,20 @@ class ProductionController extends Controller
 
     public function index(Request $request): View
     {
-        return view('pages.admin-seller.productions.index', [
+        return view('pages.admin.productions.index', [
             'productions' => $this->productionService->search($request, new Production, ['name', 'date', 'estimate', 'material', 'service', 'total', 'goods_price'], ['items', 'products']),
         ]);
     }
 
     public function create(): View
     {
-        return view('pages.admin-seller.productions.create', [
+        return view('pages.admin.productions.create', [
             'weavers' => $this->weaverService->all(),
         ]);
     }
 
     public function store(ProductionRequest $request): RedirectResponse
     {
-        // dd($request->validated());
         $this->productionService->create($request->validated());
 
         Toaster::success('Productions created successfully!');
@@ -62,7 +61,7 @@ class ProductionController extends Controller
 
     public function edit(Production $production): View
     {
-        return view('pages.admin-seller.productions.edit', [
+        return view('pages.admin.productions.edit', [
             'production' => $production,
             'weavers' => $this->weaverService->all(),
         ]);
@@ -80,14 +79,14 @@ class ProductionController extends Controller
 
     public function search(Request $request): View
     {
-        return view('pages.admin-seller.productions.table', [
+        return view('pages.admin.productions.table', [
             'productions' => $this->productionService->search($request, new Production, ['name', 'date', 'estimate', 'material', 'service', 'total', 'goods_price'], ['items', 'products']),
         ]);
     }
 
     public function show(Production $production): View
     {
-        return view('pages.admin-seller.productions.show', [
+        return view('pages.admin.productions.show', [
             'itemCategories' => $this->itemCategoryService->all(),
             'productCategories' => $this->productCategoryService->all(),
             'items' => $production->items()->paginate(10),

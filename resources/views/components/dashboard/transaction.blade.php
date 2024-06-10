@@ -41,7 +41,7 @@
                 <div class="badge badge-success badge-outline">Capture</div>
             @endif
 
-            @if ($order->status == false && $order->user->role->name== 'customer')
+            @if ($order->status == false && auth()->user()->isCustomer() == 'customer')
                 <a href="{{ route('checkout.showPayment', $order) }}" class="btn btn-primary">Pay Now</a>
             @endif
             @if ($order->status == true && auth()->user()->isCustomer())

@@ -14,10 +14,6 @@
                         <img class="h-10" src="{{ asset('assets/images/logo.png') }}" alt="">
                     </a>
 
-                    <div class="w-1/2 mx-auto block my-8">
-                        <img src="{{ asset('assets/lunoz/images/404-error.svg') }}" title="maintenance.svg">
-                    </div>
-
                     <h3 class="text-dark mb-4 mt-6 text-center text-3xl">Page Not Found</h3>
 
                     <p class="text-dark/75 mb-8 mx-auto text-base text-center">It's looking like you may have taken a wrong

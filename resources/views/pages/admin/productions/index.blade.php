@@ -19,7 +19,7 @@
             <div class="col-span-12">
                 <div class="panel">
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
-                        <a href="{{ route(request()->user()->role->name . '.dashboard.productions.create') }}"
+                        <a href="{{ route('admin.dashboard.productions.create') }}"
                             class="btn btn-primary text-white border-none w-full lg:w-32 btn-md rounded-md">+ Create
                             Data</a>
                         <label
@@ -31,7 +31,7 @@
                         </label>
                     </div>
                     <div id="table" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.productions.table')
+                        @include('pages.admin.productions.table')
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 @push('scripts')
     <script src="{{ asset('assets/js/search.js') }}"></script>
     <script>
-        search("search", "table", "{{ url(request()->user()->role->name . '/dashboard/productions/search?') }}")
+        search("search", "table", "{{ url('admin/dashboard/productions/search?') }}")
         localStorage.removeItem('x_form_item')
         localStorage.removeItem('x_form_product')
     </script>

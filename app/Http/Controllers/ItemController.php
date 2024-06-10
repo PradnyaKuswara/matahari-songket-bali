@@ -29,7 +29,7 @@ class ItemController extends Controller
 
     public function index(Request $request): View
     {
-        return view('pages.admin-seller.items.index', [
+        return view('pages.admin.items.index', [
             'items' => $this->itemService->search($request, new Item, ['name', 'price'], ['itemCategory']),
             'itemCategories' => $this->itemCategoryService->all(),
         ]);
@@ -55,7 +55,7 @@ class ItemController extends Controller
 
     public function search(Request $request): View
     {
-        return view('pages.admin-seller.items.table', [
+        return view('pages.admin.items.table', [
             'items' => $this->itemService->search($request, new Item, ['name', 'price'], ['itemCategory']),
             'itemCategories' => $this->itemCategoryService->all(),
         ]);

@@ -1,0 +1,44 @@
+@extends('layouts.dashboard')
+
+@section('title')
+    Products
+@endsection
+
+@section('content')
+    <div>
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+                <span>Products</span>
+            </li>
+        </ul>
+
+        <div x-data="products" class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 mt-5">
+            @foreach ($products as $product)
+                <div class="col-span-1">
+                    <x-product-card :product="$product" class="shadow-md"></x-product-card>
+                </div>
+            @endforeach
+        </div>
+        <div class="mt-2">
+            {{ $products->links('components.dashboard.pagination') }}
+        </div>
+    </div>
+@endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('products', () => ({
+                init() {
+                    this.loading = false;
+                    this.card = true;
+                },
+                loading: false,
+                card: false,
+            }));
+        });
+    </script>
+@endpush

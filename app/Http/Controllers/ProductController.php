@@ -31,7 +31,7 @@ class ProductController extends Controller
 
     public function index(Request $request): View
     {
-        return view('pages.admin-seller.products.index', [
+        return view('pages.admin.products.index', [
             'products' => $this->productService->search($request, new Product, ['name', 'stock', 'goods_price', 'sell_price', 'description', 'type'], ['productCategory']),
             'productCategories' => $this->productCategoryService->all(),
         ]);
@@ -74,7 +74,7 @@ class ProductController extends Controller
 
     public function search(Request $request): View
     {
-        return view('pages.admin-seller.products.table', [
+        return view('pages.admin.products.table', [
             'products' => $this->productService->search($request, new Product, ['name', 'stock', 'goods_price', 'sell_price', 'description', 'type'], ['productCategory']),
             'productCategories' => $this->productCategoryService->all(),
         ]);

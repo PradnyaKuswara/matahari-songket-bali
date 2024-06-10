@@ -19,8 +19,9 @@
             <div class="col-span-12">
                 <div class="panel">
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
-                       <div class="w-full" x-data="modalCreate">
-                            <label for="modal_create" class="btn btn-primary w-full lg:w-32" @click="toggle()">+ Create Data</label>
+                        <div class="w-full" x-data="modalCreate">
+                            <label for="modal_create" class="btn btn-primary w-full lg:w-32" @click="toggle()">+ Create
+                                Data</label>
 
                             <x-dashboard.create-modal :elements="[
                                 [
@@ -31,7 +32,7 @@
                                     'placeholder' => 'Enter your product name',
                                     'is_required' => 'true',
                                 ],
-                            ]" route="{{ request()->user()->role->name }}.dashboard.products.categories.store"
+                            ]" route="admin.dashboard.products.categories.store"
                                 title="Create Product Category"></x-dashboard.create-modal>
                         </div>
                         <label
@@ -43,7 +44,7 @@
                         </label>
                     </div>
                     <div id="table" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.products.categories.table')
+                        @include('pages.admin.products.categories.table')
                     </div>
                 </div>
             </div>
@@ -54,6 +55,6 @@
 @push('scripts')
     <script src="{{ asset('assets/js/search.js') }}"></script>
     <script>
-        search("search", "table", "{{ url(request()->user()->role->name . '/dashboard/products/categories/search?') }}")
+        search("search", "table", "{{ url('admin/dashboard/products/categories/search?') }}")
     </script>
 @endpush

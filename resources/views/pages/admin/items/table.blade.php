@@ -69,21 +69,8 @@
                                         'is_required' => 'true',
                                     ],
                                 ]"
-                                    route="{{ request()->user()->role->name }}.dashboard.items.update" :idRoute="$item"
+                                    route="admin.dashboard.items.update" :idRoute="$item"
                                     title="Edit Item Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
-
-                                <form
-                                    action="{{ route(request()->user()->role->name . '.dashboard.items.destroy', $item) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <div x-data="modal">
-                                        <button type="button" @click="toggle"><span
-                                                class="mdi mdi-trash-can-outline text-xl text-error"></span></button>
-                                        <x-dashboard.confirm-modal-action :modalId="$item->created_at" title="Delete Item"
-                                            description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>
-                                    </div>
-                                </form>
                             </div>
                         @endif
 

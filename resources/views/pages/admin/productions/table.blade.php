@@ -28,10 +28,10 @@
                     <td>{{ $production->updated_at->format('d F Y H:i:s') }}</td>
                     <td>
                         <div class="flex gap-2">
-                            <a href="{{ route(request()->user()->role->name . '.dashboard.productions.edit', $production) }}"
+                            <a href="{{ route('admin.dashboard.productions.edit', $production) }}"
                                 class=" text-black"><span class="mdi mdi-pencil text-xl text-success"></span></a>
 
-                            <a href="{{ route(request()->user()->role->name . '.dashboard.productions.show', $production) }}"
+                            <a href="{{ route('admin.dashboard.productions.show', $production) }}"
                                 class=" text-black"><span class="mdi mdi-eye text-xl text-primary"></span></a>
                         </div>
                     </td>

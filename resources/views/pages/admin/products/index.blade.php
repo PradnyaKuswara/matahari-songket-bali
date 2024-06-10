@@ -130,8 +130,7 @@
                                     'placeholder' => 'Enter your product description',
                                     'is_required' => 'true',
                                 ],
-                            ]"
-                                route="{{ request()->user()->role->name }}.dashboard.products.store"
+                            ]" route="admin.dashboard.products.store"
                                 title="Create Product Post"></x-dashboard.create-modal>
                         </div>
 
@@ -146,7 +145,7 @@
 
                     </div>
                     <div id="table" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.products.table')
+                        @include('pages.admin.products.table')
                     </div>
                 </div>
             </div>
@@ -157,6 +156,6 @@
 @push('scripts')
     <script src="{{ asset('assets/js/search.js') }}"></script>
     <script>
-        search("search", "table", "{{ url(request()->user()->role->name . '/dashboard/products/search?') }}")
+        search("search", "table", "{{ url('admin/dashboard/products/search?') }}")
     </script>
 @endpush

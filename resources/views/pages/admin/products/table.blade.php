@@ -239,7 +239,7 @@
                                     'is_required' => 'true',
                                 ],
                             ]"
-                                route="{{ request()->user()->role->name }}.dashboard.products.update" :idRoute="$product"
+                                route="admin.dashboard.products.update" :idRoute="$product"
                                 title="Edit Product Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>

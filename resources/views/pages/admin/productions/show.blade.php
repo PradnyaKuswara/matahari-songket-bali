@@ -20,14 +20,14 @@
                 <div class="panel">
                     <h5 class="text-lg font-semibold dark:text-white-light">Item Expanditure</h5>
                     <div id="table-item" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.items.table')
+                        @include('pages.admin.items.table')
                     </div>
 
                 </div>
                 <div class="panel">
                     <h5 class="text-lg font-semibold dark:text-white-light">Product Production</h5>
                     <div id="table-item" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.products.table')
+                        @include('pages.admin.products.table')
                     </div>
                 </div>
             </div>

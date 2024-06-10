@@ -20,7 +20,8 @@
                 <div class="panel">
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
                         <div class="w-full" x-data="modalCreate">
-                            <label for="modal_create" class="btn btn-primary w-full lg:w-32" @click="toggle()">+ Create Data</label>
+                            <label for="modal_create" class="btn btn-primary w-full lg:w-32" @click="toggle()">+ Create
+                                Data</label>
 
                             <x-dashboard.create-modal :elements="[
                                 [
@@ -47,7 +48,8 @@
                                     'options' => $itemCategories,
                                     'is_required' => 'true',
                                 ],
-                            ]" route="{{ request()->user()->role->name }}.dashboard.items.store"
+                            ]"
+                                route="admin.dashboard.items.store"
                                 title="Create Item Post"></x-dashboard.create-modal>
                         </div>
 
@@ -62,7 +64,7 @@
 
                     </div>
                     <div id="table" class="overflow-x-scroll max-h-[28rem] 2xl:max-h-screen mt-4">
-                        @include('pages.admin-seller.items.table')
+                        @include('pages.admin.items.table')
                     </div>
                 </div>
             </div>
@@ -73,6 +75,6 @@
 @push('scripts')
     <script src="{{ asset('assets/js/search.js') }}"></script>
     <script>
-        search("search", "table", "{{ url(request()->user()->role->name . '/dashboard/items/search?') }}")
+        search("search", "table", "{{ url('admin/dashboard/items/search?') }}")
     </script>
 @endpush

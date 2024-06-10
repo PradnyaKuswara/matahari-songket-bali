@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Edit Production
+    Create Production
 @endsection
 
 @push('css')
@@ -16,15 +16,14 @@
                 <a href="javascript:;" class="text-primary hover:underline">Production</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Edit</span>
+                <span>Create</span>
             </li>
         </ul>
 
         <div x-data="form">
-            <form action="{{ route(request()->user()->role->name . '.dashboard.productions.update', $production) }}"
-                method="POST" @submit.prevent="submitForm()" id="itemForm">
+            <form action="{{ route('admin.dashboard.productions.store') }}" method="POST"
+                @submit.prevent="submitForm()" id="itemForm">
                 @csrf
-                @method('PATCH')
                 <div class="panel mt-5">
                     <div class="flex flex-col lg:flex-row w-full justify-between items-center gap-4">
                         <div class="flex flex-col gap-2">
@@ -58,7 +57,7 @@
                                     <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                         <input id="loggingName" type="text"
                                             class="form-input grow border-none outline-none " name="name"
-                                            x-model="form.name" value="{{ old('name') ?? $production->name }}"
+                                            x-model="form.name" value="{{ old('name') }}"
                                             placeholder="Enter your production name" minlength="1" maxlength="50" />
                                     </label>
 
@@ -86,7 +85,7 @@
                                     <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                         <input id="loggingDate" type="date"
                                             class="form-input grow border-none outline-none " name="date"
-                                            x-model="form.date" value="{{ old('date') ?? $production->date }}"
+                                            x-model="form.date" value="{{ old('date') }}"
                                             placeholder="Enter your production date" />
                                     </label>
 
@@ -117,7 +116,7 @@
                                     <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
                                         <input id="loggingEstimate" type="text"
                                             class="form-input grow border-none outline-none " name="estimate"
-                                            x-model="form.estimate" value="{{ old('estimate') ?? $production->estimate }}"
+                                            x-model="form.estimate" value="{{ old('estimate') }}"
                                             placeholder="Enter your production estimate on month" minlength="1"
                                             maxlength="50" />
                                     </label>
@@ -138,114 +137,102 @@
                         <div class="panel mt-5">
                             <h5 class="text-lg font-semibold dark:text-white-light">Item Expanditure Form</h5>
                             <div class="flex flex-col mb-4 mt-5 gap-4" id="formContainer">
-                                @foreach ($production->items as $index => $item)
-                                    <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 "
-                                        id="formParent{{ $index }}">
-                                        <div class="col-span-2 w-full">
-                                            <label class="form-control w-full max-w-xs" for="loggingItemName">
-                                                <div class="label">
-                                                    <div>
-                                                        <span class="label-text">Name</span>
-                                                        <span class="text-error">*</span>
-                                                    </div>
+                                <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 "
+                                    id="formParent0">
+                                    <div class="col-span-2 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingItemName">
+                                            <div class="label">
+                                                <div>
+                                                    <span class="label-text">Name</span>
+                                                    <span class="text-error">*</span>
                                                 </div>
-                                            </label>
+                                            </div>
+                                        </label>
 
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <input id="loggingItemName" type="text"
-                                                    class="form-input grow border-none outline-none "
-                                                    name="items[{{ $index }}][name]"
-                                                    x-model="form.items[{{ $index }}].name"
-                                                    placeholder="Production name" minlength="1" maxlength="50" />
-                                            </label>
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <input id="loggingItemName" type="text"
+                                                class="form-input grow border-none outline-none " name="items[0][name]"
+                                                x-model="form.items[0].name" placeholder="Production name" minlength="1"
+                                                maxlength="50" />
+                                        </label>
 
-                                            <template x-if="isSubmitFormItem && form.items[{{ $index }}].name">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
+                                        <template x-if="isSubmitFormItem && form.items[0].name">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
 
-                                            <template x-if="isSubmitFormItem && !form.items[{{ $index }}].name">
-                                                <p class="mt-2 text-error text-xs">Please fill the Name</p>
-                                            </template>
-                                        </div>
-
-                                        <div class="col-span-2 w-full">
-                                            <label class="form-control w-full max-w-xs" for="loggingItemCategory">
-                                                <div class="label">
-                                                    <div>
-                                                        <span class="label-text">Item Category</span>
-                                                        <span class="text-error">*</span>
-                                                    </div>
-                                                </div>
-                                            </label>
-
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <select
-                                                    class=" form-input grow border-none outline-none text-md font-extralight"
-                                                    id="loggingItemCategory"
-                                                    name="items[{{ $index }}][category_name]"
-                                                    x-model="form.items[{{ $index }}].category_name">
-                                                    <option selected>Production item category</option>
-                                                    <option value="material"
-                                                        :selected="form.items[{{ $index }}].category_name == 'material'">
-                                                        Material
-                                                    </option>
-                                                    <option value="service"
-                                                        :selected="form.items[{{ $index }}].category_name == 'service'">
-                                                        Service
-                                                    </option>
-                                                </select>
-                                            </label>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.items[{{ $index }}].category_name">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
-
-                                            <template
-                                                x-if="isSubmitFormItem && !form.items[{{ $index }}].category_name">
-                                                <p class="mt-2 text-error text-xs">Please fill the Item Category</p>
-                                            </template>
-                                        </div>
-
-                                        <div class="col-span-2 w-full">
-                                            <label class="form-control w-full max-w-xs" for="loggingItemPrice">
-                                                <div class="label">
-                                                    <div>
-                                                        <span class="label-text">Price</span>
-                                                        <span class="text-error">*</span>
-                                                    </div>
-                                                </div>
-                                            </label>
-
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <p class="text-sm text-gray-400">Rp.</p>
-                                                <input id="loggingItemPrice" type="text"
-                                                    class="form-input grow border-none outline-none "
-                                                    name="items[{{ $index }}][price]"
-                                                    x-model="form.items[{{ $index }}].price"
-                                                    x-mask:dynamic="$money($input,',')" step="1000"
-                                                    placeholder="Production price" minlength="1" maxlength="50" />
-                                            </label>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.items[{{ $index }}].price && !isNaN(form.items[{{ $index }}].price)">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
-
-                                            <template x-if="isSubmitFormItem && !form.items[{{ $index }}].price">
-                                                <p class="mt-2 text-error text-xs">Please fill the Price</p>
-                                            </template>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.items[0].price && isNaN(form.items[{{ $index }}].price)">
-                                                <p class="mt-2 text-error text-xs">Price must be number</p>
-                                            </template>
-                                        </div>
+                                        <template x-if="isSubmitFormItem && !form.items[0].name">
+                                            <p class="mt-2 text-error text-xs">Please fill the Name</p>
+                                        </template>
                                     </div>
-                                @endforeach
+
+                                    <div class="col-span-2 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingItemCategory">
+                                            <div class="label">
+                                                <div>
+                                                    <span class="label-text">Item Category</span>
+                                                    <span class="text-error">*</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <select
+                                                class=" form-input grow border-none outline-none text-md font-extralight"
+                                                id="loggingItemCategory" name="items[0][category_name]"
+                                                x-model="form.items[0].category_name">
+                                                <option selected>Production item category</option>
+                                                <option value="material">
+                                                    Material
+                                                </option>
+                                                <option value="service">
+                                                    Service
+                                                </option>
+                                            </select>
+                                        </label>
+
+                                        <template x-if="isSubmitFormItem && form.items[0].category_name">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
+
+                                        <template x-if="isSubmitFormItem && !form.items[0].category_name">
+                                            <p class="mt-2 text-error text-xs">Please fill the Item Category</p>
+                                        </template>
+                                    </div>
+
+                                    <div class="col-span-2 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingItemPrice">
+                                            <div class="label">
+                                                <div>
+                                                    <span class="label-text">Price</span>
+                                                    <span class="text-error">*</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <p class="text-sm text-gray-400">Rp.</p>
+                                            <input id="loggingItemPrice" type="text"
+                                                class="form-input grow border-none outline-none " name="items[0][price]"
+                                                x-model="form.items[0].price" placeholder="Production price"
+                                                x-mask:dynamic="$money($input,',')" step="1000" minlength="1"
+                                                maxlength="50" />
+                                        </label>
+
+                                        <template
+                                            x-if="isSubmitFormItem && form.items[0].price && !isNaN(form.items[0].price)">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
+
+                                        <template x-if="isSubmitFormItem && !form.items[0].price">
+                                            <p class="mt-2 text-error text-xs">Please fill the Price</p>
+                                        </template>
+
+                                        <template
+                                            x-if="isSubmitFormItem && form.items[0].price && isNaN(form.items[0].price)">
+                                            <p class="mt-2 text-error text-xs">Price must be number</p>
+                                        </template>
+                                    </div>
+                                </div>
                             </div>
                             <div class=" w-full flex gap-4">
                                 <button type="button" id="btn-add-item" class="btn btn-sm btn-primary"
@@ -262,157 +249,135 @@
                         <div class="panel">
                             <h5 class="text-lg font-semibold dark:text-white-light">Product Form</h5>
                             <div class="flex flex-col mb-4 mt-5 gap-4" id="formContainerProduct">
-                                @foreach ($production->products as $index => $product)
-                                    <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 "
-                                        id="formParentProduct0">
-                                        <div class="col-span-3 w-full">
-                                            <label class="form-control w-full max-w-xs"
-                                                for="loggingProductName{{ $index }}">
-                                                <div class="label">
-                                                    <div>
-                                                        <span
-                                                            class="label-text
+                                <div class="grid lg:grid-cols-7 grid-cols-2 place-items-center place-content-center gap-4 "
+                                    id="formParentProduct0">
+                                    <div class="col-span-3 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingProductName0">
+                                            <div class="label">
+                                                <div>
+                                                    <span
+                                                        class="label-text
                                                     ">Name</span>
-                                                        <span
-                                                            class="text-error
+                                                    <span
+                                                        class="text-error
                                                     ">*</span>
-                                                    </div>
                                                 </div>
-                                            </label>
+                                            </div>
+                                        </label>
 
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <input id="loggingProductName{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none "
-                                                    name="products[{{ $index }}][name]"
-                                                    x-model="form.products[{{ $index }}].name"
-                                                    placeholder="Enter your product name" minlength="1"
-                                                    maxlength="50" />
-                                            </label>
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <input id="loggingProductName0" type="text"
+                                                class="form-input grow border-none outline-none " name="products[0][name]"
+                                                x-model="form.products[0].name" placeholder="Enter your product name"
+                                                minlength="1" maxlength="50" />
+                                        </label>
 
-                                            <template x-if="isSubmitFormItem && form.products[{{ $index }}].name">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
+                                        <template x-if="isSubmitFormItem && form.products[0].name">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
 
-                                            <template x-if="isSubmitFormItem && !form.products[{{ $index }}].name">
-                                                <p class="mt-2 text-error text-xs">Please fill the name</p>
-                                            </template>
-                                        </div>
-
-                                        <div class="col-span-3 w-full">
-                                            <label class="form-control w-full max-w-xs"
-                                                for="loggingProductProfit{{ $index }}">
-                                                <div class="label">
-                                                    <div>
-                                                        <span
-                                                            class="label-text
-                                                    ">Profit</span>
-                                                        <span
-                                                            class="text-error
-                                                    ">*</span>
-                                                    </div>
-                                                </div>
-                                            </label>
-
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <p class="text-sm text-gray-400">Rp.</p>
-                                                <input id="loggingProductProfit{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none "
-                                                    name="products[{{ $index }}][profit]"
-                                                    x-model="form.products[{{ $index }}].profit"
-                                                    x-mask:dynamic="$money($input,',')" step="1000"
-                                                    placeholder="Enter your product profit" minlength="1"
-                                                    maxlength="50" />
-                                            </label>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.products[{{ $index }}].profit">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
-
-                                            <template
-                                                x-if="isSubmitFormItem && !form.products[{{ $index }}].profit">
-                                                <p class="mt-2 text-error text-xs">Please fill the profit</p>
-                                            </template>
-                                        </div>
-
-                                        <div class="col-span-3 w-full">
-                                            <label class="form-control w-full max-w-xs"
-                                                for="loggingProductWeaverName{{ $index }}">
-                                                <div class="label">
-                                                    <div>
-                                                        <span
-                                                            class="label-text
-                                                    ">Weaver
-                                                            Name</span>
-                                                        <span
-                                                            class="text-error
-                                                    ">*</span>
-                                                    </div>
-                                                </div>
-                                            </label>
-
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <select
-                                                    class="dropDownWeaver form-input form-control grow border-none outline-none text-md font-extralight"
-                                                    id="loggingProductWeaverName{{ $index }}"
-                                                    name="products[{{ $index }}][weaver_name]"
-                                                    x-model="form.products[{{ $index }}].weaver_name">
-                                                    <option selected>Production weaver name</option>
-                                                </select>
-                                            </label>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.products[{{ $index }}].weaver_name">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
-
-                                            <template
-                                                x-if="isSubmitFormItem && !form.products[{{ $index }}].weaver_name">
-                                                <p class="mt-2 text-error text-xs">Please fill the weaver name</p>
-                                            </template>
-                                        </div>
-
-                                        <div class="col-span-3 w-full">
-                                            <label class="form-control w-full max-w-xs"
-                                                for="loggingProductCategoryName{{ $index }}">
-                                                <div class="label">
-                                                    <div>
-                                                        <span
-                                                            class="label-text
-                                                    ">Category
-                                                            Name</span>
-                                                        <span
-                                                            class="text-error
-                                                    ">*</span>
-                                                    </div>
-                                                </div>
-                                            </label>
-
-                                            <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                                <input id="loggingProductCategoryName{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none"
-                                                    name="products[{{ $index }}][category_name]"
-                                                    x-model="form.products[{{ $index }}].category_name"
-                                                    placeholder="Enter your product category name" minlength="1"
-                                                    maxlength="50" />
-                                            </label>
-
-                                            <template
-                                                x-if="isSubmitFormItem && form.products[{{ $index }}].category_name">
-                                                <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
-                                            </template>
-
-                                            <template
-                                                x-if="isSubmitFormItem && !form.products[{{ $index }}].category_name">
-                                                <p class="mt-2 text-error text-xs">Please fill the category name</p>
-                                            </template>
-                                        </div>
+                                        <template x-if="isSubmitFormItem && !form.products[0].name">
+                                            <p class="mt-2 text-error text-xs">Please fill the name</p>
+                                        </template>
                                     </div>
-                                @endforeach
+
+                                    <div class="col-span-3 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingProductProfit0">
+                                            <div class="label">
+                                                <div>
+                                                    <span
+                                                        class="label-text
+                                                    ">Profit</span>
+                                                    <span
+                                                        class="text-error
+                                                    ">*</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <p class="text-sm text-gray-400">Rp.</p>
+                                            <input id="loggingProductProfit0" type="text"
+                                                class="form-input grow border-none outline-none "
+                                                name="products[0][profit]" x-model="form.products[0].profit"
+                                                x-mask:dynamic="$money($input,',')" step="1000"
+                                                placeholder="Enter your product profit" minlength="1" maxlength="50" />
+                                        </label>
+
+                                        <template x-if="isSubmitFormItem && form.products[0].profit">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
+
+                                        <template x-if="isSubmitFormItem && !form.products[0].profit">
+                                            <p class="mt-2 text-error text-xs">Please fill the profit</p>
+                                        </template>
+                                    </div>
+
+                                    <div class="col-span-3 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingProductWeaverName0">
+                                            <div class="label">
+                                                <div>
+                                                    <span
+                                                        class="label-text
+                                                    ">Weaver
+                                                        Name</span>
+                                                    <span
+                                                        class="text-error
+                                                    ">*</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <select
+                                                class="dropDownWeaver form-input form-control grow border-none outline-none text-md font-extralight"
+                                                id="loggingProductWeaverName0" name="products[0][weaver_name]"
+                                                x-model="form.products[0].weaver_name">
+                                                <option selected>Production weaver name</option>
+                                            </select>
+                                        </label>
+
+                                        <template x-if="isSubmitFormItem && form.products[0].weaver_name">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
+
+                                        <template x-if="isSubmitFormItem && !form.products[0].weaver_name">
+                                            <p class="mt-2 text-error text-xs">Please fill the weaver name</p>
+                                        </template>
+                                    </div>
+
+                                    <div class="col-span-3 w-full">
+                                        <label class="form-control w-full max-w-xs" for="loggingProductCategoryName0">
+                                            <div class="label">
+                                                <div>
+                                                    <span
+                                                        class="label-text
+                                                    ">Category
+                                                        Name</span>
+                                                    <span
+                                                        class="text-error
+                                                    ">*</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                            <input id="loggingProductCategoryName0" type="text"
+                                                class="form-input grow border-none outline-none"
+                                                name="products[0][category_name]" x-model="form.products[0].category_name"
+                                                placeholder="Enter your product category name" minlength="1"
+                                                maxlength="50" />
+                                        </label>
+
+                                        <template x-if="isSubmitFormItem && form.products[0].category_name">
+                                            <p class="text-[#1abc9c] mt-2 text-xs">Looks Good!</p>
+                                        </template>
+
+                                        <template x-if="isSubmitFormItem && !form.products[0].category_name">
+                                            <p class="mt-2 text-error text-xs">Please fill the category name</p>
+                                        </template>
+                                    </div>
+                                </div>
                             </div>
                             <div class="w-full flex gap-4">
                                 <button type="button" id="btn-add-item" class="btn btn-sm btn-primary"
@@ -425,6 +390,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </form>
         </div>
     </div>
@@ -446,41 +413,26 @@
                 },
 
                 form: {
-                    name: '{{ $production->name }}',
-                    date: '{{ $production->date }}',
-                    estimate: '{{ $production->estimate }}',
-                    items: [
-                        @foreach ($production->items as $item)
-                            {
-                                name: '{{ $item->name }}',
-                                category_name: '{{ $item->itemCategory->name }}',
-                                price: '{{ $item->price }}'
-                            },
-                        @endforeach
-                    ],
-                    products: [
-                        @foreach ($production->products as $product)
-                            {
-                                name: '{{ $product->name }}',
-                                profit: '{{ $product->sell_price - $product->goods_price }}',
-                                weaver_name: '{{ $product->pivot->weaver_name }}',
-                                category_name: '{{ $product->productCategory->name }}',
-                            },
-                        @endforeach
-                    ]
+                    name: '',
+                    date: '',
+                    estimate: '',
+                    items: [{
+                        name: '',
+                        category_name: '',
+                        price: ''
+                    }],
+                    products: [{
+                        name: '',
+                        profit: '',
+                        weaver_name: '',
+                        category_name: '',
+                    }]
                 },
-
-                itemCount: parseInt('{{ $production->items->count() }}') - 1,
-                productCount: parseInt('{{ $production->products->count() }}') - 1,
 
                 indexItem: localStorage.getItem('x_form_item') ? localStorage.getItem('x_form_item') :
                     0,
                 indexProduct: localStorage.getItem('x_form_product') ? localStorage.getItem(
                     'x_form_product') : 0,
-
-                clearItemCount: parseInt('{{ $production->items->count() }}'),
-                clearProductCount: parseInt('{{ $production->products->count() }}'),
-
                 isSubmitFormItem: false,
                 statusRequest: false,
 
@@ -496,6 +448,7 @@
                     this.form.items.forEach((item, index) => {
                         if (item) {
                             item.price = this.clearDotFormInput(item.price);
+                            console.log(item.price);
                             if (!item.name || !item.category_name || !item.price || isNaN(item
                                     .price)) {
                                 this.statusRequest = false;
@@ -531,7 +484,6 @@
                     }
 
                     self.indexItem++;
-                    this.itemCount++;
                     localStorage.setItem('x_form_item', self.indexItem);
 
                     this.form.items.push({
@@ -540,7 +492,7 @@
                         price: ''
                     });
 
-                    $('#formContainer').append(() => formParent(this.itemCount));
+                    $('#formContainer').append(() => formParent(self.indexItem));
                 },
 
                 addProductForm() {
@@ -552,7 +504,6 @@
                     }
 
                     self.indexProduct++;
-                    this.productCount++;
                     localStorage.setItem('x_form_product', self.indexProduct);
 
                     this.form.products.push({
@@ -562,8 +513,8 @@
                         category_name: '',
                     });
 
-                    $('#formContainerProduct').append(() => formParentProduct(this.productCount));
-                    this.dropDownWeaver(this.productCount);
+                    $('#formContainerProduct').append(() => formParentProduct(self.indexProduct));
+                    this.dropDownWeaver(self.indexProduct);
                 },
 
                 removeItemForm(index) {
@@ -578,7 +529,6 @@
                         }
                     }
                     this.indexItem--;
-                    this.itemCount--;
                     localStorage.setItem('x_form_item', this.indexItem);
 
                     setTimeout(() => {
@@ -598,7 +548,6 @@
                         }
                     }
                     this.indexProduct--;
-                    this.productCount--;
                     localStorage.setItem('x_form_product', this.indexProduct);
 
                     setTimeout(() => {
@@ -615,9 +564,7 @@
                                 price: ''
                             });
 
-                            this.itemCount++;
-
-                            $('#formContainer').append(() => formParent(this.itemCount));
+                            $('#formContainer').append(() => formParent(i));
                         }
                     }
                 },
@@ -632,10 +579,7 @@
                                 category_name: '',
                             });
 
-                            this.productCount++;
-
-                            $('#formContainerProduct').append(() => formParentProduct(this
-                                .productCount));
+                            $('#formContainerProduct').append(() => formParentProduct(i));
                         }
                     }
                 },
@@ -756,10 +700,10 @@
                         .then(response => response.json())
                         .then(data => {
                             if (dropDowns instanceof NodeList) {
-                                dropDowns.forEach((dropDown, index) => {
+                                dropDowns.forEach(dropDown => {
                                     data.forEach(item => {
                                         dropDown.innerHTML +=
-                                            `<option value="${item.name}" :selected="form.products[${index}].weaver_name == '${item.name}'">${item.name}</option>`;
+                                            `<option value="${item.name}">${item.name}</option>`;
                                     });
                                 });
                             } else {
@@ -772,8 +716,22 @@
                 },
 
                 resetForm() {
-                    form = this.form;
-                    this.form = form;
+                    this.form = {
+                        name: '',
+                        date: '',
+                        estimate: '',
+                        items: [{
+                            name: '',
+                            category_name: '',
+                            price: ''
+                        }],
+                        products: [{
+                            name: '',
+                            profit: '',
+                            weaver_name: '',
+                            category_name: '',
+                        }]
+                    };
 
                     localStorage.setItem('x_form_item', 0);
                     localStorage.setItem('x_form_product', 0);
@@ -785,19 +743,14 @@
                         return;
                     }
 
-                    tempCount = this.clearItemCount;
                     for (let i = 1; i <= this.indexItem; i++) {
-                        const formParent = document.getElementById('formParent' + tempCount);
+                        const formParent = document.getElementById('formParent' + i);
                         formParent.remove();
-
-                        tempCount++;
                     }
 
+                    resetIndexForm = this.indexItem;
                     setTimeout(() => {
-                        this.form.items.splice(this.clearItemCount, this.itemCount);
-                        this.itemCount = this.clearItemCount - 1;
-
-                        console.log(this.form.items);
+                        this.form.items.splice(1, resetIndexForm);
                     }, 1);
 
                     this.indexItem = 0;
@@ -810,19 +763,14 @@
                         return;
                     }
 
-                    tempCount = this.clearProductCount;
                     for (let i = 1; i <= this.indexProduct; i++) {
-                        const formParent = document.getElementById('formParentProduct' + tempCount);
+                        const formParent = document.getElementById('formParentProduct' + i);
                         formParent.remove();
-
-                        tempCount++;
                     }
 
+                    resetIndexForm = this.indexProduct;
                     setTimeout(() => {
-                        this.form.products.splice(this.clearProductCount, this.productCount);
-                        this.productCount = this.clearProductCount - 1;
-
-                        console.log(this.form.products);
+                        this.form.products.splice(1, resetIndexForm);
                     }, 1);
 
                     this.indexProduct = 0;
@@ -849,4 +797,34 @@
             }));
         });
     </script>
+
+    {{-- <script>
+        const pickr = Pickr.create({
+            el: '.color-picker',
+            theme: 'classic', // or 'monolith', or 'nano'
+            default: '#42445a',
+
+            components: {
+
+                // Main components
+                preview: true,
+                opacity: true,
+                hue: true,
+
+                // Input / output Options
+                interaction: {
+                    hex: true,
+                    input: true,
+                    clear: true,
+                    save: true
+                }
+            }
+        });
+
+        pickr.on('change', (color, instance) => {
+            const hexColor = color.toHEXA().toString();
+
+            document.querySelector('body').style.backgroundColor = hexColor;
+        });
+    </script> --}}
 @endpush

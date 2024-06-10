@@ -133,115 +133,119 @@
                          <span>Management Production</span>
                      </h2>
 
-                     <li class="nav-item">
-                         <ul>
-                             <li class="nav-item">
-                                 <a href="{{ route(request()->user()->role->name . '.dashboard.productions.index') }}"
-                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'bg-primary text-white' : '' }}">
-                                     <div class="flex items-center">
-                                         <span
-                                             class="mdi mdi-cube-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white' : '' }}"></span>
-                                         <span
-                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
-                                             Product</span>
-                                     </div>
-                                 </a>
-                             </li>
-                         </ul>
-                     </li>
+                     @if (auth()->user()->isAdmin())
+                         <li class="nav-item">
+                             <ul>
+                                 <li class="nav-item">
+                                     <a href="{{ route(request()->user()->role->name . '.dashboard.productions.index') }}"
+                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'bg-primary text-white' : '' }}">
+                                         <div class="flex items-center">
+                                             <span
+                                                 class="mdi mdi-cube-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white' : '' }}"></span>
+                                             <span
+                                                 class=" {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
+                                                 Product</span>
+                                         </div>
+                                     </a>
+                                 </li>
+                             </ul>
+                         </li>
 
-                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'managementItem' : null) }">
-                         <button type="button" class="nav-link group"
-                             :class="{ 'bg-primary': activeDropdown === 'managementItem' }"
-                             @click="activeDropdown === 'managementItem' ? activeDropdown = null : activeDropdown = 'managementItem'">
-                             <div class="flex items-center">
-                                 <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
-                                     class="mdi mdi-card-text-outline text-xl"></span>
-                                 <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
-                                     class="{{ request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
-                                     Item</span>
-                             </div>
-                             <div class="rtl:rotate-180"
-                                 :class="{ '!rotate-90': activeDropdown === 'managementItem' }">
+                         <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'managementItem' : null) }">
+                             <button type="button" class="nav-link group"
+                                 :class="{ 'bg-primary': activeDropdown === 'managementItem' }"
+                                 @click="activeDropdown === 'managementItem' ? activeDropdown = null : activeDropdown = 'managementItem'">
+                                 <div class="flex items-center">
+                                     <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
+                                         class="mdi mdi-card-text-outline text-xl"></span>
+                                     <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
+                                         class="{{ request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                         Item</span>
+                                 </div>
+                                 <div class="rtl:rotate-180"
+                                     :class="{ '!rotate-90': activeDropdown === 'managementItem' }">
 
-                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                     <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                         stroke-linecap="round" stroke-linejoin="round" />
-                                 </svg>
-                             </div>
-                         </button>
-                         <ul x-cloak x-show="activeDropdown === 'managementItem'" x-collapse
-                             class="sub-menu text-gray-500">
-                             <li>
-                                 <a href="{{ route(request()->user()->role->name . '.dashboard.items.index') }}"
-                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active' : '' }}">
-                                     <div class="flex items-center">
-                                         <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
-                                             Post</span>
-                                     </div>
-                                 </a>
-                             </li>
-                             <li>
-                                 <a href="{{ route(request()->user()->role->name . '.dashboard.items.categories.index') }}"
-                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/items/categories') ? 'active' : '' }}">
-                                     <div class="flex items-center">
-                                         <span
-                                             class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
-                                             Category</span>
-                                     </div>
-                                 </a>
-                             </li>
-                         </ul>
-                     </li>
+                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                         <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                             stroke-linecap="round" stroke-linejoin="round" />
+                                     </svg>
+                                 </div>
+                             </button>
+                             <ul x-cloak x-show="activeDropdown === 'managementItem'" x-collapse
+                                 class="sub-menu text-gray-500">
+                                 <li>
+                                     <a href="{{ route(request()->user()->role->name . '.dashboard.items.index') }}"
+                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active' : '' }}">
+                                         <div class="flex items-center">
+                                             <span
+                                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
+                                                 Post</span>
+                                         </div>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a href="{{ route(request()->user()->role->name . '.dashboard.items.categories.index') }}"
+                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/items/categories') ? 'active' : '' }}">
+                                         <div class="flex items-center">
+                                             <span
+                                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
+                                                 Category</span>
+                                         </div>
+                                     </a>
+                                 </li>
+                             </ul>
+                         </li>
 
-                     <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'managementProduct' : null) }">
-                         <button type="button" class="nav-link group"
-                             :class="{ 'bg-primary': activeDropdown === 'managementProduct' }"
-                             @click="activeDropdown === 'managementProduct' ? activeDropdown = null : activeDropdown = 'managementProduct'">
-                             <div class="flex items-center">
-                                 <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
-                                     class="mdi mdi-list-box-outline text-xl"></span>
-                                 <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
-                                     class="{{ request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
-                                     Product</span>
-                             </div>
-                             <div class="rtl:rotate-180"
-                                 :class="{ '!rotate-90': activeDropdown === 'managementProduct' }">
+                         <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'managementProduct' : null) }">
+                             <button type="button" class="nav-link group"
+                                 :class="{ 'bg-primary': activeDropdown === 'managementProduct' }"
+                                 @click="activeDropdown === 'managementProduct' ? activeDropdown = null : activeDropdown = 'managementProduct'">
+                                 <div class="flex items-center">
+                                     <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
+                                         class="mdi mdi-list-box-outline text-xl"></span>
+                                     <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
+                                         class="{{ request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                         Product</span>
+                                 </div>
+                                 <div class="rtl:rotate-180"
+                                     :class="{ '!rotate-90': activeDropdown === 'managementProduct' }">
 
-                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                     <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                         stroke-linecap="round" stroke-linejoin="round" />
-                                 </svg>
-                             </div>
-                         </button>
+                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                         <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                             stroke-linecap="round" stroke-linejoin="round" />
+                                     </svg>
+                                 </div>
+                             </button>
 
-                         <ul x-cloak x-show="activeDropdown === 'managementProduct'" x-collapse
-                             class="sub-menu text-gray-500">
-                             <li>
-                                 <a href="{{ route(request()->user()->role->name . '.dashboard.products.index') }}"
-                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/products') ? 'active' : '' }}">
-                                     <div class="flex items-center">
-                                         <span
-                                             class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
-                                             Post</span>
-                                     </div>
-                                 </a>
-                             </li>
-                             <li>
-                                 <a href="{{ route(request()->user()->role->name . '.dashboard.products.categories.index') }}"
-                                     class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'active' : '' }}">
-                                     <div class="flex items-center">
-                                         <span
-                                             class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
-                                             Category</span>
-                                     </div>
-                                 </a>
-                             </li>
-                         </ul>
-                     </li>
+                             <ul x-cloak x-show="activeDropdown === 'managementProduct'" x-collapse
+                                 class="sub-menu text-gray-500">
+                                 <li>
+                                     <a href="{{ route(request()->user()->role->name . '.dashboard.products.index') }}"
+                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/products') ? 'active' : '' }}">
+                                         <div class="flex items-center">
+                                             <span
+                                                 class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
+                                                 Post</span>
+                                         </div>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a href="{{ route(request()->user()->role->name . '.dashboard.products.categories.index') }}"
+                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'active' : '' }}">
+                                         <div class="flex items-center">
+                                             <span
+                                                 class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
+                                                 Category</span>
+                                         </div>
+                                     </a>
+                                 </li>
+                             </ul>
+                         </li>
+                     @endif
+
+
 
                      <li class="nav-item">
                          <ul>
@@ -252,8 +256,8 @@
                                          <span
                                              class="mdi mdi-post-outline  text-xl {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">What's
-                                             new</span>
+                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                                             Post Article</span>
                                      </div>
                                  </a>
                              </li>

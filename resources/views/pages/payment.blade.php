@@ -34,9 +34,13 @@
                 <x-invoice :order="$order"></x-invoice>
             </div>
             <div class="col-span-3 md:col-span-1 no-print">
-                <button @click="payNow()" type="button" class="btn btn-primary w-full">Pay Now</button>
+                {{-- //information payment --}}
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-bold">Payment Information</h2>
+                    <p class="text-sm my-2">Please complete your payment before the due date</p>
+                    <button @click="payNow()" type="button" class="btn btn-primary w-full mt-2">Pay Now</button>
+                </div>
             </div>
-        </div>
     </section>
 @endsection
 

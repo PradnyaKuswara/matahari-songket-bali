@@ -50,6 +50,14 @@
                         </label>
                     </div>
 
+                     <div class="col-span-2 flex flex-col gap-4 mb-4">
+                        <!-- Google Recaptcha -->
+                        <div class="g-recaptcha" data-sitekey={{ config('recaptcha.google_recaptcha_key') }}></div>
+                        @error('g-recaptcha-response')
+                            <p class="mt-2 text-error text-xs">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <div class="flex justify-center mb-5">
                         <button type="submit" class="btn w-full text-white bg-primary"> Sign In </button>
                     </div>

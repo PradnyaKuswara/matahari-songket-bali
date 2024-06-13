@@ -4,15 +4,6 @@
     About | Matahari Songket Bali
 @endsection
 
-@push('css')
-    <style>
-        .grecaptcha-badge {
-            z-index: 9999;
-            /* atau nilai yang cukup besar */
-        }
-    </style>
-@endpush
-
 @section('content')
     <section id="hero">
         <div class="hero min-h-screen" style="background-image: url({{ asset('assets/images/about-hero.jpg') }});">

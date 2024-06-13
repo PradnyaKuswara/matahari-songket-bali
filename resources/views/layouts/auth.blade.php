@@ -54,6 +54,21 @@
         .btn {
             font-family: 'Poppins', sans-serif;
         }
+
+        .g-recaptcha-bubble-arrow+div {
+            position: absolute !important;
+            z-index: 3000000000 !important;
+        }
+
+        .grecaptcha-badge {
+            z-index: 9999;
+            /* atau nilai yang cukup besar */
+        }
+
+        iframe[title="recaptcha challenge"] {
+            position: absolute !important;
+            z-index: 3000000000 !important;
+        }
     </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

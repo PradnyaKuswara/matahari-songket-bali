@@ -1,6 +1,6 @@
 @props(['propName'])
 
-<div class="navbar z-50 fixed shadow-sm bg-transparent text-base-content py-4 md:px-12 lg:px-36" id="navbar">
+<div class="navbar z-10 fixed shadow-sm bg-transparent text-base-content py-4 md:px-12 lg:px-36" id="navbar">
     <div class="flex-1 gap-8 ">
         <a href="{{ route('index') }}" class="btn hover:bg-white btn-ghost text-xl">
             <img class="h-10" src="{{ asset('assets/images/logo.png') }}" alt="">

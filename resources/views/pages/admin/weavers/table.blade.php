@@ -48,7 +48,7 @@
                     <td>{{ $weaver->name }}</td>
                     <td>{{ $weaver->phone_number }}</td>
                     <td>{{ $weaver->gender }}</td>
-                    <td>{{ $weaver->date_of_birth }}</td>
+                    <td>{{ $weaver->date_of_birth->format('d F Y') }}</td>
                     @foreach ($weaver->addresses as $itemAddress)
                         <td>{{ $itemAddress->address }}</td>
                         <td>{{ $itemAddress->province }}</td>

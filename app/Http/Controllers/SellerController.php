@@ -28,7 +28,7 @@ class SellerController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'seller'));
 
         return view('pages.admin.sellers.index', [
-            'sellers' => $this->sellerService->search($request, $user, ['name', 'phone_number']),
+            'sellers' => $this->sellerService->search($request, $user, ['name', 'email', 'username', 'gender', 'phone_number']),
         ]);
     }
 
@@ -64,8 +64,7 @@ class SellerController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'seller'));
 
         return view('pages.admin.sellers.table', [
-            'sellers' => $this->sellerService->search($request, $user, ['name', 'phone_number']),
+            'sellers' => $this->sellerService->search($request, $user, ['name', 'email', 'username', 'gender', 'phone_number']),
         ]);
-
     }
 }

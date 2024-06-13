@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Auditable;
@@ -60,6 +61,7 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'date_of_birth' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -131,5 +133,22 @@ class User extends Authenticatable implements AuditableContract, MustVerifyEmail
     public function getRouteKeyName(): string
     {
         return 'uuid';
+    }
+
+    public function getRouteKey()
+    {
+        return Crypt::encrypt($this->uuid);
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        try {
+            $decrypted = Crypt::decrypt($value);
+            $field = $field ?? $this->getRouteKeyName();
+
+            return parent::resolveRouteBinding($decrypted, $field);
+        } catch (\Throwable $th) {
+            abort(404);
+        }
     }
 }

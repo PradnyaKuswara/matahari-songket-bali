@@ -28,7 +28,7 @@ class CustomerController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'customer'));
 
         return view('pages.admin.customers.index', [
-            'customers' => $this->customerService->search($request, $user, ['name', 'phone_number']),
+            'customers' => $this->customerService->search($request, $user, ['name', 'email', 'username', 'gender', 'phone_number']),
         ]);
     }
 
@@ -77,7 +77,7 @@ class CustomerController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'customer'));
 
         return view('pages.admin.customers.table', [
-            'customers' => $this->customerService->search($request, $user, ['name', 'phone_number']),
+            'customers' => $this->customerService->search($request, $user, ['name', 'email', 'username', 'gender', 'phone_number']),
         ]);
     }
 

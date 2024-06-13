@@ -142,7 +142,6 @@
 
 
     <section id="popular-for-you" class="max-w-screen min-h-[30rem] bg-neutral text-primary-content  ">
-
         <div class="swiper-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -154,6 +153,10 @@
                             <div class="flex justify-center mt-4">
                                 <img class="h-10" src="{{ asset('assets/images/logo.png') }}" alt="">
                             </div>
+                            {{-- <div class="flex justify-center mt-4">
+                                <iframe src="{{ asset('assets/videos/Video produk.mp4') }}" width="640" height="360"
+                                    frameborder="0" allowfullscreen></iframe>
+                            </div> --}}
                         </div>
 
                     </div>
@@ -174,7 +177,6 @@
 
 
         <div class="popular grid lg:grid-cols-2 w-full gap-8 py-40 lg:ps-40">
-
             <div class="mx-8 lg:mx-0">
                 <x-string-typing idType="typed-3" idStringElement="typed-title-3"
                     class="text-3xl md:text-5xl font-bold mb-5">Popular for you</x-string-typing>
@@ -269,22 +271,25 @@
                         <div class="mx-auto max-w-2xl lg:max-w-4xl">
                             <figure class="mt-10">
                                 <blockquote
-                                    class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                                    <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas
-                                        culpa sapiente alias
-                                        molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
+                                    class="text-center text-lg font-semibold leading-8 text-gray-900 sm:text-xl sm:leading-9">
+                                    <p>“Saya merasa senang sekali belanja di Matahari Songket bali
+                                        Karena produksinya bagus-bagus dan berkualitas serta tahan lama.
+                                        Motif dan warnanya sangat serasi
+                                        Dan saya akan terus berlanganan di sini. Semoga Matahari Songket Bali memproduksi
+                                        songket yg motifnya baru dan warna nya bagus selalu. Semoga Matahari Songket Bali
+                                        lebih maju dan bisa memasarkan sampe keluar bali
+                                        ”</p>
                                 </blockquote>
                                 <figcaption class="mt-10">
-                                    <img class="mx-auto h-10 w-10 rounded-full"
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt="">
+                                    <img class="mx-auto h-10 w-10 rounded-full object-cover"
+                                        src="{{ asset('assets/images/Testimoni 1.jpg') }}" alt="">
                                     <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                                        <div class="font-semibold text-gray-900">Judith Black</div>
+                                        <div class="font-semibold text-gray-900">Dayu Dili</div>
                                         <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true"
                                             class="fill-gray-900">
                                             <circle cx="1" cy="1" r="1" />
                                         </svg>
-                                        <div class="text-gray-600">CEO of Workcation</div>
+                                        <div class="text-gray-600">Dayu Dili Salon</div>
                                     </div>
                                 </figcaption>
                             </figure>
@@ -363,6 +368,9 @@
         const swiper = new Swiper('.mySwiper2', {
             slideToClickedSlide: true,
             slidePerView: 1,
+            autoplay: {
+                delay: 3000,
+            },
             pagination: {
                 el: '.swiper-pagination',
             },

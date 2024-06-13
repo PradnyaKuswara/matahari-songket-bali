@@ -50,7 +50,7 @@
 
                 <div class="flex flex-row gap-4 lg:mx-0 w-full lg:w-3/12">
                     <label class="input input-bordered input-primary flex items-center gap-2 w-full mx-4 lg:mx-0 ">
-                        <input type="text" id="search" class="grow" placeholder="Search"
+                        <input type="text" id="search" class="grow" placeholder="Search by product name"
                             @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                         <i class="fas fa-search"></i>
                     </label>

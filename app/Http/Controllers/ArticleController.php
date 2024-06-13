@@ -26,7 +26,7 @@ class ArticleController extends Controller
     public function index(Request $request): View
     {
         return view('pages.admin-seller.articles.index', [
-            'articles' => $this->articleService->search($request, new Article, ['name', 'title'], ['user']),
+            'articles' => $this->articleService->search($request, new Article, ['name', 'title', 'slug', 'meta_desc', 'meta_keyword'], ['user']),
         ]);
     }
 
@@ -75,7 +75,7 @@ class ArticleController extends Controller
     public function search(Request $request): View
     {
         return view('pages.admin-seller.articles.table', [
-            'articles' => $this->articleService->search($request, new Article, ['name', 'title'], ['user']),
+            'articles' => $this->articleService->search($request, new Article, ['name', 'title', 'slug', 'meta_desc', 'meta_keyword'], ['user']),
         ]);
     }
 }

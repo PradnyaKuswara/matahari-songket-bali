@@ -28,7 +28,7 @@ class WeaverController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
         return view('pages.admin.weavers.index', [
-            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number']),
+            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number', 'gender']),
         ]);
     }
 
@@ -68,7 +68,7 @@ class WeaverController extends Controller
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
         return view('pages.admin.weavers.table', [
-            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number']),
+            'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number', 'gender']),
         ]);
     }
 }

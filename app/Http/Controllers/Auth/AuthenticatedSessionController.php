@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,12 +34,12 @@ class AuthenticatedSessionController extends Controller
 
         if (session()->has('intended_url')) {
             $intendedUrl = session('intended_url');
-            session()->forget('intended_url'); // Hapus URL dari session setelah digunakan
+            session()->forget('intended_url');
 
             return redirect()->intended($intendedUrl);
         }
 
-        return redirect()->route('index');
+        return redirect()->intended(RouteServiceProvider::HOME());
     }
 
     /**

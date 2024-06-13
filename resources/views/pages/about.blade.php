@@ -27,7 +27,7 @@
 
     <section id="about" class=" max-w-screen-lg lg:mx-auto pt-16 mx-4 md:mx-0 md:px-14 lg:px-0 lg:pt-20">
         <div class="grid grid-cols-1 gap-8">
-            <div class="flex flex-col lg:flex-row items-center gap-8" data-aos="fade-right" data-aos-delay="200">
+            <div class="flex flex-col lg:flex-row items-center gap-8" data-aos="fade-up" data-aos-delay="200">
                 <img src="{{ asset('assets/images/about-1.jpg') }}"
                     class="w-96 rounded-lg shadow-2xl aspect-square object-cover" />
                 <div class="flex-col">
@@ -42,7 +42,7 @@
                 </div>
 
             </div>
-            <div class="flex flex-col lg:flex-row-reverse items-center gap-8"data-aos="fade-left" data-aos-delay="300">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-8"data-aos="fade-up" data-aos-delay="300">
                 <img src="{{ asset('assets/images/about-2.jpg') }}"
                     class="w-96 rounded-lg shadow-2xl aspect-square object-cover object-center" />
                 <div class="flex-col">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col lg:flex-row items-center gap-8" data-aos="fade-right" data-aos-delay="400">
+            <div class="flex flex-col lg:flex-row items-center gap-8" data-aos="fade-up" data-aos-delay="400">
                 <img src="{{ asset('assets/images/about-3.jpg') }}"
                     class=" w-96 rounded-lg shadow-2xl aspect-square object-cover" />
                 <div class="flex-col">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col lg:flex-row-reverse items-center gap-8" data-aos="fade-left" data-aos-delay="500">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-8" data-aos="fade-up" data-aos-delay="500">
                 <img src="{{ asset('assets/images/about-4.jpg') }}"
                     class=" w-96 rounded-lg shadow-2xl aspect-square object-cover" />
                 <div class="flex-col">

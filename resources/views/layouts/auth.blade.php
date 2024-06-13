@@ -12,6 +12,8 @@
     <meta name="description"
         content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
 
+    <meta name="google-site-verification" content="s_dIkrwKMP9NRfAD6m6CeNHakLzCQh_1-2jgdONp9us" />
+
     <meta property="og:title" content="Matahari Songket Bali">
     <meta property="og:type" content="website">
     <meta property="og:image" content="{{ asset('assets/images/logo_icon.png') }}">

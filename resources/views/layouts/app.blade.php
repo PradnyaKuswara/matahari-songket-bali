@@ -6,7 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+    <meta name="title" content="Matahari Songket Bali">
+    <meta name="type" content="website">
+    <meta name="image" content="{{ asset('assets/images/logo_icon.png') }}">
+    <meta name="url" content="{{ request()->url ?? route('index') }}">
+    <meta name="description"
+        content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
+
+    <meta property="og:title" content="Matahari Songket Bali">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('assets/images/logo_icon.png') }}">
+    <meta property="og:url" content="{{ request()->url ?? route('index') }}">
+    <meta property="og:description"
+        content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
+    <meta property="og:site_name" content="Matahari Songket Bali">
+    <meta property="og:locale" content="id_ID">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Matahari Songket Bali">
+    <meta name="twitter:description"
+        content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
+    <meta name="twitter:image" content="{{ asset('assets/images/logo_icon.png') }}">
+    <meta name="twitter:site" content="@mataharisongketbali">
+    <meta name="twitter:creator" content="@mataharisongketbali">
+
 
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 

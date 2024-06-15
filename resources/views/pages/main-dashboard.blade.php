@@ -389,10 +389,10 @@
                             type: "area",
                             fontFamily: "Nunito, sans-serif",
                             zoom: {
-                                enabled: false,
+                                enabled: true,
                             },
                             toolbar: {
-                                show: false,
+                                show: true,
                             },
                         },
                         dataLabels: {

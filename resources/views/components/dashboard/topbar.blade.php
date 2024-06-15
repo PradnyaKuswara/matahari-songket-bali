@@ -1,10 +1,10 @@
 <!-- start header section -->
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">
     <div class="shadow-sm no-print">
-        <div class="relative flex w-full items-center gap-4 bg-white px-5 py-2.5 dark:bg-[#0e1726]">
+        <div class="relative flex w-full items-center gap-4 bg-primary shadow-md lg:rounded-lg px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
                 <a href="javascript:void(0);" class="main-logo flex shrink-0 items-center">
-                    <img class="inline w-24  ltr:-ml-1 rtl:-mr-1" src="{{ asset('assets/images/logo.png') }}"
+                    <img class="inline w-24  ltr:-ml-1 rtl:-mr-1" src="{{ asset('assets/images/logo2.png') }}"
                         alt="image" />
                 </a>
 

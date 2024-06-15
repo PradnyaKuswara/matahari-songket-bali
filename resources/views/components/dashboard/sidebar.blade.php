@@ -30,42 +30,42 @@
                  <li class="nav-item">
                      <ul>
                          @if (auth()->user()->isAdmin())
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.index') }}"
                                      class="group {{ request()->is('admin/dashboard') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-gauge text-xl {{ request()->is('admin/dashboard') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-gauge text-xl {{ request()->is('admin/dashboard') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3  dark:group-hover:text-white-dark">Dashboard</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3  dark:group-hover:text-white-dark">Dashboard</span>
                                      </div>
                                  </a>
                              </li>
                          @endif
 
                          @if (auth()->user()->isCustomer())
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.index') }}"
                                      class="group {{ request()->is('customer/dashboard') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-gauge text-xl {{ request()->is('customer/dashboard') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-gauge text-xl {{ request()->is('customer/dashboard') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Dashboard</span>
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Dashboard</span>
                                      </div>
                                  </a>
                              </li>
                          @endif
 
                          @if (auth()->user()->isSeller())
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('seller.dashboard.index') }}"
                                      class="group {{ request()->is('seller/dashboard') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-gauge text-xl {{ request()->is('seller/dashboard') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-gauge text-xl {{ request()->is('seller/dashboard') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('seller/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Dashboard</span>
+                                             class="group-hover:text-white {{ request()->is('seller/dashboard') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Dashboard</span>
                                      </div>
                                  </a>
                              </li>
@@ -77,47 +77,47 @@
                  @if (!auth()->user()->isCustomer())
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.products.show') }}"
                                      class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-apps text-xl {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-apps text-xl {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product</span>
+                                             class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/products/show') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.orders.show') }}"
                                      class="group {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-order-bool-descending-variant text-xl {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-order-bool-descending-variant text-xl {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Order</span>
+                                             class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/orders/show') || request()->is(request()->user()->role->name . '/dashboard/orders/detail-order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Order</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.transactions.show') }}"
                                      class="group {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Invoice</span>
+                                             class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/transactions/show') || request()->is(request()->user()->role->name . '/dashboard/transactions/detail-transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Invoice</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.shippings.showAdminSeller') }}"
                                      class="group {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-shipping-pallet text-xl {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-shipping-pallet text-xl {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Shipping</span>
+                                             class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/shippings/show') || request()->is(request()->user()->role->name . '/dashboard/shippings/detail-shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Shipping</span>
                                      </div>
                                  </a>
                              </li>
@@ -136,14 +136,14 @@
                      @if (auth()->user()->isAdmin())
                          <li class="nav-item">
                              <ul>
-                                 <li class="nav-item">
+                                 <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                      <a href="{{ route(request()->user()->role->name . '.dashboard.productions.index') }}"
                                          class="group {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'bg-primary text-white' : '' }}">
                                          <div class="flex items-center">
                                              <span
-                                                 class="mdi mdi-cube-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white' : '' }}"></span>
+                                                 class="group-hover:text-white mdi mdi-cube-outline text-xl {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white' : '' }}"></span>
                                              <span
-                                                 class=" {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
+                                                 class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/productions') || request()->is(request()->user()->role->name . '/dashboard/productions/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Production
                                                  Product</span>
                                          </div>
                                      </a>
@@ -151,15 +151,15 @@
                              </ul>
                          </li>
 
-                         <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'managementItem' : null) }">
+                         <li class="nav-item hover:bg-neutral hover:rounded-lg group" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'managementItem' : null) }">
                              <button type="button" class="nav-link group"
                                  :class="{ 'bg-primary': activeDropdown === 'managementItem' }"
                                  @click="activeDropdown === 'managementItem' ? activeDropdown = null : activeDropdown = 'managementItem'">
                                  <div class="flex items-center">
                                      <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
-                                         class="mdi mdi-card-text-outline text-xl"></span>
+                                         class="group-hover:text-white mdi mdi-card-text-outline text-xl"></span>
                                      <span :class="{ 'text-white': activeDropdown === 'managementItem' }"
-                                         class="{{ request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                         class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/items') || request()->is(request()->user()->role->name . '/dashboard/items/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
                                          Item</span>
                                  </div>
                                  <div class="rtl:rotate-180"
@@ -173,13 +173,13 @@
                                  </div>
                              </button>
                              <ul x-cloak x-show="activeDropdown === 'managementItem'" x-collapse
-                                 class="sub-menu text-gray-500">
-                                 <li>
+                                 class="sub-menu bg-white">
+                                 <li class="hover:bg-neutral">
                                      <a href="{{ route(request()->user()->role->name . '.dashboard.items.index') }}"
-                                         class="group {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active' : '' }}">
+                                         class=" {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active ' : '' }}">
                                          <div class="flex items-center">
                                              <span
-                                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
+                                                 class=" group-hover:text-black text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
                                                  Post</span>
                                          </div>
                                      </a>
@@ -189,7 +189,7 @@
                                          class="group {{ request()->is(request()->user()->role->name . '/dashboard/items/categories') ? 'active' : '' }}">
                                          <div class="flex items-center">
                                              <span
-                                                 class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
+                                                 class="group-hover:text-black text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Item
                                                  Category</span>
                                          </div>
                                      </a>
@@ -197,15 +197,15 @@
                              </ul>
                          </li>
 
-                         <li class="nav-item" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'managementProduct' : null) }">
+                         <li class="nav-item hover:bg-neutral" x-data="{ activeDropdown: @js(request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'managementProduct' : null) }">
                              <button type="button" class="nav-link group"
                                  :class="{ 'bg-primary': activeDropdown === 'managementProduct' }"
                                  @click="activeDropdown === 'managementProduct' ? activeDropdown = null : activeDropdown = 'managementProduct'">
                                  <div class="flex items-center">
                                      <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
-                                         class="mdi mdi-list-box-outline text-xl"></span>
+                                         class="group-hover:text-white mdi mdi-list-box-outline text-xl"></span>
                                      <span :class="{ 'text-white': activeDropdown === 'managementProduct' }"
-                                         class="{{ request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
+                                         class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/products') || request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Management
                                          Product</span>
                                  </div>
                                  <div class="rtl:rotate-180"
@@ -220,13 +220,13 @@
                              </button>
 
                              <ul x-cloak x-show="activeDropdown === 'managementProduct'" x-collapse
-                                 class="sub-menu text-gray-500">
+                                 class="sub-menu bg-white">
                                  <li>
                                      <a href="{{ route(request()->user()->role->name . '.dashboard.products.index') }}"
                                          class="group {{ request()->is(request()->user()->role->name . '/dashboard/products') ? 'active' : '' }}">
                                          <div class="flex items-center">
                                              <span
-                                                 class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
+                                                 class="group-hover:text-black text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
                                                  Post</span>
                                          </div>
                                      </a>
@@ -236,7 +236,7 @@
                                          class="group {{ request()->is(request()->user()->role->name . '/dashboard/products/categories') ? 'active' : '' }}">
                                          <div class="flex items-center">
                                              <span
-                                                 class=" text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
+                                                 class="group-hover:text-black text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Product
                                                  Category</span>
                                          </div>
                                      </a>
@@ -249,14 +249,14 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route(request()->user()->role->name . '.dashboard.articles.index') }}"
                                      class="group {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-post-outline  text-xl {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-post-outline  text-xl {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class=" {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                                             class="group-hover:text-white {{ request()->is(request()->user()->role->name . '/dashboard/articles') || request()->is(request()->user()->role->name . '/dashboard/articles/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
                                              Post Article</span>
                                      </div>
                                  </a>
@@ -277,14 +277,14 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('seller.dashboard.shippings.index') }}"
                                      class="group {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-truck-cargo-container text-xl {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Placed
+                                             class="group-hover:text-white {{ request()->is('seller/dashboard/shippings') || request()->is('seller/dashboard/shippings/show/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Placed
                                              Order</span>
                                      </div>
                                  </a>
@@ -305,36 +305,36 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.weavers.index') }}"
                                      class="group {{ request()->is('admin/dashboard/weavers') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-account-group-outline text-xl {{ request()->is('admin/dashboard/weavers') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-account-group-outline text-xl {{ request()->is('admin/dashboard/weavers') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/weavers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Weaver</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/weavers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Weaver</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.customers.index') }}"
                                      class="group {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/customers') || request()->is('admin/dashboard/customers/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Customer</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.sellers.index') }}"
                                      class="group {{ request()->is('admin/dashboard/sellers') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/sellers') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-account-details-outline text-xl {{ request()->is('admin/dashboard/sellers') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/sellers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Seller</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/sellers') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Seller</span>
                                      </div>
                                  </a>
                              </li>
@@ -352,48 +352,48 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.logs.index') }}"
                                      class="group {{ request()->is('admin/dashboard/logs') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-math-log text-xl {{ request()->is('admin/dashboard/logs') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-math-log text-xl {{ request()->is('admin/dashboard/logs') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/logs') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Logs
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/logs') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Logs
                                              Activity</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.reports.indexRevenue') }}"
                                      class="group {{ request()->is('admin/dashboard/reports/revenue') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-cash text-xl {{ request()->is('admin/dashboard/reports/revenue') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-cash text-xl {{ request()->is('admin/dashboard/reports/revenue') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/reports/revenue') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Revenue</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/reports/revenue') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Revenue</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.reports.indexProducts') }}"
                                      class="group {{ request()->is('admin/dashboard/reports/products') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-apps text-xl {{ request()->is('admin/dashboard/reports/products') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-apps text-xl {{ request()->is('admin/dashboard/reports/products') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/reports/products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Product</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/reports/products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Product</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('admin.dashboard.reports.indexAnalytics') }}"
                                      class="group {{ request()->is('admin/dashboard/reports/analytics') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-eye-settings-outline text-xl {{ request()->is('admin/dashboard/reports/analytics') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-eye-settings-outline text-xl {{ request()->is('admin/dashboard/reports/analytics') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('admin/dashboard/reports/analytics') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Analytics</span>
+                                             class="group-hover:text-white {{ request()->is('admin/dashboard/reports/analytics') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark"">Analytics</span>
                                      </div>
                                  </a>
                              </li>
@@ -413,24 +413,24 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('products.indexFront') }}" class="group ">
                                      <div class="flex items-center">
-                                         <span class="mdi mdi-apps text-xl"></span>
+                                         <span class="group-hover:text-white mdi mdi-apps text-xl"></span>
                                          <span
-                                             class="{{ request()->is('products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Buy
+                                             class="group-hover:text-white {{ request()->is('products') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Buy
                                              Product</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.trackingOrder') }}"
                                      class="group {{ request()->is('customer/dashboard/tracking-order') ? 'bg-primary text-white' : '' }} ">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-radar text-xl {{ request()->is('customer/dashboard/tracking-order') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-radar text-xl {{ request()->is('customer/dashboard/tracking-order') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/tracking-order') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Tracking
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard/tracking-order') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Tracking
                                              Order</span>
                                      </div>
                                  </a>
@@ -449,14 +449,14 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.address.index') }}"
                                      class="group {{ request()->is('customer/dashboard/address') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-format-list-text text-xl {{ request()->is('customer/dashboard/address') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-format-list-text text-xl {{ request()->is('customer/dashboard/address') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/address') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Address
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard/address') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Address
                                              Detail</span>
                                      </div>
                                  </a>
@@ -475,36 +475,36 @@
 
                      <li class="nav-item">
                          <ul>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.order.index') }}"
                                      class="group {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-order-bool-descending-variant text-xl {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-order-bool-descending-variant text-xl {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Order</span>
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard/order') || request()->is('customer/dashboard/order/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Order</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.transaction.index') }}"
                                      class="group {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-invoice-text-multiple-outline text-xl {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Invoice</span>
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard/transaction') || request()->is('customer/dashboard/transaction/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Invoice</span>
                                      </div>
                                  </a>
                              </li>
-                             <li class="nav-item">
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
                                  <a href="{{ route('customer.dashboard.shipping.index') }}"
                                      class="group {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'bg-primary text-white' : '' }}">
                                      <div class="flex items-center">
                                          <span
-                                             class="mdi mdi-truck-cargo-container text-xl {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white' : '' }}"></span>
+                                             class="group-hover:text-white mdi mdi-truck-cargo-container text-xl {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white' : '' }}"></span>
                                          <span
-                                             class="{{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Shipping</span>
+                                             class="group-hover:text-white {{ request()->is('customer/dashboard/shipping') || request()->is('customer/dashboard/shipping/*') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:group-hover:text-white-dark">Shipping</span>
                                      </div>
                                  </a>
                              </li>

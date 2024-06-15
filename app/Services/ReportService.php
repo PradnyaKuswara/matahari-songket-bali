@@ -69,103 +69,102 @@ class ReportService
 
     public function analytics($request)
     {
-        $period = Period::days($request->get('period') ?? 7);
 
-        $analyticsData = Analytics::fetchVisitorsAndPageViewsByDate($period);
+        $period = (int) $request->period ? $request->period : 7;
+
+        $analyticsData = Analytics::fetchVisitorsAndPageViewsByDate(Period::days($period));
 
         $datas = collect();
 
-        collect($analyticsData)->map(function (array $item) use ($analyticsData, $datas) {
+        // Aggregate data by date
+        foreach ($analyticsData as $item) {
+            $date = $item['date']->format('Y-m-d');
 
-            if ($datas->where('date', $item['date'])->count() === 0) {
+            if (!$datas->has($date)) {
                 $data = [];
-
                 $data['pageTitle'] = 'MatahariSongketBali';
                 $data['screenPageViews'] = $analyticsData->where('date', $item['date'])->sum('screenPageViews');
                 $data['activeUsers'] = $analyticsData->where('date', $item['date'])->sum('activeUsers');
                 $data['date'] = $item['date'];
-
-                $datas->push($data);
+                $datas[$date] = $data;
             }
-        });
-
-        $analyticsData = $datas;
-
-        if ($analyticsData->count() === 0) {
-            return ['totalScreenPageViews' => 0, 'totalActiveUsers' => 0, 'analyticsData' => []];
         }
 
-        $totalViews = $analyticsData->sum('screenPageViews');
+        // Ensure all dates in the period are covered
+        $startDate = now()->subDays($period - 1);
+        $endDate = now();
 
-        $totalActiveUsers = $analyticsData->sum('activeUsers');
-
-        $temp = [];
-
-        $currentDate = clone $analyticsData->last()['date'];
-
-        for ($i = 1; $i <= $request->get('period') - $analyticsData->count(); $i++) {
-            $temp[] = ['pageTitle' => 'MatahariSongketBali', 'date' => clone $currentDate->subDay(), 'screenPageViews' => 0, 'activeUsers' => 0];
+        $allDates = collect();
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $formattedDate = $date->format('Y-m-d');
+            if (!$datas->has($formattedDate)) {
+                $datas[$formattedDate] = [
+                    'pageTitle' => 'MatahariSongketBali',
+                    'screenPageViews' => 0,
+                    'activeUsers' => 0,
+                    'date' => $date->copy()
+                ];
+            }
+            $allDates->push($datas[$formattedDate]);
         }
 
-        foreach ($temp as $data) {
-            $analyticsData->push($data);
-        }
+        // Sort data by date
+        $allDates = $allDates->sortBy('date')->values();
 
-        if ($request->get('period') != '90' && $request->get('period') != '60') {
+        // Calculate total screen page views and active users
+        $totalViews = $allDates->sum('screenPageViews');
+        $totalActiveUsers = $allDates->sum('activeUsers');
 
-            $analyticsData = $analyticsData->map(function (array $item) {
+        // Format dates if period is not 60 or 90 days
+        if ($period != 60) {
+            $allDates = $allDates->map(function ($item) {
                 $item['date'] = $item['date']->format('d/m/Y');
-
                 return $item;
             });
 
-            $data = ['totalScreenPageViews' => $totalViews, 'totalActiveUsers' => $totalActiveUsers, 'analyticsData' => $analyticsData];
-
-            return $data;
+            return [
+                'totalScreenPageViews' => $totalViews,
+                'totalActiveUsers' => $totalActiveUsers,
+                'analyticsData' => $allDates
+            ];
         }
 
+        // Group data into weeks for periods of 60 or 90 days
         $weeks = [];
-
-        $startDate = $analyticsData[0]['date'];
-
-        $endDate = (clone $analyticsData[0]['date'])->subDays(7);
-
         $week = [];
+        $startDate = $allDates->first()['date'];
+        $endDate = $startDate->copy()->subDays(7);
 
-        foreach ($analyticsData as $key => $data) {
-            if ($data['date'] <= $startDate && $data['date'] > $endDate) {
+        foreach ($allDates as $key => $data) {
+            if ($data['date']->gt($endDate)) {
                 $week[] = $data;
-
-                if ($key === $analyticsData->count() - 1) {
-                    $start = collect($week)->first()['date']->format('d/m/Y');
-
-                    $end = collect($week)->last()['date']->format('d/m/Y');
-
-                    $weeks[] = ['date' => "$start - $end", 'screenPageViews' => collect($week)->sum('screenPageViews'), 'activeUsers' => collect($week)->sum('activeUsers')];
-                }
-
-                continue;
+            } else {
+                $weeks[] = [
+                    'date' => $week[0]['date']->format('d/m/Y') . ' - ' . end($week)['date']->format('d/m/Y'),
+                    'screenPageViews' => collect($week)->sum('screenPageViews'),
+                    'activeUsers' => collect($week)->sum('activeUsers')
+                ];
+                $week = [$data];
+                $startDate = $data['date'];
+                $endDate = $startDate->copy()->subDays(7);
             }
 
-            $start = collect($week)->first()['date']->format('d/m/Y');
-
-            $end = collect($week)->last()['date']->format('d/m/Y');
-
-            $weeks[] = ['date' => "$start - $end", 'screenPageViews' => collect($week)->sum('screenPageViews'), 'activeUsers' => collect($week)->sum('activeUsers')];
-
-            $week = [];
-
-            $startDate = $data['date'];
-
-            $endDate = (clone $data['date'])->subDays(7);
-
-            $week[] = $data;
+            if ($key === $allDates->count() - 1 && !empty($week)) {
+                $weeks[] = [
+                    'date' => $week[0]['date']->format('d/m/Y') . ' - ' . end($week)['date']->format('d/m/Y'),
+                    'screenPageViews' => collect($week)->sum('screenPageViews'),
+                    'activeUsers' => collect($week)->sum('activeUsers')
+                ];
+            }
         }
 
-        $data = ['totalScreenPageViews' => $totalViews, 'totalActiveUsers' => $totalActiveUsers, 'analyticsData' => $weeks];
-
-        return $data;
+        return [
+            'totalScreenPageViews' => $totalViews,
+            'totalActiveUsers' => $totalActiveUsers,
+            'analyticsData' => $weeks
+        ];
     }
+
 
     public function products($year)
     {

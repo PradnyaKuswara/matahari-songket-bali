@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-    Product Detail
+    Product Detail | Matahari Songket Bali
 @endsection
 
 @push('css')

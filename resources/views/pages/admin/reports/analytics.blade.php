@@ -48,10 +48,8 @@
                                     <option disabled selected>Pick one</option>
                                     <option value="7" selected>Last 7 days</option>
                                     <option value="14">Last 14 days</option>
-                                    <option value="28">Last 28 days</option>
                                     <option value="30">Last 30 days</option>
                                     <option value="60">Last 60 days</option>
-                                    <option value="90">Last 90 days</option>
                                 </select>
                             </label>
                         </div>
@@ -127,7 +125,7 @@
                         url: this.endpoint,
                         type: 'GET',
                         data: {
-                            year: this.year
+                            period: this.year
                         },
                         beforeSend: () => {
                             //chart display hidden
@@ -135,6 +133,7 @@
                         }
                     }).done((response) => {
                         //update chart
+
                         this.analyticsChart.updateSeries([
                             {
                                 name: "Screen Page Views",
@@ -168,10 +167,10 @@
                             type: "area",
                             fontFamily: "Nunito, sans-serif",
                             zoom: {
-                                enabled: false,
+                                enabled: true,
                             },
                             toolbar: {
-                                show: false,
+                                show: true,
                             },
                         },
                         dataLabels: {
@@ -234,7 +233,7 @@
                             tickAmount: 7,
                             labels: {
                                 formatter: (value) => {
-                                    return value / 1000 + "K";
+                                    return value ;
                                 },
                                 offsetX: isRtl ? -30 : -10,
                                 offsetY: 0,
@@ -255,7 +254,7 @@
                             },
                             yaxis: {
                                 lines: {
-                                    show: false,
+                                    show: true,
                                 },
                             },
                             padding: {
@@ -284,7 +283,7 @@
                                 show: true,
                             },
                             x: {
-                                show: false,
+                                show: true,
                             },
                         },
                         fill: {

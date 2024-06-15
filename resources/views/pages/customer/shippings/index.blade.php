@@ -12,7 +12,7 @@
                 <a href="javascript:;" class="text-primary hover:underline">Customer</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Shipping</span>
+                <span>Shippings</span>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
                 <span>Index</span>

@@ -6,10 +6,10 @@
             <img class="h-10" src="{{ asset('assets/images/logo.png') }}" alt="">
         </a>
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
-            <li><a href="{{ route('index') }}">Home</a></li>
-            <li><a href="{{ route('products.indexFront') }}">Product</a></li>
-            <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
-            <li><a href="{{ route('about.index') }}">About us</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('index') }}">Home</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('products.indexFront') }}">Product</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('whats-new.index') }}">Whats News</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('about.index') }}">About us</a></li>
         </ul>
     </div>
 
@@ -101,7 +101,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
                 </svg>
             </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-white rounded-box w-64">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('products.indexFront') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    scroll-padding: 100px;
     z-index: 1;
 }
 
@@ -14,8 +15,4 @@ body {
 
 .hero-bg-light {
     background-image: url(../images/Light.png);
-}
-
-.hero-bg-dark {
-    background-image: url(../images/Dark.png);
 }

@@ -31,8 +31,7 @@
                 <div class="flex flex-col gap-4 animate-fade-down lg:animate-fade-right ">
                     <div class="flex">
                         <button onclick="modal_image_preview_1.showModal()""
-                            class="hover:opacity-75 hover:animate-normal rounded-lg mx-auto aspect-video border"
-                            >
+                            class="hover:opacity-75 hover:animate-normal rounded-lg mx-auto aspect-video border">
                             <img class="w-full h-full object-contain" src="{{ $product->image1() }}" alt=""
                                 class="w-full h-full">
                         </button>
@@ -106,7 +105,8 @@
 
                     <div class="flex gap-2 md:gap-4 item-center mt-5">
                         <x-button-click @click="addToCart({{ $product }})" id="btn-cart"
-                            class="btn-neutral w-full text-white"><span class="mdi mdi-cart-outline text-xl"></span>Add to
+                            class="btn-neutral w-full text-white {{ !auth()->check() ? 'pointer-events-none' : '' }} "><span
+                                class="mdi mdi-cart-outline text-xl"></span>Add to
                             Cart</x-button-click>
                     </div>
                 </div>

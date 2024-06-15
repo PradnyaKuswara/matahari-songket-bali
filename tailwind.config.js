@@ -55,6 +55,7 @@ export default {
                     warning: "#c0a000",
                     error: "#ff696e",
                 },
+
             },
         ],
     },

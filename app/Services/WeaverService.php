@@ -38,9 +38,9 @@ class WeaverService
         return $this->weaverInterface->find($weaver);
     }
 
-    public function search($request, $model, $conditions)
+    public function search($request, $model, $conditions, $relations)
     {
-        return $this->weaverInterface->search($request, $model, $conditions);
+        return $this->weaverInterface->search($request, $model, $conditions, $relations);
     }
 
     public function assignRoleWeaver(array $data)

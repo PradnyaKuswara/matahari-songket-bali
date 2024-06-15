@@ -11,7 +11,7 @@
                 <a href="javascript:;" class="text-primary hover:underline">Customer</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Order</span>
+                <span>Orders</span>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
                 <span>Detail</span>

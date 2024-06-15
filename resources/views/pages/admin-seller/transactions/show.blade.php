@@ -12,12 +12,12 @@
                 <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Transaction</span>
+                <span>Invoices</span>
             </li>
         </ul>
 
         <div>
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center">
                 <h2 class="text-xl font-semibold mt-4">All Transactions</h2>
                 <label
                     class="input input-bordered input-md w-full md:w-80  flex items-center gap-2  text-white bg-[#0E1726]">
@@ -27,7 +27,7 @@
                     <span class="mdi mdi-magnify"></span>
                 </label>
             </div>
-            <div id="data-list" class="grid grid-cols-4 gap-4 mt-4" id="order-list">
+            <div id="data-list" class="grid lg:grid-cols-4 gap-4 mt-4" id="order-list">
                 @include('pages.admin-seller.transactions.data')
             </div>
             <div class="mt-5">

@@ -14,7 +14,7 @@ interface WeaverInterface
 
     public function find($weaver);
 
-    public function search($request, $model, $conditions);
+    public function search($request, $model, $conditions, $relations);
 
     public function assignRoleWeaver(array $data);
 }

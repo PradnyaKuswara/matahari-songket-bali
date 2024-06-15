@@ -64,7 +64,7 @@
                     <td>{{ $seller->gender ?? '-' }}</td>
                     <td>{{ $seller->phone_number ?? '-' }}</td>
                     <td>{{ $seller->date_of_birth ?? '-' }}</td>
-                    <td>{{ $seller->email_verified_at ?? '-' }}</td>
+                    <td>{{ $seller->email_verified_at ? $seller->email_verified_at->format('d F Y H:i:s') : '-' }}</td>
                     <td>{{ $seller->created_at->format('d F Y H:i:s') }}</td>
                     <td>{{ $seller->updated_at->format('d F Y H:i:s') }}</td>
                     <td>

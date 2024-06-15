@@ -64,7 +64,7 @@
         @if (auth()->user()->isAdmin())
             <div class="card-actions justify-start mt-4 gap-4" x-data="modalEdit{{ $loop }}">
                 <a href="{{ route(request()->user()->role->name . '.dashboard.shippings.detail-shipping', $shipping) }}"
-                    class="btn btn-primary w-full" target="__blank">Detail Shipping</a>
+                    class="btn btn-primary w-full">Detail Shipping</a>
             </div>
         @endif
     </div>

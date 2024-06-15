@@ -28,8 +28,8 @@
 @endpush
 
 @section('content')
-    <div class="pt-10" id="hero">
-        <div class="flex flex-col justify-between w-screen px-4 mx-auto md:pt-16 md:flex-row md:px-8 lg:max-w-screen-lg">
+    <div class="pt-10 hero-bg-light" id="hero">
+        <div class=" flex flex-col justify-between w-screen px-4 mx-auto md:pt-16 md:flex-row md:px-8 lg:max-w-screen-lg">
             <div class="pt-16 mb-16 lg:mb-0 lg:pt-32  md: max-w-md lg:max-w-lg lg:pr-5">
                 <div class="w-full mb-6 flex flex-col justify-center">
                     <div>
@@ -62,7 +62,8 @@
             </div>
             <div data-aos="fade" data-aos-duration="1500">
                 <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
-                    class="object-cover object-bottom w-full h-64 mx-auto md:h-auto xl:mr-24 md:max-w-sm" alt="" />
+                    class="object-cover object-bottom w-full lg:rounded-full h-64 mx-auto md:h-auto xl:mr-24 md:max-w-sm"
+                    alt="" />
             </div>
         </div>
     </div>
@@ -271,7 +272,7 @@
                         <div class="mx-auto max-w-2xl lg:max-w-4xl">
                             <figure class="mt-10">
                                 <blockquote
-                                    class="text-center text-lg font-semibold leading-8 text-gray-900 sm:text-xl sm:leading-9">
+                                    class="text-center text-base font-semibold leading-8 text-gray-900 sm:text-xl sm:leading-9 ">
                                     <p>“Saya merasa senang sekali belanja di Matahari Songket bali
                                         Karena produksinya bagus-bagus dan berkualitas serta tahan lama.
                                         Motif dan warnanya sangat serasi

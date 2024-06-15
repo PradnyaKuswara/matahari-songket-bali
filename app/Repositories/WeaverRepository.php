@@ -41,9 +41,9 @@ class WeaverRepository implements WeaverInterface
         return $weaver;
     }
 
-    public function search($request, $model, $conditions)
+    public function search($request, $model, $conditions, $relations)
     {
-        return $this->searchService->handle($request, $model, $conditions)->latest()->paginate(10)->withQueryString()->withPath('weavers');
+        return $this->searchService->handle($request, $model, $conditions, $relations)->latest()->paginate(10)->withQueryString()->withPath('weavers');
     }
 
     public function assignRoleWeaver(array $data)

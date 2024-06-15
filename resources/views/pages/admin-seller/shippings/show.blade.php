@@ -11,12 +11,12 @@
                 <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
             </li>
             <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-                <span>Shipping</span>
+                <span>Shippings</span>
             </li>
         </ul>
 
         <div>
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
                 <h2 class="text-xl font-semibold mt-4">All Shippings</h2>
                 <label
                     class="input input-bordered input-md w-full md:w-80  flex items-center gap-2  text-white bg-[#0E1726]">

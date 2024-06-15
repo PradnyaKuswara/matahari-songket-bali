@@ -74,6 +74,10 @@ class ReportService
 
         $analyticsData = Analytics::fetchVisitorsAndPageViewsByDate(Period::days($period));
 
+        $mostVisitedPages = Analytics::fetchMostVisitedPages(Period::days($period), 20);
+
+        $topCountries = Analytics::fetchTopCountries(Period::days($period), 20);
+
         $datas = collect();
 
         // Aggregate data by date
@@ -126,6 +130,8 @@ class ReportService
             return [
                 'totalScreenPageViews' => $totalViews,
                 'totalActiveUsers' => $totalActiveUsers,
+                'mostVisitedPages' => $mostVisitedPages,
+                'topCountries' => $topCountries,
                 'analyticsData' => $allDates,
             ];
         }
@@ -162,6 +168,8 @@ class ReportService
         return [
             'totalScreenPageViews' => $totalViews,
             'totalActiveUsers' => $totalActiveUsers,
+            'mostVisitedPages' => $mostVisitedPages,
+            'topCountries' => $topCountries,
             'analyticsData' => $weeks,
         ];
     }

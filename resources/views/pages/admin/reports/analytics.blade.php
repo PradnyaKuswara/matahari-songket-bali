@@ -44,7 +44,8 @@
                                 <div class="label">
                                     <span class="label-text">Filter</span>
                                 </div>
-                                <select class="select select-bordered" x-on:change.debounce="getDataAnalytic" x-model="year">
+                                <select class="select select-bordered" x-on:change.debounce="getDataAnalytic"
+                                    x-model="year">
                                     <option disabled selected>Pick one</option>
                                     <option value="7" selected>Last 7 days</option>
                                     <option value="14">Last 14 days</option>
@@ -68,6 +69,65 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-span-12">
+                <div class="panel mt-4">
+                    <div class="panel-header">
+                        <h1 class="text-xl font-bold">Most Visited Pages</h1>
+                    </div>
+                    <div class="panel-body mt-4">
+                        <div x-ref="tableMostVisited" class="overflow-x-auto">
+                            <table class="table w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Page</th>
+                                        <th>Full Page URL</th>
+                                        <th>Views</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template x-for="mostVisitedPage in mostVisitedPages" :key="mostVisitedPage.fullPageUrl">
+                                        <tr>
+                                            <td x-text="mostVisitedPage.pageTitle"></td>
+                                            <td class="max-w-xl break-words" x-text="mostVisitedPage.fullPageUrl"></td>
+                                            <td x-text="mostVisitedPage.screenPageViews"></td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12">
+                <div class="panel mt-4">
+                    <div class="panel-header">
+                        <h1 class="text-xl font-bold">Top Countries</h1>
+                    </div>
+                    <div class="panel-body mt-4">
+                        <div x-ref="tableTopCountries" class="overflow-x-auto">
+                            <table class="table w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Country</th>
+                                        <th>Views</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template x-for="topCountry in topCountries" :key="topCountry.country">
+                                        <tr>
+                                            <td x-text="topCountry.country"></td>
+                                            <td x-text="topCountry.screenPageViews"></td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -79,6 +139,9 @@
         document.addEventListener("alpine:init", () => {
             Alpine.data('analyticsReport', () => ({
                 init() {
+                    this.mostVisitedPages = this.analyticsData.mostVisitedPages;
+                    this.topCountries = this.analyticsData.topCountries;
+
                     isDark =
                         this.$store.app.theme === "dark" || this.$store.app.isDarkMode ?
                         true :
@@ -110,7 +173,8 @@
                     });
 
                     this.totalActiveUser = `Total Active User: ${this.analyticsData.totalActiveUsers}`;
-                    this.totalScreenPageViews = `Total Screen Page Views: ${this.analyticsData.totalScreenPageViews}`;
+                    this.totalScreenPageViews =
+                        `Total Screen Page Views: ${this.analyticsData.totalScreenPageViews}`;
                 },
 
                 year: '{{ now()->format('Y') }}',
@@ -119,6 +183,8 @@
                 totalScreenPageViews: "Total Screen Page Views: 0",
                 endpoint: '{{ route('admin.dashboard.reports.analytics') }}',
                 analyticsData: @json($data),
+                mostVisitedPages: [],
+                topCountries: [],
 
                 getDataAnalytic() {
                     $.ajax({
@@ -132,16 +198,18 @@
                             this.$refs.analyticsChart.innerHTML = "";
                         }
                     }).done((response) => {
-                        //update chart
+                        //update table mostVIsitedPages
+                        this.mostVisitedPages = response.mostVisitedPages;
 
-                        this.analyticsChart.updateSeries([
-                            {
-                                name: "Screen Page Views",
-                                data: response.analyticsData.map(day => {
-                                    return day.screenPageViews
-                                }),
-                            },
-                        ]);
+
+
+                        //update chart
+                        this.analyticsChart.updateSeries([{
+                            name: "Screen Page Views",
+                            data: response.analyticsData.map(day => {
+                                return day.screenPageViews
+                            }),
+                        }, ]);
 
                         this.analyticsChart.updateOptions({
                             labels: response.analyticsData.map(day => {
@@ -233,7 +301,7 @@
                             tickAmount: 7,
                             labels: {
                                 formatter: (value) => {
-                                    return value ;
+                                    return value;
                                 },
                                 offsetX: isRtl ? -30 : -10,
                                 offsetY: 0,

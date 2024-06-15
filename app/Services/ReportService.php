@@ -80,7 +80,7 @@ class ReportService
         foreach ($analyticsData as $item) {
             $date = $item['date']->format('Y-m-d');
 
-            if (!$datas->has($date)) {
+            if (! $datas->has($date)) {
                 $data = [];
                 $data['pageTitle'] = 'MatahariSongketBali';
                 $data['screenPageViews'] = $analyticsData->where('date', $item['date'])->sum('screenPageViews');
@@ -97,12 +97,12 @@ class ReportService
         $allDates = collect();
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
             $formattedDate = $date->format('Y-m-d');
-            if (!$datas->has($formattedDate)) {
+            if (! $datas->has($formattedDate)) {
                 $datas[$formattedDate] = [
                     'pageTitle' => 'MatahariSongketBali',
                     'screenPageViews' => 0,
                     'activeUsers' => 0,
-                    'date' => $date->copy()
+                    'date' => $date->copy(),
                 ];
             }
             $allDates->push($datas[$formattedDate]);
@@ -119,13 +119,14 @@ class ReportService
         if ($period != 60) {
             $allDates = $allDates->map(function ($item) {
                 $item['date'] = $item['date']->format('d/m/Y');
+
                 return $item;
             });
 
             return [
                 'totalScreenPageViews' => $totalViews,
                 'totalActiveUsers' => $totalActiveUsers,
-                'analyticsData' => $allDates
+                'analyticsData' => $allDates,
             ];
         }
 
@@ -140,20 +141,20 @@ class ReportService
                 $week[] = $data;
             } else {
                 $weeks[] = [
-                    'date' => $week[0]['date']->format('d/m/Y') . ' - ' . end($week)['date']->format('d/m/Y'),
+                    'date' => $week[0]['date']->format('d/m/Y').' - '.end($week)['date']->format('d/m/Y'),
                     'screenPageViews' => collect($week)->sum('screenPageViews'),
-                    'activeUsers' => collect($week)->sum('activeUsers')
+                    'activeUsers' => collect($week)->sum('activeUsers'),
                 ];
                 $week = [$data];
                 $startDate = $data['date'];
                 $endDate = $startDate->copy()->subDays(7);
             }
 
-            if ($key === $allDates->count() - 1 && !empty($week)) {
+            if ($key === $allDates->count() - 1 && ! empty($week)) {
                 $weeks[] = [
-                    'date' => $week[0]['date']->format('d/m/Y') . ' - ' . end($week)['date']->format('d/m/Y'),
+                    'date' => $week[0]['date']->format('d/m/Y').' - '.end($week)['date']->format('d/m/Y'),
                     'screenPageViews' => collect($week)->sum('screenPageViews'),
-                    'activeUsers' => collect($week)->sum('activeUsers')
+                    'activeUsers' => collect($week)->sum('activeUsers'),
                 ];
             }
         }
@@ -161,10 +162,9 @@ class ReportService
         return [
             'totalScreenPageViews' => $totalViews,
             'totalActiveUsers' => $totalActiveUsers,
-            'analyticsData' => $weeks
+            'analyticsData' => $weeks,
         ];
     }
-
 
     public function products($year)
     {

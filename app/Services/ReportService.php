@@ -150,7 +150,7 @@ class ReportService
                 $endDate = $startDate->copy()->subDays(7);
             }
 
-            if ($key === $allDates->count() - 1 && ! empty($week)) {
+            if ($key === $allDates->count() - 1) {
                 $weeks[] = [
                     'date' => $week[0]['date']->format('d/m/Y').' - '.end($week)['date']->format('d/m/Y'),
                     'screenPageViews' => collect($week)->sum('screenPageViews'),

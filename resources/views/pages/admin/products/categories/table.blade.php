@@ -32,7 +32,7 @@
                                     'is_required' => 'true',
                                 ],
                             ]" route="admin.dashboard.products.categories.update"
-                                :idRoute="$productCategory" title="Edit Product Post" :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                :idRoute="$productCategory" title="Edit Product Category" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
                 </tr>

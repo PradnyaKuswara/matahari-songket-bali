@@ -18,6 +18,12 @@ class Seller
         if (auth()->check()) {
             if (auth()->user()->role->name != 'seller') {
                 return redirect()->back();
+            } elseif (! auth()->user()->is_active) {
+                auth()->guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect()->route('login');
             } else {
                 return $next($request);
             }

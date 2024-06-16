@@ -23,6 +23,17 @@ class Customer
                 }
 
                 return redirect()->back();
+            } elseif (! auth()->user()->is_active) {
+                //check to json or not
+                if ($request->expectsJson()) {
+                    return response()->json(['message' => 'Not found'], 404);
+                }
+
+                auth()->guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect()->route('login');
             } else {
                 return $next($request);
             }

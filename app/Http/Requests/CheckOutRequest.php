@@ -22,12 +22,7 @@ class CheckOutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'integer', 'exists:users,id'],
-            'item_total_price' => ['required', 'numeric'],
-            'shipping_price' => ['required', 'numeric'],
-            'tax' => ['required', 'numeric'],
-            'quantity' => ['required', 'integer'],
-            'total_price' => ['required', 'numeric'],
+            'user_id' => ['nullable', 'string'],
         ];
     }
 }

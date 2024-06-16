@@ -78,7 +78,20 @@ class CheckOutService
 
         try {
             $user = $this->cartService->getCartActiveByCustomer($request->user());
+
+            $data['user_id'] = $user->id;
+            $data['item_total_price'] = $user->carts->sum(function ($cart) {
+                return $cart->pivot->quantity * $cart->sell_price;
+            });
+            $data['quantity'] = $user->carts->sum(function ($cart) {
+                return $cart->pivot->quantity;
+            });
+            $data['shipping_price'] = $data['quantity'] * 10000;
+            $data['tax'] = round($data['item_total_price'] * 0.1);
+            $data['total_price'] = $data['item_total_price'] + $data['shipping_price'] + $data['tax'];
+
             $order = $this->createOrder($data);
+
             $product = [];
 
             foreach ($user->carts as $cart) {

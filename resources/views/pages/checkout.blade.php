@@ -232,7 +232,6 @@
                 <div class="flex flex-col gap-4 mt-4">
                     <form action="{{ route('checkout.store') }}" method="POST">
                         @csrf
-                        <input type="text" class="hidden" name="user_id" value="{{ $user->id }}">
                         <div class="flex flex-col border rounded-md border-primary  text-primary w-full p-8 gap-4 ">
                             <h2 class="font-extrabold text-3xl">Order Summary</h2>
                             <div class="max-h-[15rem] overflow-auto ">
@@ -258,7 +257,7 @@
 
                                 $total = $item + $shipping;
 
-                                $tax = $item * 0.1;
+                                $tax = round($item * 0.1);
 
                                 $totalAll = $total + $tax;
                             @endphp
@@ -266,15 +265,10 @@
                                 <div class="flex justify-between items-center">
                                     <h1>Items ({{ $quantity }}) : </h1>
                                     <h1 class="font-sans">Rp. {{ number_format($item, 2, ',', '.') }}</h1>
-                                    <input type="text" class="hidden" name="item_total_price"
-                                        value="{{ $item }}">
-                                    <input type="text" class="hidden" name="quantity" value="{{ $quantity }}">
                                 </div>
                                 <div class="flex justify-between items-center mt-4">
                                     <h1>Shipping : </h1>
                                     <h1 class="font-sans">Rp. {{ number_format($shipping, 2, ',', '.') }}</h1>
-                                    <input type="text" class="hidden" name="shipping_price"
-                                        value="{{ $shipping }}">
                                 </div>
                                 <div class="flex justify-between items-center mt-4">
                                     <h1>Subtotal : </h1>
@@ -284,11 +278,9 @@
                             <div class="flex justify-between items-center">
                                 <h1>PPN : </h1>
                                 <h1 class="font-sans">Rp. {{ number_format($tax, 2, ',', '.') }}</h1>
-                                <input type="text" class="hidden" name="tax" value="{{ $tax }}">
                             </div>
                             <div class="text-4xl font-sans">
                                 <h1>Rp. {{ number_format($totalAll, 2, ',', '.') }}</h1>
-                                <input type="text" class="hidden" name="total_price" value="{{ $totalAll }}">
                             </div>
                             <div class="flex flex-col gap-4 mt-8">
                                 @if ($user->carts->count() > 0 && $user->addresses->count() > 0 && $user->phone_number != null)

@@ -44,9 +44,9 @@ class CartRepository implements CartInterface
                     ];
                 }
 
-                $user->carts()->updateExistingPivot($data['product_id'], ['quantity' => $newQuantity]);
+                $user->carts()->updateExistingPivot($data['product_id'], ['quantity' => $newQuantity, 'is_active' => true]);
             } else {
-                $user->carts()->attach($data['product_id'], ['quantity' => $data['quantity']]);
+                $user->carts()->attach($data['product_id'], ['quantity' => $data['quantity'], 'is_active' => true]);
             }
 
             DB::commit();

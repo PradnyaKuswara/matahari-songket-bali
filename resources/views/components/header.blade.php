@@ -6,10 +6,14 @@
             <img class="h-10" src="{{ asset('assets/images/logo.png') }}" alt="">
         </a>
         <ul class="menu menu-horizontal px-1 hidden lg:flex text-xs">
-            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('index') }}">Home</a></li>
-            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('products.indexFront') }}">Product</a></li>
-            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('whats-new.index') }}">Whats News</a></li>
-            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a href="{{ route('about.index') }}">About us</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a
+                    href="{{ route('index') }}">Home</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a
+                    href="{{ route('products.indexFront') }}">Product</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a
+                    href="{{ route('whats-new.index') }}">Whats News</a></li>
+            <li class="hover:bg-primary hover:rounded-md hover:text-primary-content"><a
+                    href="{{ route('about.index') }}">About us</a></li>
         </ul>
     </div>
 
@@ -26,7 +30,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                <span class="badge badge-sm indicator-item bg-red-500"></span>
+                                <span
+                                    class="badge badge-sm indicator-item text-white text-xs py-2 bg-red-500">{{ App\Helpers\CartHelper::getCartCount(auth()->user()) }}</span>
                             </div>
                         </div>
                     </a>
@@ -101,7 +106,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
                 </svg>
             </div>
-            <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-white rounded-box w-64">
+            <ul tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-white rounded-box w-64">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('products.indexFront') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>

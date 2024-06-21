@@ -11,8 +11,8 @@
                 <th class="text-left  font-bold text-sm">Month</th>
                 <th class="text-left  font-bold text-sm">Quantity</th>
                 <th class="text-left  font-bold text-sm">Expenses</th>
-                <th class="text-left  font-bold text-sm">Net Income</th>
                 <th class="text-left  font-bold text-sm">Gross Income</th>
+                <th class="text-left  font-bold text-sm">Net Income</th>
                 <th class="text-left  font-bold text-sm">Net Profit</th>
                 <th class="text-left  font-bold text-sm">Net Loss</th>
                 <th class="text-left  font-bold text-sm">Net Profit + Net Loss</th>
@@ -24,8 +24,8 @@
                     <td>{{ $revenue['month'] }}</td>
                     <td>{{ $revenue['quantity'] }}</td>
                     <td>Rp.{{ number_format($revenue['expenses'], 2, ',', '.') }}</td>
-                    <td>Rp.{{ number_format($revenue['net_income'], 2, ',', '.') }}</td>
                     <td>Rp.{{ number_format($revenue['gross_income'], 2, ',', '.') }}</td>
+                    <td>Rp.{{ number_format($revenue['net_income'], 2, ',', '.') }}</td>
                     <td>Rp.{{ number_format($revenue['net_profit'], 2, ',', '.') }}</td>
                     <td>Rp.{{ number_format($revenue['net_loss'], 2, ',', '.') }}</td>
                     <td>Rp.{{ number_format($revenue['total'], 2, ',', '.') }}</td>
@@ -45,4 +45,3 @@
         </tbody>
     </table>
 </div>
-

@@ -40,6 +40,8 @@ class WhatsNewController extends Controller
 
         return view('pages.whats-new-detail', [
             'article' => $article,
+            'meta_desc' => $article->meta_desc,
+            'meta_keyword' => $article->meta_keyword,
             'articles' => $this->articleService->all()->where('slug', '!=', $article->slug)
                 ->inRandomOrder()
                 ->take(3)

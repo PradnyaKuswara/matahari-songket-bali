@@ -11,6 +11,10 @@
     <meta name="url" content="{{ request()->url ?? route('index') }}">
     <meta name="description"
         content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
+    <meta name="site_name" content="Matahari Songket Bali">
+    <meta name="author" content="Matahari Songket Bali">
+    <meta name="keywords"
+        content="{{ $meta_keyword ??'songket, balinese songket, songket bali, matahari songket bali, matahari songket, songket indonesia, songket bali online, songket bali shop, songket bali online shop, songket bali dress, songket bali fabric, songket bali price, songket bali motif, songket bali modern, songket bali tradisional, songket bali terbaru, songket bali terbaik, songket bali asli, songket bali murah, songket bali motif bunga, songket bali motif daun, songket bali motif pohon, songket bali motif burung, songket bali motif kupu-kupu, songket bali motif naga, songket bali motif wayang, songket bali motif bali, songket bali motif tradisional, songket bali motif modern, songket bali motif terbaru, songket bali motif terbaik, songket bali motif asli, songket bali motif murah, songket bali motif bunga terbaru, songket bali motif bunga terbaik, songket bali motif bunga asli, songket bali motif bunga murah, songket bali motif bunga modern, songket bali motif bunga tradisional, songket bali motif bunga terbaru 2021, songket bali motif bunga terbaik 2021, songket bali motif bunga asli 2021, songket bali motif bunga murah 2021, songket bali motif bunga modern 2021, songket bali motif bunga tradisional 2021, songket bali motif bunga terbaru 2022, songket bali motif bunga terbaik 2022, songket bali motif bunga asli 2022, songket bali motif bunga murah 2022, songket bali motif bunga modern 2022, songket bali motif bunga tradisional 2022, songket bali motif bunga terbaru 2023, songket bali motif bunga terbaik 2023, songket bali motif bunga asli 2023' }}">
 
     <meta name="google-site-verification" content="s_dIkrwKMP9NRfAD6m6CeNHakLzCQh_1-2jgdONp9us" />
 
@@ -22,6 +26,7 @@
         content="{{ $meta_desc ?? 'Matahari Songket Bali - Explore and shop authentic Balinese songket, handcrafted with traditional techniques. Discover our exclusive collection of cultural heritage textiles and read insightful articles about the rich history of songket.' }}">
     <meta property="og:site_name" content="Matahari Songket Bali">
     <meta property="og:locale" content="id_ID">
+    <meta property="og:locale:alternate" content="en_US">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Matahari Songket Bali">

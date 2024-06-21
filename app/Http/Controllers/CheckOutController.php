@@ -24,9 +24,16 @@ class CheckOutController extends Controller
         $this->cartService = $cartService;
     }
 
-    public function index(Request $request): View
+    public function index(Request $request): View|RedirectResponse
     {
         $this->cartService->updateCartStatusBaseOnStock($request->user());
+        $user = $this->cartService->getCartActiveByCustomer($request->user());
+
+        if ($user->carts->count() == 0) {
+            Toaster::error('Cart is empty or you not yet select product on cart');
+
+            return redirect()->back();
+        }
 
         return view('pages.checkout', [
             'user' => $this->checkOutService->getUserDetail($request),

@@ -107,7 +107,7 @@
                 </svg>
             </div>
             <ul tabindex="0"
-                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary text-white rounded-box w-64">
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral text-white rounded-box w-64">
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="{{ route('products.indexFront') }}">Product</a></li>
                 <li><a href="{{ route('whats-new.index') }}">Whats News</a></li>
@@ -134,7 +134,16 @@
                             <li>
                                 <a href="{{ route('customer.dashboard.order.index') }}" class="justify-between">
                                     Order
-                                    <span class="badge badge-primary animate-pulse animate-infinite">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('customer.dashboard.transaction.index') }}" class="justify-between">
+                                    Invoice
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('customer.dashboard.shipping.index') }}" class="justify-between">
+                                    Shipping
                                 </a>
                             </li>
                     @endif

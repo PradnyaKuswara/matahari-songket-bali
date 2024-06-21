@@ -35,11 +35,13 @@
             </div>
             <div class="col-span-3 md:col-span-1 no-print">
                 {{-- //information payment --}}
-                <div class="bg-white p-4 rounded-lg shadow-md">
+                {{-- <div class="bg-white p-4 rounded-lg shadow-md">
                     <h2 class="text-xl font-bold">Payment Information</h2>
                     <p class="text-sm my-2">Please complete your payment before the due date</p>
                     <button @click="payNow()" type="button" class="btn btn-primary w-full mt-2">Pay Now</button>
-                </div>
+
+                </div> --}}
+                <div id="snap-container-card" class="w-full h-full"></div>
             </div>
     </section>
 @endsection
@@ -51,6 +53,56 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('checkout', () => ({
+                init() {
+                    window.snap.embed(this.snapToken, {
+                        embedId: 'snap-container-card',
+                        onSuccess: function(result) {
+                            window.location.href = '{{ route('checkout.successView') }}';
+                        },
+                        // Optional
+                        onPending: function(result) {
+                            const notify = new Notyf({
+                                duration: 5000,
+                                position: {
+                                    x: 'right',
+                                    y: 'top',
+                                },
+                            });
+
+                            notify.error('Payment is pending');
+
+                            window.location.reload();
+                        },
+                        // Optional
+                        onError: function(result) {
+                            const notify = new Notyf({
+                                duration: 5000,
+                                position: {
+                                    x: 'right',
+                                    y: 'top',
+                                },
+                            });
+
+                            notify.error(
+                                'Payment is failed. Please try make a payment again');
+                            window.location.href = '{{ route('products.indexFront') }}';
+                        },
+
+                        onClose: function(result) {
+                            const notify = new Notyf({
+                                duration: 5000,
+                                position: {
+                                    x: 'right',
+                                    y: 'top',
+                                },
+                            });
+
+                            notify.error('Payment is close');
+
+                            window.location.reload();
+                        },
+                    });
+                },
                 intersect: false,
                 order: '{{ $order->id }}',
                 snapToken: '{{ $order->transaction->snap_token }}',

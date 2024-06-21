@@ -33,7 +33,7 @@
                         Shipping</a>
 
                     @if ($shipping->tracking_link && $shipping->status == 'shipping')
-                        <a href="{{ $shipping->tracking_link }}" class="btn btn-accent btn-outline"
+                        <a href="{{ route('customer.dashboard.trackingOrder') }}" class="btn btn-accent btn-outline"
                             target="__blank">Tracking</a>
                     @endif
                 </div>

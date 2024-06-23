@@ -31,15 +31,6 @@ class ShippingService
 
     public function update(array $data, $shipping)
     {
-        $courier = $data['courier'];
-
-        if ($courier == 'JNE') {
-            $data['tracking_link'] = 'https://www.jne.co.id/en/tracking/trace';
-        }
-
-        if ($courier == 'JNT') {
-            $data['tracking_link'] = 'https://www.jet.co.id/track';
-        }
         $data['status'] = 'shipping';
         $data['max_confirm'] = Carbon::parse($data['delivered_at'])->addDays(7);
         $shipping = $this->shippingInterface->update($data, $shipping);

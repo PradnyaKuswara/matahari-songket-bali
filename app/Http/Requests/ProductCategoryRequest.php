@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductCategoryRequest extends FormRequest
 {
@@ -23,6 +24,12 @@ class ProductCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'image' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
         ];
+    }
+
+    private function conditionalImageUpdate(): bool
+    {
+        return $this->isMethod('patch') or $this->isMethod('put');
     }
 }

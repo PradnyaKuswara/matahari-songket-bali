@@ -22,9 +22,11 @@
             <div class="hero-content text-center">
                 <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
                     class="max-w-xl">
-                    <h1 class="text-3xl md:text-5xl font-bold w-full " :class="intersect ? 'animate-fade-down' : 'opacity-0'">Discover
+                    <h1 class="text-3xl md:text-5xl font-bold w-full "
+                        :class="intersect ? 'animate-fade-down' : 'opacity-0'">Discover
                         the Beauty of Bali's Songket</h1>
-                    <p class="py-6 text-sm md:text-base leading-5 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">Explore our collection of
+                    <p class="py-6 text-sm md:text-base leading-5 ":class="intersect ? 'animate-fade-right' : 'opacity-0'">
+                        Explore our collection of
                         articles showcasing the rich tradition and exquisite craftsmanship of Bali's traditional songket.
                         Immerse yourself in the stories behind these beautiful pieces of artistry.</p>
                 </div>
@@ -87,10 +89,19 @@
             <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10 animate-fade-down">
                 @include('pages.whats-new-data')
             </div>
-            <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10">
-                <button id="load-more" class="btn btn-primary btn-outline">Load More</button>
-            </div>
+            @if ($articles->isEmpty())
+                <div class="flex justify-center align-items-center col-span-4">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-center">No Article Found</h3>
+                    </div>
+                </div>
+            @endif
 
+            @if ($articles->hasMorePages())
+                <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10">
+                    <button id="load-more" class="btn btn-primary btn-outline">Load More</button>
+                </div>
+            @endif
         </div>
     </section>
 @endsection
@@ -113,12 +124,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
+        const article = @json($articles);
         let endpoint = "{{ route('whats-new.index') }}";
         let page = 1;
+
+        console.log(article);
 
         $(document).on('click', '#load-more', function() {
             page++;
             loadMoreData(page);
+
+            if (page >= article.last_page) {
+                $('#load-more').hide();
+            }
         });
 
         function loadMoreData(page) {

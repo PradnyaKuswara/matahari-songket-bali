@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View as View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Masmerise\Toaster\Toaster;
 
 class CheckOutController extends Controller
@@ -91,5 +92,20 @@ class CheckOutController extends Controller
         }
 
         return response()->json(['message' => 'Stock Not Available'], 400);
+    }
+
+    public function ongkirCheck(Request $request): JsonResponse
+    {
+        $ongkirCheck = Http::post('https://pro.rajaongkir.com/api/cost', [
+            'key' => config('shipping.api_key'),
+            'origin' => '197',
+            'originType' => 'city', // 'subdistrict'
+            'destination' => $request->destination,
+            'destinationType' => 'city', // 'subdistrict'
+            'weight' => $request->weight,
+            'courier' => $request->courier,
+        ]);
+
+        return response()->json($ongkirCheck->json(), 200);
     }
 }

@@ -18,11 +18,16 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 
             $table->string('address')->nullable();
+            $table->string('idCity')->nullable();
             $table->string('city')->nullable();
+            $table->string('idProvince')->nullable();
             $table->string('province')->nullable();
+            $table->string('idSubdistrict')->nullable();
+            $table->string('subdistrict')->nullable();
             $table->string('country')->default('Indonesia')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('additional_information')->nullable();
+            $table->string('phone_number')->nullable();
 
             $table->boolean('is_active')->default(false);
             $table->timestamps();

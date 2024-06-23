@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
 
             $table->string('name');
+            $table->string('courier_code')->nullable();
             $table->string('courier')->nullable();
             $table->string('tracking_number')->nullable();
-            $table->string('tracking_link')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('province')->nullable();

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -14,8 +15,11 @@ class ProductCategory extends Model implements AuditableContract
 {
     use Auditable, HasFactory, Uuid;
 
+    const IMAGE_PATH = 'product_categories';
+
     protected $fillable = [
         'name',
+        'image',
     ];
 
     public function products(): HasMany
@@ -43,5 +47,10 @@ class ProductCategory extends Model implements AuditableContract
         } catch (\Throwable $th) {
             abort(404);
         }
+    }
+
+    public function image(): string
+    {
+        return Storage::url($this->image);
     }
 }

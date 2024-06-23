@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('page-title')
     Payment | Matahari Songket Bali
@@ -23,7 +23,7 @@
         session()->forget('link-direct-checkout');
     @endphp
     <section x-data="checkout"
-        class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 py-14 md:px-14 lg:px-0 lg:pt-28 mx-4 md:mx-0">
+        class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-xl lg:mx-auto pt-10 py-14 md:px-14 lg:px-0 lg:pt-28 mx-4 md:mx-0 lg:mt-80">
         <div x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
             class="flex flex-col md:flex-row px-4 lg:px-0">
             <h1 class="text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">Payment Menu</h1>

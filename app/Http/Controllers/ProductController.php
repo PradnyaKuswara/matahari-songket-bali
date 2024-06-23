@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         return view('pages.admin.products.index', [
             'products' => $this->productService->search($request, new Product, ['name', 'stock', 'goods_price', 'sell_price', 'description', 'type'], ['productCategory']),
-            'productCategories' => $this->productCategoryService->all(),
+            'productCategories' => $this->productCategoryService->all()->get(),
         ]);
     }
 

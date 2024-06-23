@@ -22,7 +22,6 @@ class ShippingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'courier' => ['required', 'string'],
             'tracking_number' => ['required', 'string'],
             'shipped_at' => ['required', 'date'],
             'delivered_at' => ['required', 'date'],

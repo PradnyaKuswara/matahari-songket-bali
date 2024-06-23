@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Services\AddressService;
 use App\Services\CustomerService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Masmerise\Toaster\Toaster;
 
 class CustomerController extends Controller
@@ -99,5 +101,16 @@ class CustomerController extends Controller
     public function trackingOrder(): View
     {
         return view('pages.customer.trackings.index');
+    }
+
+    public function resultTrackingOrder(Request $request): JsonResponse
+    {
+        $response = Http::post('https://pro.rajaongkir.com/api/waybill', [
+            'key' => config('shipping.api_key'),
+            'waybill' => $request->waybill,
+            'courier' => $request->courier,
+        ]);
+
+        return response()->json($response->json(), 200);
     }
 }

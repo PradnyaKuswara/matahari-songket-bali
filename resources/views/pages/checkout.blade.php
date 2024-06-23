@@ -29,6 +29,36 @@
         <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
         <p class="w-1/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
     </div>
+
+
+    @if ($errors->any())
+        <div class="alert alert-error">
+            <div class="flex-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="w-6 h-6 mx-2 stroke-current">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                    </path>
+                </svg>
+                <label>{{ $errors->first() }}</label>
+            </div>
+        </div>
+    @endif
+
+    @if ($user->addresses->count() <= 0)
+        <div
+            class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[100] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+            <h2 class="text-center text-white text-xl font-semibold">You don't have a shipping address yet, please add a new
+                address</h2>
+            @php
+                session()->put('link-direct-checkout', 'checkout');
+            @endphp
+            <div class="flex gap-4 mt-4">
+                <x-button-link class="btn btn-danger" :link="route('carts.indexFront')">Cancel</x-button-link>
+                <x-button-link class="btn btn-primary " :link="route('customer.dashboard.address.index')">Add Address</x-button-link>
+
+            </div>
+        </div>
+    @endif
     <section
         class="min-h-screen xl:max-w-screen-xl lg:max-w-screen-lg lg:mx-auto pt-28 py-14 md:px-14 lg:px-0 lg:pt-28 mx-4 md:mx-0">
         <div x-data="{ intersect: false }" x-intersect:enter="intersect=true" x-intersect:leave="intersect=false"
@@ -60,24 +90,8 @@
         <div class="grid lg:grid-cols-6 gap-8 mt-8">
             <div class="md:col-span-3 lg:col-span-4">
                 <div class="flex flex-col gap-4 mt-4">
-                    <div class="flex flex-col border rounded-sm shadow-md w-full p-8 gap-4 ">
-                        @if ($user->addresses->count() <= 0)
-                            <div role="alert" class="alert alert-primary mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    class="stroke-current shrink-0 w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Please fill in the details of your account address completely at the following link.
-                                    or click
-                                    beside
-                                    button</span>
-                                @php
-                                    session()->put('link-direct-checkout', 'checkout');
-                                @endphp
-                                <x-button-link class="btn btn-primary" :link="route('customer.dashboard.address.index')">Add your address</x-button-link>
-                            </div>
-                        @else
+                    <div class="flex flex-col border border-primary shadow-md rounded-sm w-full p-8 gap-4 ">
+                        @if ($user->addresses->count() > 0)
                             <div role="alert" class="alert alert-primary mb-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     class="stroke-current shrink-0 w-6 h-6">
@@ -114,21 +128,12 @@
                                 <div class="label">
                                     <span class="label-text">Phone Number</span>
                                 </div>
-                                @if ($user->phone_number == null)
-                                    @php
-                                        session()->put('link-direct-checkout', 'checkout');
-                                    @endphp
-                                    <x-button-link class="btn btn-primary" :link="route('customer.dashboard.profile.edit')">Add
-                                        your phone number</x-button-link>
+                                @if ($user->addresses->count() > 0)
+                                    <p class="mx-2 font-bold text-sm font-sans">
+                                        {{ $user->addresses->first()->phone_number }}</p>
                                 @else
-                                    <div class="flex gap-2 items-center">
-                                        <p class="mx-2 font-bold text-sm font-sans">{{ $user->phone_number ?? '-' }}</p>
-                                        @php
-                                            session()->put('link-direct-checkout', 'checkout');
-                                        @endphp
-                                        <a href="{{ route('customer.dashboard.profile.edit') }}"
-                                            class="text-xs text-primary underline">Edit phone number</a>
-                                    </div>
+                                    <p class="mx-2 font-bold text-sm font-sans">
+                                        -</p>
                                 @endif
                             </label>
                         </div>
@@ -216,9 +221,28 @@
                                 <p class="mx-2 font-bold text-sm">-</p>
                             </label>
                         @endif
+
+
+                        <h2 class="font-extrabold text-3xl">Shipping Information </h2>
+
+                        <div class="grid gap-4">
+                            <label class="form-control w-full max-w-sm">
+                                <div class="label">
+                                    <span class="label-text">Courier</span>
+                                </div>
+                                <select class="select select-bordered" id="select-courier">
+                                    <option value="" disabled selected>Select Courier</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="jnt">JNT</option>
+                                    <option value="sicepat">SICEPAT</option>
+                                </select>
+                            </label>
+                            <div id="shipping" class="flex flex-col gap-4">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col border rounded-sm  w-full p-8 gap-4 shadow-md">
+                    <div class="flex flex-col border border-primary shadow-md rounded-sm  w-full p-8 gap-4">
                         <h2 class="font-extrabold text-xl">Account Information</h2>
                         <div class="flex flex-col">
                             <p>Name: <span class="font-bold">{{ $user->name }}</span></p>
@@ -230,7 +254,7 @@
 
             <div class="md:col-span-3 lg:col-span-2  ">
                 <div class="flex flex-col gap-4 mt-4">
-                    <form action="{{ route('checkout.store') }}" method="POST">
+                    <form action="{{ route('checkout.store') }}" method="POST" id="form-checkout">
                         @csrf
                         <div class="flex flex-col border rounded-md border-primary  text-primary w-full p-8 gap-4 ">
                             <h2 class="font-extrabold text-3xl">Order Summary</h2>
@@ -253,7 +277,7 @@
                                     return $cart->pivot->quantity;
                                 });
 
-                                $shipping = $quantity * 10000;
+                                $shipping = 0;
 
                                 $total = $item + $shipping;
 
@@ -268,22 +292,24 @@
                                 </div>
                                 <div class="flex justify-between items-center mt-4">
                                     <h1>Shipping : </h1>
-                                    <h1 class="font-sans">Rp. {{ number_format($shipping, 2, ',', '.') }}</h1>
+                                    <h1 class="font-sans" id="shippingPrice">Rp.
+                                        {{ number_format($shipping, 2, ',', '.') }}</h1>
                                 </div>
                                 <div class="flex justify-between items-center mt-4">
                                     <h1>Subtotal : </h1>
-                                    <h1 class="font-sans">Rp. {{ number_format($total, 2, ',', '.') }}</h1>
+                                    <h1 class="font-sans" id="subTotal">Rp. {{ number_format($total, 2, ',', '.') }}
+                                    </h1>
                                 </div>
                             </div>
                             <div class="flex justify-between items-center">
                                 <h1>PPN : </h1>
-                                <h1 class="font-sans">Rp. {{ number_format($tax, 2, ',', '.') }}</h1>
+                                <h1 class="font-sans" id="tax">Rp. {{ number_format($tax, 2, ',', '.') }}</h1>
                             </div>
                             <div class="text-4xl font-sans">
-                                <h1>Rp. {{ number_format($totalAll, 2, ',', '.') }}</h1>
+                                <h1 id="totalAll">Rp. {{ number_format($totalAll, 2, ',', '.') }}</h1>
                             </div>
                             <div class="flex flex-col gap-4 mt-8">
-                                @if ($user->carts->count() > 0 && $user->addresses->count() > 0 && $user->phone_number != null)
+                                @if ($user->carts->count() > 0 && $user->addresses->count() > 0)
                                     <button type="submit" id="checkout" class="btn btn-accent w-full"><span
                                             class="mdi mdi-dots-hexagon text-xl"></span>Checkout Product</button>
                                     <x-button-link class="btn btn-neutral  w-full" :link="route('carts.indexFront')"><span
@@ -302,6 +328,10 @@
                                 @endif
                             </div>
                         </div>
+                        <input type="hidden" name="shipping_cost" id="shipping_cost">
+                        <input type="hidden" name="shipping_method" id="shipping_method_input">
+                        <input type="hidden" name="shipping_code" id="shipping_code_input">
+
                     </form>
                 </div>
             </div>
@@ -310,12 +340,164 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         const loader = document.getElementById('loading-checkout');
+        const shippingContainer = document.getElementById('shipping');
         const checkout = document.getElementById('checkout');
+        const formCheckout = document.getElementById('form-checkout');
+        const selectCourier = document.getElementById('select-courier');
+        const apiKey = '{{ config('shipping.api_key') }}';
+        const address = @json($user->addresses->first());
 
-        checkout.addEventListener('click', function() {
+        //menghilangkan elemen lain contohnya KAB. KLUNGKUNG menjadi KLUNGKUNG
+        address.city = address.city.replace(/^(KAB\.|KOTA ADM\. |KOTA )\s*/, '');
+
+        console.log(address.city);
+
+        selectCourier.addEventListener('change', function() {
+            const courier = selectCourier.value;
+            const url = `{{ route('checkout.ongkirCheck') }}`;
+            const data = {
+                destination: address.idCity,
+                weight: 1000,
+                courier: courier,
+            };
+            const formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+            $.ajax({
+                type: "get",
+                url: url,
+                data: data,
+                beforeSend: function() {
+                    loader.style.display = 'flex';
+                    shippingContainer.innerHTML = '';
+                }
+            }).done((response) => {
+                loader.style.display = 'none';
+
+                console.log(response.rajaongkir);
+
+                const {
+                    code,
+                    name,
+                    costs
+                } = response.rajaongkir.results[0];
+
+                costs.forEach((costItem) => {
+                    const {
+                        service,
+                        description,
+                        cost
+                    } = costItem;
+
+                    const containerTitle = document.createElement('div');
+
+                    containerTitle.classList.add('flex', 'justify-between', 'items-center',
+                        'border-b', 'border-primary',
+                        'rounded-md', 'p-2', 'mb-2');
+
+                    const title = document.createElement('h1');
+                    title.textContent = `${service} - ${description}`;
+
+                    containerTitle.appendChild(title);
+
+                    // Container untuk setiap opsi pengiriman
+                    const optionContainer = document.createElement('div');
+                    optionContainer.classList.add('flex', 'items-center', 'mb-2', 'border',
+                        'border-primary',
+                        'rounded-md', 'p-2');
+
+                    // Radio button untuk memilih metode pengiriman
+                    costItem.cost.forEach((cost) => {
+                        const radioInput = document.createElement('input');
+                        radioInput.type = 'radio';
+                        radioInput.name = 'shipping_method';
+                        radioInput.value = cost.value;
+                        radioInput.classList.add('mr-2', 'cursor-pointer');
+                        radioInput.addEventListener('change', function() {
+                            document.getElementById('shipping_cost').value = cost
+                                .value;
+                            document.getElementById('shipping_method_input').value =
+                                service;
+                            document.getElementById('shipping_code_input').value =
+                                code;
+                            updateTotal(cost.value);
+                            checkout.disabled = false;
+                        });
+                        optionContainer.appendChild(radioInput);
+
+                        // Label untuk nama layanan dan harga
+                        const label = document.createElement('label');
+                        label.textContent = `${service} - ${formatter.format(cost.value)}`;
+                        label.classList.add('cursor-pointer', 'font-sans');
+                        optionContainer.appendChild(label);
+                    });
+                    shippingContainer.appendChild(containerTitle);
+                    shippingContainer.appendChild(optionContainer);
+                });
+            }).fail(() => {
+                loader.style.display = 'none';
+
+                const notify = new Notyf({
+                    duration: 5000,
+                    position: {
+                        x: 'right',
+                        y: 'top',
+                    },
+                });
+
+                notify.error(
+                    'Courier not available for this destination. Plase choose another courier or contact us for more information.'
+                );
+            });
+
+        });
+
+        function updateTotal(shippingCost) {
+            const itemTotal = {{ $item }};
+            const subTotal = parseFloat(itemTotal) + parseFloat(shippingCost);
+            const tax = Math.round(parseFloat(itemTotal) * 0.1);
+            const totalAll = subTotal + tax;
+
+            const formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+            document.getElementById('shippingPrice').textContent = formatter.format(shippingCost);
+            document.getElementById('subTotal').textContent = formatter.format(subTotal);
+            document.getElementById('tax').textContent = formatter.format(tax);
+            document.getElementById('totalAll').textContent = formatter.format(totalAll);
+
+        }
+
+        checkout.addEventListener('click', function(e) {
+            e.preventDefault();
+            const radioInput = document.querySelector('input[name="shipping_method"]:checked');
+
+            console.log(radioInput);
+            if (selectCourier.value == '' || radioInput == null || radioInput.value == '') {
+                const notify = new Notyf({
+                    duration: 5000,
+                    position: {
+                        x: 'right',
+                        y: 'top',
+                    },
+                });
+
+                notify.error('Please select courier first');
+                return;
+            }
             loader.style.display = 'flex';
+            formCheckout.submit();
         });
     </script>
 @endpush

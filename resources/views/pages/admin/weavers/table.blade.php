@@ -8,8 +8,10 @@
                 <th class="text-left font-bold text-sm">Gender</th>
                 <th class="text-left font-bold text-sm">Date of Birth</th>
                 <th class="text-left font-bold text-sm">Address</th>
-                <th class="text-left font-bold text-sm">Province</th>
+                <th class="text-left font-bold text-sm">Village</th>
+                <th class="text-left font-bold text-sm">District</th>
                 <th class="text-left font-bold text-sm">City</th>
+                <th class="text-left font-bold text-sm">Province</th>
                 <th class="text-left font-bold text-sm">Created At</th>
                 <th class="text-left font-bold text-sm">Updated At</th>
                 <th class="text-left font-bold text-sm">Action</th>
@@ -51,8 +53,10 @@
                     <td>{{ $weaver->date_of_birth->format('d F Y') }}</td>
                     @foreach ($weaver->addresses as $itemAddress)
                         <td>{{ $itemAddress->address }}</td>
-                        <td>{{ $itemAddress->province }}</td>
+                        <td>{{ $itemAddress->village }}</td>
+                        <td>{{ $itemAddress->subdistrict }}</td>
                         <td>{{ $itemAddress->city }}</td>
+                        <td>{{ $itemAddress->province }}</td>
                     @endforeach
                     <td>{{ $weaver->created_at->format('d F Y H:i:s') }}</td>
                     <td>{{ $weaver->updated_at->format('d F Y H:i:s') }}</td>
@@ -62,6 +66,36 @@
                                 @click="toggle()"><span class="mdi mdi-pencil text-xl text-success"></label>
 
                             <x-dashboard.edit-modal :elements="[
+                                [
+                                    'name' => 'provinceSelect',
+                                    'id' => 'inputProvinceSelectEdit',
+                                    'label' => 'Province',
+                                    'type' => 'select',
+                                    'options' => $provinces,
+                                    'value' => $weaver->addresses->first()->idProvince,
+                                    'placeholder' => 'Enter your province',
+                                    'is_required' => 'true',
+                                ],
+                                [
+                                    'name' => 'citySelect',
+                                    'id' => 'inputCitySelectEdit',
+                                    'label' => 'City',
+                                    'type' => 'select',
+                                    'options' => [],
+                                    'value' => $weaver->addresses->first()->idCity,
+                                    'placeholder' => 'Enter your city',
+                                    'is_required' => 'true',
+                                ],
+                                [
+                                    'name' => 'subdistrictSelect',
+                                    'id' => 'inputSubdistrictSelectEdit',
+                                    'label' => 'District',
+                                    'type' => 'select',
+                                    'options' => [],
+                                    'value' => $weaver->addresses->first()->idDistrict,
+                                    'placeholder' => 'Enter your district',
+                                    'is_required' => 'true',
+                                ],
                                 [
                                     'name' => 'name',
                                     'id' => 'inputName',
@@ -104,26 +138,8 @@
                                     'id' => 'inputDateOfBirth',
                                     'label' => 'Date of Birth',
                                     'type' => 'date',
-                                    'value' => $weaver->date_of_birth,
+                                    'value' => $weaver->date_of_birth->format('Y-m-d'),
                                     'placeholder' => 'Enter your weaver date of birth',
-                                    'is_required' => 'true',
-                                ],
-                                [
-                                    'name' => 'province',
-                                    'id' => 'inputProvince',
-                                    'label' => 'Province',
-                                    'type' => 'text',
-                                    'value' => $weaver->addresses[0]->province,
-                                    'placeholder' => 'Enter your weaver province',
-                                    'is_required' => 'true',
-                                ],
-                                [
-                                    'name' => 'city',
-                                    'id' => 'inputCity',
-                                    'label' => 'City',
-                                    'type' => 'text',
-                                    'value' => $weaver->addresses[0]->city,
-                                    'placeholder' => 'Enter your weaver city',
                                     'is_required' => 'true',
                                 ],
                                 [
@@ -131,14 +147,17 @@
                                     'id' => 'inputAddress',
                                     'label' => 'Address',
                                     'type' => 'text',
-                                    'value' => $weaver->addresses[0]->address,
-                                    'placeholder' => 'Enter your weaver address',
+                                    'value' => $weaver->addresses->first()->address,
+                                    'placeholder' => 'Enter your address',
                                     'is_required' => 'true',
                                 ],
                             ]" route="admin.dashboard.weavers.update"
-                                :idRoute="$weaver" title="Edit Weaver" :idModal="$loop->iteration"></x-dashboard.edit-modal>
+                                :data="$weaver->addresses->first()" :idRoute="$weaver" title="Edit Weaver"
+                                :idModal="$loop->iteration"></x-dashboard.edit-modal>
                         </div>
                     </td>
+
+
                 </tr>
             @empty
                 <tr>

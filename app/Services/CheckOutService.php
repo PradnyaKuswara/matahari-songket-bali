@@ -86,7 +86,7 @@ class CheckOutService
             $data['quantity'] = $user->carts->sum(function ($cart) {
                 return $cart->pivot->quantity;
             });
-            $data['shipping_price'] = $data['quantity'] * 10000;
+            $data['shipping_price'] = $data['shipping_cost'];
             $data['tax'] = round($data['item_total_price'] * 0.1);
             $data['total_price'] = $data['item_total_price'] + $data['shipping_price'] + $data['tax'];
 
@@ -146,13 +146,15 @@ class CheckOutService
                 'order_id' => $order->id,
                 'user_id' => $order->user_id,
                 'name' => 'Shipping '.$order->generate_id,
+                'courier_code' => $data['shipping_code'],
+                'courier' => $data['shipping_method'],
                 'address' => $user->addresses->first()->address,
                 'city' => $user->addresses->first()->city,
                 'province' => $user->addresses->first()->province,
                 'country' => $user->addresses->first()->country,
                 'postal_code' => $user->addresses->first()->postal_code,
                 'additional_information' => $user->addresses->first()->additional_information,
-                'phone_number' => $user->phone_number,
+                'phone_number' => $user->addresses->first()->phone_number,
                 'status' => 'pending',
             ];
 

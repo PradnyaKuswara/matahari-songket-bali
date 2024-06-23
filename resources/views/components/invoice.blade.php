@@ -13,7 +13,7 @@
             @endif
 
             @if ($order->transaction->status == 'settlement')
-                <div class="badge badge-success badge-outline">Settlement</div>
+                <div class="badge badge-success badge-outline">Paid</div>
             @endif
 
             @if ($order->transaction->status == 'failed')
@@ -61,7 +61,8 @@
                     {{ $order->user->email }}</div>
                 @foreach ($order->user->addresses->where('is_active') as $address)
                     <div>{{ $address->address }}</div>
-                    <div>{{ $address->city }} {{ $address->postal_code }}</div>
+                    <div>{{ $address->village }} {{ $address->subdistrict }}</div>
+                    <div>{{ $address->city }} <span class="font-sans"> {{ $address->postal_code }}</span></div>
                     <div>{{ $address->province }}</div>
                 @endforeach
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\HomeController;
@@ -61,12 +62,18 @@ Route::controller(CheckOutController::class)->prefix('checkout')->name('checkout
     Route::get('/', 'index')->name('index');
     Route::post('/store', 'store')->name('store');
     Route::post('/check-stock', 'checkStock')->name('checkStock');
+    Route::get('/check-ongkir', 'ongkirCheck')->name('ongkirCheck');
 
     Route::prefix('payment')->group(function () {
         Route::get('/{order}', 'showPayment')->name('showPayment');
         Route::get('/status/success', 'successView')->name('successView');
         Route::patch('/update/status', 'updateCheckout')->name('updateCheckout');
     });
+});
+
+Route::controller(AddressController::class)->prefix('address')->name('address.')->middleware('auth')->group(function () {
+    Route::get('/get-cities', 'getCities')->name('get-cities');
+    Route::get('/get-subdistricts', 'getSubdistricts')->name('get-subdistricts');
 });
 
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {

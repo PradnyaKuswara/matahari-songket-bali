@@ -31,10 +31,10 @@
                     <div
                         class="py-3 grid grid-cols-2 place-content-center sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">
-                            Country
+                            Phone Number
                         </dt>
                         <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            {{ $address->country }}
+                            {{ $address->phone_number }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -51,6 +51,14 @@
                         </dt>
                         <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             {{ $address->city }}
+                        </dd>
+                    </div>
+                    <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">
+                            District
+                        </dt>
+                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            {{ $address->subdistrict }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -90,35 +98,38 @@
 
                                         <x-dashboard.edit-modal :elements="[
                                             [
-                                                'name' => 'country',
-                                                'id' => 'inputCountry',
-                                                'label' => 'Country',
-                                                'type' => 'text',
-                                                'value' => $address->country,
-                                                'placeholder' => 'Enter your country',
-                                                'is_required' => 'true',
-                                            ],
-                                            [
-                                                'name' => 'province',
-                                                'id' => 'inputProvince',
+                                                'name' => 'provinceSelect',
+                                                'id' => 'inputProvinceSelectEdit',
                                                 'label' => 'Province',
-                                                'type' => 'text',
-                                                'value' => $address->province,
+                                                'type' => 'select',
+                                                'options' => $provinces,
+                                                'value' => $address->idProvince,
                                                 'placeholder' => 'Enter your province',
                                                 'is_required' => 'true',
                                             ],
                                             [
-                                                'name' => 'city',
-                                                'id' => 'inputCity',
+                                                'name' => 'citySelect',
+                                                'id' => 'inputCitySelectEdit',
                                                 'label' => 'City',
-                                                'type' => 'text',
-                                                'value' => $address->city,
+                                                'type' => 'select',
+                                                'options' => [],
+                                                'value' => $address->idCity,
                                                 'placeholder' => 'Enter your city',
                                                 'is_required' => 'true',
                                             ],
                                             [
+                                                'name' => 'subdistrictSelect',
+                                                'id' => 'inputSubdistrictSelectEdit',
+                                                'label' => 'District',
+                                                'type' => 'select',
+                                                'options' => [],
+                                                'value' => $address->idSubdistrict,
+                                                'placeholder' => 'Enter your district',
+                                                'is_required' => 'true',
+                                            ],
+                                            [
                                                 'name' => 'postal_code',
-                                                'id' => 'inputPostalCode',
+                                                'id' => 'inputPostalCodeEdit',
                                                 'label' => 'Postal Code',
                                                 'type' => 'text',
                                                 'value' => $address->postal_code,
@@ -143,8 +154,17 @@
                                                 'placeholder' => 'Enter your additional information',
                                                 'is_required' => 'true',
                                             ],
+                                            [
+                                                'name' => 'phone_number',
+                                                'id' => 'inputPhoneNumber',
+                                                'label' => 'Phone Number',
+                                                'type' => 'text',
+                                                'value' => $address->phone_number,
+                                                'placeholder' => 'Enter your phone number',
+                                                'is_required' => 'true',
+                                            ],
                                         ]"
-                                            route="customer.dashboard.address.update" :idRoute="$address"
+                                            route="customer.dashboard.address.update" :idRoute="$address" :data="$address"
                                             title="Edit Address User" :idModal="$loop->iteration"></x-dashboard.edit-modal>
                                     </div>
 
@@ -154,8 +174,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <div x-data="modal">
-                                                <button type="button"
-                                                    class="btn btn-error btn-sm text-white"
+                                                <button type="button" class="btn btn-error btn-sm text-white"
                                                     @click="toggle">Delete address</button>
                                                 <x-dashboard.confirm-modal-action :modalId="$address->created_at" title="Status"
                                                     description="Are you sure delete this data?"></x-dashboard.confirm-modal-action>

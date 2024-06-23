@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\AddressInterface;
+use Illuminate\Support\Arr;
 
 class AddressService
 {
@@ -24,11 +25,24 @@ class AddressService
             $data['is_active'] = true;
         }
 
+        //array only
+        $data['idProvince'] = $data['provinceSelect'];
+        $data['idCity'] = $data['citySelect'];
+        $data['idSubdistrict'] = $data['subdistrictSelect'];
+
+        $data = Arr::only($data, ['is_active', 'idProvince', 'idCity', 'idSubdistrict', 'city', 'province', 'subdistrict', 'postal_code', 'address', 'additional_information', 'phone_number']);
+
         return $this->addressInterface->create($data, $user);
     }
 
     public function update(array $data, $address)
     {
+        $data['idProvince'] = $data['provinceSelect'];
+        $data['idCity'] = $data['citySelect'];
+        $data['idSubdistrict'] = $data['subdistrictSelect'];
+
+        $data = Arr::only($data, ['idProvince', 'idCity', 'idSubdistrict', 'city', 'province', 'subdistrict', 'postal_code', 'address', 'additional_information', 'phone_number']);
+
         return $this->addressInterface->update($data, $address);
     }
 

@@ -23,6 +23,9 @@ class CheckOutRequest extends FormRequest
     {
         return [
             'user_id' => ['nullable', 'string'],
+            'shipping_method' => ['required', 'string'],
+            'shipping_cost' => ['required', 'numeric'],
+            'shipping_code' => ['required', 'string'],
         ];
     }
 }

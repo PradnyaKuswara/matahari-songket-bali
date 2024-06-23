@@ -48,5 +48,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::controller(CustomerController::class)->group(function () {
         Route::get('/tracking-order', 'trackingOrder')->name('trackingOrder');
+        Route::get('/result-tracking-order', 'resultTrackingOrder')->name('resultTrackingOrder');
     });
 });

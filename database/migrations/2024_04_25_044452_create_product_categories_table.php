@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid();
 
             $table->string('name')->unique();
+            $table->text('image')->nullable();
 
             $table->timestamps();
         });

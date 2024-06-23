@@ -96,43 +96,34 @@
         </div>
     </section>
 
-    <section id="our-categories" class=" lg:max-w-screen-lg mx-auto py-24">
-        <div class="flex flex-col md:gap-16 gap-10 " x-data="{ intersect: false }" x-intersect:enter="intersect=true"
+    <section id="our-categories" class=" lg:max-w-screen-lg mx-auto py-24 lg:mt-10">
+        <div class="flex flex-col md:gap-10 gap-10 " x-data="{ intersect: false }" x-intersect:enter="intersect=true"
             x-intersect:leave="intersect=false">
             <div class="flex flex-col md:flex-row justify-center px-4 lg:px-0">
                 <h1 class="text-4xl font-bold ms-4 lg:ms-0">Our Categories</h1>
             </div>
 
             <div class="hidden lg:grid place-items-center md:grid-cols-3 gap-4">
-                <img src="{{ asset('assets/images/category-1.jpg') }}"
-                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
-                <img src="{{ asset('assets/images/category-2.jpg') }}"
-                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-0 ":class="intersect ? 'animate-fade-down animate-duration-[2000ms]':'opacity-0'" />
-                <img src="{{ asset('assets/images/category-3.jpg') }}"
-                    class="w-9/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-45  ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
+                @forelse ($productCategories as $productCategory)
+                    <img src="{{ $productCategory->image ? $productCategory->image() : '' }}"
+                        class="w-9/12 md:w-full rounded-lg shadow-2xl {{ $loop->iteration % 2 == 0 ? 'md:mt-0' : 'md:mt-40' }} ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
+                @empty
+                    <div class="text-center">No data available</div>
+                @endforelse
             </div>
 
             <div class="lg:hidden flex flex-col justify-center items-center mx-auto md:flex-row gap-4 max-w-xs">
-                <div class="mx-auto flex items-center gap-4"
-                    :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
-                    <img src="{{ asset('assets/images/category-1.jpg') }}"
-                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-12 " />
-                    <h1 class="text-primary font-bold">Kain Songket</h1>
-                </div>
 
-                <div class="flex flex-row-reverse gap-4 items-center justify-end"
-                    :class="intersect ? 'animate-fade-down animate-duration-[2000ms]' : 'opacity-0'">
-                    <img src="{{ asset('assets/images/category-2.jpg') }}"
-                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-0 -rotate-12 " />
-                    <h1 class="text-primary font-bold">Slendang Songket</h1>
-                </div>
-
-                <div class="mx-auto flex items-center gap-4"
-                    :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
-                    <img src="{{ asset('assets/images/category-3.jpg') }}"
-                        class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40 rotate-12  " />
-                    <h1 class="text-primary font-bold">Udeng Songket</h1>
-                </div>
+                @forelse ($productCategories as $productCategory)
+                    <div class=" {{ $loop->iteration % 2 == 0 ? 'flex flex-row-reverse gap-4 items-center justify-end' : ' mx-auto flex items-center gap-4' }}"
+                        :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
+                        <img src="{{ $productCategory->image ? $productCategory->image() : '' }}"
+                            class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40  {{ $loop->iteration % 2 == 0 ? 'md:mt-0 -rotate-12' : 'md:mt-40 rotate-12' }} " />
+                        <h1 class="text-primary font-bold">Kain Songket</h1>
+                    </div>
+                @empty
+                    <div class="text-center">No data available</div>
+                @endforelse
             </div>
 
             <div class="text-base flex justify-center text-center px-10 font-bold ">

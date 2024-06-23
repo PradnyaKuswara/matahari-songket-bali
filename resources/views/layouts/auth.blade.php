@@ -81,9 +81,7 @@
 
 <body class=" lg:h-screen w-screen flex justify-center items-center">
     <x-toaster-hub /> <!-- 👈 -->
-    <div class="2xl:w-1/2 xl:w-7/12 lg:w-10/12 md:w-10/12 w-full">
-        @yield('content')
-    </div>
+    @yield('content')
 
     @stack('scripts')
 </body>

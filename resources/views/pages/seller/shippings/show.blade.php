@@ -28,25 +28,6 @@
                     @click="toggle()">Delivery Product</label>
                 <x-dashboard.edit-modal :elements="[
                     [
-                        'name' => 'courier',
-                        'id' => 'inputCourier',
-                        'label' => 'Courier',
-                        'type' => 'select',
-                        'value' => '',
-                        'options' => [
-                            [
-                                'id' => 'JNE',
-                                'name' => 'JNE',
-                            ],
-                            [
-                                'id' => 'JNT',
-                                'name' => 'JNT',
-                            ],
-                        ],
-                        'placeholder' => 'Select your courier',
-                        'is_required' => 'true',
-                    ],
-                    [
                         'name' => 'tracking_number',
                         'id' => 'inputTrackingNumber',
                         'label' => 'Tracking Number',

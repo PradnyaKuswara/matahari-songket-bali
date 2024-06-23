@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="card bg-base-100 shadow-xl md:w-10/12 mx-auto">
+    <div class="card bg-base-100 lg:w-6/12 w-full shadow-xl">
         <div class="card-body">
             <div class="px-6 py-8">
                 <a href="{{ route('index') }}" class="flex justify-center mb-8">

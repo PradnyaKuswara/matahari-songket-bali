@@ -63,9 +63,19 @@
                     class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 lg:gap-x-6 gap-y-10 animate-fade-down">
                     @include('pages.product-data')
                 </div>
-                <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10 mt-10">
-                    <button id="load-more" @click="loadMore()" class="btn btn-primary btn-outline">Load More</button>
-                </div>
+                @if ($products->isEmpty())
+                    <div class="flex justify-center align-items-center col-span-4">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold text-center">No Product Found</h3>
+                        </div>
+                    </div>
+                @endif
+
+                @if ($products->hasMorePages())
+                    <div class="flex flex-col item-center justify-center mx-auto w-52 mb-10 mt-10">
+                        <button id="load-more" @click="loadMore()" class="btn btn-primary btn-outline">Load More</button>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -97,6 +107,7 @@
                     this.card = true;
                     this.isActive = 'all';
                 },
+                products: @json($products),
                 loading: false,
                 card: false,
                 page: 1,
@@ -141,6 +152,10 @@
                         $('#product-list').append(data.html);
                         this.loading = false;
                         this.card = true;
+
+                        if (this.page >= this.products.last_page) {
+                            $('#load-more').hide();
+                        }
                     }).fail((jqXHR, ajaxOptions, thrownError) => {
                         alert('server not responding...');
                     });

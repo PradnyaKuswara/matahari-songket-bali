@@ -17,12 +17,17 @@ class Address extends Model implements AuditableContract
     protected $fillable = [
         'user_id',
         'address',
+        'idCity',
         'city',
+        'idProvince',
         'province',
+        'idSubdistrict',
+        'subdistrict',
         'country',
         'postal_code',
         'additional_information',
         'is_active',
+        'phone_number',
     ];
 
     public function user(): BelongsTo

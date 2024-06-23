@@ -73,11 +73,13 @@
                                 name="{{ $element['name'] }}">
                                 <option value="{{ old($element['name']) }}" selected disabled>{{ $element['label'] }}
                                 </option>
-                                @foreach ($element['options'] as $option)
+                                @forelse ($element['options'] as $option)
                                     <option value="{{ $option['id'] }}"
                                         {{ $option['id'] == old($element['name']) ? 'selected' : '' }}>
                                         {{ $option['name'] }}</option>
-                                @endforeach
+                                @empty
+                                    <option value="" disabled>No data available</option>
+                                @endforelse
                             </select>
                             @error($element['name'])
                                 <p class="mt-2 text-danger text-xs">{{ $message }}</p>
@@ -239,6 +241,174 @@
             const maxlength = inputPhoneNumber.getAttribute('maxlength')
 
             maxInputValue(inputPhoneNumber, maxlength)
+        </script>
+    @endif
+
+    @if (array_search('provinceSelect', array_column($elements, 'name')) ||
+            array_search('citySelect', array_column($elements, 'name')))
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const inputProvinceSelect = document.getElementById('inputProvinceSelect');
+                const inputCitySelect = document.getElementById('inputCitySelect');
+                const inputSubdistrictSelect = document.getElementById('inputSubdistrictSelect');
+                const inputPostalCode = document.getElementById('inputPostalCode');
+                const loadingAddress = document.getElementById('loading-address');
+
+                inputCitySelect.disabled = true;
+                inputSubdistrictSelect.disabled = true;
+
+                const form = document.getElementById('form-create')
+                const inputProvinceHide = document.createElement('input');
+                const inputCityHide = document.createElement('input');
+                const inputDistrictHide = document.createElement('input');
+                const apiKey = '{{ config('shipping.api_key') }}';
+
+                inputProvinceHide.name = 'province';
+                inputProvinceHide.type = 'text';
+                inputProvinceHide.classList.add('form-input');
+                inputProvinceHide.style.display = 'none';
+                inputCityHide.name = 'city';
+                inputCityHide.type = 'text';
+                inputCityHide.classList.add('form-input');
+                inputCityHide.style.display = 'none';
+                inputDistrictHide.name = 'subdistrict';
+                inputDistrictHide.type = 'text';
+                inputDistrictHide.classList.add('form-input');
+                inputDistrictHide.style.display = 'none';
+
+                form.appendChild(inputProvinceHide);
+                form.appendChild(inputCityHide);
+                form.appendChild(inputDistrictHide);
+
+                const oldProvince = '{{ old('provinceSelect') }}';
+                const oldCity = '{{ old('citySelect') }}';
+                const oldDistrict = '{{ old('subdistrictSelect') }}';
+
+                function loadCities(provinceId, callback) {
+                    const endpointCity = `{{ route('address.get-cities') }}`;
+                    $.ajax({
+                        url: endpointCity,
+                        type: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            province_id: provinceId,
+                        },
+                        beforeSend: function() {
+                            loadingAddress.style.display = 'flex';
+                        },
+                    }).done(function(response) {
+                        callback(response.value);
+                        loadingAddress.style.display = 'none';
+                    }).fail(function() {
+                        loadingAddress.style.display = 'none';
+                        alert('Failed to load data');
+
+                    });
+                }
+
+                function loadSubdistricts(cityId, callback) {
+                    const endpointDistrict = `{{ route('address.get-subdistricts') }}`;
+                    $.ajax({
+                        url: endpointDistrict,
+                        type: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            city_id: cityId,
+                        },
+                        beforeSend: function() {
+                            loadingAddress.style.display = 'flex';
+                        },
+                    }).done(function(response) {
+                        callback(response.value);
+                        loadingAddress.style.display = 'none';
+                    }).fail(function() {
+                        loadingAddress.style.display = 'none';
+                        alert('Failed to load data');
+                    });
+                }
+
+                if (oldProvince) {
+                    inputProvinceHide.value = inputProvinceSelect.options[inputProvinceSelect.selectedIndex].text;
+                    loadCities(oldProvince, function(cities) {
+                        inputCitySelect.innerHTML =
+                            '<option value="" selected disabled>Select your city</option>';
+                        cities.forEach(city => {
+                            inputCitySelect.innerHTML +=
+                                `<option value="${city.id}" data-postalcode="${city.postal_code}">${city.name}</option>`;
+                        });
+                        inputCitySelect.value = oldCity;
+                        inputCityHide.value = inputCitySelect.options[inputCitySelect.selectedIndex].text;
+                        inputCitySelect.disabled = false;
+                    });
+                }
+
+                if (oldCity) {
+                    loadSubdistricts(oldCity, function(subdistricts) {
+                        inputSubdistrictSelect.innerHTML =
+                            '<option value="" selected disabled>Select your district</option>';
+                        subdistricts.forEach(district => {
+                            inputSubdistrictSelect.innerHTML +=
+                                `<option value="${district.id}">${district.name}</option>`;
+                        });
+                        inputSubdistrictSelect.value = oldDistrict;
+                        inputDistrictHide.value = inputSubdistrictSelect.options[inputSubdistrictSelect
+                            .selectedIndex].text;
+                        inputSubdistrictSelect.disabled = false;
+                    });
+                }
+
+                inputProvinceSelect.addEventListener('change', function() {
+                    const provinceId = inputProvinceSelect.value;
+                    inputProvinceHide.value = inputProvinceSelect.options[inputProvinceSelect.selectedIndex]
+                        .text;
+                    loadCities(provinceId, function(cities) {
+                        inputCitySelect.innerHTML =
+                            '<option value="" selected disabled>Select your city</option>';
+                        cities.forEach(city => {
+                            inputCitySelect.innerHTML +=
+                                `<option value="${city.id}" data-postalcode="${city.postal_code}">${city.name}</option>`;
+                        });
+                        inputCitySelect.disabled = false;
+                        inputSubdistrictSelect.disabled = true;
+                        inputSubdistrictSelect.innerHTML =
+                            '<option value="" selected disabled>District</option>';
+                    });
+                });
+
+                inputCitySelect.addEventListener('change', function() {
+                    const cityId = inputCitySelect.value;
+                    inputCityHide.value = inputCitySelect.options[inputCitySelect.selectedIndex].text;
+
+                    if (inputPostalCode !== null) {
+                        inputPostalCode.value = inputCitySelect.options[inputCitySelect.selectedIndex]
+                            .getAttribute(
+                                'data-postalcode');
+                    }
+
+                    loadSubdistricts(cityId, function(subdistricts) {
+                        inputSubdistrictSelect.innerHTML =
+                            '<option value="" selected disabled>Select your district</option>';
+                        subdistricts.forEach(district => {
+                            inputSubdistrictSelect.innerHTML +=
+                                `<option value="${district.id}">${district.name}</option>`;
+                        });
+                        inputSubdistrictSelect.disabled = false;
+                    });
+                });
+
+                inputSubdistrictSelect.addEventListener('change', function() {
+                    const subdistrictId = inputSubdistrictSelect.value;
+                    inputDistrictHide.value = inputSubdistrictSelect.options[inputSubdistrictSelect
+                        .selectedIndex].text;
+                });
+            });
         </script>
     @endif
 @endpush

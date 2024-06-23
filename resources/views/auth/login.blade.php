@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="card lg:card-side bg-base-100 shadow-xl">
+    <div class="card lg:card-side bg-base-100 lg:w-6/12 w-full shadow-xl">
         <div class="card-body">
             <div class="px-6 py-8">
                 <a href="{{ route('index') }}" class="flex justify-center mb-8">
@@ -50,7 +50,7 @@
                         </label>
                     </div>
 
-                     <div class="col-span-2 flex flex-col gap-4 mb-4">
+                    <div class="col-span-2 flex flex-col gap-4 mb-4">
                         <!-- Google Recaptcha -->
                         <div class="g-recaptcha" data-sitekey={{ config('recaptcha.google_recaptcha_key') }}></div>
                         @error('g-recaptcha-response')
@@ -65,7 +65,8 @@
 
                 <div class="flex mb-3">
                     <div class="flex-1">
-                        <p class="text-xs">Don't Have a Acoount? <a href="{{ route('register') }}" class="text-primary">Sign
+                        <p class="text-xs">Don't Have a Acoount? <a href="{{ route('register') }}"
+                                class="text-primary">Sign
                                 Up!</a></p>
                     </div>
                 </div>

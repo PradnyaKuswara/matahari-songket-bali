@@ -41,7 +41,7 @@ class ProductCategoryController extends Controller
 
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory): RedirectResponse
     {
-        $this->productCategoryService->update($request->validated(), $productCategory);
+        $this->productCategoryService->update($request, $request->validated(), $productCategory);
 
         Toaster::success('Product category updated successfully');
 

@@ -4,6 +4,10 @@
     Management Product Category
 @endsection
 
+@push('css')
+    <script src="{{ asset('assets/js/preview.js') }}"></script>
+@endpush
+
 @section('content')
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
@@ -31,6 +35,17 @@
                                     'type' => 'text',
                                     'placeholder' => 'Enter your product name',
                                     'is_required' => 'true',
+                                ],
+                                [
+                                    'name' => 'image',
+                                    'id' => 'inputImageCreate1',
+                                    'idPreview' => 'preview-container-create-1',
+                                    'idPreviewImage' => 'preview-image-create-1',
+                                    'label' => 'Image (recomedation ratio 1920x1080)',
+                                    'type' => 'file',
+                                    'placeholder' => 'Choose your product category image ',
+                                    'is_required' => 'true',
+                                    'accept' => '.jpg, .jpeg, .png',
                                 ],
                             ]" route="admin.dashboard.products.categories.store"
                                 title="Create Product Category"></x-dashboard.create-modal>

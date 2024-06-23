@@ -6,6 +6,12 @@
 @endsection
 
 @section('content')
+    <div style="display: none;" id="loading-address"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[9999999999] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="w-1/3 text-center text-white">This may take a few seconds</p>
+    </div>
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -28,35 +34,30 @@
 
                         <x-dashboard.create-modal :elements="[
                             [
-                                'name' => 'country',
-                                'id' => 'inputCountry',
-                                'label' => 'Country',
-                                'type' => 'text',
-                                'placeholder' => 'Enter your country',
-                                'is_required' => 'true',
-                            ],
-                            [
-                                'name' => 'province',
-                                'id' => 'inputProvince',
+                                'name' => 'provinceSelect',
+                                'id' => 'inputProvinceSelect',
                                 'label' => 'Province',
-                                'type' => 'text',
+                                'type' => 'select',
+                                'options' => $provinces,
                                 'placeholder' => 'Enter your province',
                                 'is_required' => 'true',
                             ],
                             [
-                                'name' => 'city',
-                                'id' => 'inputCity',
+                                'name' => 'citySelect',
+                                'id' => 'inputCitySelect',
                                 'label' => 'City',
-                                'type' => 'text',
+                                'type' => 'select',
+                                'options' => [],
                                 'placeholder' => 'Enter your city',
                                 'is_required' => 'true',
                             ],
                             [
-                                'name' => 'postal_code',
-                                'id' => 'inputPostalCode',
-                                'label' => 'Postal Code',
-                                'type' => 'text',
-                                'placeholder' => 'Enter your postal code',
+                                'name' => 'subdistrictSelect',
+                                'id' => 'inputSubdistrictSelect',
+                                'label' => 'District',
+                                'type' => 'select',
+                                'options' => [],
+                                'placeholder' => 'Enter your district',
                                 'is_required' => 'true',
                             ],
                             [
@@ -68,11 +69,27 @@
                                 'is_required' => 'true',
                             ],
                             [
+                                'name' => 'postal_code',
+                                'id' => 'inputPostalCode',
+                                'label' => 'Postal Code',
+                                'type' => 'number',
+                                'placeholder' => 'Enter your postal code',
+                                'is_required' => 'true',
+                            ],
+                            [
                                 'name' => 'additional_information',
                                 'id' => 'inputAdditionalInformation',
                                 'label' => 'Additional Information',
                                 'type' => 'text',
                                 'placeholder' => 'Enter your additional information',
+                                'is_required' => 'true',
+                            ],
+                            [
+                                'name' => 'phone_number',
+                                'id' => 'inputPhone',
+                                'label' => 'Phone Number (08)',
+                                'type' => 'text',
+                                'placeholder' => 'Enter your weaver phone',
                                 'is_required' => 'true',
                             ],
                         ]" route="customer.dashboard.address.store"

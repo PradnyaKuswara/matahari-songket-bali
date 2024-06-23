@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Interfaces\ProductCategoryInterface;
+use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Storage;
 
 class ProductCategoryService
 {
@@ -20,11 +22,24 @@ class ProductCategoryService
 
     public function firstOrCreate(array $data)
     {
+        if (isset($data['image'])) {
+            $imagePath = $data['image']->store(ProductCategory::IMAGE_PATH);
+            $data['image'] = $imagePath;
+        }
+
         return $this->productCategoryInterface->firstOrCreate($data);
     }
 
-    public function update(array $data, $productCategory)
+    public function update($request, array $data, $productCategory)
     {
+        if ($request->hasFile('image')) {
+            Storage::delete($productCategory->image);
+            $imagePath = $data['image']->store(ProductCategory::IMAGE_PATH);
+            $data['image'] = $imagePath;
+        } else {
+            $data['image'] = $productCategory->image;
+        }
+
         return $this->productCategoryInterface->update($data, $productCategory);
     }
 

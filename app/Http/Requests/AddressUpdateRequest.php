@@ -22,12 +22,16 @@ class AddressUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'provinceSelect' => ['required', 'string', 'max:255'],
+            'citySelect' => ['required', 'string', 'max:255'],
+            'subdistrictSelect' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'province' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
+            'subdistrict' => ['required', 'string', 'max:255'],
             'postal_code' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'additional_information' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:255'],
         ];
     }
 }

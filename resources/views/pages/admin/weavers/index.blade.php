@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+    <div style="display: none;" id="loading-address"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[9999999999] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="w-1/3 text-center text-white">This may take a few seconds</p>
+    </div>
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -14,6 +20,16 @@
                 <span>Index</span>
             </li>
         </ul>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="mt-5">
             <div class="panel">
@@ -66,19 +82,30 @@
                                 'is_required' => 'true',
                             ],
                             [
-                                'name' => 'province',
-                                'id' => 'inputProvince',
+                                'name' => 'provinceSelect',
+                                'id' => 'inputProvinceSelect',
                                 'label' => 'Province',
-                                'type' => 'text',
-                                'placeholder' => 'Enter your weaver province',
+                                'type' => 'select',
+                                'options' => $provinces,
+                                'placeholder' => 'Enter your province',
                                 'is_required' => 'true',
                             ],
                             [
-                                'name' => 'city',
-                                'id' => 'inputCity',
+                                'name' => 'citySelect',
+                                'id' => 'inputCitySelect',
                                 'label' => 'City',
-                                'type' => 'text',
-                                'placeholder' => 'Enter your weaver city',
+                                'type' => 'select',
+                                'options' => [],
+                                'placeholder' => 'Enter your city',
+                                'is_required' => 'true',
+                            ],
+                            [
+                                'name' => 'subdistrictSelect',
+                                'id' => 'inputSubdistrictSelect',
+                                'label' => 'District',
+                                'type' => 'select',
+                                'options' => [],
+                                'placeholder' => 'Enter your district',
                                 'is_required' => 'true',
                             ],
                             [

@@ -41,7 +41,13 @@ class AddressRepository implements AddressInterface
 
     public function delete($address)
     {
-        return $address->delete();
+        $address->delete();
+
+        $lastAddress = $address->user->addresses()->latest()->first();
+
+        if ($lastAddress) {
+            $lastAddress->update(['is_active' => true]);
+        }
     }
 
     public function find($address)

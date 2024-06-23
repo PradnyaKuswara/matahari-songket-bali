@@ -51,10 +51,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $weaver->addresses()->create([
-            'city' => 'Bandung',
-            'province' => 'Jawa Barat',
-            'address' => 'Jl. Raya Bandung',
-            'postal_code' => '40291',
+            'idProvince' => '1',
+            'idCity' => '447',
+            'idSubdistrict' => '6180',
+            'city' => 'Tabanan',
+            'province' => 'Bali',
+            'subdistrict' => 'Kediri',
+            'address' => 'Jl. Raya Rama',
+            'postal_code' => '82119',
             'additional_information' => 'Rumah warna biru',
         ]);
     }

@@ -17,7 +17,7 @@ class ProductCategoryRepository implements ProductCategoryInterface
 
     public function all()
     {
-        return ProductCategory::all();
+        return ProductCategory::query();
     }
 
     public function firstOrCreate(array $data)

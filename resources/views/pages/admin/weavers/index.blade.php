@@ -21,16 +21,6 @@
             </li>
         </ul>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="mt-5">
             <div class="panel">
                 <div class="flex flex-col lg:flex-row justify-between items-center gap-4">

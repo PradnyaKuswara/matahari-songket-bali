@@ -151,6 +151,7 @@ class CheckOutService
                 'address' => $user->addresses->first()->address,
                 'city' => $user->addresses->first()->city,
                 'province' => $user->addresses->first()->province,
+                'subdistrict' => $user->addresses->first()->subdistrict,
                 'country' => $user->addresses->first()->country,
                 'postal_code' => $user->addresses->first()->postal_code,
                 'additional_information' => $user->addresses->first()->additional_information,

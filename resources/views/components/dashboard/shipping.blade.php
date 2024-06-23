@@ -19,7 +19,8 @@
         @if ($shipping->status == 'delivered')
             <div class="badge badge-success badge-outline">Delivered</div>
         @endif
-        <p class="text-gray-500 text-sm"><b>Courier:</b> {{ $shipping->courier ?? '-' }}</p>
+        <p class="text-gray-500 text-sm"><b>Courier:</b> {{ $shipping->courier_code ?? '-' }}</p>
+        <p class="text-gray-500 text-sm"><b>Service:</b> {{ $shipping->courier ?? '-' }}</p>
         <p class="text-gray-500 text-sm"><b>Number:</b> {{ $shipping->tracking_number ?? '-' }}</p>
         <p class="text-gray-500 text-sm"><b>Shipped at: </b>
             {{ $shipping->shipped_at ? $shipping->shipped_at->format('d F Y') : '-' }}</p>
@@ -29,13 +30,8 @@
         @if (auth()->user()->isCustomer())
             <div class="card-actions justify-center mt-4 gap-4">
                 <div class="w-full flex gap-4">
-                    <a href="{{ route('customer.dashboard.shipping.show', $shipping) }}" class="btn btn-primary">Detail
+                    <a href="{{ route('customer.dashboard.shipping.show', $shipping) }}" class="btn btn-primary w-full">Detail
                         Shipping</a>
-
-                    @if ($shipping->tracking_link && $shipping->status == 'shipping')
-                        <a href="{{ route('customer.dashboard.trackingOrder') }}" class="btn btn-accent btn-outline"
-                            target="__blank">Tracking</a>
-                    @endif
                 </div>
                 @if ($shipping->status == 'shipping')
                     <div class="w-full" x-data="modal">

@@ -23,6 +23,7 @@ class Shipping extends Model implements AuditableContract
         'address',
         'city',
         'province',
+        'subdistrict',
         'country',
         'postal_code',
         'additional_information',

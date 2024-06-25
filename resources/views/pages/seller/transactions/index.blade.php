@@ -39,14 +39,12 @@
             @csrf
             <div class="grid md:grid-cols-5 lg:grid-cols-8 gap-4 mt-4">
                 <div class="md:col-span-5 lg:col-span-6">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                        <template x-for="(product, index) in products" :key="index">
-                            <div class="border-blue-600 rounded-2xl border  max-w-sm  bg-white dark:bg-black"
-                                style="box-shadow: rgba(45, 50, 130, 0.15) 0px 12px 16px -4px, rgba(45, 50, 130, 0.15) 0px 4px 6px -2px;">
-                                <div class="pt-6 px-4">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+                        <template x-for="(product, index) in paginatedProducts" :key="index">
+                            <div class="border-blue-600 rounded-2xl border bg-white dark:bg-black shadow-md">
+                                <div class="pt-4 px-3 md:pt-6 md:px-4">
                                     <div class="flex items-center gap-2">
-                                        <h2 class="text-xl font-semibold" x-text="product.name"></h2>
-                                        {{-- //button add --}}
+                                        <h2 class="text-lg font-semibold md:text-xl" x-text="product.name"></h2>
                                         <div class="flex-grow"></div>
                                         <button type="button"
                                             class="btn btn-sm btn-outline btn-accent flex items-center gap-1"
@@ -55,53 +53,55 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="px-6 pt-3 pb-8">
+                                <div class="px-4 pt-2 pb-6 md:px-6 md:pt-3 md:pb-8">
                                     <h3 class="text-sm font-medium" x-text="formatRupiah(product.sell_price)"></h3>
-                                    <ul role="list" class="mt-4 space-y-4">
-                                        <li class="flex space-x-3">
-                                            <div class="flex justify-center items-center rounded-full bg-green-100 h-5 w-5">
+                                    <ul role="list" class="mt-3 space-y-3 md:mt-4 md:space-y-4">
+                                        <li class="flex space-x-2 md:space-x-3">
+                                            <div
+                                                class="flex justify-center items-center rounded-full bg-green-100 h-4 w-4 md:h-5 md:w-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" aria-hidden="true"
-                                                    class="h-3 w-3 flex-shrink-0 text-green-500">
+                                                    class="h-2 w-2 md:h-3 md:w-3 flex-shrink-0 text-green-500">
                                                     <path fill-rule="evenodd"
                                                         d="M20.707 5.293a1 1 0 010 1.414l-11 11a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 15.586 19.293 5.293a1 1 0 011.414 0z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <span class="text-sm" x-text="`${product.stock} stock`"></span>
+                                            <span class="text-xs md:text-sm" x-text="`${product.stock} stock`"></span>
                                         </li>
-                                        <li class="flex space-x-3">
-                                            <div class="flex justify-center items-center rounded-full bg-green-100 h-5 w-5">
+                                        <li class="flex space-x-2 md:space-x-3">
+                                            <div
+                                                class="flex justify-center items-center rounded-full bg-green-100 h-4 w-4 md:h-5 md:w-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" aria-hidden="true"
-                                                    class="h-3 w-3 flex-shrink-0 text-green-500">
+                                                    class="h-2 w-2 md:h-3 md:w-3 flex-shrink-0 text-green-500">
                                                     <path fill-rule="evenodd"
                                                         d="M20.707 5.293a1 1 0 010 1.414l-11 11a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L9 15.586 19.293 5.293a1 1 0 011.414 0z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            <span class="text-sm" x-text="product.product_category.name"></span>
+                                            <span class="text-xs md:text-sm" x-text="product.product_category.name"></span>
                                         </li>
                                     </ul>
-
-                                    <div class="flex flex-col md:flex-row lg:items-center lg:justify-between gap-2 mt-4">
-                                        <label for="quantity" class="text-sm">Quantity</label>
+                                    <div
+                                        class="flex flex-col sm:flex-row lg:items-center lg:justify-between gap-2 mt-3 md:mt-4">
+                                        <label for="quantity" class="text-xs md:text-sm">Quantity</label>
                                         <div class="flex items-center">
-                                            <button type="button" class="bg-gray-300 text-gray-700 rounded-l px-3 py-2"
+                                            <button type="button"
+                                                class="bg-gray-300 text-gray-700 rounded-l px-2 py-1 md:px-3 md:py-2"
                                                 @click="quantity[index] > 1 ? quantity[index]-- : 1">-</button>
                                             <input type="text" x-model="quantity[index]" name="quantity[]" value="1"
-                                                class="form-input  text-center w-12" min="1" :max="product.stock"
-                                                readonly>
+                                                class="form-input text-center w-10 md:w-12 text-xs md:text-sm"
+                                                min="1" :max="product.stock" readonly>
                                             <button type="button"
                                                 @click="quantity[index] < product.stock ? quantity[index]++ : product.stock"
-                                                class="bg-gray-300 text-gray-700 rounded-r px-3 py-2">+</button>
+                                                class="bg-gray-300 text-gray-700 rounded-r px-2 py-1 md:px-3 md:py-2">+</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </template>
-                        </p>
+
                         <!-- No Products Found Message -->
                         <template x-if="products.length === 0">
                             <div class="col-span-4">
@@ -110,6 +110,14 @@
                                 </div>
                             </div>
                         </template>
+                    </div>
+                    <div class="mt-8 flex gap-4 justify-center">
+                        <button type="button" class="btn btn-neutral" @click="prevPage"
+                            :disabled="currentPage === 1">&laquo;
+                            Prev</button>
+                        <button type="button" class="btn btn-neutral" @click="nextPage"
+                            :disabled="currentPage === totalPages()">Next
+                            &raquo;</button>
                     </div>
                 </div>
                 <div class="md:col-span-5 lg:col-span-2 hidden lg:flex">
@@ -193,15 +201,7 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('directTransaction', () => ({
                 init() {
-                    this.products = this.productsTemp.map(product => ({
-                        id: product.id,
-                        name: product.name,
-                        sell_price: product.sell_price,
-                        stock: product.stock,
-                        product_category: {
-                            name: product.product_category.name
-                        }
-                    }));
+                    this.initProducts();
                     this.quantity = Array(this.products.length).fill(1);
                     this.filterProducts();
                     this.getSessionStorage();
@@ -213,6 +213,8 @@
                 subTotal: 0,
                 total: 0,
                 tax: 0,
+                perPage: 9,
+                currentPage: 1,
                 objData: {
                     products: [],
                     quantity: [],
@@ -237,6 +239,18 @@
                     }
                 },
 
+                initProducts() {
+                    this.products = this.productsTemp.map(product => ({
+                        id: product.id,
+                        name: product.name,
+                        sell_price: product.sell_price,
+                        stock: product.stock,
+                        product_category: {
+                            name: product.product_category.name
+                        }
+                    }));
+                },
+
                 formatRupiah(value) {
                     return new Intl.NumberFormat('id-ID', {
                         style: 'currency',
@@ -244,6 +258,24 @@
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     }).format(value);
+                },
+
+                paginatedProducts() {
+                    const start = (this.currentPage - 1) * this.perPage;
+                    const end = start + this.perPage;
+                    return this.products.slice(start, end);
+                },
+
+                totalPages() {
+                    return Math.ceil(this.products.length / this.perPage);
+                },
+
+                prevPage() {
+                    this.currentPage = Math.max(this.currentPage - 1, 1);
+                },
+
+                nextPage() {
+                    this.currentPage = Math.min(this.currentPage + 1, this.totalPages());
                 },
 
                 filterProducts() {

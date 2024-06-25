@@ -115,7 +115,7 @@
             <div class="lg:hidden flex flex-col justify-center items-center mx-auto md:flex-row gap-4 max-w-xs">
 
                 @forelse ($productCategories as $productCategory)
-                    <div class=" {{ $loop->iteration % 2 == 0 ? 'flex flex-row-reverse gap-4 items-center justify-end' : ' mx-auto flex items-center gap-4' }}"
+                    <div class=" {{ $loop->iteration % 2 == 0 ? 'flex flex-row-reverse gap-8 items-center mx-auto justify-end' : ' mx-auto flex items-center gap-8' }}"
                         :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
                         <img src="{{ $productCategory->image ? $productCategory->image() : '' }}"
                             class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40  {{ $loop->iteration % 2 == 0 ? 'md:mt-0 -rotate-12' : 'md:mt-40 rotate-12' }} " />

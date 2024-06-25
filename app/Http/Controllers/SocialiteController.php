@@ -37,6 +37,6 @@ class SocialiteController extends Controller
 
         Auth::login($newUser, true);
 
-        return redirect()->route('index');
+        return redirect()->route('products.indexFront');
     }
 }

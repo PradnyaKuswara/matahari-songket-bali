@@ -14,9 +14,9 @@ class WhatsappService
         $twilioWhatsAppNumber = config('twilio.twilio_whatsapp_number');
         $recipientNumber = config('twilio.receiver_phone_number'); // Replace with the recipient's phone number in WhatsApp format (e.g., "whatsapp:+1234567890")
         //message to information shippinh to seller and direct link place order
-        $message = 'Hello, you have a new order with order ID: ' . $order->generate_id . "\n\n";
+        $message = 'Hello, you have a new order with order ID: '.$order->generate_id."\n\n";
         $message .= 'Please check your dashboard to process the order or click this link to view the order: ';
-        $message .= route('seller.dashboard.shippings.show', $order->shipping) . "\n\n";
+        $message .= route('seller.dashboard.shippings.show', $order->shipping)."\n\n";
         $message .= 'Thank you!';
 
         $twilio = new Client($twilioSid, $twilioToken);
@@ -47,18 +47,18 @@ class WhatsappService
         $fonnteToken = config('fonnte.fonnte_token');
         $fonnteReceiverNumber = config('fonnte.fonnte_receiver_number');
 
-        $message = 'Hello, you have a new order with order ID: ' . $order->generate_id . "\n\n";
+        $message = 'Hello, you have a new order with order ID: '.$order->generate_id."\n\n";
         $message .= 'Please check your dashboard to process the order or click this link to view the order: ';
-        $message .= route('seller.dashboard.shippings.show', $order->shipping) . "\n\n";
+        $message .= route('seller.dashboard.shippings.show', $order->shipping)."\n\n";
         $message .= 'Thank you!';
 
         try {
             $response = Http::withHeaders([
-                'Authorization' => $fonnteToken // ganti TOKEN dengan token sebenarnya
+                'Authorization' => $fonnteToken, // ganti TOKEN dengan token sebenarnya
             ])->post('https://api.fonnte.com/send', [
                 'target' => $fonnteReceiverNumber,
                 'message' => $message,
-                'countryCode' => '62' // optional
+                'countryCode' => '62', // optional
             ]);
 
             return $data = [

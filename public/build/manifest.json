@@ -19,12 +19,12 @@
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Df_i5gsL.css",
+    "file": "assets/app-CcAtL6v7.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/dashboard.css": {
-    "file": "assets/dashboard-uOJ92RJc.css",
+    "file": "assets/dashboard-Cj3E5fDL.css",
     "src": "resources/css/dashboard.css",
     "isEntry": true
   },

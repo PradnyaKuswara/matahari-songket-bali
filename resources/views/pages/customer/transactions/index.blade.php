@@ -41,7 +41,7 @@
 
         <div>
             <h2 class="text-xl font-semibold mt-8">All Transaction</h2>
-            <div class="grid grid-cols-4 gap-4 mt-4" id="order-list">
+            <div class="grid mx-auto lg:grid-cols-4 2xl:grid-cols-5 gap-4 mt-4" id="order-list">
                 @forelse ($transactions as $transaction)
                     <x-dashboard.transaction :order="$transaction->order"></x-dashboard.transaction>
                 @empty

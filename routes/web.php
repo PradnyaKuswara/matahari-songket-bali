@@ -24,63 +24,58 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/success-verification-email', [HomeController::class, 'successVerification'])->name('successVerification');
+Route::middleware('verifiedCustomer')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/success-verification-email', [HomeController::class, 'successVerification'])->name('successVerification');
 
-Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
-    Route::get('/', 'indexFront')->name('indexFront');
-    Route::get('detail/{product}', 'detailFront')->name('detailFront');
-    Route::get('/categories-all', 'categoriesAll')->name('categoriesAll');
-    Route::get('/categories-popular', 'categoriesPopular')->name('categoriesPopular');
-    Route::get('/categories-oldest', 'categoriesOldest')->name('categoriesOldest');
-    Route::get('/categories-cheapest', 'categoriesCheapest')->name('categoriesCheapest');
-    Route::get('/categories-expansive', 'categoriesExpensive')->name('categoriesExpensive');
-    Route::get('/search', 'searchFront')->name('search');
-});
-
-Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('detail/{article}', 'detail')->name('detail');
-});
-
-Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::post('/faq', 'faq')->name('faq');
-});
-
-Route::controller(CartController::class)->prefix('carts')->name('carts.')->middleware('customer')->group(function () {
-    Route::get('/', 'indexFront')->name('indexFront');
-    Route::get('/get-cart-by-customer', 'getCartByCustomer')->name('getCartByCustomer');
-    Route::post('/store', 'storeCartByCustomer')->name('storeCartByCustomer');
-    Route::patch('/update', 'updateCartByCustomer')->name('updateCartByCustomer');
-    Route::delete('/delete', 'deleteCartByCustomer')->name('deleteCartByCustomer');
-    Route::patch('/toggle', 'toggleCartByCustomer')->name('toggleCartByCustomer');
-    Route::patch('/toggle-all', 'toggleCartByCustomerAll')->name('toggleCartByCustomerAll');
-});
-
-Route::controller(CheckOutController::class)->prefix('checkout')->name('checkout.')->middleware('customer')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::post('/store', 'store')->name('store');
-    Route::post('/check-stock', 'checkStock')->name('checkStock');
-    Route::get('/check-ongkir', 'ongkirCheck')->name('ongkirCheck');
-
-    Route::prefix('payment')->group(function () {
-        Route::get('/{order}', 'showPayment')->name('showPayment');
-        Route::get('/status/success', 'successView')->name('successView');
-        Route::patch('/update/status', 'updateCheckout')->name('updateCheckout');
+    Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function () {
+        Route::get('/', 'indexFront')->name('indexFront');
+        Route::get('detail/{product}', 'detailFront')->name('detailFront');
+        Route::get('/categories-all', 'categoriesAll')->name('categoriesAll');
+        Route::get('/categories-popular', 'categoriesPopular')->name('categoriesPopular');
+        Route::get('/categories-oldest', 'categoriesOldest')->name('categoriesOldest');
+        Route::get('/categories-cheapest', 'categoriesCheapest')->name('categoriesCheapest');
+        Route::get('/categories-expansive', 'categoriesExpensive')->name('categoriesExpensive');
+        Route::get('/search', 'searchFront')->name('search');
     });
-});
 
-Route::controller(AddressController::class)->prefix('address')->name('address.')->middleware('auth')->group(function () {
-    Route::get('/get-cities', 'getCities')->name('get-cities');
-    Route::get('/get-subdistricts', 'getSubdistricts')->name('get-subdistricts');
-});
+    Route::controller(WhatsNewController::class)->prefix('whats-new')->name('whats-new.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('detail/{article}', 'detail')->name('detail');
+    });
 
-Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
+    Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/faq', 'faq')->name('faq');
+    });
 
-    Route::get('/invoice', function () {
-        return view('pages.customer.transaction-invoice');
-    })->name('invoice');
+    Route::controller(CartController::class)->prefix('carts')->name('carts.')->middleware('customer')->group(function () {
+        Route::get('/', 'indexFront')->name('indexFront');
+        Route::get('/get-cart-by-customer', 'getCartByCustomer')->name('getCartByCustomer');
+        Route::post('/store', 'storeCartByCustomer')->name('storeCartByCustomer');
+        Route::patch('/update', 'updateCartByCustomer')->name('updateCartByCustomer');
+        Route::delete('/delete', 'deleteCartByCustomer')->name('deleteCartByCustomer');
+        Route::patch('/toggle', 'toggleCartByCustomer')->name('toggleCartByCustomer');
+        Route::patch('/toggle-all', 'toggleCartByCustomerAll')->name('toggleCartByCustomerAll');
+    });
+
+    Route::controller(CheckOutController::class)->prefix('checkout')->name('checkout.')->middleware('customer')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/check-stock', 'checkStock')->name('checkStock');
+        Route::get('/check-ongkir', 'ongkirCheck')->name('ongkirCheck');
+
+        Route::prefix('payment')->group(function () {
+            Route::get('/{order}', 'showPayment')->name('showPayment');
+            Route::get('/status/success', 'successView')->name('successView');
+            Route::patch('/update/status', 'updateCheckout')->name('updateCheckout');
+        });
+    });
+
+    Route::controller(AddressController::class)->prefix('address')->name('address.')->middleware('auth')->group(function () {
+        Route::get('/get-cities', 'getCities')->name('get-cities');
+        Route::get('/get-subdistricts', 'getSubdistricts')->name('get-subdistricts');
+    });
 });
 
 require __DIR__.'/mail-testing.php';

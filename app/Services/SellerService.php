@@ -20,6 +20,8 @@ class SellerService
 
     public function create(array $data)
     {
+        $data['email_verified_at'] = now();
+
         return $this->sellerInterface->create($this->assignRoleSeller($data));
     }
 

@@ -2,12 +2,12 @@
 
 <input type="checkbox" id="modal_create" class="modal-toggle" />
 <div class="modal" role="dialog">
-    <div class="modal-box w-12/12 md:max-w-3xl">
+    <div class="modal-box bg-white dark:bg-black w-12/12 md:max-w-3xl">
         <form method="dialog">
             <label for="modal_create" @click="toggle()"
-                class="btn btn-sm btn-circle border-none outline-none btn-ghost absolute right-2 top-2">✕</label>
+                class="btn btn-sm btn-circle border-none outline-none btn-ghost absolute right-2 top-2 text-black dark:text-white">✕</label>
         </form>
-        <h2 class="text-lg font-semibold mb-4">{{ $title }}</h2>
+        <h2 class="text-lg font-semibold mb-4 text-black dark:text-white">{{ $title }}</h2>
         <form action="{{ route($route) }}" method="POST" id="form-create"
             @if (array_search('file', array_column($elements, 'type'))) enctype="multipart/form-data" @endif>
             @csrf
@@ -20,7 +20,7 @@
                                 $element['type'] != 'file' &&
                                 $element['type'] != 'textarea')
                             <div class="flex">
-                                <label for="{{ $element['id'] }}">{{ $element['label'] }}</label>
+                                <label for="{{ $element['id'] }}" class="text-black dark:text-white">{{ $element['label'] }}</label>
                                 @if ($element['is_required'] == 'true')
                                     <span class="text-red-500">*</span>
                                 @endif
@@ -63,7 +63,7 @@
 
                         @if ($element['type'] == 'select')
                             <div class="flex">
-                                <label for="{{ $element['id'] }}">{{ $element['label'] }}</label>
+                                <label for="{{ $element['id'] }}" class="text-black dark:text-white">{{ $element['label'] }}</label>
                                 @if ($element['is_required'] == 'true')
                                     <span class="text-red-500">*</span>
                                 @endif
@@ -88,7 +88,7 @@
 
                         @if ($element['name'] == 'phone_number')
                             <div class="flex">
-                                <label for="{{ $element['id'] }}">{{ $element['label'] }}</label>
+                                <label for="{{ $element['id'] }}" class="text-black dark:text-white">{{ $element['label'] }}</label>
                                 @if ($element['is_required'] == 'true')
                                     <span class="text-red-500">*</span>
                                 @endif
@@ -107,7 +107,7 @@
 
                         @if ($element['type'] == 'textarea')
                             <div class="flex">
-                                <label for="{{ $element['id'] }}">{{ $element['label'] }}</label>
+                                <label for="{{ $element['id'] }}" class="text-black dark:text-white">{{ $element['label'] }}</label>
                                 @if ($element['is_required'] == 'true')
                                     <span class="text-red-500">*</span>
                                 @endif
@@ -122,7 +122,7 @@
 
                         @if ($element['type'] == 'file')
                             <div class="flex">
-                                <label for="{{ $element['id'] }}">{{ $element['label'] }}</label>
+                                <label for="{{ $element['id'] }}" class="text-black dark:text-white">{{ $element['label'] }}</label>
                                 @if ($element['is_required'] == 'true')
                                     <span class="text-red-500">*</span>
                                 @endif

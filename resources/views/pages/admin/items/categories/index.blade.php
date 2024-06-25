@@ -20,8 +20,9 @@
                 <div class="panel">
                     <div class="flex flex-col lg:flex-row justify-end items-center gap-4">
                         <label
-                            class="input input-bordered input-md w-full md:w-80  flex items-center gap-2  text-white bg-[#0E1726]">
-                            <input type="text" id="search" class="form-input grow border-none outline-none  text-white"
+                            class="input input-bordered input-md w-full md:w-80  flex items-center gap-2  border border-primary dark:bg-black">
+                            <input type="text" id="search"
+                                class="grow border-none outline-none  text-black dark:text-white"
                                 placeholder="Search by keyword"
                                 @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                             <span class="mdi mdi-magnify"></span>

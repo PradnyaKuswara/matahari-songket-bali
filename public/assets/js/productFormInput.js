@@ -4,7 +4,7 @@ const inputNameProduct = (i) => {
     <div class="label">
     <div>
     <span
-        class="label-text
+        class="label-text text-black dark:text-white
     ">Name</span>
     <span
         class="text-error
@@ -13,10 +13,10 @@ const inputNameProduct = (i) => {
     </div>
     </label>
 
-    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+    <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
         <input id="loggingProductName${i}" type="text"
-            class="form-input grow border-none outline-none " name="products[`+i+`][name]"
-            x-model="form.products[`+i+`].name" placeholder="Enter your product name"
+            class= grow border-none outline-none " name="products[`+i+`][name]"
+            x-model="form.products[`+i+`].name" placeholder="Product name"
             minlength="1" maxlength="50" />
     </label>
 
@@ -37,7 +37,7 @@ const inputProfitProduct = (i) => {
     <div class="label">
     <div>
     <span
-        class="label-text
+        class="label-text text-black dark:text-white
     ">Profit</span>
     <span
         class="text-error
@@ -46,12 +46,12 @@ const inputProfitProduct = (i) => {
     </div>
     </label>
 
-    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+    <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
     <p class="text-sm text-gray-400">Rp.</p>
     <input id="loggingProductProfit${i}" type="text"
-        class="form-input grow border-none outline-none "
+        class= grow border-none outline-none "
         name="products[`+i+`][profit]" x-model="form.products[`+i+`].profit"
-        placeholder="Enter your product profit" x-mask:dynamic="$money($input,',')" step="1000" minlength="1" maxlength="50" />
+        placeholder="Product profit" x-mask:dynamic="$money($input,',')" step="1000" minlength="1" maxlength="50" />
     </label>
 
     <template x-if="isSubmitFormItem && form.products[`+i+`].profit">
@@ -71,7 +71,7 @@ const inputWeaverNameProduct = (i) => {
     <div class="label">
     <div>
         <span
-            class="label-text
+            class="label-text text-black dark:text-white
         ">Weaver
             Name</span>
         <span
@@ -81,12 +81,12 @@ const inputWeaverNameProduct = (i) => {
     </div>
     </label>
 
-    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+    <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
     <select
-        class="dropDownWeaver form-input form-control grow border-none outline-none text-md font-extralight"
+        class="dropDownWeaver form-control grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
         id="loggingProductWeaverName${i}" name="products[`+i+`][weaver_name]"
         x-model="form.products[`+i+`].weaver_name">
-        <option selected>Production weaver name</option>
+        <option selected disabled>Weaver name</option>
     </select>
     </label>
 
@@ -107,7 +107,7 @@ const inputCategoryProduct = (i) => {
     <div class="label">
     <div>
         <span
-            class="label-text
+            class="label-text text-black dark:text-white
         ">Category
             Name</span>
         <span
@@ -117,11 +117,11 @@ const inputCategoryProduct = (i) => {
     </div>
     </label>
 
-    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+    <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
     <input id="loggingProductCategoryName${i}" type="text"
-        class="form-input grow border-none outline-none"
+        class="grow border-none outline-none"
         name="products[`+i+`][category_name]" x-model="form.products[`+i+`].category_name"
-        placeholder="Enter your product category name" minlength="1"
+        placeholder="Category product name" minlength="1"
         maxlength="50" />
     </label>
 

@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 use Masmerise\Toaster\Toaster;
 
 class CheckOutController extends Controller
@@ -107,5 +108,23 @@ class CheckOutController extends Controller
         ]);
 
         return response()->json($ongkirCheck->json(), 200);
+    }
+
+    public function directCheckout(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'products' => 'required|array',
+            'quantity' => 'required|array',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors(),
+            ], 422);
+        }
+
+        $result = $this->checkOutService->directCheckout($request);
+
+        return response()->json($result, $result['status']);
     }
 }

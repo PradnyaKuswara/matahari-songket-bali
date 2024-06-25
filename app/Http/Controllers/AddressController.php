@@ -23,21 +23,24 @@ class AddressController extends Controller
 
     public function index(Request $request): View
     {
-        $provinces = Http::get('https://pro.rajaongkir.com/api/province', [
-            'key' => config('shipping.api_key'),
-        ])['rajaongkir']['results'];
+        $provinces = cache()->remember('provinces', 60 * 60 * 24, function () {
+            return Http::get('https://pro.rajaongkir.com/api/province', [
+                'key' => config('shipping.api_key'),
+            ])['rajaongkir']['results'];
+        });
 
-        // change array key province_id to id and province to name
-        $provinces = array_map(function ($province) {
-            return [
+        $provinceAfter = [];
+
+        foreach ($provinces as $province) {
+            $provinceAfter[] = [
                 'id' => $province['province_id'],
                 'name' => $province['province'],
             ];
-        }, $provinces);
+        }
 
         return view('pages.customer.addresses.index', [
             'addresses' => $this->addressService->all($request->user()),
-            'provinces' => $provinces,
+            'provinces' => $provinceAfter,
         ]);
     }
 
@@ -114,18 +117,19 @@ class AddressController extends Controller
             'province' => $request->province_id,
         ])['rajaongkir']['results'];
 
-        // change array key city_id to id and city_name to name
-        $cities = array_map(function ($city) {
-            return [
+        $citiesAfter = [];
+
+        foreach ($cities as $city) {
+            $citiesAfter[] = [
                 'id' => $city['city_id'],
                 'name' => $city['city_name'],
                 'postal_code' => $city['postal_code'],
             ];
-        }, $cities);
+        }
 
         return response()->json([
             'status' => 'success',
-            'value' => $cities,
+            'value' => $citiesAfter,
         ], 200);
     }
 
@@ -136,17 +140,18 @@ class AddressController extends Controller
             'city' => $request->city_id,
         ])['rajaongkir']['results'];
 
-        // change array key subdistrict_id to id and subdistrict_name to name
-        $districts = array_map(function ($district) {
-            return [
+        $districtsAfter = [];
+
+        foreach ($districts as $district) {
+            $districtsAfter[] = [
                 'id' => $district['subdistrict_id'],
                 'name' => $district['subdistrict_name'],
             ];
-        }, $districts);
+        }
 
         return response()->json([
             'status' => 'success',
-            'value' => $districts,
+            'value' => $districtsAfter,
         ], 200);
     }
 }

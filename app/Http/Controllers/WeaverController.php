@@ -28,21 +28,24 @@ class WeaverController extends Controller
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
-        $provinces = Http::get('https://pro.rajaongkir.com/api/province', [
-            'key' => config('shipping.api_key'),
-        ])['rajaongkir']['results'];
+        $provinces = cache()->remember('provinces', 60 * 60 * 24, function () {
+            return Http::get('https://pro.rajaongkir.com/api/province', [
+                'key' => config('shipping.api_key'),
+            ])['rajaongkir']['results'];
+        });
 
-        // change array key province_id to id and province to name
-        $provinces = array_map(function ($province) {
-            return [
+        $provinceAfter = [];
+
+        foreach ($provinces as $province) {
+            $provinceAfter[] = [
                 'id' => $province['province_id'],
                 'name' => $province['province'],
             ];
-        }, $provinces);
+        }
 
         return view('pages.admin.weavers.index', [
             'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number', 'gender', 'address', 'province', 'city'], ['addresses']),
-            'provinces' => $provinces,
+            'provinces' => $provinceAfter,
         ]);
     }
 
@@ -81,8 +84,24 @@ class WeaverController extends Controller
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
+        $provinces = cache()->remember('provinces', 60 * 60 * 24, function () {
+            return Http::get('https://pro.rajaongkir.com/api/province', [
+                'key' => config('shipping.api_key'),
+            ])['rajaongkir']['results'];
+        });
+
+        $provinceAfter = [];
+
+        foreach ($provinces as $province) {
+            $provinceAfter[] = [
+                'id' => $province['province_id'],
+                'name' => $province['province'],
+            ];
+        }
+
         return view('pages.admin.weavers.table', [
             'weavers' => $this->weaverService->search($request, $user, ['name', 'phone_number', 'gender', 'address', 'province', 'city'], ['addresses']),
+            'provinces' => $provinceAfter,
         ]);
     }
 }

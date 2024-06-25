@@ -33,7 +33,7 @@ class PaymentService
 
             return $snapToken;
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd('error');
         }
     }
 

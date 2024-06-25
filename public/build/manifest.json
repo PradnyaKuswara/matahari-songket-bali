@@ -1,4 +1,7 @@
 {
+  "_notyf.es-BeA1HVAA.js": {
+    "file": "assets/notyf.es-BeA1HVAA.js"
+  },
   "node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot": {
     "file": "assets/materialdesignicons-webfont-CSr8KVlo.eot",
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.eot"
@@ -16,26 +19,29 @@
     "src": "node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Cl0Rp-nS.css",
+    "file": "assets/app-PnJtosEk.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/dashboard.css": {
-    "file": "assets/dashboard-Ca9P3Sez.css",
+    "file": "assets/dashboard-ByHXxgcd.css",
     "src": "resources/css/dashboard.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-DVeN8hw8.js",
+    "file": "assets/app-DZKufN7u.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "resources/js/dashboard.js"
+      "_notyf.es-BeA1HVAA.js"
     ]
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-Db5k3VxU.js",
+    "file": "assets/dashboard-d362Un7a.js",
     "src": "resources/js/dashboard.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_notyf.es-BeA1HVAA.js"
+    ]
   }
 }

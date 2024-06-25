@@ -53,7 +53,7 @@
 
 <template x-if="card">
     <a href="{{ route('products.detailFront', $product) }}" class="flex lg:hidden  {{ $product->stock <= 0 ? 'pointer-events-none' : '' }}">
-        <div class="card w-96 bg-base-100 shadow-xl   ">
+        <div class="card w-96 bg-base-100 shadow-xl dark:bg-black">
             <figure style="width: 200px; height: 110px; border: 2px solid rgb(219, 219, 219);"><img
                     src="{{ $product->image1() }}" class="w-full h-full object-cover" alt="{{ $product->name }}" />
             </figure>

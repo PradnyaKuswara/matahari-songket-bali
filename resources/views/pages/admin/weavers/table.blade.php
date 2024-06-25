@@ -8,7 +8,6 @@
                 <th class="text-left font-bold text-sm">Gender</th>
                 <th class="text-left font-bold text-sm">Date of Birth</th>
                 <th class="text-left font-bold text-sm">Address</th>
-                <th class="text-left font-bold text-sm">Village</th>
                 <th class="text-left font-bold text-sm">District</th>
                 <th class="text-left font-bold text-sm">City</th>
                 <th class="text-left font-bold text-sm">Province</th>
@@ -53,7 +52,6 @@
                     <td>{{ $weaver->date_of_birth->format('d F Y') }}</td>
                     @foreach ($weaver->addresses as $itemAddress)
                         <td>{{ $itemAddress->address }}</td>
-                        <td>{{ $itemAddress->village }}</td>
                         <td>{{ $itemAddress->subdistrict }}</td>
                         <td>{{ $itemAddress->city }}</td>
                         <td>{{ $itemAddress->province }}</td>

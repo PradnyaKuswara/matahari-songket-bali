@@ -49,16 +49,17 @@
                                     <label class="form-control w-full max-w-xs" for="loggingName">
                                         <div class="label">
                                             <div>
-                                                <span class="label-text">Name</span>
+                                                <span class="label-text text-black dark:text-white">Name</span>
                                                 <span class="text-error">*</span>
                                             </div>
                                         </div>
                                     </label>
 
-                                    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                        <input id="loggingName" type="text"
-                                            class="form-input grow border-none outline-none " name="name"
-                                            x-model="form.name" value="{{ old('name') ?? $production->name }}"
+                                    <label
+                                        class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
+                                        <input id="loggingName" type="text" class="grow border-none outline-none"
+                                            name="name" x-model="form.name"
+                                            value="{{ old('name') ?? $production->name }}"
                                             placeholder="Enter your production name" minlength="1" maxlength="50" />
                                     </label>
 
@@ -77,15 +78,16 @@
                                     <label class="form-control w-full max-w-xs" for="loggingDate">
                                         <div class="label">
                                             <div>
-                                                <span class="label-text">Date</span>
+                                                <span class="label-text text-black dark:text-white">Date</span>
                                                 <span class="text-error">*</span>
                                             </div>
                                         </div>
                                     </label>
 
-                                    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                    <label
+                                        class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                         <input id="loggingDate" type="date"
-                                            class="form-input grow border-none outline-none " name="date"
+                                            class="grow border-none outline-none text-black dark:text-white" name="date"
                                             x-model="form.date" value="{{ old('date') ?? $production->date }}"
                                             placeholder="Enter your production date" />
                                     </label>
@@ -108,16 +110,17 @@
                                     <label class="form-control w-full max-w-xs" for="loggingEstimate">
                                         <div class="label">
                                             <div>
-                                                <span class="label-text">Estimate (month)</span>
+                                                <span class="label-text text-black dark:text-white">Estimate (month)</span>
                                                 <span class="text-error">*</span>
                                             </div>
                                         </div>
                                     </label>
 
-                                    <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                        <input id="loggingEstimate" type="text"
-                                            class="form-input grow border-none outline-none " name="estimate"
-                                            x-model="form.estimate" value="{{ old('estimate') ?? $production->estimate }}"
+                                    <label
+                                        class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
+                                        <input id="loggingEstimate" type="text" class="grow border-none outline-none "
+                                            name="estimate" x-model="form.estimate"
+                                            value="{{ old('estimate') ?? $production->estimate }}"
                                             placeholder="Enter your production estimate on month" minlength="1"
                                             maxlength="50" />
                                     </label>
@@ -145,19 +148,19 @@
                                             <label class="form-control w-full max-w-xs" for="loggingItemName">
                                                 <div class="label">
                                                     <div>
-                                                        <span class="label-text">Name</span>
+                                                        <span class="label-text text-black dark:text-white">Name</span>
                                                         <span class="text-error">*</span>
                                                     </div>
                                                 </div>
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <input id="loggingItemName" type="text"
-                                                    class="form-input grow border-none outline-none "
+                                                    class="grow border-none outline-none "
                                                     name="items[{{ $index }}][name]"
-                                                    x-model="form.items[{{ $index }}].name"
-                                                    placeholder="Production name" minlength="1" maxlength="50" />
+                                                    x-model="form.items[{{ $index }}].name" placeholder="Item name"
+                                                    minlength="1" maxlength="50" />
                                             </label>
 
                                             <template x-if="isSubmitFormItem && form.items[{{ $index }}].name">
@@ -173,20 +176,21 @@
                                             <label class="form-control w-full max-w-xs" for="loggingItemCategory">
                                                 <div class="label">
                                                     <div>
-                                                        <span class="label-text">Item Category</span>
+                                                        <span class="label-text text-black dark:text-white">Item
+                                                            Category</span>
                                                         <span class="text-error">*</span>
                                                     </div>
                                                 </div>
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <select
-                                                    class=" form-input grow border-none outline-none text-md font-extralight"
+                                                    class="grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
                                                     id="loggingItemCategory"
                                                     name="items[{{ $index }}][category_name]"
                                                     x-model="form.items[{{ $index }}].category_name">
-                                                    <option selected>Production item category</option>
+                                                    <option selected disabled>Item category</option>
                                                     <option value="material"
                                                         :selected="form.items[{{ $index }}].category_name == 'material'">
                                                         Material
@@ -213,21 +217,21 @@
                                             <label class="form-control w-full max-w-xs" for="loggingItemPrice">
                                                 <div class="label">
                                                     <div>
-                                                        <span class="label-text">Price</span>
+                                                        <span class="label-text text-black dark:text-white">Price</span>
                                                         <span class="text-error">*</span>
                                                     </div>
                                                 </div>
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <p class="text-sm text-gray-400">Rp.</p>
                                                 <input id="loggingItemPrice" type="text"
-                                                    class="form-input grow border-none outline-none "
+                                                    class="grow border-none outline-none "
                                                     name="items[{{ $index }}][price]"
                                                     x-model="form.items[{{ $index }}].price"
                                                     x-mask:dynamic="$money($input,',')" step="1000"
-                                                    placeholder="Production price" minlength="1" maxlength="50" />
+                                                    placeholder="Item price" minlength="1" maxlength="50" />
                                             </label>
 
                                             <template
@@ -271,7 +275,7 @@
                                                 <div class="label">
                                                     <div>
                                                         <span
-                                                            class="label-text
+                                                            class="label-text text-black dark:text-white
                                                     ">Name</span>
                                                         <span
                                                             class="text-error
@@ -281,13 +285,12 @@
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <input id="loggingProductName{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none "
+                                                    class="grow border-none outline-none "
                                                     name="products[{{ $index }}][name]"
                                                     x-model="form.products[{{ $index }}].name"
-                                                    placeholder="Enter your product name" minlength="1"
-                                                    maxlength="50" />
+                                                    placeholder="Product name" minlength="1" maxlength="50" />
                                             </label>
 
                                             <template x-if="isSubmitFormItem && form.products[{{ $index }}].name">
@@ -305,7 +308,7 @@
                                                 <div class="label">
                                                     <div>
                                                         <span
-                                                            class="label-text
+                                                            class="label-text text-black dark:text-white
                                                     ">Profit</span>
                                                         <span
                                                             class="text-error
@@ -315,15 +318,14 @@
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <p class="text-sm text-gray-400">Rp.</p>
                                                 <input id="loggingProductProfit{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none "
+                                                    class="grow border-none outline-none "
                                                     name="products[{{ $index }}][profit]"
                                                     x-model="form.products[{{ $index }}].profit"
                                                     x-mask:dynamic="$money($input,',')" step="1000"
-                                                    placeholder="Enter your product profit" minlength="1"
-                                                    maxlength="50" />
+                                                    placeholder="Product profit" minlength="1" maxlength="50" />
                                             </label>
 
                                             <template
@@ -343,7 +345,7 @@
                                                 <div class="label">
                                                     <div>
                                                         <span
-                                                            class="label-text
+                                                            class="label-text text-black dark:text-white
                                                     ">Weaver
                                                             Name</span>
                                                         <span
@@ -354,13 +356,13 @@
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <select
-                                                    class="dropDownWeaver form-input form-control grow border-none outline-none text-md font-extralight"
+                                                    class="dropDownWeaver form-control grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
                                                     id="loggingProductWeaverName{{ $index }}"
                                                     name="products[{{ $index }}][weaver_name]"
                                                     x-model="form.products[{{ $index }}].weaver_name">
-                                                    <option selected>Production weaver name</option>
+                                                    <option selected disabled>Weaver name</option>
                                                 </select>
                                             </label>
 
@@ -381,7 +383,7 @@
                                                 <div class="label">
                                                     <div>
                                                         <span
-                                                            class="label-text
+                                                            class="label-text text-black dark:text-white
                                                     ">Category
                                                             Name</span>
                                                         <span
@@ -392,13 +394,12 @@
                                             </label>
 
                                             <label
-                                                class="input input-bordered w-full text-xs md:text-base flex items-center ">
+                                                class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
                                                 <input id="loggingProductCategoryName{{ $index }}" type="text"
-                                                    class="form-input grow border-none outline-none"
+                                                    class="grow border-none outline-none"
                                                     name="products[{{ $index }}][category_name]"
                                                     x-model="form.products[{{ $index }}].category_name"
-                                                    placeholder="Enter your product category name" minlength="1"
-                                                    maxlength="50" />
+                                                    placeholder="Category product name" minlength="1" maxlength="50" />
                                             </label>
 
                                             <template

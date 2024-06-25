@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Services\ProductService;
 use App\Services\TransactionService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -11,9 +12,12 @@ class TransactionController extends Controller
 {
     protected $transactionService;
 
-    public function __construct(TransactionService $transactionService)
+    protected $productService;
+
+    public function __construct(TransactionService $transactionService, ProductService $productService)
     {
         $this->transactionService = $transactionService;
+        $this->productService = $productService;
     }
 
     public function index(Request $request): View
@@ -52,6 +56,15 @@ class TransactionController extends Controller
     {
         return view('pages.admin-seller.transactions.data', [
             'transactions' => $this->transactionService->search($request, new Transaction, ['generate_id']),
+        ]);
+    }
+
+    public function indexDirectTransaction(): View
+    {
+        $products = $this->productService->all()->where('stock', '>', 0)->with('productCategory')->get();
+
+        return view('pages.seller.transactions.index', [
+            'products' => $products,
         ]);
     }
 }

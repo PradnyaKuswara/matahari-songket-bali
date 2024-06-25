@@ -1,6 +1,6 @@
 @props(['order' => null])
 
-<div class="card shadow-md p-6 bg-white animate-fade">
+<div class="card shadow-md p-6 bg-white animate-fade dark:bg-black">
     <div class="flex flex-wrap justify-between items-center gap-4 px-4">
         <div>
             <div class="text-2xl font-semibold font-sans uppercase">{{ $order->transaction->generate_id }}</div>
@@ -53,7 +53,7 @@
     </div>
 
     <hr class="my-6 border-[#e0e6ed] dark:border-[#1b2e4b]" />
-    <div class="ml-10 grid md:grid-cols-2">
+    <div class="ml-4  grid md:grid-cols-2">
         <div class="w-full">
             <div class="space-y-1 text-white-dark">
                 <div>Issue For:</div>
@@ -96,21 +96,21 @@
                 <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
 
                     <div class="col-span-full sm:col-span-2">
-                        <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Item</h5>
-                        <p class="font-medium text-gray-800 font-sans">{{ $product->name }}</p>
+                        <h5 class="sm:hidden text-xs font-medium uppercase">Item</h5>
+                        <p class="font-medium font-sans">{{ $product->name }}</p>
                     </div>
                     <div>
-                        <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Qty</h5>
-                        <p class="text-gray-800 font-sans">{{ $product->pivot->quantity }}</p>
+                        <h5 class="sm:hidden text-xs font-medium uppercase">Qty</h5>
+                        <p class="font-sans">{{ $product->pivot->quantity }}</p>
                     </div>
                     <div>
-                        <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Price</h5>
-                        <p class="text-gray-800 font-sans">Rp. {{ number_format($product->pivot->price, 2, ',', '.') }}
+                        <h5 class="sm:hidden text-xs font-medium uppercase">Price</h5>
+                        <p class="font-sans">Rp. {{ number_format($product->pivot->price, 2, ',', '.') }}
                         </p>
                     </div>
                     <div>
-                        <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">Total Price</h5>
-                        <p class="sm:text-end text-gray-800 font-sans">Rp.
+                        <h5 class="sm:hidden text-xs font-medium uppercase">Total Price</h5>
+                        <p class="sm:text-end font-sans">Rp.
                             {{ number_format($product->pivot->total_price, 2, ',', '.') }}</p>
                     </div>
 
@@ -149,16 +149,16 @@
     </div>
 
     <div class="mt-8 sm:mt-12">
-        <h4 class="text-lg font-semibold text-gray-800">Thank you!</h4>
-        <p class="text-gray-500">If you have any questions concerning this invoice, use the following contact
+        <h4 class="text-lg font-semibold">Thank you!</h4>
+        <p class="">If you have any questions concerning this invoice, use the following contact
             information:</p>
         <div class="mt-2">
-            <p class="block text-sm font-medium text-gray-800">mataharisongketbali@gmail.com</p>
-            <p class="block text-sm font-medium text-gray-800 font-sans">(+62) 8124 6058 15</p>
+            <p class="block text-sm font-medium">mataharisongketbali@gmail.com</p>
+            <p class="block text-sm font-medium font-sans">(+62) 8124 6058 15</p>
         </div>
     </div>
 
     <div class="flex items-center justify-between">
-        <p class="mt-5 text-sm text-gray-500">© {{ now()->format('Y') }} Matahari Songket Bali.</p>
+        <p class="mt-5 text-sm ">© {{ now()->format('Y') }} Matahari Songket Bali.</p>
     </div>
 </div>

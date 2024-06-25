@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
             if ($role === 'admin') {
                 return '/admin/dashboard';
             } elseif ($role === 'customer') {
-                return '/';
+                return '/products';
             } elseif ($role === 'seller') {
                 return '/seller/dashboard';
             }

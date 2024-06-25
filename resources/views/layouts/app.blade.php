@@ -117,7 +117,7 @@
         <x-header></x-header>
     </header>
 
-    <main>
+    <main class="min-h-screen">
         {{-- @dd($status) --}}
         <x-toaster-hub /> <!-- 👈 -->
         @yield('content')

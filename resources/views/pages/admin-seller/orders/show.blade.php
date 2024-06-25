@@ -18,16 +18,15 @@
         <div>
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
                 <h2 class="text-xl font-semibold mt-4">All Orders</h2>
-                <label
-                    class="input input-bordered input-md w-full md:w-80  flex items-center gap-2  text-white bg-[#0E1726]">
-                    <input type="text" id="search" class="form-input grow border-none outline-none  text-white"
+                <label class="input input-bordered input-md w-full md:w-80 flex items-center gap-2 dark:bg-black ">
+                    <input type="text" id="search" class=" grow border-none outline-none text-black dark:text-white"
                         placeholder="Search by order id"
                         @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                     <span class="mdi mdi-magnify"></span>
                 </label>
             </div>
 
-            <div id="data-list" class="grid mx-auto lg:grid-cols-4 gap-4 mt-4" id="order-list">
+            <div id="data-list" class="grid mx-auto lg:grid-cols-4 2xl:grid-cols-5 gap-4 mt-4" id="order-list">
                 @include('pages.admin-seller.orders.data')
             </div>
             <div class="mt-5">

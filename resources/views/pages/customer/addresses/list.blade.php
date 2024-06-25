@@ -1,7 +1,7 @@
 <div
     class="grid gap-4 @if (count($addresses) == 1) md:grid-cols-1 @endif @if (count($addresses) == 2) md:grid-cols-2 @endif @if (count($addresses) >= 3) md:grid-cols-3 @endif">
     @forelse ($addresses as $address)
-        <div class="bg-white overflow-hidden shadow rounded-lg border">
+        <div class="bg-white overflow-hidden shadow rounded-lg border dark:bg-black">
             <div class="px-4 py-5 ">
                 <div class="flex gap-2 justify-between items-center">
                     <div class="flex gap-2">
@@ -30,58 +30,58 @@
                 <dl class="sm:divide-y sm:divide-gray-200">
                     <div
                         class="py-3 grid grid-cols-2 place-content-center sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium ">
                             Phone Number
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->phone_number }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium ">
                             Province
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->province }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium t">
                             City
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->city }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium t">
                             District
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->subdistrict }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium ">
                             Postal Code
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->postal_code }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium ">
                             Address
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->address }}
                         </dd>
                     </div>
                     <div class="py-3 grid grid-cols-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
+                        <dt class="text-sm font-medium t">
                             Additional Information
                         </dt>
-                        <dd class="text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="text-sm  sm:mt-0 sm:col-span-2">
                             {{ $address->additional_information }}
                         </dd>
                     </div>

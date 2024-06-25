@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -56,5 +57,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/show', 'showAdminSeller')->name('show');
         Route::get('/detail-transaction/{transaction}', 'detailTransactionAdminSeller')->name('detail-transaction');
         Route::get('/search', 'search')->name('search');
+        Route::get('/direct-transaction', 'indexDirectTransaction')->name('indexDirectTransaction');
+    });
+
+    Route::controller(CheckOutController::class)->prefix('checkout')->name('checkout.')->group(function () {
+        Route::post('/direct-checkout', 'directCheckout')->name('direct-checkout');
     });
 });

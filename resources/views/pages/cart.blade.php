@@ -28,7 +28,8 @@
         <div class="flex justify-between items-center" x-data="{ intersect: false }" x-intersect:enter="intersect=true"
             x-intersect:leave="intersect=false">
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
-                <h1 class="text-2xl md:text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart</h1>
+                <h1 class="text-2xl md:text-4xl font-bold " :class="intersect ? 'animate-fade-right' : 'opacity-0'">My Cart
+                </h1>
             </div>
             <div class="flex flex-col md:flex-row px-4 lg:px-0">
                 <x-button-link class="btn-neutral btn-sm md:btn-md" :link="route('products.indexFront')">
@@ -62,24 +63,33 @@
 
             <div class="md:col-span-3 lg:col-span-1  ">
                 <div class="flex flex-col gap-8 ">
-                    <div class="flex flex-col gap-4 shadow-md rounded-md p-4 ">
+                    <div class="hidden lg:flex flex-col gap-4 shadow-md rounded-md p-4 ">
                         <h1 class="text-lg font-bold">Order Summary</h1>
                         <div class="flex justify-between">
                             <p class="text-sm">Total</p>
                             <p class="text-sm font-sans" x-text="totalPriceDisplay"></p>
                         </div>
                         <x-button-link link="{{ route('checkout.index') }}"
-                            class="btn-sm bg-primary text-white">Checkout</x-button-link>
+                            class="btn-md bg-primary text-white">Checkout</x-button-link>
                     </div>
                     <div class="flex flex-col gap-4 shadow-md rounded-md p-4">
                         <h1 class="text-lg font-bold">Need Help?</h1>
                         <p class="text-sm">If you have any question, feel free to contact us</p>
                         <x-button-link link="{{ route('about.index') }}/#contact-us"
-                            class="btn-sm bg-neutral text-white">Contact
+                            class="btn-md bg-neutral text-white">Contact
                             Us</x-button-link>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="fixed bottom-0 left-0 right-0 bg-white opacity-100 p-4 shadow-lg z-[200] lg:hidden">
+            <div class="flex gap-4 items-center justify-between">
+                <p class="text-lg font-sans font-bold" x-text="totalPriceDisplay"></p>
+                <x-button-link link="{{ route('checkout.index') }}"
+                    class="btn-md bg-primary  text-white">Checkout Product</x-button-link>
+            </div>
+
         </div>
     </div>
 @endsection

@@ -9,7 +9,7 @@
         class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[9999999999] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
         <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
         <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
-        <p class="w-1/3 text-center text-white">This may take a few seconds</p>
+        <p class="lg:w-1/3 w-2/3 text-center text-white">This may take a few seconds</p>
     </div>
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
@@ -110,8 +110,8 @@
                             title="Create Weaver"></x-dashboard.create-modal>
                     </div>
                     <label
-                        class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 text-white bg-[#0E1726] ">
-                        <input type="text" id="search" class="form-input grow border-none outline-none text-white "
+                        class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 border border-primary dark:bg-black">
+                        <input type="text" id="search" class="grow border-none outline-none text-black dark:text-white "
                             placeholder="Search by keyword"
                             @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                         <span class="mdi mdi-magnify"></span>

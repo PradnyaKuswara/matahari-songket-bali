@@ -27,7 +27,7 @@
         class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[100] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
         <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
         <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
-        <p class="w-1/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
+        <p class="lg:w-1/3 w-2/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
     </div>
 
 
@@ -106,14 +106,15 @@
                             </div>
                         @endif
 
-                        <h2 class="font-extrabold text-3xl">Book Information - <span class="font-bold text-xl">Your
+                        <h2 class="font-extrabold text-2xl lg:text-3xl">Book Information - <span
+                                class="font-bold text-xl">Your
                                 detail</span> </h2>
                         <div class="grid md:grid-cols-3 gap-4">
                             <label class="form-control w-full ">
                                 <div class="label">
                                     <span class="label-text">Name</span>
                                 </div>
-                                <p class="mx-2 font-bold text-sm">{{ $user->name }}</p>
+                                <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->name }}</p>
 
                             </label>
 
@@ -121,7 +122,7 @@
                                 <div class="label">
                                     <span class="label-text">User Name</span>
                                 </div>
-                                <p class="mx-2 font-bold text-sm">{{ $user->username }}</p>
+                                <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->username }}</p>
                             </label>
 
                             <label class="form-control w-full">
@@ -129,10 +130,10 @@
                                     <span class="label-text">Phone Number</span>
                                 </div>
                                 @if ($user->addresses->count() > 0)
-                                    <p class="mx-2 font-bold text-sm font-sans">
+                                    <p class="mx-2 font-bold text-base lg:text-sm font-sans">
                                         {{ $user->addresses->first()->phone_number }}</p>
                                 @else
-                                    <p class="mx-2 font-bold text-sm font-sans">
+                                    <p class="mx-2 font-bold text-base lg:text-sm font-sans">
                                         -</p>
                                 @endif
                             </label>
@@ -143,7 +144,7 @@
                                 <div class="label">
                                     <span class="label-text">Address</span>
                                 </div>
-                                <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->address }}</p>
+                                <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->addresses->first()->address }}</p>
                             </label>
 
                             <div class="grid md:grid-cols-4 gap-4">
@@ -151,27 +152,29 @@
                                     <div class="label">
                                         <span class="label-text">Country</span>
                                     </div>
-                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->country }}</p>
+                                    <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->addresses->first()->country }}
+                                    </p>
                                 </label>
                                 <label class="form-control w-full ">
                                     <div class="label">
                                         <span class="label-text">Province</span>
                                     </div>
-                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->province }}</p>
+                                    <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->addresses->first()->province }}
+                                    </p>
                                 </label>
 
                                 <label class="form-control w-full ">
                                     <div class="label">
                                         <span class="label-text">City</span>
                                     </div>
-                                    <p class="mx-2 font-bold text-sm">{{ $user->addresses->first()->city }}</p>
+                                    <p class="mx-2 font-bold text-base lg:text-sm">{{ $user->addresses->first()->city }}</p>
                                 </label>
 
                                 <label class="form-control w-full ">
                                     <div class="label">
                                         <span class="label-text">Post Code</span>
                                     </div>
-                                    <p class="mx-2 font-bold text-sm font-sans">
+                                    <p class="mx-2 font-bold text-base lg:text-sm font-sans">
                                         {{ $user->addresses->first()->postal_code }}
                                     </p>
                             </div>
@@ -223,7 +226,8 @@
                         @endif
 
 
-                        <h2 class="font-extrabold text-3xl">Shipping Information </h2>
+                        <h2 class="font-extrabold text-2xl lg:text-3xl">Shipping Information - <span
+                                class="font-bold text-xl">Select Courier</span> </h2>
 
                         <div class="grid gap-4">
                             <label class="form-control w-full max-w-sm">
@@ -231,8 +235,8 @@
                                     <span class="label-text">Courier</span>
                                 </div>
                                 <select class="select select-bordered" id="select-courier">
-                                    <option value="" disabled selected>Select Courier</option>
-                                    <option value="jne">JNE</option>
+                                    <option value="" disabled>Select Courier</option>
+                                    <option value="jne" selected>JNE</option>
                                     <option value="jnt">JNT</option>
                                     <option value="sicepat">SICEPAT</option>
                                 </select>
@@ -310,13 +314,13 @@
                             </div>
                             <div class="flex flex-col gap-4 mt-8">
                                 @if ($user->carts->count() > 0 && $user->addresses->count() > 0)
-                                    <button type="submit" id="checkout" class="btn btn-accent w-full"><span
-                                            class="mdi mdi-dots-hexagon text-xl"></span>Checkout Product</button>
-                                    <x-button-link class="btn btn-neutral  w-full" :link="route('carts.indexFront')"><span
+                                    <button type="submit" id="checkout" class="btn btn-accent w-full hidden md:flex"
+                                        disabled><span class="mdi mdi-dots-hexagon text-xl"></span>Make Order</button>
+                                    <x-button-link class="btn btn-neutral hidden lg:flex  w-full" :link="route('carts.indexFront')"><span
                                             class="mdi mdi-cart-outline text-xl"></span>Change
                                         Product Cart</x-button-link>
                                 @else
-                                    <x-button-link class="btn btn-neutral  w-full" :link="route('products.indexFront')">Explore
+                                    <x-button-link class="btn btn-neutral hidden lg:flex  w-full" :link="route('products.indexFront')">Explore
                                         Product</x-button-link>
                                     <div class="">
                                         <p class="text-red-500 text-xs">* Make sure choose your product on cart</p>
@@ -332,6 +336,19 @@
                         <input type="hidden" name="shipping_method" id="shipping_method_input">
                         <input type="hidden" name="shipping_code" id="shipping_code_input">
 
+                        <div class="fixed bottom-0 left-0 right-0 bg-white opacity-100 p-4 shadow-lg z-[200] lg:hidden">
+                            <div class="flex gap-4 justify-between items-center">
+                                <div class="text-xl font-sans text-black">
+                                    <h1 id="totalAllMobile" class="font-bold">Rp.
+                                        {{ number_format($totalAll, 2, ',', '.') }}</h1>
+                                </div>
+                                @if ($user->carts->count() > 0)
+                                    <button type="submit" id="checkout-mobile" class="btn btn-accent "disabled>
+                                        <span class="mdi mdi-dots-hexagon text-xl"></span> Make Order
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -345,18 +362,13 @@
         const loader = document.getElementById('loading-checkout');
         const shippingContainer = document.getElementById('shipping');
         const checkout = document.getElementById('checkout');
+        const checkoutMobile = document.getElementById('checkout-mobile');
         const formCheckout = document.getElementById('form-checkout');
         const selectCourier = document.getElementById('select-courier');
         const apiKey = '{{ config('shipping.api_key') }}';
         const address = @json($user->addresses->first());
 
-        //menghilangkan elemen lain contohnya KAB. KLUNGKUNG menjadi KLUNGKUNG
-        address.city = address.city.replace(/^(KAB\.|KOTA ADM\. |KOTA )\s*/, '');
-
-        console.log(address.city);
-
-        selectCourier.addEventListener('change', function() {
-            const courier = selectCourier.value;
+        function getOngkir(courier) {
             const url = `{{ route('checkout.ongkirCheck') }}`;
             const data = {
                 destination: address.idCity,
@@ -456,7 +468,14 @@
                     'Courier not available for this destination. Plase choose another courier or contact us for more information.'
                 );
             });
+        }
 
+        if (selectCourier.value != '') {
+            getOngkir(selectCourier.value);
+        }
+
+        selectCourier.addEventListener('change', function() {
+            getOngkir(this.value);
         });
 
         function updateTotal(shippingCost) {
@@ -476,6 +495,10 @@
             document.getElementById('subTotal').textContent = formatter.format(subTotal);
             document.getElementById('tax').textContent = formatter.format(tax);
             document.getElementById('totalAll').textContent = formatter.format(totalAll);
+            document.getElementById('totalAllMobile').textContent = formatter.format(totalAll);
+
+            checkout.disabled = false;
+            checkoutMobile.disabled = false;
 
         }
 
@@ -483,7 +506,6 @@
             e.preventDefault();
             const radioInput = document.querySelector('input[name="shipping_method"]:checked');
 
-            console.log(radioInput);
             if (selectCourier.value == '' || radioInput == null || radioInput.value == '') {
                 const notify = new Notyf({
                     duration: 5000,
@@ -497,6 +519,28 @@
                 return;
             }
             loader.style.display = 'flex';
+            checkout.disabled = true;
+            formCheckout.submit();
+        });
+
+        checkoutMobile.addEventListener('click', function(e) {
+            e.preventDefault();
+            const radioInput = document.querySelector('input[name="shipping_method"]:checked');
+
+            if (selectCourier.value == '' || radioInput == null || radioInput.value == '') {
+                const notify = new Notyf({
+                    duration: 5000,
+                    position: {
+                        x: 'right',
+                        y: 'top',
+                    },
+                });
+
+                notify.error('Please select courier first');
+                return;
+            }
+            loader.style.display = 'flex';
+            checkoutMobile.disabled = true;
             formCheckout.submit();
         });
     </script>

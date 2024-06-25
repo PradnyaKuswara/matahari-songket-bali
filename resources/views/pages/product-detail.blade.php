@@ -105,23 +105,24 @@
 
                     <div class="flex gap-2 md:gap-4 item-center mt-5">
                         <x-button-click @click="addToCart({{ $product }})" id="btn-cart"
-                            class="btn-neutral w-full text-white {{ !auth()->check() ? 'pointer-events-none' : '' }} "><span
-                                class="mdi mdi-cart-outline text-xl"></span>Add to
+                            class="btn-neutral w-full text-white "><span class="mdi mdi-cart-outline text-xl"></span>Add to
                             Cart</x-button-click>
                     </div>
                 </div>
             </div>
     </section>
-    <section class="xl:max-w-screen-xl lg:max-w-screen-lg mx-2 md:mx-8 lg:mx-auto pb-16">
-        <div class="flex flex-col gap-8 lg:gap-4">
-            <div class="text-2xl md:text-4xl font-bold">You may like also</div>
-            <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-                @foreach ($products as $product)
-                    <x-product-card :product="$product" class="card" />
-                @endforeach
+    @if ($products->count() > 0)
+        <section class="xl:max-w-screen-xl lg:max-w-screen-lg mx-2 md:mx-8 lg:mx-auto pb-16">
+            <div class="flex flex-col gap-8 lg:gap-4">
+                <div class="text-2xl md:text-4xl font-bold">You may like also</div>
+                <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+                    @foreach ($products as $product)
+                        <x-product-card :product="$product" class="card" />
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection
 
 @push('scripts')
@@ -177,8 +178,6 @@
                         }
 
                         if (jqXHR.status == 401) {
-                            notify.error(
-                                `${jqXHR.responseJSON.message}. Please login first`);
                             window.location.href = '{{ route('login') }}';
                         }
 

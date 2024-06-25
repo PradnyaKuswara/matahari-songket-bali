@@ -34,6 +34,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
+            'name' => 'guest',
+            'username' => 'guest',
+            'email' => 'guestqamgo@gmail.com',
+            'role_id' => Role::where('name', 'customer')->first()->id,
+            'is_active' => false,
+            'password' => 'pweiasfmi',
+        ]);
+
+        \App\Models\User::factory()->create([
             'name' => 'seller',
             'username' => 'seller',
             'email' => 'seller@gmail.com',

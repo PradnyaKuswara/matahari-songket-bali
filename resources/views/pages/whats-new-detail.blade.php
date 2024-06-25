@@ -54,14 +54,18 @@
         </div>
     </section>
 
-    <section class="2xl:max-w-screen-xl lg:max-w-screen-lg mx-2 md:mx-8 lg:mx-auto pb-16">
-        <div class="flex flex-col gap-8 lg:gap-4">
-            <div class="text-2xl md:text-4xl font-bold">Maybe you interested</div>
-            <div class="grid md:grid-cols-3 gap-4">
-                @foreach ($articles as $article)
-                    <x-article :article="$article" />
-                @endforeach
+    @if ($articles->count() > 0)
+        <section class="2xl:max-w-screen-xl lg:max-w-screen-lg mx-2 md:mx-8 lg:mx-auto pb-16">
+            <div class="flex flex-col gap-8 lg:gap-4">
+                <div class="text-2xl md:text-4xl font-bold">Maybe you interested</div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    @foreach ($articles as $article)
+                        <x-article :article="$article" />
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
+
 @endsection

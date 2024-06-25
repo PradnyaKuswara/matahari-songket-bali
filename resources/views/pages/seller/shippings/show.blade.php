@@ -20,12 +20,12 @@
 
         <div>
             @php
-                $modal = "1"
+                $modal = '1';
             @endphp
             <div class="flex flex-col md:flex-row md:justify-between gap-4" x-data="modalEdit{{ $modal }}">
                 <h2 class="text-xl font-semibold mt-4">Shipping Detail</h2>
-                <label for="modal_edit_{{ $modal }}" class="cursor-pointer btn btn-neutral "
-                    @click="toggle()">Delivery Product</label>
+                <label for="modal_edit_{{ $modal }}" class="cursor-pointer btn btn-neutral " @click="toggle()">Delivery
+                    Product</label>
                 <x-dashboard.edit-modal :elements="[
                     [
                         'name' => 'tracking_number',
@@ -102,7 +102,8 @@
                                 @endif
                             </div>
                             <div>
-                                <p class="text-gray-500 text-sm">Courier: {{ $shipping->courier ?? '-' }}</p>
+                                <p class="text-gray-500 text-sm">Courier: {{ $shipping->courier_code ?? '-' }}</p>
+                                <p class="text-gray-500 text-sm">Service: {{ $shipping->courier ?? '-' }}</p>
                                 <p class="text-gray-500 text-sm">Number: {{ $shipping->tracking_number ?? '-' }}</p>
                             </div>
                         </div>
@@ -117,9 +118,9 @@
                         <div class="mt-4">
                             <p class="text-gray-500 text-sm">Address:</p>
                             <p class="text-gray-800 font-bold text-sm">{{ $shipping->address }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->city }},
-                                {{ $shipping->province }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->city }},
+                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->subdistrict }},
+                                {{ $shipping->city }}</p>
+                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->province }},
                                 {{ $shipping->country }}</p>
                             <p class="text-gray-800 font-bold text-sm">{{ $shipping->postal_code }}</p>
                         </div>

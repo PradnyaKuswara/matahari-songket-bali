@@ -6,7 +6,7 @@
         layout: "full", // full, boxed-layout
         rtlClass: "ltr", // rtl, ltr
         animation: "", // animate__fadeIn, animate__fadeInDown, animate__fadeInUp, animate__fadeInLeft, animate__fadeInRight, animate__slideInDown, animate__slideInLeft, animate__slideInRight, animate__zoomIn
-        navbar: "navbar-sticky", // navbar-sticky, navbar-floating, navbar-static
+        navbar: "navbar-floating", // navbar-sticky, navbar-floating, navbar-static
         semidark: false,
     };
     window.addEventListener("load", function () {
@@ -129,6 +129,15 @@
             // theme
             theme: Alpine.$persist($themeConfig.theme),
             isDarkMode: Alpine.$persist(false),
+
+            init() {
+                if (window.userRole === "customer") {
+                    this.menu = "horizontal";
+                } else {
+                    this.menu = $themeConfig.menu;
+                }
+            },
+
             toggleTheme(val) {
                 if (!val) {
                     val = this.theme || $themeConfig.theme; // light|dark|system

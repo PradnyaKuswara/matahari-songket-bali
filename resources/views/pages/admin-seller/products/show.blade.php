@@ -15,10 +15,10 @@
             </li>
         </ul>
 
-        <div x-data="products" class="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 mt-5">
+        <div x-data="products" class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 lg:gap-4 mt-5">
             @foreach ($products as $product)
                 <div class="col-span-1">
-                    <x-product-card :product="$product" class="shadow-md"></x-product-card>
+                    <x-product-card :product="$product" class="shadow-md border bg-white dark:bg-black"></x-product-card>
                 </div>
             @endforeach
         </div>

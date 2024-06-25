@@ -1,7 +1,7 @@
 @props(['order' => null])
 
 <div
-    class="card w-full lg:w-80 bg-base-100 {{ $order->status == true ? 'border-success border' : 'border-warning border' }} shadow-xl">
+    class="card w-full lg:w-80 bg-base-100 {{ $order->status == true ? 'border-success border' : 'border-warning border' }} shadow-xl dark:bg-black">
     <div class="card-body">
         <h2 class="card-title">{{ $order->transaction->generate_id }}</h2>
 

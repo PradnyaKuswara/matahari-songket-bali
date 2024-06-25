@@ -6,14 +6,14 @@
                 <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
-                        <span class="font-bold text-neutral">{{ $paginator->firstItem() }}</span>
+                        <span class="font-bold text-neutral dark:text-white">{{ $paginator->firstItem() }}</span>
                         {!! __('to') !!}
-                        <span class="font-bold text-neutral ">{{ $paginator->lastItem() }}</span>
+                        <span class="font-bold text-neutral dark:text-white">{{ $paginator->lastItem() }}</span>
                     @else
                         {{ $paginator->count() }}
                     @endif
                     {!! __('of') !!}
-                    <span class="font-bold text-neutral ">{{ $paginator->total() }}</span>
+                    <span class="font-bold text-neutral dark:text-white">{{ $paginator->total() }}</span>
                     {!! __('results') !!}
                 </p>
             </div>

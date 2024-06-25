@@ -2,15 +2,10 @@
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">
     <div class="shadow-sm no-print">
         <div
-            class="relative flex w-full items-center gap-4 bg-primary shadow-md lg:rounded-lg px-5 py-2.5 dark:bg-[#0e1726]">
+            class="relative flex w-full items-center gap-4 bg-primary shadow-md lg:rounded-lg px-3 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
-                <a href="javascript:void(0);" class="main-logo flex shrink-0 items-center">
-                    <img class="inline w-24  ltr:-ml-1 rtl:-mr-1" src="{{ asset('assets/images/logo2.png') }}"
-                        alt="image" />
-                </a>
-
                 <a href="javascript:;"
-                    class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
+                    class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 bg-white dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
                     @click="$store.app.toggleSidebar()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -22,51 +17,16 @@
                 </a>
             </div>
 
+            <div class="hidden lg:flex">
+                <a href="javascript:void(0);" class="main-logo flex shrink-0 items-center">
+                    <img class="inline w-24  ltr:-ml-1 rtl:-mr-1" src="{{ asset('assets/images/logo2.png') }}"
+                        alt="image" />
+                </a>
+            </div>
+
+
             <div x-data="header"
                 class="flex items-center justify-end space-x-1.5 ltr:ml-auto rtl:mr-auto rtl:space-x-reverse dark:text-[#d0d2d6] sm:flex-1 ltr:sm:ml-0 sm:rtl:mr-0 lg:space-x-2">
-                {{-- <div class="sm:ltr:mr-auto sm:rtl:ml-auto" x-data="{ search: false }" @click.outside="search = false">
-                    <form
-                        class="absolute inset-x-0 top-1/2 z-10 mx-4 hidden -translate-y-1/2 sm:relative sm:top-0 sm:mx-0 sm:block sm:translate-y-0"
-                        :class="{ '!block': search }" @submit.prevent="search = false">
-                        <div class="relative">
-                            <input type="text"
-                                class="peer form-input bg-gray-100 text-xs ltr:pl-9 ltr:pr-9 rtl:pl-9 rtl:pr-9 sm:bg-transparent ltr:sm:pr-4 rtl:sm:pl-4"
-                                placeholder="Search by keyword" />
-                            <button type="button"
-                                class="absolute inset-0 h-9 w-9 appearance-none peer-focus:text-primary ltr:right-auto rtl:left-auto">
-                                <svg class="mx-auto" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor"
-                                        stroke-width="1.5" opacity="0.5" />
-                                    <path d="M18.5 18.5L22 22" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </button>
-                            <button type="button"
-                                class="absolute top-1/2 block -translate-y-1/2 hover:opacity-80 ltr:right-2 rtl:left-2 sm:hidden"
-                                @click="search = false">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <circle opacity="0.5" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="currentColor"
-                                        stroke-width="1.5" stroke-linecap="round" />
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                    <button type="button"
-                        class="search_btn rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 dark:bg-dark/40 dark:hover:bg-dark/60 sm:hidden"
-                        @click="search = ! search">
-                        <svg class="mx-auto h-4.5 w-4.5 dark:text-[#d0d2d6]" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor" stroke-width="1.5"
-                                opacity="0.5" />
-                            <path d="M18.5 18.5L22 22" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" />
-                        </svg>
-                    </button>
-                </div> --}}
 
                 @if (auth()->user()->isCustomer())
                     <div>
@@ -261,124 +221,16 @@
                                 class="{{ request()->is('customer/dashboard') ? 'active' : '' }}">Main Dashboard</a>
                         </li>
                     @endif
-
                 </ul>
             </li>
-            @if (auth()->user()->isAdmin())
-                <li class="menu nav-item relative">
-                    <a href="javascript:;" class="nav-link ">
-                        <div class="flex items-center">
-                            <span class="mdi mdi-apps text-lg"></span>
-                            <span class="px-1">Daily Activity</span>
-                        </div>
-                        <div class="right_arrow">
-                            <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="#" ">Product</a>
-                        </li>
-                        <li>
-                            <a
-                                href="#" ">Order</a>
-                        </li>
-                        <li>
-                            <a
-                                href="#" ">Invoice</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu nav-item relative">
-                    <a href="javascript:;"
-                        class="nav-link {{ request()->is('admin/dashboard/weavers/*', 'admin/dashboard/customers/*') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
-                                <div class="flex items-center">
-                                    <span class="mdi mdi-account-group-outline text-xl"></span>
-                                    <span class="px-1">Management Users</span>
-                                </div>
-                                <div class="right_arrow">
-                                    <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="{{ route('admin.dashboard.weavers.index') }}"
-                                        class="{{ request()->is('admin/dashboard/weavers', 'admin/dashboard/weavers/create', 'admin/dashboard/weavers/edit/*') ? 'active' : '' }}">Weaver</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.dashboard.customers.index') }}"
-                                        class="{{ request()->is('admin/dashboard/customers', 'admin/dashboard/customers/create', 'admin/dashboard/customers/edit/*') ? 'active' : '' }}">Customer</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu nav-item relative">
-                            <a href="javascript:;"
-                                class="nav-link {{ request()->is('admin/dashboard/products/*', 'admin/dashboard/items/*') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
-                                <div class="flex items-center">
-                                    <span class="mdi mdi-hub-outline text-lg"></span>
-                                    <span class="px-1">Management Production</span>
-                                </div>
-                                <div class="right_arrow">
-                                    <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="{{ route('admin.dashboard.items.categories.index') }}"
-                                        class="{{ request()->is('admin/dashboard/items/*') ? 'active' : '' }}">Item
-                                        Category</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.dashboard.products.categories.index') }}"
-                                        class="{{ request()->is('admin/dashboard/products/*') ? 'active' : '' }}">Product
-                                        Category</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu nav-item relative">
-                            <a href="javascript:;"
-                                class="nav-link {{ request()->is('admin/dashboard/logs') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
-                                <div class="flex items-center">
-                                    <span class="mdi mdi-math-log text-lg"></span>
-                                    <span class="px-1">Logs</span>
-                                </div>
-                                <div class="right_arrow">
-                                    <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="{{ route('admin.dashboard.logs.index') }}"
-                                        class="{{ request()->is('admin/dashboard/logs') ? 'active' : '' }}">Recent
-                                        Activities</a>
-                                </li>
-                            </ul>
-                        </li>
-            @endif
 
             @if (auth()->user()->isCustomer())
                 <li class="menu nav-item relative">
                     <a href="javascript:;"
-                        class="nav-link {{ request()->is('customer/dashboard/address', 'customer/dashboard/address/*') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
+                        class="nav-link {{ request()->is('customer/dashboard/tracking-order') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
                         <div class="flex items-center">
-                            <span class="mdi mdi-apps text-lg"></span>
-                            <span class="px-1">Information Address</span>
+                            <span class="mdi mdi-apps text-xl"></span>
+                            <span class="px-1">Order Product</span>
                         </div>
                         <div class="right_arrow">
                             <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
@@ -390,11 +242,67 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{ route('customer.dashboard.address.index') }}" ">Your Address</a>
+                            <a href="{{ route('products.indexFront') }}" ">Buy Product</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.trackingOrder') }}" class="{{ request()->is('customer/dashboard/tracking-order') ? 'active' : '' }}">Tracking Order</a>
                         </li>
                     </ul>
                 </li>
- @endif
-                    </ul>
+                <li class="menu nav-item relative">
+                    <a href="javascript:;"
+                        class="nav-link {{ request()->is('customer/dashboard/address', 'customer/dashboard/address/*') ? 'bg-primary text-white' : 'text-black dark:text-white' }}">
+                        <div class="flex items-center">
+                            <span class="mdi mdi mdi-format-list-text text-xl"></span>
+                            <span class="px-1">Your Address</span>
+                        </div>
+                        <div class="right_arrow">
+                            <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d=" M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+    </div>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a href="{{ route('customer.dashboard.address.index') }}"
+                class="{{ request()->is('customer/dashboard/address', 'customer/dashboard/address/*') ? 'active' : '' }}">Address
+                Detail</a>
+        </li>
+    </ul>
+    </li>
+    <li class="menu nav-item relative">
+        <a href="javascript:;"
+            class="nav-link {{ request()->is('customer/dashboard/order', 'customer/dashboard/transaction', 'customer/dashboard/shipping') ? 'bg-primary text-white' : 'text-black dark:text-white' }}"">
+            <div class="flex items-center">
+                <span class="mdi mdi-order-bool-descending-variant text-xl"></span>
+                <span class="px-1">History Transaction</span>
+            </div>
+            <div class="right_arrow">
+                <svg class="h-4 w-4 rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li>
+                <a href="{{ route('customer.dashboard.order.index') }}"
+                    class="{{ request()->is('customer/dashboard/order') ? 'active' : '' }}">Order</a>
+            </li>
+            <li>
+                <a href="{{ route('customer.dashboard.transaction.index') }}"
+                    class="{{ request()->is('customer/dashboard/transaction') ? 'active' : '' }}">Invoice</a>
+            </li>
+            <li>
+                <a href="{{ route('customer.dashboard.shipping.index') }}"
+                    class="{{ request()->is('customer/dashboard/shipping') ? 'active' : '' }}">Shipping</a>
+            </li>
+        </ul>
+    </li>
+    @endif
+    </ul>
     </div>
 </header>

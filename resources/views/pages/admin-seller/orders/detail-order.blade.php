@@ -85,7 +85,7 @@
                     <div class="grid grid-cols-1 gap-4">
                         @foreach ($order->products as $item)
                             <div class="card">
-                                <div class="card-body bg-white">
+                                <div class="card-body">
                                     <div class="flex flex-col md:flex-row md:justify-between gap-4">
                                         <div class="flex gap-4 items-center">
                                             <div class="flex-col">
@@ -100,9 +100,9 @@
 
                                         </div>
                                         <div>
-                                            <p class="text-gray-800 font-bold text-base">Price: Rp
+                                            <p class="font-bold text-base">Price: Rp
                                                 {{ number_format($item->pivot->price, 2, ',', '.') }}</p>
-                                            <p class="text-gray-800 font-bold text-base">Subtotal: Rp
+                                            <p class="font-bold text-base">Subtotal: Rp
                                                 {{ number_format($item->pivot->total_price, 2, ',', '.') }}</p>
                                         </div>
                                     </div>

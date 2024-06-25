@@ -173,7 +173,7 @@
                                  </div>
                              </button>
                              <ul x-cloak x-show="activeDropdown === 'managementItem'" x-collapse
-                                 class="sub-menu bg-white">
+                                 class="sub-menu bg-white dark:bg-black">
                                  <li class="hover:bg-neutral">
                                      <a href="{{ route(request()->user()->role->name . '.dashboard.items.index') }}"
                                          class=" {{ request()->is(request()->user()->role->name . '/dashboard/items') ? 'active ' : '' }}">
@@ -220,7 +220,7 @@
                              </button>
 
                              <ul x-cloak x-show="activeDropdown === 'managementProduct'" x-collapse
-                                 class="sub-menu bg-white">
+                                 class="sub-menu bg-white dark:bg-black">
                                  <li>
                                      <a href="{{ route(request()->user()->role->name . '.dashboard.products.index') }}"
                                          class="group {{ request()->is(request()->user()->role->name . '/dashboard/products') ? 'active' : '' }}">
@@ -266,6 +266,32 @@
                  @endif
 
                  @if (auth()->user()->isSeller())
+                     <h2
+                         class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                         <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"
+                             stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                             <line x1="5" y1="12" x2="19" y2="12"></line>
+                         </svg>
+                         <span>Management Transaction</span>
+                     </h2>
+
+
+                     <li class="nav-item">
+                         <ul>
+                             <li class="nav-item hover:bg-neutral hover:rounded-lg group">
+                                 <a href="{{ route('seller.dashboard.transactions.indexDirectTransaction') }}"
+                                     class="group {{ request()->is('seller/dashboard/transactions/direct-transaction') ? 'bg-primary text-white' : '' }}">
+                                     <div class="flex items-center">
+                                         <span
+                                             class="group-hover:text-white mdi mdi-cash-fast text-xl {{ request()->is('seller/dashboard/transactions/direct-transaction') ? 'text-white' : '' }}"></span>
+                                         <span
+                                             class="group-hover:text-white {{ request()->is('seller/dashboard/transactions/direct-transaction') ? 'text-white dark:text-white' : 'text-black dark:text-[#506690]' }} ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Direct
+                                             Transaction</span>
+                                     </div>
+                                 </a>
+                             </li>
+                         </ul>
+                     </li>
                      <h2
                          class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
                          <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor"

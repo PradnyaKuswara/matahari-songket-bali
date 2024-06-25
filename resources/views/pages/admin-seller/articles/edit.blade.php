@@ -74,14 +74,14 @@
                             <label class="form-control w-full max-w-xs" for="loggingTitle">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Author</span>
+                                        <span class="label-text dark:text-white">Author</span>
                                         <span class="text-error">*</span>
                                     </div>
                                 </div>
                             </label>
 
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="loggingTitle" type="text" class="form-input grow border-none outline-none "
+                                <input id="loggingTitle" type="text" class="grow border-none outline-none "
                                     name="user_id" value="{{ request()->user()->name }} / {{ request()->user()->email }}"
                                     placeholder="Enter your article author" minlength="1" maxlength="50" disabled />
                             </label>
@@ -91,14 +91,14 @@
                             <label class="form-control w-full max-w-xs" for="loggingTitle">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Title</span>
+                                        <span class="label-text dark:text-white">Title</span>
                                         <span class="text-error">*</span>
                                     </div>
                                 </div>
                             </label>
 
                             <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="loggingTitle" type="text" class="form-input grow border-none outline-none "
+                                <input id="loggingTitle" type="text" class="grow border-none outline-none "
                                     name="title" value="{{ old('title') ?? $article->title }}"
                                     placeholder="Enter your article title" minlength="1" maxlength="50" />
                             </label>
@@ -111,7 +111,7 @@
                             <label class="form-control w-full" for="loggingThumbnail">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Thumbnail</span>
+                                        <span class="label-text dark:text-white">Thumbnail</span>
                                         <span class="text-error">*</span>
                                     </div>
                                 </div>
@@ -133,7 +133,8 @@
                                 <svg width="52" height="52" viewBox="0 0 32 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20.5717 9.90039L26.6669 15.9987L20.5717 22.0954M6.85742 16.0002H26.6669"
-                                        stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                        class="stroke-black dark:stroke-white" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                                 <div class="mx-2"
                                     style="width: 320px; height: 180px; border: 2px solid rgb(219, 219, 219);"
@@ -148,7 +149,7 @@
                             <label class="form-control w-full" for="loggingContent">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Content</span>
+                                        <span class="label-text dark:text-white">Content</span>
                                         <span class="text-error">*</span>
                                     </div>
                                 </div>
@@ -168,7 +169,7 @@
                             <label class="form-control w-full" for="loggingMetaDesc">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Meta Description</span>
+                                        <span class="label-text dark:text-white">Meta Description</span>
                                     </div>
                                 </div>
                                 <textarea id="loggingMetaDesc" name="meta_desc" class="textarea textarea-bordered h-24"
@@ -184,7 +185,7 @@
                             <label class="form-control w-full" for="loggingMetaKeyword">
                                 <div class="label">
                                     <div>
-                                        <span class="label-text">Meta Keyword</span>
+                                        <span class="label-text dark:text-white">Meta Keyword</span>
                                     </div>
                                 </div>
                                 <textarea id="loggingMetaKeyword" name="meta_keyword" class="textarea textarea-bordered h-24"

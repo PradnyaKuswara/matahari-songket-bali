@@ -1,6 +1,6 @@
 @props(['shipping' => null, 'loop' => null])
 
-<div class="card w-full lg:w-80 bg-base-100 shadow-xl">
+<div class="card w-full lg:w-80 bg-base-100 shadow-xl dark:bg-black border">
     <div class="card-body">
         <h2 class="card-title">{{ $shipping->name }}</h2>
         @if ($shipping->status == 'cancel')
@@ -30,7 +30,8 @@
         @if (auth()->user()->isCustomer())
             <div class="card-actions justify-center mt-4 gap-4">
                 <div class="w-full flex gap-4">
-                    <a href="{{ route('customer.dashboard.shipping.show', $shipping) }}" class="btn btn-primary w-full">Detail
+                    <a href="{{ route('customer.dashboard.shipping.show', $shipping) }}"
+                        class="btn btn-primary w-full">Detail
                         Shipping</a>
                 </div>
                 @if ($shipping->status == 'shipping')

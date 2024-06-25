@@ -3,16 +3,16 @@ const inputName = (i) => {
         <label class="form-control w-full max-w-xs" for="loggingNameCategory${i}">
             <div class="label">
                 <div>
-                    <span class="label-text">Name</span>
+                    <span class="label-text text-black dark:text-white">Name</span>
                     <span class="text-error">*</span>
                 </div>
             </div>
         </label>
 
-        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+        <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
             <input id="loggingNameCategory${i}" type="text"
-                class="form-input grow border-none outline-none " name="items[` + i + `][name]" x-model="form.items[` + i + `].name"
-                value="" placeholder="Production name"
+                class="grow border-none outline-none " name="items[` + i + `][name]" x-model="form.items[` + i + `].name"
+                value="" placeholder="Item name"
                 minlength="1" maxlength="50" />
         </label>
 
@@ -33,16 +33,16 @@ const inputCategory = (i) => {
         <label class="form-control w-full max-w-xs" for="loggingItemCategory${i}">
         <div class="label">
         <div>
-        <span class="label-text">Item Category</span>
+        <span class="label-text text-black dark:text-white">Item Category</span>
         <span class="text-error">*</span>
         </div>
         </div>
         </label>
 
-        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-        <select id="loggingItemCategory${i}" class=" form-input grow border-none outline-none text-md font-extralight "
+        <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
+        <select id="loggingItemCategory${i}" class="grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
             name="items[` + i + `][category_name]" x-model="form.items[` + i + `].category_name">
-            <option selected>Production item category</option>
+            <option selected disabled>Item category</option>
             <option value="material">Material
             </option>
             <option value="service">Service
@@ -66,17 +66,17 @@ const inputPrice = (i) => {
         <label class="form-control w-full max-w-xs" for="loggingPrice${i}">
         <div class="label">
         <div>
-        <span class="label-text">Price</span>
+        <span class="label-text text-black dark:text-white">Price</span>
         <span class="text-error">*</span>
         </div>
         </div>
         </label>
 
-        <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
+        <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary ">
         <p class="text-sm text-gray-400">Rp.</p>
         <input id="loggingPrice${i}" type="text"
-            class="form-input grow border-none outline-none " name="items[` + i + `][price]"
-            x-model="form.items[` + i + `].price" value="" placeholder="Production price" x-mask:dynamic="$money($input,',')" step="1000"
+            class="grow border-none outline-none " name="items[` + i + `][price]"
+            x-model="form.items[` + i + `].price" value="" placeholder="Item price" x-mask:dynamic="$money($input,',')" step="1000"
             minlength="1" maxlength="50" />
         </label>
 

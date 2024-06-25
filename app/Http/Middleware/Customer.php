@@ -40,7 +40,7 @@ class Customer
         } else {
             //check to json or not
             if ($request->expectsJson()) {
-                return response()->json(['message' => 'Not found'], 404);
+                return response()->json(['message' => 'Not found'], 401);
             }
             session(['intended_url' => $request->url()]);
 

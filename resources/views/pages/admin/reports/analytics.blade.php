@@ -40,12 +40,13 @@
                             <h1 class="text-base font-bold" x-text="totalScreenPageViews"></h1>
                         </div>
                         <div class="flex flex-col">
-                            <label class="form-control w-full max-w-md">
+                            <label class="form-control w-full max-w-lg">
                                 <div class="label">
                                     <span class="label-text">Filter</span>
                                 </div>
-                                <select class="select select-bordered" x-on:change.debounce="getDataAnalytic"
-                                    x-model="year">
+                                <select
+                                    class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary w-full md:max-w-80"
+                                    x-on:change.debounce="getDataAnalytic" x-model="year">
                                     <option disabled selected>Pick one</option>
                                     <option value="7" selected>Last 7 days</option>
                                     <option value="14">Last 14 days</option>
@@ -87,7 +88,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <template x-for="mostVisitedPage in mostVisitedPages" :key="mostVisitedPage.fullPageUrl">
+                                    <template x-for="mostVisitedPage in mostVisitedPages"
+                                        :key="mostVisitedPage.fullPageUrl">
                                         <tr>
                                             <td x-text="mostVisitedPage.pageTitle"></td>
                                             <td class="max-w-xl break-words" x-text="mostVisitedPage.fullPageUrl"></td>

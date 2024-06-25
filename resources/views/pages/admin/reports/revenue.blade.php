@@ -54,7 +54,7 @@
                         <div class="label">
                             <span class="label-text">Year</span>
                         </div>
-                        <select class="select select-bordered" name="year" id="year" x-model="year">
+                        <select class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary" name="year" id="year" x-model="year">
                             <option disabled selected>Pick one</option>
                             @for ($i = 2023; $i <= date('Y'); $i++)
                                 <option value="{{ $i }}" {{ $i == now()->format('Y') ? 'selected' : '' }}>

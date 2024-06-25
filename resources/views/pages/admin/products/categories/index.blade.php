@@ -51,9 +51,10 @@
                                 title="Create Product Category"></x-dashboard.create-modal>
                         </div>
                         <label
-                            class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 text-white bg-[#0E1726]">
+                            class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 border border-primary dark:bg-black">
                             <input type="text" id="search"
-                                class="form-input grow border-none outline-none text-white " placeholder="Search by keyword"
+                                class="grow border-none outline-none text-black dark:text-white "
+                                placeholder="Search by keyword"
                                 @if (session('keyword')) value="{{ session('keyword') }}" @endif />
                             <span class="mdi mdi-magnify"></span>
                         </label>

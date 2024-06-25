@@ -195,4 +195,94 @@ class CheckOutService
 
         return $this->orderService->checkStock($order);
     }
+
+    public function directCheckout($request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $data['item_total_price'] = 0;
+            $productAttach = [];
+            $user = DB::table('users')->where('name', 'guest')->first();
+
+            $data['user_id'] = $user->id;
+
+            foreach ($request->products as $index => $product) {
+                $productData = DB::table('products')->where('id', $product)->first();
+                if ($productData->stock < $request->quantity[$index]) {
+                    DB::rollBack();
+
+                    return [
+                        'status' => 400,
+                        'message' => 'This product stock is unavaliable',
+                        'data' => null,
+                    ];
+                }
+                $data['item_total_price'] += $productData->sell_price * $request->quantity[$index];
+
+                $productAttach[] = [
+                    'product_id' => $productData->id,
+                    'quantity' => $request->quantity[$index],
+                    'price' => $productData->sell_price,
+                    'total_price' => $productData->sell_price * $request->quantity[$index],
+                ];
+            }
+
+            $data['quantity'] = array_sum($request->quantity);
+
+            $data['shipping_price'] = 0;
+
+            $data['tax'] = round($data['item_total_price'] * 0.1);
+
+            $data['total_price'] = $data['item_total_price'] + $data['shipping_price'] + $data['tax'];
+
+            $data['status'] = true;
+
+            $order = $this->createOrder($data);
+
+            foreach ($productAttach as $value) {
+                $this->createAttachedProduct($value, $order);
+            }
+
+            foreach ($order->products as $product) {
+                $quantity = $product->pivot->quantity ?? 0;
+                $product->update([
+                    'stock' => $product->stock - $quantity,
+                ]);
+            }
+
+            $transaction = [
+                'user_id' => $user->id,
+                'order_id' => $order->id,
+                'item_total_price' => $order->item_total_price,
+                'shipping_price' => $order->shipping_price,
+                'tax' => $order->tax,
+                'total_price' => $order->total_price,
+                'snap_token' => 'direct_checkout',
+                'expired_at' => now(),
+                'status' => 'settlement',
+                'type' => 'cash',
+                'money' => $order->total_price,
+            ];
+
+            $dataTransaction = $this->createTransaction($transaction, $order);
+
+            DB::commit();
+
+            return [
+                'status' => 200,
+                'message' => 'Checkout succesfully',
+                'data' => [
+                    'invoice_link' => route('seller.dashboard.transactions.detail-transaction', $dataTransaction),
+                    'order' => $order,
+                ],
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'status' => 400,
+                'message' => $th->getMessage(),
+                'data' => null,
+            ];
+        }
+    }
 }

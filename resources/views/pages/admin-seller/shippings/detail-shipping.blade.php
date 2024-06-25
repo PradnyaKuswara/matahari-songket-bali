@@ -25,7 +25,7 @@
 
             <div class="grid grid-cols-1 gap-4 mt-4">
                 <div class="card">
-                    <div class="card-body bg-white">
+                    <div class="card-body bg-white dark:bg-black">
                         <div class="flex justify-between">
                             <div>
                                 <p class="text-lg font-semibold">Order ID: {{ $shipping->order->generate_id }}</p>
@@ -47,39 +47,39 @@
                                 @endif
                             </div>
                             <div>
-                                <p class="text-gray-500 text-sm">Courier: {{ $shipping->courier ?? '-' }}</p>
-                                <p class="text-gray-500 text-sm">Number: {{ $shipping->tracking_number ?? '-' }}</p>
+                                <p class="text-sm">Courier: {{ $shipping->courier ?? '-' }}</p>
+                                <p class="text-sm">Number: {{ $shipping->tracking_number ?? '-' }}</p>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <p class="text-gray-500 text-sm">Shipped at:
+                            <p class="text-sm">Shipped at:
                                 {{ $shipping->shipped_at ? $shipping->shipped_at->format('d F Y') : '-' }}</p>
-                            <p class="text-gray-500 text-sm">Estimate Delivered at:
+                            <p class="text-sm">Estimate Delivered at:
                                 {{ $shipping->delivered_at ? $shipping->delivered_at->format('d F Y') : '-' }}</p>
-                            <p class="text-gray-500 text-sm">Max Confirmation:
+                            <p class="text-sm">Max Confirmation:
                                 {{ $shipping->max_confirm ? $shipping->max_confirm->format('d F Y') : '-' }}</p>
                         </div>
                         <div class="mt-4">
-                            <p class="text-gray-500 text-sm">Address:</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->address }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->city }},
+                            <p class="text-sm">Address:</p>
+                            <p class="font-bold text-sm">{{ $shipping->address }}</p>
+                            <p class="font-bold text-sm">{{ $shipping->city }},
                                 {{ $shipping->province }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->city }},
+                            <p class="font-bold text-sm">{{ $shipping->city }},
                                 {{ $shipping->country }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->postal_code }}</p>
+                            <p class="font-bold text-sm">{{ $shipping->postal_code }}</p>
                         </div>
                         <div class="mt-4">
-                            <p class="text-gray-500 text-sm">Receiver:</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->user->name }}</p>
-                            <p class="text-gray-800 font-bold text-sm">{{ $shipping->user->phone_number }}</p>
+                            <p class="text-sm">Receiver:</p>
+                            <p class="font-bold text-sm">{{ $shipping->user->name }}</p>
+                            <p class="font-bold text-sm">{{ $shipping->user->phone_number }}</p>
                         </div>
                         <div class="mt-4">
                             {{-- product list --}}
-                            <p class="text-gray-500 font-bold text-base">Product List:</p>
+                            <p class="font-bold text-base">Product List:</p>
                             <div class="grid grid-cols-1 gap-4">
                                 @foreach ($shipping->order->products as $item)
                                     <div class="card">
-                                        <div class="card-body bg-white">
+                                        <div class="card-body">
                                             <div class="flex flex-col md:flex-row md:justify-between gap-4">
                                                 <div class="flex gap-4 items-center">
                                                     <div class="flex-col">
@@ -88,15 +88,15 @@
                                                     </div>
                                                     <div class="flex-col">
                                                         <p class="text-lg font-semibold">{{ $item->name }}</p>
-                                                        <p class="text-gray-500 text-sm">Qty: {{ $item->pivot->quantity }}
+                                                        <p class="text-sm">Qty: {{ $item->pivot->quantity }}
                                                         </p>
                                                     </div>
 
                                                 </div>
                                                 <div>
-                                                    <p class="text-gray-800 font-bold text-base">Price: Rp
+                                                    <p class="font-bold text-base">Price: Rp
                                                         {{ number_format($item->pivot->price, 2, ',', '.') }}</p>
-                                                    <p class="text-gray-800 font-bold text-base">Subtotal: Rp
+                                                    <p class="font-bold text-base">Subtotal: Rp
                                                         {{ number_format($item->pivot->total_price, 2, ',', '.') }}</p>
                                                 </div>
                                             </div>

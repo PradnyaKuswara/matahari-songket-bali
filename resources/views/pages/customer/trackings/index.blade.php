@@ -28,16 +28,16 @@
                     <div class="flex flex-col lg:flex-row justify-between items-center gap-4 mt-4">
                         <label class="form-control w-full max-w-xs">
                             <div class="label">
-                                <span class="label-text">Shipping Number/ RSI / Awb</span>
+                                <span class="label-text text-black dark:text-white">Shipping Number/ RSI / Awb</span>
                             </div>
                             <input type="text" id="shipping_number" placeholder="Type here"
-                                class="input input-bordered w-full max-w-xs" />
+                                class="input input-bordered w-full max-w-xs bg-white dark:bg-black border border-primary focus:border-primary" />
                         </label>
                         <label class="form-control w-full max-w-xs">
                             <div class="label">
-                                <span class="label-text">Courier</span>
+                                <span class="label-text text-black dark:text-white">Courier</span>
                             </div>
-                            <select class="select select-bordered" id="courier">
+                            <select class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary" id="courier">
                                 <option value="" disabled selected>Pick one</option>
                                 <option value="jne">JNE</option>
                                 <option value="jnt">JNT</option>

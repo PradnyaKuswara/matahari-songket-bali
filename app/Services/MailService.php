@@ -82,7 +82,7 @@ class MailService
 
             // Storage::delete('invoices/'.$invoice['filename'].'.pdf');
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 
@@ -95,7 +95,7 @@ class MailService
 
             Mail::to($order->user->email)->send($mail);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 
@@ -108,7 +108,7 @@ class MailService
 
             Mail::to($shipping->user->email)->send($mail);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 
@@ -120,7 +120,7 @@ class MailService
             $mail = new ReceivedProductMail($content);
             Mail::to($shipping->user->email)->send($mail);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 
@@ -130,7 +130,7 @@ class MailService
             $mail = new FaqMail($content);
             Mail::to(config('mail.from.address'))->send($mail);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return $e->getMessage();
         }
     }
 }

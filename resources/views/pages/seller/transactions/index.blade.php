@@ -152,7 +152,7 @@
                 </div>
             </div>
 
-            <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-black opacity-100 p-2 shadow-lg z-[200] lg:hidden">
+            <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-black opacity-100 p-2 shadow-lg z-[40] lg:hidden">
                 <div class="w-full  ">
                     <div class="flex justify-between mb-2 gap-4">
                         <div class="flex gap-4 items-center">

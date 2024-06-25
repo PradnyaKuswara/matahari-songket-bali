@@ -5,7 +5,7 @@
             class="relative flex w-full items-center gap-4 bg-primary shadow-md lg:rounded-lg px-3 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
                 <a href="javascript:;"
-                    class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 bg-white dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
+                    class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 bg-white dark:bg-black dark:text-white dark:hover:bg-dark/60 dark:hover:text-white lg:hidden"
                     @click="$store.app.toggleSidebar()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

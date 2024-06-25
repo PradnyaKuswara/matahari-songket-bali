@@ -231,9 +231,9 @@
                 <h1 class="text-4xl font-bold">Newest product</h1>
             </div>
             <div x-data="{ loading: false, card: false }" x-init="loading = true, card = true"
-                class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 lg:mx-0">
+                class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-6 gap-y-10 lg:mx-0 mx-2">
                 @foreach ($products as $product)
-                    <x-product-card :product="$product" class="shadow-md">
+                    <x-product-card :product="$product" class="">
                     </x-product-card>
                 @endforeach
             </div>
@@ -291,22 +291,22 @@
                         <div class="mx-auto max-w-2xl lg:max-w-4xl">
                             <figure class="mt-10">
                                 <blockquote
-                                    class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-                                    <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas
-                                        culpa sapiente alias
-                                        molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
+                                    class="text-center text-base font-semibold leading-8 text-gray-900 sm:text-xl sm:leading-9">
+                                    <p>“Saya sangat puas dengan pembelian songket Bali di sini. Pelayanannya cepat dan
+                                        responsif, mulai dari proses pemesanan hingga pengiriman, untuk kualitas produk
+                                        tidak perlu diragukan lagi. Terima kasih Matahari
+                                        Songket Bali, saya sangat puas dan pasti akan kembali berbelanja di sini. ”</p>
                                 </blockquote>
                                 <figcaption class="mt-10">
-                                    <img class="mx-auto h-10 w-10 rounded-full"
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt="">
+                                    <img class="mx-auto h-10 w-10 rounded-full object-cover"
+                                        src="{{ asset('assets/images/Testimoni 2.jpg') }}" alt="">
                                     <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                                        <div class="font-semibold text-gray-900">Judith Black</div>
+                                        <div class="font-semibold text-gray-900">Nengah Winadi</div>
                                         <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true"
                                             class="fill-gray-900">
                                             <circle cx="1" cy="1" r="1" />
                                         </svg>
-                                        <div class="text-gray-600">CEO of Workcation</div>
+                                        <div class="text-gray-600">Nengah Winadi Songket</div>
                                     </div>
                                 </figcaption>
                             </figure>

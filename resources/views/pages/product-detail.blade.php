@@ -115,7 +115,7 @@
         <section class="xl:max-w-screen-xl lg:max-w-screen-lg mx-2 md:mx-8 lg:mx-auto pb-16">
             <div class="flex flex-col gap-8 lg:gap-4">
                 <div class="text-2xl md:text-4xl font-bold">You may like also</div>
-                <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+                <div x-data="{ card: false, loading: false }" x-init=" card = true, loading = false" class="grid grid-cols-2 lg:grid-cols-4 gap-2 mx-2 lg:mx-0 lg:gap-8">
                     @foreach ($products as $product)
                         <x-product-card :product="$product" class="card" />
                     @endforeach

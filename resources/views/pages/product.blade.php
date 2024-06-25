@@ -60,7 +60,7 @@
 
             <div>
                 <div id="product-list"
-                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 lg:gap-x-6 gap-y-10 animate-fade-down">
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 lg:gap-x-6 gap-y-10 mx-2 lg:mx-0 animate-fade-down">
                     @include('pages.product-data')
                 </div>
                 @if ($products->isEmpty())

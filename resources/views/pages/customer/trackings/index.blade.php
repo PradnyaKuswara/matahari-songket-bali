@@ -37,7 +37,9 @@
                             <div class="label">
                                 <span class="label-text text-black dark:text-white">Courier</span>
                             </div>
-                            <select class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary" id="courier">
+                            <select
+                                class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary"
+                                id="courier">
                                 <option value="" disabled selected>Pick one</option>
                                 <option value="jne">JNE</option>
                                 <option value="jnt">JNT</option>
@@ -81,6 +83,20 @@
         trackButton.addEventListener('click', () => {
             let shippingNumberValue = shippingNumber.value;
             let courierValue = courier.value;
+
+            if (!shippingNumberValue || !courierValue) {
+                const notify = new Notyf({
+                    duration: 3000,
+                    position: {
+                        x: 'right',
+                        y: 'bottom',
+                    },
+                });
+
+                notify.error('Please fill all fields');
+
+                return;
+            }
 
             $.ajax({
                 url: endpoint,

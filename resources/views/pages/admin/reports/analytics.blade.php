@@ -21,6 +21,13 @@
 @endpush
 
 @section('content')
+    <div style="display: none;" id="loading-checkout"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[100] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="lg:w-1/3 w-2/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
+    </div>
+
     <div x-data="analyticsReport">
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -198,12 +205,14 @@
                         beforeSend: () => {
                             //chart display hidden
                             this.$refs.analyticsChart.innerHTML = "";
+                            //show loading
+                            $('#loading-checkout').show();
                         }
                     }).done((response) => {
                         //update table mostVIsitedPages
                         this.mostVisitedPages = response.mostVisitedPages;
-
-
+                        //update table topCountries
+                        this.topCountries = response.topCountries;
 
                         //update chart
                         this.analyticsChart.updateSeries([{
@@ -219,8 +228,14 @@
                             }),
                         });
 
+                        this.totalActiveUser = `Total Active User: ${response.totalActiveUsers}`;
+                        this.totalScreenPageViews = `Total Screen Page Views: ${response.totalScreenPageViews}`;
+
+                        //hide loading
+                        $('#loading-checkout').hide();
                     }).fail((error) => {
                         console.log(error);
+                        $('#loading-checkout').hide();
                     });
                 },
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->uuid();
+            $table->uuid()->unique();
 
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 
@@ -31,6 +31,7 @@ return new class extends Migration
 
             $table->boolean('is_active')->default(false);
             $table->timestamps();
+
         });
     }
 

@@ -16,22 +16,35 @@ class AddressController extends Controller
 {
     protected $addressService;
 
+    protected $cities;
+
+    protected $provinces;
+
+    protected $districts;
+
     public function __construct(AddressService $addressService)
     {
         $this->addressService = $addressService;
-    }
 
-    public function index(Request $request): View
-    {
-        $provinces = cache()->remember('provinces', 60 * 60 * 24, function () {
+        $this->provinces = cache()->remember('provinces', 180 * 24 * 60 * 60, function () {
             return Http::get('https://pro.rajaongkir.com/api/province', [
                 'key' => config('shipping.api_key'),
             ])['rajaongkir']['results'];
         });
 
+        $this->cities = cache()->remember('cities', 180 * 24 * 60 * 60, function () {
+            return Http::get('https://pro.rajaongkir.com/api/city', [
+                'key' => config('shipping.api_key'),
+            ])['rajaongkir']['results'];
+        });
+    }
+
+    public function index(Request $request): View
+    {
+
         $provinceAfter = [];
 
-        foreach ($provinces as $province) {
+        foreach ($this->provinces as $province) {
             $provinceAfter[] = [
                 'id' => $province['province_id'],
                 'name' => $province['province'],
@@ -112,10 +125,9 @@ class AddressController extends Controller
 
     public function getCities(Request $request): JsonResponse
     {
-        $cities = Http::get('https://pro.rajaongkir.com/api/city', [
-            'key' => config('shipping.api_key'),
-            'province' => $request->province_id,
-        ])['rajaongkir']['results'];
+        $cities = array_filter($this->cities, function ($city) use ($request) {
+            return $city['province_id'] == $request->province_id;
+        });
 
         $citiesAfter = [];
 
@@ -135,10 +147,12 @@ class AddressController extends Controller
 
     public function getSubdistricts(Request $request): JsonResponse
     {
-        $districts = Http::get('https://pro.rajaongkir.com/api/subdistrict', [
-            'key' => config('shipping.api_key'),
-            'city' => $request->city_id,
-        ])['rajaongkir']['results'];
+        $districts = cache()->remember('districts_'.$request->city_id, 180 * 24 * 60 * 60, function () use ($request) {
+            return Http::get('https://pro.rajaongkir.com/api/subdistrict', [
+                'key' => config('shipping.api_key'),
+                'city' => $request->city_id,
+            ])['rajaongkir']['results'];
+        });
 
         $districtsAfter = [];
 

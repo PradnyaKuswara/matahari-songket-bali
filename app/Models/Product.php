@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
@@ -73,5 +74,18 @@ class Product extends Model implements AuditableContract
     public function image4(): string
     {
         return Storage::url($this->image_4);
+    }
+
+    public function hasFullTextIndex($column)
+    {
+        $tableName = $this->getTable();
+        $indexes = DB::table('information_schema.statistics')
+            ->where('table_schema', env('DB_DATABASE'))
+            ->where('table_name', $tableName)
+            ->where('column_name', $column)
+            ->where('index_type', 'FULLTEXT')
+            ->exists();
+
+        return $indexes;
     }
 }

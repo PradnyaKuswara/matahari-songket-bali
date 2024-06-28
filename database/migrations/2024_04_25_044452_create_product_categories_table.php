@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->uuid();
+            $table->uuid()->unique();
 
             $table->string('name')->unique();
             $table->text('image')->nullable();
 
             $table->timestamps();
+
         });
     }
 

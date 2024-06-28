@@ -36,6 +36,12 @@
 @endpush
 
 @section('content')
+    <div style="display: none;" id="loading-checkout"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[100] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="lg:w-1/3 w-2/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
+    </div>
     <div x-data="revenueReport">
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -54,7 +60,9 @@
                         <div class="label">
                             <span class="label-text">Year</span>
                         </div>
-                        <select class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary" name="year" id="year" x-model="year">
+                        <select
+                            class="select select-bordered bg-white dark:bg-black border border-primary focus:border-primary"
+                            name="year" id="year" x-model="year">
                             <option disabled selected>Pick one</option>
                             @for ($i = 2023; $i <= date('Y'); $i++)
                                 <option value="{{ $i }}" {{ $i == now()->format('Y') ? 'selected' : '' }}>
@@ -149,6 +157,7 @@
                             $('#submit-report').html('Loading...');
                             //chart display hidden
                             this.$refs.revenueChart.innerHTML = "";
+                            $('#loading-checkout').show();
                         }
                     }).done((response) => {
                         $('#table').html(response.html);
@@ -164,9 +173,11 @@
                             },
                         ]);
 
+                        $('#loading-checkout').hide();
                     }).fail((error) => {
                         console.log(error);
-                        $('#submit-report').html('Search')
+                        $('#submit-report').html('Search');
+                        $('#loading-checkout').hide();
                     });
                 },
 

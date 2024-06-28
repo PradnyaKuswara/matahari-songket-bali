@@ -5,8 +5,8 @@
     <div class="flex items-center justify-center min-h-screen px-4" @click.self="open = false">
         <div x-show="open" x-transition x-transition.duration.300
             class="panel border-0 p-0 rounded-lg overflow-hidden w-full max-w-lg my-8">
-            <div class="flex bg-[#fbfbfb] dark:bg-[#121c2c] items-center justify-between px-5 py-3">
-                <h5 class="font-bold text-lg">{{ $title }}</h5>
+            <div class="flex bg-white dark:bg-black items-center justify-between px-5 py-3">
+                <h5 class="font-bold text-lg text-black dark dark:text-white">{{ $title }}</h5>
             </div>
             <div class="p-5">
                 <div class="dark:text-white-dark/70 text-base font-medium text-[#1f2937]">

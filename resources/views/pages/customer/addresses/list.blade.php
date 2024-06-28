@@ -191,7 +191,7 @@
         </div>
     @empty
         <div class="card col-span-3">
-            <div class="card-body bg-white">
+            <div class="card-body bg-white dark:bg-black">
                 <div class="text-center">
                     <p class="text-lg">There is no address. Please insert your address detail</p>
                 </div>

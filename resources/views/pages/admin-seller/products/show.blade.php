@@ -16,11 +16,19 @@
         </ul>
 
         <div x-data="products" class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 lg:gap-4 mt-5">
-            @foreach ($products as $product)
+            @forelse ($products as $product)
                 <div class="col-span-1">
                     <x-product-card :product="$product" class="shadow-md border bg-white dark:bg-black"></x-product-card>
                 </div>
-            @endforeach
+            @empty
+                <div class="card col-span-5">
+                    <div class="card-body bg-white dark:bg-black">
+                        <div class="text-center">
+                            <p class="text-lg">There is no products</p>
+                        </div>
+                    </div>
+                </div>
+            @endforelse
         </div>
         <div class="mt-2">
             {{ $products->links('components.dashboard.pagination') }}

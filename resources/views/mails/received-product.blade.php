@@ -705,7 +705,7 @@
                                                                             style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
                                                                             <singleline>
                                                                                 <div mc:edit data-text-edit>
-                                                                                    {{ $content->address . ', ' . $content->city . ', ' . $content->province . ', ' . $content->postal_code . ', ' . $content->country }}
+                                                                                    {{ $content->address . ', ' . $content->subdistrict . ', ' . $content->city . ', ' . $content->province . ', ' . $content->postal_code . ', ' . $content->country }}
                                                                                 </div>
                                                                             </singleline>
                                                                         </td>
@@ -917,6 +917,7 @@
                                                                             <singleline>
                                                                                 <div mc:edit data-text-edit>
                                                                                     <p>
+                                                                                        {{ $content->courier_code }} -
                                                                                         {{ $content->courier }}
                                                                                     </p>
                                                                                 </div>

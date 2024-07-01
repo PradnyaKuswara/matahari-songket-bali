@@ -789,7 +789,7 @@
                                                                             style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
                                                                             <singleline>
                                                                                 <div mc:edit data-text-edit>
-                                                                                    {{ $content->shipping->address . ', ' . $content->shipping->city . ', ' . $content->shipping->province . ', ' . $content->shipping->postal_code . ', ' . $content->shipping->country }}
+                                                                                    {{ $content->shipping->address . ', ' . $content->shipping->subdistrict . ', ' . $content->shipping->city . ', ' . $content->shipping->province . ', ' . $content->shipping->postal_code . ', ' . $content->shipping->country }}
                                                                                 </div>
                                                                             </singleline>
                                                                         </td>

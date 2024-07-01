@@ -128,7 +128,7 @@ class MailService
     {
         try {
             $mail = new FaqMail($content);
-            Mail::to(config('mail.to.address'))->send($mail);
+            Mail::to(env('MAIL_TO_ADDRESS'))->send($mail);
         } catch (Exception $e) {
             return $e->getMessage();
         }

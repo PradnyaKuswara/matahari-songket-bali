@@ -41,8 +41,8 @@
                     @forelse ($articlesSwiper as $articleItem)
                         <a href="{{ route('whats-new.detail', $articleItem) }}"
                             class="swiper-slide card  md:card-side bg-base-100 w-full ">
-                            <figure id="">
-                                <img src="{{ $articleItem->thumbnail() }}" class="w-96 object-cover" alt="Album" />
+                            <figure>
+                                <img src="{{ $articleItem->thumbnail() }}" class="w-[400px] h-[220px] object-cover" alt="Album" />
                             </figure>
                             <div class="card-body w-96 gap-4">
                                 <div class="flex justify-between">

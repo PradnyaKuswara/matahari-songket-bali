@@ -12,6 +12,13 @@
             font-size: 0.7rem;
             color: #a0aec0;
         }
+
+        #preview-container>img {
+            width: 380px;
+            height: 180px;
+            /* border: 2px solid rgb(219, 219, 219); */
+            object-fit: cover;
+        }
     </style>
 @endpush
 

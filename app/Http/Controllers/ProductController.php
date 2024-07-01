@@ -46,7 +46,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request): RedirectResponse
     {
-        // dd($request->validated());
         $this->productService->create($request->validated());
 
         Toaster::success('Product created successfully');

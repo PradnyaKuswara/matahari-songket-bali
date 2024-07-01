@@ -52,7 +52,7 @@ class ProductRepository implements ProductInterface
 
     public function searchFront($request, $model, $conditions, $relations)
     {
-        return $this->searchService->handle($request, $model, $conditions, $relations)->where('is_active', true)->orderByRaw('stock > 0 desc, created_at desc')->paginate(9)->withQueryString()->withPath('products');
+        return $this->searchService->handle($request, $model, $conditions, $relations)->where('is_active', true)->orderByRaw('stock > 0 desc, created_at desc')->paginate(12)->withQueryString()->withPath('products');
     }
 
     public function updateStock($order)

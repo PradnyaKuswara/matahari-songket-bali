@@ -82,7 +82,7 @@
                                 'is_required' => 'true',
                             ]
                         ]" route="admin.dashboard.sellers.store"
-                            title="Create Customer"></x-dashboard.create-modal>
+                            title="Create seller"></x-dashboard.create-modal>
                     </div>
                     <label
                         class="input input-bordered input-md w-full md:w-80  flex items-center gap-2 border border-primary dark:bg-black">

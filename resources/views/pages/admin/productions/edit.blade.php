@@ -190,7 +190,7 @@
                                                     id="loggingItemCategory"
                                                     name="items[{{ $index }}][category_name]"
                                                     x-model="form.items[{{ $index }}].category_name">
-                                                    <option selected disabled>Item category</option>
+                                                    <option value="" selected disabled>Item category</option>
                                                     <option value="material"
                                                         :selected="form.items[{{ $index }}].category_name == 'material'">
                                                         Material
@@ -362,7 +362,7 @@
                                                     id="loggingProductWeaverName{{ $index }}"
                                                     name="products[{{ $index }}][weaver_name]"
                                                     x-model="form.products[{{ $index }}].weaver_name">
-                                                    <option selected disabled>Weaver name</option>
+                                                    <option value="" selected disabled>Weaver name</option>
                                                 </select>
                                             </label>
 

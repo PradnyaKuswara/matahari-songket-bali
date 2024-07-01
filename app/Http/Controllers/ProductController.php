@@ -40,7 +40,7 @@ class ProductController extends Controller
     public function show(): View
     {
         return view('pages.admin-seller.products.show', [
-            'products' => $this->productService->all()->orderByRaw('stock > 0 desc, created_at desc')->paginate(9),
+            'products' => $this->productService->all()->orderByRaw('stock > 0 desc, created_at desc')->paginate(8),
         ]);
     }
 

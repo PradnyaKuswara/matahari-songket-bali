@@ -4,6 +4,11 @@
     Management Production
 @endsection
 
+@push('css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+    <script src="{{ asset('assets/js/preview.js') }}"></script>
+@endpush
+
 @section('content')
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">

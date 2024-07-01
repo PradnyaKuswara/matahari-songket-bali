@@ -42,7 +42,7 @@ const inputCategory = (i) => {
         <label class="input input-bordered w-full text-xs md:text-base flex items-center bg-white dark:bg-black border border-primary focus:border-primary">
         <select id="loggingItemCategory${i}" class="grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
             name="items[` + i + `][category_name]" x-model="form.items[` + i + `].category_name">
-            <option selected disabled>Item category</option>
+            <option value="" selected disabled>Item category</option>
             <option value="material">Material
             </option>
             <option value="service">Service

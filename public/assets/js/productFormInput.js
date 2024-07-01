@@ -86,7 +86,7 @@ const inputWeaverNameProduct = (i) => {
         class="dropDownWeaver form-control grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
         id="loggingProductWeaverName${i}" name="products[`+i+`][weaver_name]"
         x-model="form.products[`+i+`].weaver_name">
-        <option selected disabled>Weaver name</option>
+        <option value="" selected disabled>Weaver name</option>
     </select>
     </label>
 

@@ -179,7 +179,7 @@
                                             <select class=" grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
                                                 id="loggingItemCategory" name="items[0][category_name]"
                                                 x-model="form.items[0].category_name">
-                                                <option selected disabled>Item category</option>
+                                                <option value="" selected disabled>Item category</option>
                                                 <option value="material">
                                                     Material
                                                 </option>
@@ -333,7 +333,7 @@
                                                 class="dropDownWeaver form-control grow border-none outline-none text-md font-extralight bg-white dark:bg-black border border-primary focus:border-primary"
                                                 id="loggingProductWeaverName0" name="products[0][weaver_name]"
                                                 x-model="form.products[0].weaver_name">
-                                                <option selected disabled>Weaver name</option>
+                                                <option value="" selected disabled>Weaver name</option>
                                             </select>
                                         </label>
 

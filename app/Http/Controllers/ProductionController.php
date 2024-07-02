@@ -88,7 +88,7 @@ class ProductionController extends Controller
     {
         return view('pages.admin.productions.show', [
             'itemCategories' => $this->itemCategoryService->all(),
-            'productCategories' => $this->productCategoryService->all(),
+            'productCategories' => $this->productCategoryService->all()->get(),
             'items' => $production->items()->paginate(10),
             'products' => $production->products()->paginate(10),
             'production' => $production,

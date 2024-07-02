@@ -44,42 +44,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="flex flex-col lg:flex-row gap-4 mb-4">
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="LoggingGender">
-                                <div class="label">
-                                    <span class="label-text">Gender</span>
-                                </div>
-                            </label>
-                            <select id="LoggingGender" name="gender" class="select w-full select-bordered">
-                                <option disabled selected>Pick one</option>
-                                <option value="men" {{ old('gender') == 'men' ? 'selected' : null }}>Men</option>
-                                <option value="women" {{ old('gender') == 'women' ? 'selected' : null }}>Women</option>
-                            </select>
-
-                            @error('gender')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class=" w-full">
-                            <label class="form-control w-full max-w-xs" for="loggingDateOfBirth">
-                                <div class="label">
-                                    <span class="label-text">Date Of Birth</span>
-                                </div>
-                            </label>
-
-                            <label class="input input-bordered w-full text-xs md:text-base flex items-center ">
-                                <input id="loggingDateOfBirth" type="date" class="grow" name="date_of_birth"
-                                    value="{{ old('date_of_birth') }}" placeholder="Enter your date" />
-                            </label>
-
-                            @error('date_of_birth')
-                                <p class="mt-2 text-error text-xs">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div> --}}
-
                     <div class="flex flex-col lg:flex-row gap-4 mb-4">
                         <div class=" w-full">
                             <label class="form-control w-full max-w-xs" for="LoggingEmailAddress">

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="card lg:card-side lg:w-6/12 w-full bg-base-100 h-full lg:shadow-xl">
+    <div class="card lg:card-side lg:w-6/12 w-full bg-base-100 lg:shadow-xl">
         <div class="card-body">
             <div class="px-6 py-8">
                 <a href="javascript:void(0)" class="flex justify-center mb-8">

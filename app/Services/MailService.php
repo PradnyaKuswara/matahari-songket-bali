@@ -9,7 +9,6 @@ use App\Mail\ReceivedProductMail;
 use App\Mail\ShippedMail;
 use Exception;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Facades\Invoice;
@@ -67,20 +66,12 @@ class MailService
     public function sendInvoice($order)
     {
         try {
-            // $invoice = $this->templatePdf($order);
-
             $content = $order;
 
             $mail = new InvoiceMail($content);
 
-            // $mail->attach(storage_path('app/public/invoices/'.$invoice['filename'].'.pdf'), [
-            //     'as' => $invoice['filename'].'.pdf',
-            //     'mime' => 'application/pdf',
-            // ]);
-
             Mail::to($order->user->email)->send($mail);
 
-            // Storage::delete('invoices/'.$invoice['filename'].'.pdf');
         } catch (Exception $e) {
             return $e->getMessage();
         }

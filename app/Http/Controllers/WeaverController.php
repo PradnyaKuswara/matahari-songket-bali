@@ -86,15 +86,9 @@ class WeaverController extends Controller
     {
         $user = User::whereHas('role', fn ($query) => $query->where('name', 'weaver'));
 
-        $provinces = cache()->remember('provinces', 60 * 60 * 24, function () {
-            return Http::get('https://pro.rajaongkir.com/api/province', [
-                'key' => config('shipping.api_key'),
-            ])['rajaongkir']['results'];
-        });
-
         $provinceAfter = [];
 
-        foreach ($provinces as $province) {
+        foreach ($this->provinces as $province) {
             $provinceAfter[] = [
                 'id' => $province['province_id'],
                 'name' => $province['province'],

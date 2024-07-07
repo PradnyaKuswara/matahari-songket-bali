@@ -23,8 +23,6 @@ class SellerRepository implements SellerInterface
 
     public function create(array $data)
     {
-        $data['email_verified_at'] = now();
-
         return User::create($data);
     }
 

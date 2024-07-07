@@ -124,11 +124,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="flex gap-2 items-center justify-end print:hidden mt-4">
-        <a href="javascript:window.print()" class="btn bg-primary text-white"><span class="mdi mdi-printer-outline"></span>
-            Print</a>
-    </div>
-    <div class="mt-4  mx-auto max-w-screen-md">
-        <x-shipping :shipping="$shipping"></x-shipping>
-    </div> --}}
 @endsection

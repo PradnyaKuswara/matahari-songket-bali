@@ -7,7 +7,9 @@ use App\Models\Visitor;
 use App\Services\ArticleService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Masmerise\Toaster\Toaster;
 
 class WhatsNewController extends Controller
 {
@@ -34,8 +36,15 @@ class WhatsNewController extends Controller
         ]);
     }
 
-    public function detail(Article $article): View
+    public function detail(Article $article): View|RedirectResponse
     {
+
+        if (! $article->is_active) {
+            Toaster::error('Article not found');
+
+            return redirect()->route('whats-new.index');
+        }
+
         visits(Visitor::TYPE_ARTICLE, $article)->increment();
 
         return view('pages.whats-new-detail', [

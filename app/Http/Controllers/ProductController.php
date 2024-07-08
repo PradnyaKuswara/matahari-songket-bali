@@ -104,8 +104,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function detailFront(Product $product): View
+    public function detailFront(Product $product): View|RedirectResponse
     {
+
+        if ($product->stock <= 0) {
+            Toaster::error('Product is out of stock');
+
+            return redirect()->route('products.indexFront');
+        }
+
         visits(Visitor::TYPE_PRODUCT, $product)->increment();
 
         return view('pages.product-detail', [

@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+    <div style="display: none;" id="loading-tracking"
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-[9999999999] overflow-hidden bg-gray-800 opacity-75 flex flex-col items-center justify-center">
+        <div class="loading loading-dots w-12 rounded-full text-white h-12 mb-4"></div>
+        <h2 class="text-center text-white text-xl font-semibold">Loading...</h2>
+        <p class="lg:w-1/3 w-2/3 text-center text-white">This may take a few seconds</p>
+    </div>
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
@@ -83,6 +89,7 @@
         trackButton.addEventListener('click', () => {
             let shippingNumberValue = shippingNumber.value;
             let courierValue = courier.value;
+            const loadingTracking = document.getElementById('loading-tracking');
 
             if (!shippingNumberValue || !courierValue) {
                 const notify = new Notyf({
@@ -110,12 +117,13 @@
                     trackingResult.innerHTML = '';
                     trackingDetail.innerHTML = '';
                     trackButton.innerText = 'Loading...';
+                    loadingTracking.style.display = 'flex';
                 },
             }).done((response) => {
-                console.log(response.rajaongkir);
-
                 //response data summary
-                trackingDetail.innerHTML += `
+
+                if (response.rajaongkir.result) {
+                    trackingDetail.innerHTML += `
                     <div class="flex flex-col md:flex-row justify-between gap-2">
                         <div class="flex flex-col">
                             <h2 class="text-lg font-semibold">Summary</h2>
@@ -163,11 +171,10 @@
                     </div>
                 `;
 
+                    //response data history map from last to first
 
-                //response data history map from last to first
-
-                response.rajaongkir.result.manifest.reverse().forEach((manifest) => {
-                    trackingResult.innerHTML += `
+                    response.rajaongkir.result.manifest.reverse().forEach((manifest) => {
+                        trackingResult.innerHTML += `
                         <div class="flex flex-col gap-2">
                             <div class="flex gap-2">
                                 <span class="text-sm font-semibold">Manifest Code:</span>
@@ -187,9 +194,28 @@
                             </div>
                         </div>
                     `;
-                });
+                    });
+                } else {
+                    trackingDetail.innerHTML = `
+                        <div class="flex flex-col gap-2">
+                            <div class="flex gap-2">
+                                <span class="text-sm font-semibold">Not Found</span>
+                            </div>
+                        </div>
+                    `;
+
+                    trackingResult.innerHTML = `
+                        <div class="flex flex-col gap-2">
+                            <div class="flex gap-2">
+                                <span class="text-sm font-semibold">Not Found</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
 
                 trackButton.innerText = 'Track Order';
+                loadingTracking.style.display = 'none';
             }).fail((jqXHR, ajaxOptions, thrownError) => {
                 trackingDetail.innerHTML = `
                     <div class="flex flex-col gap-2">
@@ -209,6 +235,7 @@
                     </div>
                 `;
                 trackButton.innerText = 'Track Order';
+                loadingTracking.style.display = 'none';
             });
         });
     </script>

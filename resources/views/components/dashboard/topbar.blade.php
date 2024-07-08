@@ -119,6 +119,11 @@
                                 </div>
                             </div>
                         </li>
+                        <li>
+                            <a href="{{ route('index') }}" class="dark:hover:text-white " @click="toggle">
+                                <span class="mdi mdi-home-outline text-xl mr-2"></span>
+                                Home</a>
+                        </li>
                         @if (auth()->user()->isAdmin())
                             <li>
                                 <a href="{{ route('admin.dashboard.profile.edit') }}" class="dark:hover:text-white"

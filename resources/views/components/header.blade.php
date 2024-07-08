@@ -57,16 +57,25 @@
                     @endif
 
                     @if (auth()->user()->role->name == 'customer')
-                        <li><a href="{{ route('customer.dashboard.index') }}">Dashboard</a></li>
-                        <li>
-                            <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
-                                Profile
-                            </a>
-                        </li>
                         <li>
                             <a href="{{ route('customer.dashboard.order.index') }}" class="justify-between">
                                 Order
                                 <span class="badge badge-primary animate-pulse animate-infinite">New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.transaction.index') }}" class="justify-between">
+                                Invoice
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.shipping.index') }}" class="justify-between">
+                                Shipping
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('customer.dashboard.trackingOrder') }}" class="justify-between">
+                                Tracking Order
                             </a>
                         </li>
                     @endif
@@ -80,7 +89,7 @@
                         </li>
                     @endif
 
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST" class="mt-2">
                         @csrf
                         <li><button type="submit" class="w-full">Logout</button></li>
                     </form>
@@ -124,13 +133,6 @@
 
                     @if (auth()->check() && auth()->user()->role->name == 'customer')
                         <div class="mt-4">
-                            <li><a href="{{ route('customer.dashboard.index') }}">Dashboard</a></li>
-                            <li>
-                                <a href="{{ route('customer.dashboard.profile.edit') }}" class="justify-between">
-                                    Profile
-
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ route('customer.dashboard.order.index') }}" class="justify-between">
                                     Order
@@ -144,6 +146,11 @@
                             <li>
                                 <a href="{{ route('customer.dashboard.shipping.index') }}" class="justify-between">
                                     Shipping
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('customer.dashboard.trackingOrder') }}" class="justify-between">
+                                    Tracking Order
                                 </a>
                             </li>
                     @endif

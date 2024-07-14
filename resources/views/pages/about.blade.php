@@ -4,6 +4,51 @@
     About | Matahari Songket Bali
 @endsection
 
+@push('css')
+    <script async src="https://www.google.com/recaptcha/api.js">
+        // Add recaptcha script
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const recaptchaObserver = new MutationObserver(() => {
+                const recaptchaFrame = document.querySelector(".g-recaptcha iframe");
+                if (recaptchaFrame) {
+                    recaptchaFrame.style.zIndex = "9999"; // atau nilai yang cukup besar
+                }
+
+                const recaptchaChallenge = document.querySelector(
+                    ".g-recaptcha .recaptcha-checkbox-border");
+                if (recaptchaChallenge) {
+                    recaptchaChallenge.style.zIndex = "9999"; // atau nilai yang cukup besar
+                }
+            });
+
+            recaptchaObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    </script>
+
+    <style>
+        .g-recaptcha-bubble-arrow+div {
+            position: absolute !important;
+            z-index: 3000000000 !important;
+        }
+
+        .grecaptcha-badge {
+            z-index: 9999;
+            /* atau nilai yang cukup besar */
+        }
+
+        iframe[title="recaptcha challenge"] {
+            position: absolute !important;
+            z-index: 3000000000 !important;
+        }
+    </style>
+@endpush
+
 @section('content')
     <section id="hero">
         <div class="hero min-h-screen" style="background-image: url({{ asset('assets/images/about-hero.jpg') }});">
@@ -12,7 +57,8 @@
                 <div class="lg:max-w-[60rem] mx-4 md:mx-6 lg:mx-0">
                     <x-string-typing idType="typed-1" idStringElement="typed-title-1"
                         class="mb-5 text-5xl lg:text-7xl font-bold">Discover our story.</x-string-typing>
-                    <p class="text-sm lg:text-base mb-5 mt-5 leading-6 lg:leading-7">Matahari Songket Bali is your gateway to
+                    <p class="text-sm lg:text-base mb-5 mt-5 leading-6 lg:leading-7">Matahari Songket Bali is your gateway
+                        to
                         the vibrant heritage of Bali's
                         traditional
                         songket. Our artisans meticulously weave each piece, combining time-honored techniques with modern

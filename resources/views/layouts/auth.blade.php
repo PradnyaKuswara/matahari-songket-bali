@@ -42,14 +42,17 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+        as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet" type="text/css" />
+    </noscript>
 
     <!-- Icon -->
-    <script async  src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
+    <script async src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
 
     <script async src="https://www.google.com/recaptcha/api.js"></script>
     <style>

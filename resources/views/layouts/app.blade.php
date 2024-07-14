@@ -41,39 +41,15 @@
 
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo_icon.png') }}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"
+            type="text/css" />
+    </noscript>
 
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous" async></script>
-
-    <script async src="https://www.google.com/recaptcha/api.js">
-        // Add recaptcha script
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const recaptchaObserver = new MutationObserver(() => {
-                const recaptchaFrame = document.querySelector(".g-recaptcha iframe");
-                if (recaptchaFrame) {
-                    recaptchaFrame.style.zIndex = "9999"; // atau nilai yang cukup besar
-                }
-
-                const recaptchaChallenge = document.querySelector(
-                    ".g-recaptcha .recaptcha-checkbox-border");
-                if (recaptchaChallenge) {
-                    recaptchaChallenge.style.zIndex = "9999"; // atau nilai yang cukup besar
-                }
-            });
-
-            recaptchaObserver.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        });
-    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('analytics.measurement_id') }}"></script>
@@ -93,23 +69,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <title>@yield('page-title')</title>
-
-    <style>
-        .g-recaptcha-bubble-arrow+div {
-            position: absolute !important;
-            z-index: 3000000000 !important;
-        }
-
-        .grecaptcha-badge {
-            z-index: 9999;
-            /* atau nilai yang cukup besar */
-        }
-
-        iframe[title="recaptcha challenge"] {
-            position: absolute !important;
-            z-index: 3000000000 !important;
-        }
-    </style>
 </head>
 
 <body data-theme>
@@ -125,7 +84,7 @@
 
     <x-footer></x-footer>
 
-    <script async type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
     <script>
         localStorage.removeItem('x_modal_create')
         localStorage.removeItem('x_modal_edit')

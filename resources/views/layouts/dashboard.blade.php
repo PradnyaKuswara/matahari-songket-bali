@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo_icon.png') }}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet" type="text/css" />
+    </noscript>
     <link rel="stylesheet" type="text/css" media="screen"
         href="{{ asset('assets/vristo/assets/css/perfect-scrollbar.min.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/vristo/assets/css/style.css') }}" />
@@ -21,6 +23,9 @@
     <script defer src="{{ asset('assets/vristo/assets/js/popper.min.js') }}"></script>
     <script defer src="{{ asset('assets/vristo/assets/js/tippy-bundle.umd.min.js') }}"></script>
     <script defer src="{{ asset('assets/vristo/assets/js/sweetalert.min.js') }}"></script>
+
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous" async></script>
 
     @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
 

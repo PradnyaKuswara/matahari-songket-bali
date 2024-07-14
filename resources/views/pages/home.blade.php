@@ -80,7 +80,6 @@
                     formal events, and more. Each piece showcases the exquisite artistry and rich heritage of Bali, making
                     it a perfect choice for those seeking to add a touch of elegance and tradition to their attire." on
                     indonesia. </div>
-                {{-- <img src="{{ asset('assets/images/photographer 1.png') }}" class="" /> --}}
             </div>
 
             <div class="relative hidden md:flex ">
@@ -105,7 +104,7 @@
 
             <div class="hidden lg:grid place-items-center md:grid-cols-3 gap-4">
                 @forelse ($productCategories as $productCategory)
-                    <img src="{{ $productCategory->image ? $productCategory->image() : '' }}"
+                    <img src="{{ $productCategory->image ? $productCategory->image() : '' }}" alt="product-category"
                         class="w-9/12 md:w-full rounded-lg shadow-2xl {{ $loop->iteration % 2 == 0 ? 'md:mt-0' : 'md:mt-40' }} ":class="intersect ? 'animate-fade-up animate-duration-[2000ms]':'opacity-0'" />
                 @empty
                     <div class="text-center">No data available</div>
@@ -117,7 +116,7 @@
                 @forelse ($productCategories as $productCategory)
                     <div class=" {{ $loop->iteration % 2 == 0 ? 'flex flex-row-reverse gap-8 items-center mx-auto justify-end' : ' mx-auto flex items-center gap-8' }}"
                         :class="intersect ? 'animate-fade-up animate-duration-[2000ms]' : 'opacity-0'">
-                        <img src="{{ $productCategory->image ? $productCategory->image() : '' }}"
+                        <img src="{{ $productCategory->image ? $productCategory->image() : '' }}" alt="product-category"
                             class="w-6/12 md:w-full rounded-lg shadow-2xl md:mt-40  {{ $loop->iteration % 2 == 0 ? 'md:mt-0 -rotate-12' : 'md:mt-40 rotate-12' }} " />
                         <h1 class="text-primary font-bold">Kain Songket</h1>
                     </div>
@@ -190,35 +189,35 @@
                     class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}"
-                            alt="Facebook" />
+                            alt="Product 1" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}"
-                            alt="Facebook" />
+                            alt="Product 2" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}"
-                            alt="Facebook" />
+                            alt="Product 3" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}"
-                            alt="Facebook" />
+                            alt="Product 4" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 1.png') }}"
-                            alt="Facebook" />
+                            alt="Product 1" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 2.png') }}"
-                            alt="Facebook" />
+                            alt="Product 2" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 3.png') }}"
-                            alt="Facebook" />
+                            alt="Product 3" />
                     </li>
                     <li>
                         <img class="w-52 h-72 rounded-md" src="{{ asset('assets/images/product 4.png') }}"
-                            alt="Facebook" />
+                            alt="Product 4" />
                     </li>
                 </ul>
             </div>

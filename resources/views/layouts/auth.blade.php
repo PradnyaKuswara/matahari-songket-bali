@@ -49,7 +49,7 @@
         rel="stylesheet">
 
     <!-- Icon -->
-    <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
+    <script async  src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
 
     <script async src="https://www.google.com/recaptcha/api.js"></script>
     <style>

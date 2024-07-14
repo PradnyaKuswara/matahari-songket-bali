@@ -48,7 +48,7 @@
         rel="stylesheet">
 
     <!-- Icon -->
-    <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b1f0352e54.js" crossorigin="anonymous" async></script>
 
     <script async src="https://www.google.com/recaptcha/api.js">
         // Add recaptcha script
@@ -125,7 +125,7 @@
 
     <x-footer></x-footer>
 
-    <script type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
+    <script async type="text/javascript" src="{{ asset('assets/js/navbar-swap.js') }}"></script>
     <script>
         localStorage.removeItem('x_modal_create')
         localStorage.removeItem('x_modal_edit')

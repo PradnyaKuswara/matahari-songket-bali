@@ -28,7 +28,7 @@
 @endpush
 
 @section('content')
-    <div class="pt-10 hero-bg-light" id="hero">
+    <div class="pt-20 lg:pt-10 hero-bg-light" id="hero">
         <div class=" flex flex-col justify-between w-screen px-4 mx-auto md:pt-16 md:flex-row md:px-8 lg:max-w-screen-lg">
             <div class="pt-16 mb-16 lg:mb-0 lg:pt-32  md: max-w-md lg:max-w-lg lg:pr-5">
                 <div class="w-full mb-6 flex flex-col justify-center">
@@ -54,13 +54,13 @@
 
                 </div>
                 <div class="flex items-center gap-4 a w-20" data-aos="fade-up" data-aos-duration="1500">
-                    <x-button-link link="#why-do-we-use-it"
+                    <x-button-link link="#our-categories"
                         class=" btn-neutral shadow-md text-white ">Explore</x-button-link>
                     <x-button-link :link="route('products.indexFront')" class=" btn-primary text-white  animate-pulse animate-infinite">See
                         Product</x-button-link>
                 </div>
             </div>
-            <div data-aos="fade" data-aos-duration="1500">
+            <div class="hidden lg:flex" data-aos="fade" data-aos-duration="1500">
                 <img src="{{ asset('assets/images/image_hero-removebg-preview.png') }}"
                     class="object-cover object-bottom w-full lg:rounded-full h-64 mx-auto md:h-auto xl:mr-24 md:max-w-sm"
                     alt="" />

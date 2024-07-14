@@ -23,7 +23,7 @@ class ProfileUpdateRequest extends FormRequest
             'gender' => ['nullable', 'string', 'max:255'],
             'date_of_birth' => ['nullable', 'date'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'avatar' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
+            'avatar' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 1), 'mimes:jpg,jpeg,png'],
             'phone_number' => ['nullable', new PhoneNumber],
         ];
     }

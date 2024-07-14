@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
         return [
             'product_category_id' => ['required', 'exists:product_categories,id'],
             'name' => ['required', 'string', 'max:255'],
-            'image_1' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
+            'image_1' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 1), 'mimes:jpg,jpeg,png'],
             'image_2' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
             'image_3' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],
             'image_4' => [Rule::file()->image()->max(1024 * 3), 'mimes:jpg,jpeg,png'],

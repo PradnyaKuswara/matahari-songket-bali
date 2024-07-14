@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
-            'thumbnail' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 5), 'mimes:jpg,jpeg,png'],
+            'thumbnail' => [Rule::when($this->conditionalImageUpdate(), '', ['required']), Rule::file()->image()->max(1024 * 1), 'mimes:jpg,jpeg,png'],
             'slug' => ['string', 'unique:articles,slug'],
             'meta_desc' => ['nullable', 'string'],
             'meta_keyword' => ['nullable', 'string', 'max:255'],

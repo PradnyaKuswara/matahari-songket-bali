@@ -16,3 +16,11 @@ body {
 .hero-bg-light {
     background-image: url(../images/Light.png);
 }
+
+/* hidden hero-bg-light on mobile */
+
+@media (max-width: 768px) {
+    .hero-bg-light {
+        background-image: none;
+    }
+}

@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'customer' => \App\Http\Middleware\Customer::class,
         'seller' => \App\Http\Middleware\Seller::class,
         'verifiedCustomer' => \App\Http\Middleware\VerifyEmailCustomer::class,
+        'optimizeImages' => \Spatie\LaravelImageOptimizer\Middlewares\OptimizeImages::class,
     ];
 }

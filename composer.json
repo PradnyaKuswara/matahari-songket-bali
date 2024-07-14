@@ -17,6 +17,7 @@
         "midtrans/midtrans-php": "^2.5",
         "owen-it/laravel-auditing": "^13.6",
         "spatie/laravel-analytics": "^5.3",
+        "spatie/laravel-image-optimizer": "^1.8",
         "twilio/sdk": "^8.1"
     },
     "require-dev": {

@@ -95,8 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <template x-for="mostVisitedPage in mostVisitedPages"
-                                        :key="mostVisitedPage.fullPageUrl">
+                                    <template x-for="(mostVisitedPage, index) in mostVisitedPages" :key="index">
                                         <tr>
                                             <td x-text="mostVisitedPage.pageTitle"></td>
                                             <td class="max-w-xl break-words" x-text="mostVisitedPage.fullPageUrl"></td>
@@ -125,7 +124,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <template x-for="topCountry in topCountries" :key="topCountry.country">
+                                    <template x-for="(topCountry, index) in topCountries" :key="index">
                                         <tr>
                                             <td x-text="topCountry.country"></td>
                                             <td x-text="topCountry.screenPageViews"></td>
@@ -210,7 +209,9 @@
                         }
                     }).done((response) => {
                         //update table mostVIsitedPages
-                        this.mostVisitedPages = response.mostVisitedPages;
+                        // this.mostVisitedPages = response.mostVisitedPages;
+
+                        // console.log(response);
                         //update table topCountries
                         this.topCountries = response.topCountries;
 
@@ -228,8 +229,10 @@
                             }),
                         });
 
-                        this.totalActiveUser = `Total Active User: ${response.totalActiveUsers}`;
-                        this.totalScreenPageViews = `Total Screen Page Views: ${response.totalScreenPageViews}`;
+                        this.totalActiveUser =
+                        `Total Active User: ${response.totalActiveUsers}`;
+                        this.totalScreenPageViews =
+                            `Total Screen Page Views: ${response.totalScreenPageViews}`;
 
                         //hide loading
                         $('#loading-checkout').hide();

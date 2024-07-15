@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:25'],
+            'username' => ['required', 'string', 'max:25', 'unique:users,username'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', Rules\Password::defaults(), 'max:255'],
             'g-recaptcha-response' => ['required', new ReCaptcha],

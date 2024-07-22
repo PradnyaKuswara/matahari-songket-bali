@@ -65,6 +65,29 @@ class CheckOutController extends Controller
 
     public function showPayment(Order $order): View
     {
+        try {
+            \Midtrans\Transaction::status($order->generate_id);
+        } catch (\Throwable $th) {
+            if ($order->transaction->expired_at < now()) {
+                $order->update([
+                    'status' => false,
+                ]);
+                $order->transaction->update([
+                    'status' => 'expired',
+                ]);
+                $order->shipping->update([
+                    'status' => 'cancel',
+                ]);
+
+                foreach ($order->products as $product) {
+                    $quantity = $product->pivot->quantity ?? 0;
+                    $product->update([
+                        'stock' => $product->stock + $quantity,
+                    ]);
+                }
+            }
+        }
+
         $this->authorize('customer-order', $order);
 
         return view('pages.payment', [

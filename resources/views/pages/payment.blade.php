@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('page-title')
+@section('title')
     Payment | Matahari Songket Bali
 @endsection
 

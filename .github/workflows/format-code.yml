@@ -2,9 +2,9 @@ name: "Format Code"
 
 on:
   push:
-    branches: ["develop", "staging"]
+    branches: ["develop", "staging", "staging-v2"]
   pull_request:
-    branches: ["develop", "staging"]
+    branches: ["develop", "staging", "staging-v2"]
 
 jobs:
   format-code:

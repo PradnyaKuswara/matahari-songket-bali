@@ -28,10 +28,13 @@ npm install
 # build npm assets
 npm run build
 
+# set maintenance
+php artisan down
+
 # Run database migrations
-php artisan migrate
+php artisan migrate --force
 
 # Exit maintenance mode
-# php artisan up
+php artisan up
 
 echo "Deployment finished!"

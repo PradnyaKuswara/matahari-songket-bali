@@ -10,10 +10,10 @@ echo "Deployment started ..."
 git pull
 
 # Install composer dependencies
-~/composer.phar install --optimize-autoloader
+composer install --optimize-autoloader
 
 # dump autoload composer dependencies
-~/composer.phar dumpautoload
+composer dumpautoload
 
 # Clear the old cache
 php artisan clear-compiled
